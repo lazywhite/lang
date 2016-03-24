@@ -1,0 +1,6 @@
+## Exception class tree
+Throwable
+    Error
+    Exception
+        IOException
+        RuntimeException

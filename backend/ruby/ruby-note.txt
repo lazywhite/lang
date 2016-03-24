@@ -1,0 +1,87 @@
+#######irbrc##############
+
+
+require 'irb/completion'  
+
+require 'rubygems'
+require 'wirble'
+require 'hirb'
+
+
+IRB.conf[:PROMPT_MODE] = :SIMPLE
+
+Wirble.init
+Wirble.colorize
+# hirb (active record output format in table)
+Hirb::View.enable
+
+# IRB Options
+IRB.conf[:AUTO_INDENT] = true
+IRB.conf[:SAVE_HISTORY] = 1000
+IRB.conf[:EVAL_HISTORY] = 200
+
+# Log to STDOUT if in Rails
+if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')
+  require 'logger'
+  RAILS_DEFAULT_LOGGER = Logger.new(STDOUT)
+  #IRB.conf[:USE_READLINE] = true
+
+  # Display the RAILS ENV in the prompt
+  # ie : [Development]>> 
+  IRB.conf[:PROMPT][:CUSTOM] = {
+   :PROMPT_N => "[#{ENV["RAILS_ENV"].capitalize}]>> ",
+   :PROMPT_I => "[#{ENV["RAILS_ENV"].capitalize}]>> ",
+   :PROMPT_S => nil,
+   :PROMPT_C => "?> ",
+   :RETURN => "=> %s\n"
+   }
+  # Set default prompt
+  IRB.conf[:PROMPT_MODE] = :CUSTOM
+end
+
+# We can also define convenient methods (credits go to thoughtbot)
+def me
+  User.find_by_email("me@gmail.com")
+end
+
+###################
+
+#{} 字符串变量替换
+函数的()可以省略
+
+
+BEGIN:声明将在程序的开始调用的代码
+
+END:声明将在程序的最后调用的代码
+
+=begin
+# comments
+# comments
+# comments
+=end
+
+block
+        5.times { print 'hello'}
+
+
+在Ruby里，我们可以为一个对象单独定义方法
+
+true ? 0:1  三目运算符
+
+b=[1,2,3]  b<< 10
+b.pop
+b.delete
+
+Class 是一切类的基类
+
+
+
+class.instance_methods 列出祖先和自己定义的属性和方法
+class.instance_methods(false) 仅列出自己定义的属性，方法
+
+attr_accessor 会自动为我们定义两个新的函数， name 用来读取变量的值， name= 用来给变量赋值
+如果 @names 对象可以回应(respond_to?)each 函数，那它就是可以被迭代的
+
+puts会去掉字符串的双引号
+
+__FILE__ 是一个魔法值，它存有现在运行的脚本文件的名字。$0 是启动脚本的名字。 代码里的比较结构的意思是 “如果这是启动脚本的话…” 这允许代码作为库调用的时候不运行启动代码， 而在作为执行脚本的时候调用启动代码。p
