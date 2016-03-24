@@ -1,0 +1,53 @@
+<base target="_blank">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8 />
+<meta name="author" content="cppking" />
+<meta http-equiv="Refresh" content="5;url=http://www.baidu.com" />
+<meta name="description" 
+content="Free Web tutorials on HTML, CSS, XML, and XHTML" />
+<meta name="keywords" 
+content="HTML, DHTML, CSS, XML, XHTML, JavaScript, VBScript">
+
+a:link 
+a:visited
+a:hover
+a:active
+input:focus{background-color:yellow;}
+
+height width max-height max-width min-height min-width line-height
+display:block inline none
+float:left right center
+border
+text-align
+background
+background-color
+visibility:visible hidden
+cursor:auto crosshair default pointer move wait help
+clear:both
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta>
+<title>
+<body>
+<h1>/<h6>
+<p>
+<a href="">
+<img src="">
+<video controls autoplay loop>
+3 type of css
+<link href="a.css" rel="stylesheet" type="text/css"/>
+<p stype="text-align:center">
+<style type="text/css">p {text-align:center}</style>
+
+visibility:hidden 保留元素之前的空间
+display:none  不保留之前的空间
+
+static, relative 在正常文本流
+fixed, absolute 不占用正常文本流
+
+
+
+
+If the method attribute is set to GET, the browser drops the querystring 
+parameters from the action attribute before constructing the form argument values.
