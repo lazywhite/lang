@@ -43,7 +43,7 @@ clear:both
 visibility:hidden 保留元素之前的空间
 display:none  不保留之前的空间
 
-static, relative 在正常文本流
+static, relative 占用正常文本流
 fixed, absolute 不占用正常文本流
 
 
