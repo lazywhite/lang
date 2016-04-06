@@ -1,23 +1,46 @@
-<html ng-app>
-<head>
-<script src="static/angular.js"></script>
-</head>
-<body >
-<input type='text' placeholder='world' ng-model='name' />
-<h1> hello {{ name || 'world' }} </h1>
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
 
-<ul>
-    <li>
-    <span>Nexus S</span>
-    <p>
-    Fast just got faster with Nexus S.
-    </p>
-    </li>
-    <li>
-    <span>Motorola XOOM™ with Wi-Fi</span>
-    <p>
-    The Next, Next Generation tablet.
-    </p>
-    </li>
-</ul>
+<p>Try to change the names.</p>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+<br>
+Full Name: {{firstName + " " + lastName}}
+<h1 my-test-func></h1>
+
+
+<table>
+    <tr ng-repeat="x in names">
+        
+        <td>{{ $index }}</td>
+        <td ng-if="$odd" style="background-color:#f1f1f1">{{x.Name}}</td>
+        <td ng-if="$even">{{x.Name}}</td>
+        <td ng-if="$odd" style="background-color:#f1f1f1">{{x.Country}}</td>
+        <td ng-if="$even">{{x.Country}}</td>
+    </tr>
+</table>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $scope.firstName= "John";
+    $scope.lastName= "Doe";
+    $http.get("http://www.w3schools.com/angular/customers.php").then(function(response){$scope.names = response.data.records});
+});
+app.directive('myTestFunc', function(){
+        return {
+            restrict: "A",
+            template: "made by directive"
+            };
+        });
+</script>
+
 </body>
+</html>
+
