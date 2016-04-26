@@ -1,0 +1,15 @@
+<head>
+<script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+</head>
+<body>
+<script>
+var tmpl = '<div class="#{classname}">#{content}</div>';
+var vals = {
+    classname : 'my-class',
+    content   : 'This is my content.'
+};
+var html = $.template(tmpl, vals);
+$("#content").html(html)
+</script>
+<div id="content"></div>
+</body>

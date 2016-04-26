@@ -1,7 +1,6 @@
 ## Introduction
+AngularJS extends HTML with new attributes(ng-directives).
 AngularJS extends HTML attributes with Directives, and binds data to HTML with Expressions.
-
-AngularJS extends HTML with ng-directives.
 The ng-app directive defines an AngularJS application.
 The ng-model directive binds the value of HTML controls (input, select, textarea) to application data.
 The ng-bind directive binds application data to the HTML view
@@ -41,6 +40,23 @@ You can invoke a directive by using:
 You can restrict your directives to only be invoked by some of the methods.
 
 
+ng-init
+ng-model
+ng-bind
+ng-bind-html
+ng-show
+ng-if
+ng-repeate
+    $index
+    $odd
+    $even
+    $last
+    $first
+    $middle
+ng-cloak
+ng-copy #trigger when copy event
+
+
 ## Concept
 filter
 scope
@@ -77,6 +93,8 @@ ng-paste
 
 
 ## Service
+In AngularJS, a service is a function, or object, that is available for, and limited to, your AngularJS application.
+AngularJS constantly supervise your application, and for it to handle changes and events properly
 $location.absUrl()
 $http({
   method: 'GET',
@@ -103,4 +121,20 @@ app.service('hexafy', function() {
 angular-animate.js
 
 ## Include other file
+
+## Service
+
+## Function
+angular.bootstrap
+angular.fromJson(json)
+angular.foreach
+angular.element(html_element)
+angular.noop() ## like python pass
+
+## Dependence injection
+## Route
+### RootRouter
+### ChildRouter
+
+
 
