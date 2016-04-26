@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<style>
+span {
+    color: red;
+}
+</style>
 <body>
 
 <p>Try to change the names.</p>
@@ -10,9 +15,16 @@
 First Name: <input type="text" ng-model="firstName"><br>
 Last Name: <input type="text" ng-model="lastName"><br>
 <br>
-Full Name: {{firstName + " " + lastName}}
+<span ng-bind="firstName"></span>
+<span ng-bind="lastName"></span>
+<span ng-bind="firstName + ' ' + lastName"></span>
+<p> FullName: {{ firstName + " " + lastName }}</p>
+<p> FullName: {{ firstName }} {{ lastName }}</p>
 <h1 my-test-func></h1>
 
+<hr />
+<p ng-copy="count = count+ 1" ng-init="count=0">copy this text</p>
+<p> this text has been copied {{count}} times;</p>
 
 <table>
     <tr ng-repeat="x in names">

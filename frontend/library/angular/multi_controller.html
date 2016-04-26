@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<p>Try to change the names.</p>
+
+<div ng-app="myApp" >
+<div ng-controller="myCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+<br>
+Full Name: {{firstName + " " + lastName}}
+<h1 my-test-func></h1>
+
+
+<table>
+    <tr ng-repeat="x in names">
+        
+        <td>{{ $index }}</td>
+        <td ng-if="$odd" style="background-color:#f1f1f1">{{x.Name}}</td>
+        <td ng-if="$even">{{x.Name}}</td>
+        <td ng-if="$odd" style="background-color:#f1f1f1">{{x.Country}}</td>
+        <td ng-if="$even">{{x.Country}}</td>
+    </tr>
+</table>
+</div>
+<hr />
+<div ng-controller="sec">
+    First Name: <input type="text" ng-model="firstName"><br>
+    Last Name: <input type="text" ng-model="lastName"><br>
+    <br>
+    Full Name: {{firstName + " " + lastName}}
+    <h1 my-test-func></h1>
+</div>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $scope.firstName= "John";
+    $scope.lastName= "Doe";
+    $http.get("http://www.w3schools.com/angular/customers.php").then(function(response){$scope.names = response.data.records});
+});
+app.controller('sec', function($scope) {
+    $scope.firstName= "bob";
+    $scope.lastName= "Mob";
+});
+app.directive('myTestFunc', function(){
+        return {
+            restrict: "A",
+            template: "made by directive"
+            };
+        });
+</script>
+
+</body>
+</html>
+
