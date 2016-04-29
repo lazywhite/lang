@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+.flex-container{
+    min-height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    background-color: lightgrey;
+    flex-direction: column ; /* row(default), row-reverse, column, column-reverse */
+    flex-wrap: wrap; /*nowrap(default), wrap, wrap-reverse */
+    /* flex-flow: <flex-direction> || <flex-wrap> */
+    justify-content: flex-start; /*flex-start(default), flex-end, center, space-between, space-around */
+    align-items: flex-start;/* flex-start, flex-end, center, baseline, stretch(default) */
+    align-content: flex-start; /*flex-start, flex-end, center, space-between, space-around, stretch */
+}
+
+.flex-item {
+    /* order: <integer> for each (default 0)*/
+    flex-grow: 1; /* <number> for each(default 0)  */
+    flex-shrink: 0; /* <number for each (default 1) */
+    /* flex: <flex-grow> <flex-shrink> <flex-basis>  auto(1 1 auto)|none(0 0 auto)*/
+    /* align-self: auto, flex-start, flex-end, center, baseline, stretch  for each*/
+    background-color: cornflowerblue;
+    min-width: 200px;
+    min-height: 50px;
+    margin: 10px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="flex-container">
+  <div id = 'div1' class="flex-item">flex item 1</div>
+  <div class="flex-item">flex item 2</div>
+  <div class="flex-item">flex item 3</div> 
+  <div class="flex-item">flex item 4</div> 
+  <div class="flex-item">flex item 5</div> 
+  <div class="flex-item">flex item 6</div>
+  <div class="flex-item">flex item 7</div>
+  <div class="flex-item">flex item 8</div>
+  <div class="flex-item">flex item 9</div> 
+  <div class="flex-item">flex item 10</div> 
+  <div class="flex-item">flex item 11</div> 
+  <div class="flex-item">flex item 12</div>
+  <div class="flex-item">flex item 13</div> 
+  <div class="flex-item">flex item 14</div> 
+  <div class="flex-item">flex item 15</div> 
+</div>
+
+</body>
+</html>
