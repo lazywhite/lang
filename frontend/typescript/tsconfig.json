@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "outDir": "dist/js",
+        "sourceMap": false,
+        "module": "amd"
+    },
+
+    "files": [
+        "src/typescript/app.ts"
+    ]
+}
