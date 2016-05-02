@@ -1,0 +1,13 @@
+
+$primary-color: #A3A4FF;
+$secondary-color: #51527F;
+$body-font: 'Roboto', sans-serif;
+
+/* You can use the variables throughout your stylesheet.
+ * Now if you want to change a color, you only have to make the change once. */
+
+body {
+    background-color: $primary-color;
+    color: $secondary-color;
+    font-family: $body-font;
+}
