@@ -32,3 +32,9 @@ module.exports = function(grunt) {
 
 };
 ```
+
+
+## Automatic building
+
+## Topic 
+uglify dynamic_mapping and static_mapping

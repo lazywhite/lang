@@ -1,0 +1,37 @@
+<style>
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+</style>
+
+<script src="../js/jquery-2.2.1.min.js"></script>
+<script>
+    $(function(){    $("#dropdown-btn").click(function(){
+        $(".dropdown-content").toggle();
+    })
+    })
+
+</script>
+
+content-before
+<div class="dropdown">
+    <button id="dropdown-btn">Click me</button>
+    <div class="dropdown-content">
+        <ul>
+            <li>content01</li>
+            <li>content01</li>
+            <li>content01</li>
+        </ul>
+    </div>
+</div>
+content-after
+<h1>Headings</h1>

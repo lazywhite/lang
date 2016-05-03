@@ -16,12 +16,15 @@ module.exports = function(grunt){
             }
         },
         sass: {
+            options: {
+                style: 'compressed'
+            },
             dist: {
                 files: [{
                     expand: true,
                     cwd: 'src/sass',
                     src: ['*.scss'],
-                    dest: '../../build/css',
+                    dest: 'build/css/',
                     ext: '.css'
                 }]
             }
