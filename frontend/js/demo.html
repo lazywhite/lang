@@ -1,0 +1,79 @@
+<script>
+    var txt1 = "hello"
+    var txt2 = txt1.concat(" ", "world");
+    console.log(txt2);
+    var m = 10.1234;
+    console.log(m.toExponential(2));
+    console.log(Math.abs(-4));
+    console.log(Math.max(1,2,3,4));
+    var d = new Date()
+    console.log(d)
+    console.log(d.toString())
+    console.log(d.toUTCString())
+    console.log(d.getSeconds());
+    console.log(d.getTime());
+    console.log(Number(d));
+    var cars = new Array('volve', 'diesl', 'mie')
+    console.log(cars[0])
+    console.log(cars instanceof Array);
+    var y = cars.sort()
+    console.log(y)
+    console.log(y.length)
+    var x = 100;
+    console.log(x instanceof Number);
+    console.log(typeof x)
+
+    console.log(typeof cars)
+    cars.unshift('blbl')
+    console.log(cars)
+    delete cars[2];
+    console.log(cars)
+    cars.splice(2, 1, 'va1', 'va2')
+    console.log(cars)
+    cars.splice(0, 1)
+    console.log(cars)
+
+    var num = [2, 20, 4, 40]
+    console.log(num);
+    num.sort();
+    console.log(num);
+    num.sort(function(a, b){return a-b}).reverse()
+    num.sort(function(a, b){return b-a})
+    console.log(num);
+    var x = NaN;
+    console.log(Boolean(x));
+    var a = 10;
+    var b = 20;
+    if (!a == b){
+        console.log('not equal')
+            
+    }else{
+        console.log('equal')
+    }
+    var age = 10;
+    var votable = (age > 18)? "can":"can't";
+    console.log(votable)
+    var Person = function (name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    var p = new Person('bob', 123);
+    console.log(p.name);
+    Person.prototype = {
+        greet: function(){
+            console.log('hello , im ' + this.name);
+        },
+        salary: 100,
+    }
+    var q = new Person('slice', 12);
+    q.greet()
+    console.log(q.salary);
+    function mm(x, y){
+        if (y === undefined){
+            console.log('parameter default value')
+        }
+        console.log(x, y)
+    }
+        
+    mm(10)
+</script>
