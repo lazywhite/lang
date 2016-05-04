@@ -3,3 +3,7 @@
 **/node_modules
 **/jspm_packages
 *.scssc
+build
+*.out
+*.o
+**/*.dSYM/**
