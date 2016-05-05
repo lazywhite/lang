@@ -1,0 +1,42 @@
+<style>
+    .overlay  {
+        z-index: 1;
+        position: fixed;
+        top: 0;  /*set the position of container */
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        transition: 0.5s;
+        height: 100%; /* set the slide direction */
+        width: 0%;
+        overflow: hidden;
+    }
+    .overlay-content {
+        position: relative;
+        top: 25%;
+        width: 100%;
+        text-align: center;
+        margin-top: 30px;
+        color: fff;
+    }
+</style>
+
+<p id='btn'> hover me to see overlay</p>
+
+<div class="overlay">
+    <div class="overlay-content">
+        <h1> this is test </h1>
+        <button id="overlay-close">X</button>
+    </div>
+</div>
+
+
+<script src="jquery.min.js"> </script>
+
+<script>
+    $(document).ready(function(){
+        $('#btn').click(function(){
+            console.log('debug');
+            $('.overlay').css('width', '50%');
+        });
+    })
+</script>
