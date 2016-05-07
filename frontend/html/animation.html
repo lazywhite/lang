@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            @keyframes example{
+                from {background-color: red;}
+                to {background-color: yellow;}
+            }
+            @keyframes example02 {
+                0%   {background-color: red; left:0px; top:0px;}
+                25%  {background-color: yellow; left:200px; top:0px;}
+                50%  {background-color: blue; left:200px; top:200px;}
+                75%  {background-color: green; left:0px; top:200px;}
+                100% {background-color: red; left:0px; top:0px;}
+            }
+
+            /* from mean 0%, to mean 100%
+            percent is accepted */
+#div1 {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    animation-name: example;
+    animation-duration: 1s;
+}
+#div2 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background-color: red;
+    animation-name: example02;
+    animation-duration: 2s;
+    animation-iteration-count: 3; /* specify how many time animation should run */   
+    animation-direction: reverse;
+    animation-timing-function: ease-out; /* specify the speed curve of animation */
+
+}
+        </style>
+    </head>
+    <body>
+        <div id="div1"></div>
+        <div id="div2"></div>
+
+
+    </body>
+</html>
