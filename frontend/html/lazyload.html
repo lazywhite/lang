@@ -1,0 +1,45 @@
+<script src="jquery.min.js"></script>
+<script src="jquery.lazyload-any.min.js"></script>
+<script>
+    function load(img)
+    {
+        try{
+            img.fadeOut(0, function() {
+                img.fadeIn(1000);
+            });
+        }
+        catch(err){
+            return ''
+        }
+
+    }
+    $(document).ready(function(){
+        $('.lazyload').lazyload({load: load});
+    })
+</script>
+<style>
+    #placeholder {
+        height: 1000px;
+        width: 500px;
+        background-color: black;
+    }
+
+</style>
+<div id="placeholder">
+</div>
+
+
+<div id="comment" class="lazyload">
+    <!--
+    <iframe src="test.html" width="1000px" height="500px">
+    </iframe>
+    -->
+
+</div>
+
+
+<div class="lazyload batman" >
+    <!--
+    <img src="http://emn178.github.io/jquery-lazyload-any/samples/images/images/batman.png" class="batman" />
+    -->
+</div>
