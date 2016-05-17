@@ -1,15 +1,18 @@
-JavaScript 拥有动态类型。这意味着相同的变量可用作不同的类型
-JavaScript 只有一种数字类型。数字可以带小数点，也可以不带
-极大或极小的数字可以通过科学（指数）计数法来书写
-JavaScript 变量均为对象。当您声明一个变量时，就创建了一个新的对象
-如果您把值赋给尚未声明的变量，该变量将被自动作为全局变量声明
-如果把数字与字符串相加，结果将成为字符串
-通过标签引用，break 语句可用于跳出任何 JavaScript 代码块
-
-JavaScript 不会到 <style> 标签或者 CSS 文件去获取相应的样式，只能获取 style 属性定义的样式
+## Document
+JavaScript 拥有动态类型。这意味着相同的变量可用作不同的类型  
+JavaScript 只有一种数字类型。数字可以带小数点，也可以不带  
+极大或极小的数字可以通过科学（指数）计数法来书写  
+JavaScript 变量均为对象。当您声明一个变量时，就创建了一个新的对象  
+如果您把值赋给尚未声明的变量，该变量将被自动作为全局变量声明  
+如果把数字与字符串相加，结果将成为字符串  
+通过标签引用，break 语句可用于跳出任何 JavaScript 代码块  
+  
+JavaScript 不会到 ```<style> ```标签或者 ```<link>``` 文件去获取相应的样式，只能获取 style 属性定义的样式  
 
 
 ## String method
+  
+```
 1.length
     var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     var len = txt.length;
@@ -47,9 +50,11 @@ JavaScript 不会到 <style> 标签或者 CSS 文件去获取相应的样式，�
 10. split (convert a string into an array)
     var txt = "a,b,c,d,e";   // String
     txt.split(","); 
-
-
+```
+  
 ## Number method
+  
+```
 1. toString (convert a number to string)
     var x = 123;
     x.toString();
@@ -93,8 +98,11 @@ JavaScript 不会到 <style> 标签或者 CSS 文件去获取相应的样式，�
     3. Math.round(4.7) --> round a number to the nearest integer
     4. Math.ceil(), Math.floor()
     5. Math.E, Math.PI
-
+```
+  
 ## Date and method
+  
+```
 1. Date
     var d = new Date()
     d.toString()
@@ -115,8 +123,11 @@ JavaScript 不会到 <style> 标签或者 CSS 文件去获取相应的样式，�
     getMonth() --> 0-11
     getSeconds() --> 0-59
     getTime() --> timestamp (number)
-    
+```
+      
 ## Array and method
+  
+```
 1. Array (can store differente type of variables in same array)
     1. declare an array
         var cars = ["Saab", "Volvo", "BMW"];
@@ -148,8 +159,11 @@ JavaScript 不会到 <style> 标签或者 CSS 文件去获取相应的样式，�
         var myGirls = ["Cecilie", "Lone"];
         var myBoys = ["Emil", "Tobias","Linus"];
         var myChildren = myGirls.concat(myBoys); 
-
+```
+  
 ## Boolean        
+  
+```
 1. Boolean
     var x = 0
     Boolean(x) --> false
@@ -159,10 +173,18 @@ JavaScript 不会到 <style> 标签或者 CSS 文件去获取相应的样式，�
     Boolean(x) --> false
     var x = NaN
     Boolean(x) --> false
+```
+  
 ## RegExp
+  
+```
     var str = "Visit W3Schools";
     var n = str.search(/w3schools/i);
+```
+  
 ## Topics    
+  
+```
 1. tips
     All JavaScript objects have the valueOf() and toString() methods.
     var x = 10;
@@ -194,3 +216,77 @@ JavaScript 不会到 <style> 标签或者 CSS 文件去获取相应的样式，�
     If a function is called with a missing argument, the value of the missing argument is set to undefined.
 8. End your switch with defaults
 9. Avoid using eval()
+```
+  
+# BOM(browser object model)
+
+## Timing
+  
+```
+1. setTimeout(callback, <time in milliseconds>) 
+    var myVar = setInterval(function(){ myTimer() }, 1000);
+    clearInterval(myVar);
+
+2. setInterval(callback, <time>) 
+3. scrollTo(xPos, yPos)
+4. var person = prompt("Please enter your name", "Harry Potter");
+5. confirm("press a button")
+```
+  
+## Navigator object
+  
+```
+navigator.platform
+navigator.userAgent
+navigator.geolocation
+```
+  
+## Screen
+  
+```
+screen.height
+screen.width
+```
+  
+## History
+  
+```
+history.back()
+history.forward()
+history.go()
+```
+  
+## Location
+  
+```
+location object contains information about the current URL
+location.href --> <protocol>+<hostname>+<path>
+location.hostname --> www.demo.com
+location.pathname --> /js/demo.asp
+location.protocol --> http, https
+location.assign --> load a new document in current window
+```
+  
+## Cookie
+  
+```
+var x = document.cookie
+document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+```
+  
+
+## Prototype
+  
+All JavaScript objects inherit their properties and methods from their prototype.
+  
+```
+function Person(first, last, age, eyecolor) {
+    this.firstName = first;
+    this.lastName = last;
+    this.name = function() {return this.firstName + " " + this.lastName;};
+}
+var myFather = new Person("John", "Doe", 50, "blue");
+var myMother = new Person("Sally", "Rally", 48, "green");
+Person.nationality = "English";
+
+```
