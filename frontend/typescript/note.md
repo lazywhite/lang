@@ -17,3 +17,8 @@ using typescript with require.js or system.js
 1. typescript get precompile on server side, then use module loader to 
 load compiled js file
 2. get compiled on client's brower
+
+
+## unittest
+jasmin
+tsunit
