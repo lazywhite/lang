@@ -1,16 +1,14 @@
 package com.local.test;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Date;
 import java.io.File;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashSet;
 // TODO: use Iterator interface 
 // TODO: CRUD of Datatype
-
-
 
 public class Main{
         // Enum 
@@ -48,15 +46,22 @@ public class Main{
         HashMap<String, Object> myDict = new HashMap<String, Object>();
         myDict.put("k1", "v1");
         myDict.put("k2", 100);
+        // HashMap iteration
         for(String key: myDict.keySet()){
             System.out.println(key + ":" + myDict.get(key));
         }
-        System.out.println(myDict);
+        // Todo get first key by value
+        for (HashMap.Entry<String, Object> entry : myDict.entrySet()) {
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                System.out.format("%s: %s%n", key, value.toString());
+        }
         // String
         String testString = "hello world";
         System.out.println(testString);
         // Array
         double[] testArray = {1.0, 20.0, 30.0};
+        // Array iteration
         for(int i=0;i<testArray.length;i++){
             System.out.println(testArray[i]);
         }
@@ -66,6 +71,10 @@ public class Main{
         //Date 
         Date date = new Date();
         System.out.println(date.toString());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println(sdf.format(date));
+        
+
         //File
         String filename = "t.tmp";
         File f = new File(filename);
@@ -84,6 +93,20 @@ public class Main{
             System.out.println("number of x is: " + x);
             x ++;
         }while (x<25);
+        // Switch
+        int month = 2;
+        String monthString;
+        switch (month) {
+            case 1: monthString = "January";
+                    break;
+            case 2: monthString = "February";
+                    break;
+            case 3: monthString = "March";
+                    break;
+            default: monthString = "Invalid Month";
+                    break;
+        }
+        System.out.println(monthString);
 
         // Exception
         try{
