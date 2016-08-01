@@ -7,3 +7,7 @@ eval "$(rbenv init -)"
 rbenv install --list
 rbenv install 1.9.3-p392
 rbenv global 1.9.3-p392
+
+
+## ruby sources
+gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/
