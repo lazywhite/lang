@@ -1,16 +1,27 @@
 package com.local.test;
 
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Date;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.HashMap;
 // TODO: use Iterator interface 
 // TODO: CRUD of Datatype
 
 public class Main{
+       // Basic data type
+       byte b = 64;
+       char c = 'a';
+       short s = 300;
+       int i = 600;
+       long l = 30000;
+       boolean bl = true;
+       float f = 3.4f;
+       double d = 19.149;
+
         // Enum 
         public enum weekDay {Mon, Tue, Wed, Thu, Fri, Sat, Sun}
         //overload
@@ -30,6 +41,7 @@ public class Main{
         inst = null;
         System.gc();
         // List
+        // initialize method 01
         ArrayList<Object> aList = new ArrayList<Object>();
         aList.add(100);
         aList.add("hello");
@@ -37,11 +49,22 @@ public class Main{
         System.out.println(aList.get(0));
 
         System.out.println(aList.toString());
+        // initialize method 02
+        String[] elements = {"ab", "cd", "ef"};
+        // initialize method 03
+        ArrayList<Object> bList = new ArrayList<Object>(Arrays.asList("a", 100));
+        
         //HashSet
+        // initialize method 01
         HashSet<Object> mySet = new HashSet<Object>();
         mySet.add("omg");
         mySet.add(100);
         System.out.println("Size of set: " + mySet.size());
+        // initialize method 02
+        HashSet<String> hs = new HashSet<String>(Arrays.asList("ab", "cd"));
+        hs.add("ef");
+        System.out.println(hs.toString());
+
         // HashMap
         HashMap<String, Object> myDict = new HashMap<String, Object>();
         myDict.put("k1", "v1");
