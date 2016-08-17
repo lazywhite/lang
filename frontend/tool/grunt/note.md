@@ -1,12 +1,14 @@
 ##Installation
-
+```
 npm install -g grunt-cli #just a script call grunt of work directory
 cd work_dir
 npm install --save-dev grunt ## Grunt will be devDependency
 
 npm install --save <module> ## module will be dependency of package
+```
 
 ## Configuration
+
 ```javascript
 module.exports = function(grunt) {
 
@@ -34,7 +36,9 @@ module.exports = function(grunt) {
 ```
 
 
-## Automatic building
+
 
 ## Topic 
+```
 uglify dynamic_mapping and static_mapping
+```
