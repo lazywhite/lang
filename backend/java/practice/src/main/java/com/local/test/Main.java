@@ -5,9 +5,12 @@ import java.util.Map;
 import java.util.Date;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.io.*;
 // TODO: use Iterator interface 
 // TODO: CRUD of Datatype
 
@@ -24,14 +27,14 @@ public class Main{
 
         // Enum 
         public enum weekDay {Mon, Tue, Wed, Thu, Fri, Sat, Sun}
-        //overload
+        // Method Overload
         public static int test(int i, String name){
             return name.length() + i;
         }
         public static String test(String name, int i){
             return name + i;
         }
-        public static void main(String[] args){
+        public static void main(String[] args) throws FileNotFoundException, IOException{
         for (String arg: args){
             System.out.print(arg + ' ');
         }
@@ -42,15 +45,13 @@ public class Main{
         System.gc();
         // List
         // initialize method 01
-        ArrayList<Object> aList = new ArrayList<Object>();
-        aList.add(100);
-        aList.add("hello");
-        aList.set(1, "world");
-        System.out.println(aList.get(0));
+//        List<Integer> aList = new ArrayList<Integer>();
+        Integer[] aList =  { 10, 20, 30 };
 
         System.out.println(aList.toString());
         // initialize method 02
-        String[] elements = {"ab", "cd", "ef"};
+        Character[] cList = { 'h', 'e', 'w'};
+
         // initialize method 03
         ArrayList<Object> bList = new ArrayList<Object>(Arrays.asList("a", 100));
         
@@ -60,6 +61,7 @@ public class Main{
         mySet.add("omg");
         mySet.add(100);
         System.out.println("Size of set: " + mySet.size());
+        
         // initialize method 02
         HashSet<String> hs = new HashSet<String>(Arrays.asList("ab", "cd"));
         hs.add("ef");
@@ -142,5 +144,59 @@ public class Main{
 
         System.out.println(test(1, "dog"));
         System.out.println(test("dog", 1));
+        showThing(aList);
+        showThing(cList);
+
+        List<String> strList = new ArrayList<String>();
+        strList.add("hello");
+        strList.add("world");
+
+        // Iterator
+        Iterator<String> iter = strList.iterator();
+        while(iter.hasNext()){
+            Object ele = iter.next();
+            System.out.println(ele);
+        }
+
+        // Inheriance
+        Father father = new Father("Bob");
+        Child child  = new Child("June", 13);
+        System.out.println(father.name);
+        System.out.println(child.name);
+        System.out.println(child.age);
+        child.say();
+
+        // generic class
+        OrderedPair<Integer, Integer> op = new OrderedPair<Integer, Integer>(100, 200);
+        System.out.println(op.getKey());
+        System.out.println(op.getValue());
+
+        // generic method
+        OrderedPair<Integer, String> p1 = new OrderedPair<Integer, String>(10, "bob");
+        OrderedPair<Integer, String> p2 = new OrderedPair<Integer, String>(20, "sol");
+        System.out.println(Util.compareTo(p1, p2));
+
+
+        System.out.println(doSum(10, 20, 30));
+        System.out.println(doSum(20, 30));
+
+        // File Input
+        FileReader file = new FileReader("/Users/white/access.log");
+        file.show();
+
+    }
+    // Generic method
+    public static < T > void showThing(T[] eles){
+        for (T ele: eles){
+            System.out.println(ele);
+        }
+    }
+    // variable parameter method
+    public static int doSum(int... args){
+        int sum = 0;
+        for(int arg: args){
+            sum += arg;
+        }
+        return sum;
     }
 }
