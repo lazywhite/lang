@@ -8,3 +8,4 @@ build
 *.o
 **/*.dSYM/**
 **/target/**
+**/*.class
