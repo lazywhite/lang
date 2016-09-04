@@ -3,6 +3,14 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+interface Male {
+    default void sayHello(){
+        System.out.println("hello");
+    }
+}
+
+class Child implements Male{
+}
 public class Test {
     public static void main(String[] argv){
         System.out.println("hello world\n");
@@ -48,6 +56,8 @@ public class Test {
         printArray(doubleArray);
         printArray(charArray);
 
+        Child c = new Child();
+        c.sayHello();
         
     }
     // generic method
