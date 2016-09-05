@@ -1,5 +1,5 @@
 ## Introduction
-practise code of my learned programming langugage
+Practice code of programming language
 
 ## Directory Architecture
 ```
