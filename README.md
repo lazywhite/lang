@@ -1,33 +1,30 @@
 ## Introduction
 practise code of my learned programming langugage
 
-## Architecture
+## Directory Architecture
 ```
 ├── README.md
 ├── backend
-│   ├── c
 │   ├── java
+│   ├── jsp
 │   ├── nodejs
 │   ├── php
 │   ├── ruby
+│   ├── scala
 │   ├── scheme
 │   └── shell
 └── frontend
+    ├── angular
+    ├── angular2
     ├── bootstrap3
-    ├── css.note
+    ├── css
     ├── html
+    ├── jqGrid
+    ├── jquery
     ├── js
     ├── jspm
-    ├── library
-    │   ├── angular
-    │   ├── angular2
-    │   └── jqGrid
-    ├── tool
-    │   ├── bower
-    │   ├── grunt
-    │   └── gulp
-
     ├── markdown
+    ├── sass
     ├── swift
     ├── tool
     └── typescript
