@@ -232,7 +232,14 @@ func main() {
 	m["Bell Labs"] = Cstruct{
 		40.68433, -74.39967,
 	}
+	m["Bily Mando"] = Cstruct{
+		20.89, -777.60,
+	}
 	fmt.Println(m["Bell Labs"])
+
+	for k, v := range m {
+		fmt.Printf("key: %s, value: %v\n", k, v)
+	}
 
 	//	var n map[string]string
 	//	n = make(map[string]string)
@@ -244,7 +251,6 @@ func main() {
 	}
 	fmt.Println(n["key1"])
 
-	// TODO: iterate map
 	//	printMap(n)
 
 	//	type Mtype1 map[string]int
@@ -252,7 +258,7 @@ func main() {
 		return math.Sqrt(x*x + y*y)
 	}
 	fmt.Println(hypot(5, 12))
-	fmt.Println(compute(hypot))
+	//	fmt.Println(compute(hypot))
 
 }
 
