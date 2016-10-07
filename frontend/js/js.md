@@ -1,4 +1,5 @@
 ## Document
+javascript is fundamentally single-threaded, blocking request or computation will blocks the whole page
 JavaScript 拥有动态类型。这意味着相同的变量可用作不同的类型  
 JavaScript 只有一种数字类型。数字可以带小数点，也可以不带  
 极大或极小的数字可以通过科学（指数）计数法来书写  
