@@ -19,9 +19,6 @@ range
 recursion
 type casting
 error handling
-
-module alias
-
 ```
 ## Keywords
 ```
@@ -57,3 +54,17 @@ continue     for          import       return       var
     
 20. pointer to array
 21. pointer arthmetic is not supported in Go
+22. string template
+23. time.Sleep()
+
+
+24. calling between Go and C
+25. buildmode
+26. testflag, testfunc
+
+27. standard library source code in $GOROOT/src
+
+28. 交叉编译  CGO_ENABLED=0 GOOS=linux|darwin|windows GOARCH=amd64 
+29. path/filepath
+30. io/ioutil 
+31. flag, os.Args
