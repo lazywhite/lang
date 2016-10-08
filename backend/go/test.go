@@ -84,6 +84,9 @@ func switch_demo() {
 
 	case "darwin":
 		fmt.Println("OS X")
+		fallthrough
+	case "windows":
+		fmt.Println("Windowns")
 	case "linux":
 		fmt.Println("Linux")
 	default:
@@ -142,6 +145,7 @@ func main() {
 
 	fmt.Println("Hello")
 	fmt.Println("time is", time.Now().Weekday())
+	rand.Seed(time.Now().UnixNano())
 	fmt.Printf("random number\n", rand.Intn(10))
 	fmt.Printf("Square of 4 is %.2f\n", math.Sqrt(4))
 	fmt.Printf("add of 2 and 4 %d\n", add(4, 2))
