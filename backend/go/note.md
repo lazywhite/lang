@@ -1,6 +1,5 @@
 ## Introduction
-静态强类型， 编译型， 并发型， 自动垃圾回收
-
+静态强类型， 编译型， 并发型， 自动垃圾回收 
 ## Key concept
 ```
 variable
@@ -68,3 +67,4 @@ continue     for          import       return       var
 29. path/filepath
 30. io/ioutil 
 31. flag, os.Args
+32. fallthrough: no break and execute next case forcefully
