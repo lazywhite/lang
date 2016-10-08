@@ -9,3 +9,5 @@ build
 **/*.dSYM/**
 **/target/**
 **/*.class
+
+**/.DS_Store
