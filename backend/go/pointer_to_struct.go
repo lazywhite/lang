@@ -1,16 +1,35 @@
 package main
 
 import "fmt"
+import "reflect"
 
-type Vex struct {
-	X, Y float32
+type Point struct {
+	X int
+	Y int
+}
+type Config struct {
+	Username string
+	Vex      *Point
 }
 
 func main() {
-	v := Vex{100.55, 200.34}
-	p := &v
+	p := &Point{100, 200}
+	n := Point{100, 200}
 
-	p.X = 300.78 //use "p" instead of "*p"
-	fmt.Printf("Vex v: %v\n", v)
+	q := &p
+
+	c := &Config{"Bob", p}
+	d := Config{"Bob", p}
+
+	//	fmt.Printf("%v", c.Vex)
+	fmt.Printf("%s\n", reflect.TypeOf(c.Vex))
+	fmt.Printf("%s\n", reflect.TypeOf(p))
+
+	fmt.Printf("%s\n", reflect.TypeOf(q))
+
+	fmt.Printf("%v\n", **q)
+	fmt.Printf("%s\n", reflect.TypeOf(n))
+	fmt.Printf("%s\n", reflect.TypeOf(c))
+	fmt.Printf("%s\n", reflect.TypeOf(d))
 
 }
