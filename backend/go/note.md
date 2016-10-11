@@ -75,3 +75,5 @@ continue     for          import       return       var
 41. better not use global variable, hard to test, use 
 I would pass it as a function param, or make it a struct method. Global variable is not very pragmatic for that even though it might seem so, a common way to do that is to define methods on a struct instead and keep the state there.
 42. do anything in goroutine and return the value over the channel
+43. import "path/to/dir"  dir have random package name is supported
+44. pass struct as arguments
