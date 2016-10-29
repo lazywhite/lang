@@ -70,10 +70,13 @@ continue     for          import       return       var
 36. getopt
 37. struct  only fields starting with a capital letter are exported
 38. string concate
-39. log
+39. log package
 40. type rune
 41. better not use global variable, hard to test, use 
 I would pass it as a function param, or make it a struct method. Global variable is not very pragmatic for that even though it might seem so, a common way to do that is to define methods on a struct instead and keep the state there.
 42. do anything in goroutine and return the value over the channel
 43. import "path/to/dir"  dir have random package name is supported
 44. pass struct as arguments
+45. go get time time of execution
+46. godoc <module> <function>
+47. Lexical tokens are enclosed in double quotes "" or back quotes ``

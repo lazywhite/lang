@@ -24,6 +24,7 @@ func main() {
 	//	fmt.Printf("%v", c.Vex)
 	fmt.Printf("%s\n", reflect.TypeOf(c.Vex))
 	fmt.Printf("%s\n", reflect.TypeOf(p))
+	fmt.Printf("%d\n", p.X))
 
 	fmt.Printf("%s\n", reflect.TypeOf(q))
 
