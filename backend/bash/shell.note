@@ -51,9 +51,7 @@ ${#string}字符串长度
 ${variablename?} 可检测脚本中变量是否被设定
 :${variablename?"ERROR MESSAGE"}可设定出错信息
 
-while read line
-do
-    :
+while read line;do
 done < file 一般用来处理包含多行的文件
 
 unset variable  删除一个shell变量
@@ -83,11 +81,9 @@ users w groups chown chgrp useradd userdel usermod groupmod  id
 logname passwd mesg wall uname lastlog lsof nmap  nc free procinfo
 lsdev du df dmesg stat netstat uptime hostname hostid 
 作业管理
-jobs fg bg ps pkill pgrep pstree nice{针对后台作业} pidof fuser cron 
- init runlevel 
+jobs fg bg ps pkill pgrep pstree nice{针对后台作业} pidof fuser cron init runlevel 
 网络
-ifconfig iwconfig wpasupplicant route
-fdisk fsck badblocks chroot lockfile 
+ifconfig iwconfig wpasupplicant route fdisk fsck badblocks chroot lockfile 
 模块类
 lsmod insmod rmmod modprobe depmod modinfo 
 其他
