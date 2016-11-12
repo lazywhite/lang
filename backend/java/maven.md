@@ -17,11 +17,27 @@ add more repos in pom.xml
             artifactId
             version
             exclusions
+    profiles
+        profile
+            id
+            properties
+            activation
+    properties
+    build
+        resources
+            resource
+                directory
+                includes
+                    include
+
+        testResource
+            testResource
+        plugins
+            plugin
 ```            
 
 ### Unittest
 maven-surefire
-
 
 
 ### Directory architecture
