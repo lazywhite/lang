@@ -12,8 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.io.*;
 // TODO: use Iterator interface 
-// TODO: CRUD of Datatype
-
+//TODO: label
 public class Main{
        // Basic data type
        byte b = 64;
@@ -84,13 +83,11 @@ public class Main{
         // String
         String testString = "hello world";
         System.out.println(testString);
-        // Array
-        double[] testArray = {1.0, 20.0, 30.0};
         // Array iteration
-        for(int i=0;i<testArray.length;i++){
-            System.out.println(testArray[i]);
+        for(int i=0;i<bList.size();i++){
+            System.out.println(bList.get(i));
         }
-        for(double element: testArray){
+        for(Object element: bList){
             System.out.println("element is:" + element);
         }
         //Date 
@@ -181,17 +178,28 @@ public class Main{
         System.out.println(doSum(20, 30));
 
         // File Input
-        FileReader file = new FileReader("/Users/white/access.log");
-        file.show();
+//        FileReader file = new FileReader("/Users/white/access.log");
+//        file.show();
+
+//         Label
+testLabel:
+        for(int y=0;y<=10;y++){
+            if (y == 5){
+                break testLabel;
+            }else{
+                System.out.println(y);
+            }
+            
+        }
 
     }
     // Generic method
-    public static < T > void showThing(T[] eles){
+    public static <T> void showThing(T[] eles){
         for (T ele: eles){
             System.out.println(ele);
         }
     }
-    // variable parameter method
+    // variable number of parameter method
     public static int doSum(int... args){
         int sum = 0;
         for(int arg: args){
