@@ -11,8 +11,9 @@ import java.util.HashSet;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.io.*;
-// TODO: use Iterator interface 
-//TODO: label
+import java.util.stream.Collectors;
+import java.util.Optional;
+
 public class Main{
        // Basic data type
        byte b = 64;
@@ -149,6 +150,7 @@ public class Main{
         strList.add("world");
 
         // Iterator
+        System.out.println("Using Iterator interface");
         Iterator<String> iter = strList.iterator();
         while(iter.hasNext()){
             Object ele = iter.next();
@@ -192,6 +194,25 @@ testLabel:
             
         }
 
+        // Stream and Method Reference
+        System.out.println("Using Stream API");
+        List<String>strings = Arrays.asList("abc", "", "bc", "efg", "abcd","", "jkl");
+        List<String> filtered = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.toList());
+
+        System.out.println("Filtered List: " + filtered);
+        String mergedString = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.joining(", "));
+        System.out.println("Merged String: " + mergedString);
+
+
+        // Optional class
+        Integer value1 = null;
+        Integer value2 = 10;
+        Optional<Integer> a = Optional.ofNullable(value1);
+        Optional<Integer> b = Optional.of(value2);
+
+        System.out.println(optionalSum(a, b));
+
+
     }
     // Generic method
     public static <T> void showThing(T[] eles){
@@ -206,5 +227,15 @@ testLabel:
             sum += arg;
         }
         return sum;
+    }
+    
+    public static Integer optionalSum(Optional<Integer> a, Optional<Integer> b){
+        System.out.println("Using Optional class Interface");
+        System.out.println("First parameter is present: " + a.isPresent());
+        System.out.println("Second parameter is present: " + b.isPresent());
+
+        Integer val1 = a.orElse(new Integer(0));
+        Integer val2 = b.get();
+        return val1 + val2;
     }
 }
