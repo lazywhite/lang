@@ -71,12 +71,22 @@ continue     for          import       return       var
 37. struct  only fields starting with a capital letter are exported
 38. string concate
 39. log package
-40. type rune
+40. type rune: just like "int32", is used to distinguish charactor value from integer
 41. better not use global variable, hard to test, use 
 I would pass it as a function param, or make it a struct method. Global variable is not very pragmatic for that even though it might seem so, a common way to do that is to define methods on a struct instead and keep the state there.
 42. do anything in goroutine and return the value over the channel
-43. import "path/to/dir"  dir have random package name is supported
+43. import "path/to/dir"  "package name" can be different from "dir name"
 44. pass struct as arguments
 45. go get time time of execution
 46. godoc <module> <function>
 47. Lexical tokens are enclosed in double quotes "" or back quotes ``
+48. import  "module",  every "init() of Go file" under that directory is called, without "sub_directories"
+
+49. error handling in Go, "error" type
+50. "* \<type>" define a pointer to "\<type>" , "&\<var>" get the pointer of <var>
+51. "revel" go webframework  
+52. "regexp" module
+53. "strconv" conversions to and from "string" between "other data types"
+54. import "os/exec"; exec.Command("")
+56. "path/filepath"  
+57. "uinitptr" type is an integer type that is large enough to hold the bit pattern of any pointer  
