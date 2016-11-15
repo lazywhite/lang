@@ -5,6 +5,7 @@ import "time"
 import "math/rand"
 import "math"
 import "runtime"
+import "errors"
 
 //import "github.com/lib/pq"
 
@@ -18,11 +19,22 @@ rune
 float32 float64
 complex64 complex128
 
-
-T(v) convert value "v" to type  "T"
+Type Casting: 
+	T(v) convert value "v" to type  "T"
 */
 
 var c, python, java bool //package level variable
+const (
+	GREET string = "hello world"
+	Prob string = "NOE"
+)
+
+type Vertex struct{
+	X, Y float64
+}
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X * v.X + v.Y * v.Y)
+}
 
 /** variables decclared without an explicit have initial value
 
@@ -31,12 +43,19 @@ var c, python, java bool //package level variable
 3. "" for string
 **/
 
+// format output https://golang.org/pkg/fmt/
 func add(x int, y int) int {
 	return x + y
 }
 
 func swap(x, y string) (string, string) {
 	return y, x
+}
+
+// generate a random number in a range
+func random(min, max int) int {
+    rand.Seed(time.Now().Unix())
+    return rand.Intn(max - min) + min
 }
 
 // named return value
@@ -46,9 +65,9 @@ func split(sum int) (x, y int) {
 	return // "naked" return, not recommanded
 }
 
-func for_demo() int {
-	sum := 0
-	for i := 0; i < 10; i++ {
+func for_demo() {
+	fmt.Println("For loop demo started")
+	for i := 0; i < 5; i++ {
 		/** For loop
 		three components seperated by semicolons
 		init statement
@@ -61,9 +80,9 @@ func for_demo() int {
 		4. for {} : loop forever
 
 		**/
-		sum += i
+		fmt.Println(i)
 	}
-	return sum
+	fmt.Println("For loop demo ended")
 }
 
 func if_demo(x float64) bool {
@@ -75,7 +94,7 @@ func if_demo(x float64) bool {
 }
 
 func switch_demo() {
-	fmt.Println("Detecting OS")
+	fmt.Println("Swith statement: Detecting OS")
 	switch os := runtime.GOOS; os {
 	/**
 	1. switch statement can start with a short statement
@@ -86,7 +105,8 @@ func switch_demo() {
 		fmt.Println("OS X")
 		fallthrough
 	case "windows":
-		fmt.Println("Windowns")
+		fmt.Println("Fallthrough")
+		fmt.Println("Windows")
 	case "linux":
 		fmt.Println("Linux")
 	default:
@@ -96,7 +116,6 @@ func switch_demo() {
 
 func switch_true() {
 	t := time.Now()
-	fmt.Println(t)
 	//Switch without a condition is the same as switch true.
 	//This construct can be a clean way to write long if-then-else chains.
 	switch {
@@ -110,9 +129,6 @@ func switch_true() {
 }
 
 func main() {
-	var i int = 10 //function level variable
-	//	p := &i        // pointer to variable "i"
-
 	/** Pointer
 	1. pointer zero value is nil
 	2. go has no pointer arithmetic
@@ -137,55 +153,44 @@ func main() {
 
 	3. defered function calls are pushed onto a statck, defered calls are executed in last-in-first-out order
 	**/
-	defer fmt.Println("world")
 
-	//	for i := 0; i < 10; i++ {
-	//		defer fmt.Println(i)
-	//	}
+	defer sayBye()
 
-	fmt.Println("Hello")
-	fmt.Println("time is", time.Now().Weekday())
-	rand.Seed(time.Now().UnixNano())
-	fmt.Printf("random number\n", rand.Intn(10))
-	fmt.Printf("Square of 4 is %.2f\n", math.Sqrt(4))
-	fmt.Printf("add of 2 and 4 %d\n", add(4, 2))
-	a, b := swap("Hello", "World")
-	fmt.Println(a, b)
-	fmt.Println(split(17))
-	fmt.Println(i, c, python, java)
-	fmt.Println(for_demo())
+	fmt.Printf("random number between (10, 20) is : %d\n" , random(10, 20))
+	fmt.Printf("Const: %s\n" , GREET)
+	fmt.Println("Weekday of current time: ", time.Now().Weekday())
+	fmt.Printf("Square of 7 is %.2f\n", math.Sqrt(7))
+	fmt.Printf("Sumation of 2 and 4 %d\n", add(4, 2))
+	a, b := "hello", "world"
+	fmt.Println("Short assignment: ", a, b)
+	c, d := swap(a, b)
+	fmt.Println("Variable switched: ", c, d)
+	m1, n1 := split(17)
+	fmt.Println("Named return value, splited of 17: ", m1, n1)
+	fmt.Printf("Global variable python is: %t\n", python)
+	for_demo()
 	fmt.Println(if_demo(9))
-	//	fmt.Printf("value of pointer P is: %d\n", *p)
-	//fmt.Printf("address of  pointer q is: %s\n", q)
-	//	runtime.Breakpoint()
 	switch_demo()
 	switch_true()
+
+
 
 	/* Struct
 	1. a struct is a collection of fields
 	2. struct field is accessed by a dot
-
-
 	3. struct field can be accessed by struct pointer
 	*/
-	type Vertex struct {
-		X, Y float64
-	}
 
-	//	func (v Vertex) Abs() float64 {
-	//		return math.Sqrt(v.X * v.X + v.Y * v.Y)
-	//	}
-	//	point := Vertex{100, 20}
-
-	//	fmt.Println(Vertex{1, 2})
-	//	fmt.Println(point.X)
-
-	/* go does not has class, however you can define methods on types
-	a method is a special function with a special receiver argument
+	/* 
+		go does not has class, however you can define methods on types
+		Method is a special function with a special "receiver" argument
 	*/
+	point := Vertex{30, 40}
+	fmt.Println("Type method example: ", point.Abs())
+
 
 	/* Array
-	1. array has fixed size, ould not be resized
+	1. array has fixed size, could not be resized
 	2. zero value of array items is 0
 	3. a slice is dynamically-sized
 	4. a slice does not store any data, it just desribe a section of underlying array
@@ -195,24 +200,14 @@ func main() {
 	6. slice has length and capacity
 	7. nil slice has 0 length, 0 capacity and has no underlying array
 	8. use make() to create dynamically-sized arrays
+	9. slice high or low bound may be ommited, it will use its default
+	10. the zero value of a slice is "nil"
 	*/
 
-	var array_test [10]int
-	fmt.Println(array_test[5])
+	strArray := [2]string{"hello", "world"} // this declare an Array
+	fmt.Printf("%v\n", strArray)
 
-	primes := [6]int{2, 3, 5, 7, 11, 13}
-	var s []int = primes[1:4] // index 4 is not included
-	fmt.Println(s)
-	printSlice(s)
-
-	var sn []int
-	printSlice(sn)
-	sn = append(sn, 0)
-	printSlice(sn)
-	sn = append(sn, 2, 3, 4)
-	printSlice(sn)
-
-	var pow = []int{1, 2, 4, 8, 16, 32}
+	var pow = []int{1, 2, 4, 8, 16, 32} // this create an Array then builds a slice reference it
 
 	for i, v := range pow {
 		// range is used for iterate over slice or map
@@ -220,6 +215,14 @@ func main() {
 		// if you only want the index, drop the ",value" entirely
 		fmt.Printf("2 ** %d = %d\n", i, v)
 	}
+	var s []int = pow[0:4] //4 is not included
+	printSlice("s", s)
+
+	aSlice  := make([]int, 5)
+	printSlice("aSlice", aSlice)
+
+	aSlice = append(aSlice, 100)
+	printSlice("aSlice", aSlice)
 
 	/* Map
 	*map maps keys to values
@@ -228,65 +231,69 @@ func main() {
 	3. make() return a map of given type, initialized and ready to use
 	*/
 
-	type Cstruct struct {
-		Lat, Long float64
-	}
-	var m map[string]Cstruct
-	m = make(map[string]Cstruct)
-	m["Bell Labs"] = Cstruct{
-		40.68433, -74.39967,
-	}
-	m["Bily Mando"] = Cstruct{
-		20.89, -777.60,
-	}
-	fmt.Println(m["Bell Labs"])
 
-	for k, v := range m {
-		fmt.Printf("key: %s, value: %v\n", k, v)
+
+	m := make(map[string]Vertex) // declare m as an map
+	m["Bell Lab"] = Vertex{
+		30, -40,
+	}
+	fmt.Println(m["Bell Lab"])
+
+	n := map[string]Vertex{ //declare and initialize a map
+		"Bell": Vertex{
+			10, 20, 
+		},
+		"Google": Vertex{
+			30, 40,
+		},
+	}
+	fmt.Println(n)
+	// delete(<m map>, key string) delete an item from map
+	// elem, ok := m[key]   test if map kas key 
+
+	fmt.Println("Using range to loop over a Map")
+	for k, v := range n{ //iterator an map
+		fmt.Println(k, v)
 	}
 
-	//	var n map[string]string
-	//	n = make(map[string]string)
-	//	n["key1"] = "value1"
-	//	fmt.Println(n["key1"])
-	var n = map[string]int32{
-		"key1": 400,
-		"key2": 200,
-	}
-	fmt.Println(n["key1"])
 
-	//	printMap(n)
+	// Recursion
+	fmt.Println("Recursion test, fib(10): ", fib(10))
 
-	//	type Mtype1 map[string]int
-	hypot := func(x, y float64) float64 {
-		return math.Sqrt(x*x + y*y)
+	// Error handling
+	result, err := Sqrt(100)
+	if err != nil {
+		fmt.Println(err) 
+	}else{
+		fmt.Println(result)
 	}
-	fmt.Println(hypot(5, 12))
-	//	fmt.Println(compute(hypot))
 
 }
 
-func printSlice(s []int) {
-	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+func printSlice(name string, s []int) {
+	fmt.Printf("slice name: %s len=%d cap=%d %v\n", name, len(s), cap(s), s)
 }
 
-//func printMap(tMap Mtype1) {
-//	for k, v := range tMap {
-//		fmt.Printf("key=%s value=%d\n", k, v)
-//	}
-//}
+// func as parameter
+func sayBye(){
+	fmt.Println("Good bye")
+}
 
-//func compute(fn func(float64, float64) float64) float64 {
-// functions are value too, they could be passed around like values
-//	 may be used as function arguments and return value
-//	return fn(3, 4)
-//}
 
-// channel
-// buffer
-// select
-// reader writer
-// range and close
-// goroutine
-// interface
-// Stringer
+func fib(n int) int {
+	if n == 1{
+		return 1
+	}
+	if n == 0 {
+		return 1
+	}
+	return fib(n-1) + fib(n-2)
+}
+
+func Sqrt(value float64) (float64, error){
+	if value < 0{
+		return 0, errors.New("Math: negative number is not supported")
+	}else{
+		return math.Sqrt(value), nil
+	}
+}

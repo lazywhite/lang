@@ -32,7 +32,7 @@ continue     for          import       return       var
 
 3. extend an array
 4. use 'reflect' to get type of variable
-5. pointer to struc
+5. pointer to structure
 6. no generic method
 7. interface implement is implicit
 8. package directory hierachy
