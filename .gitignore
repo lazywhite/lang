@@ -3,7 +3,6 @@
 **/node_modules
 **/jspm_packages
 *.scssc
-build
 *.out
 *.o
 **/*.dSYM/**
@@ -11,3 +10,9 @@ build
 **/*.class
 
 **/.DS_Store
+
+**/gradle/**
+**/.gradle
+**/*.bat
+**/gradlew
+**/build/**

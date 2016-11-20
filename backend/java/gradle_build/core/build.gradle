@@ -1,0 +1,7 @@
+version = '1.0'
+
+description = """core"""
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version:'4.9'
+}
