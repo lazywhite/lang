@@ -20,7 +20,12 @@
 
 tab=<pre><code></code></pre>
 
+```
+|th1|th2|th3|
+|:--|--:|:--:|
+|td1|td2|td3|
 
+```
 
 
 
