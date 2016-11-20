@@ -1,0 +1,73 @@
+// single line comment
+/*
+*    multi-line comment
+*/
+
+apply plugin: 'java'
+
+def homePath = System.properties['user.home']
+
+//rootProject.name = "com.local.test.web"
+description = """
+Example project for a Gradle build 
+
+Project Name: ${project.name}
+User Home: ${homePath}
+
+More detailed information could be found here... """
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter {
+        url "http://jcenter.bintray.com/"
+    }
+
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    testCompile 'junit:junit:4.12'
+
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    //compile fileTree(dir: 'libs', include: '*.jar')
+    // runtime files('libs/lib1.jar', 'libs/lib2.jar')
+    // runtime fileTree(dir: 'libs', include: '*.jar')
+
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class':  'com.local.test.Main'
+    }
+}
+task preTask {
+    
+    group 'test'
+    description 'pre-running task for this gradle build scripts'
+    doFirst {
+        println "beginning of task ${name}"
+    }
+    doLast {
+        println "ending of task ${name}"
+    }
+}
+
+task cleanUp {
+    
+    group 'test'
+    description 'cleanup task'
+    doLast {
+        println "ending of task ${name}"
+    }
+}
+
+task hello << {  //define task
+    //task('hello') << {  //or 
+    //task (hello) << {  //or
+    println 'doing task hello'
+}
+
+
+hello.dependsOn preTask, cleanUp
