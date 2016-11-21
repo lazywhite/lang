@@ -74,10 +74,10 @@ var emptyArray = [Int]()
 
 
 var numbers = [0,5,3,4]
-numbers.sortInPlace()
+numbers.sort()
 // array count
-numbers.maxElement()
-numbers.minElement()
+numbers.max()
+numbers.min()
 // length
 numbers.count
 
@@ -98,9 +98,8 @@ var occupation = [
 ]
 
 var mn = (10, 20, 30)
-print(_stdlib_getDemangledTypeName(mn))
+//print(_stdlib_getDemangledTypeName(mn))
 
-print(occupation["k1"])
 occupation["k3"] = String(100)
 
 
@@ -120,7 +119,7 @@ for score in individualScore{
 
 
 // Optional variables
-var op_string :String? = "bob"
+var op_string :String? = ""
 
 var greeting = "hello"
 
@@ -156,9 +155,6 @@ repeat {
 
 // for i in range
 
-for var iMMM = 1; iMMM<10; iMMM++ {
-    print("lakdjfa;j")
-}
 
 // ------------------
 // Function definations, argument notation and return type
@@ -184,26 +180,16 @@ func sumOf(numbers: Int...) -> Int{
     }
     return sum
 }
-sumOf(90, 100, 400)
 
 
 
 // function in function
-func fifteen() -> Int {
-    var x:Int = 6
-    func add(number:Int) -> Int{
-        return number + 9
-    }
-    add(x)
-    return x
-    
-}
-fifteen()
+
 
 
 // return a function
 
-func make_incre() -> (Int -> Int){
+func make_incre() -> ((Int) -> Int){
     func addOne(number: Int) -> Int{
         return number + 1
     }
@@ -216,7 +202,7 @@ incre(8)
 
 
 // function as argument
-func hasAnyMatch(list: [Int], condition: (Int -> Bool)) -> Bool{
+func hasAnyMatch(list: [Int], condition: ((Int) -> Bool)) -> Bool{
     for item in list{
         if condition(item){
             return true
@@ -423,8 +409,7 @@ func repeatItem<Item>(item:Item, times: Int) -> [Item]{
     }
     return result
 }
-repeatItem("hello", times: 3)
-repeatItem(10, times: 3)
+
 
 // enumeration
 // rawValue is immutable
@@ -445,27 +430,6 @@ conn = .Connecting(3306, "127.0.0.1")
 
 
 // self defined error type
-enum MyError: ErrorType{
-    case UserError
-    case NetworkError
-    case DiscoveryError
-}
-
-func doStuff() throws -> String{
-    print("do stuff 1")
-    print("do stuff 2")
-    throw MyError.NetworkError
-     // code after throw will never be executed
-}
-
-do{
-    try doStuff()
-    print("Success")
-}catch MyError.NetworkError{
-    print("network error occured")
-}catch {
-    print("An Error occured")
-}
 
 
 
