@@ -1,0 +1,23 @@
+import React from 'react';
+
+class App extends React.Component {
+    render(){
+        var i = 1;
+        var myStyle = {
+            fontSize: 30,
+            color: '00FF00'
+        };
+        return (
+
+                <div>
+                <h1 style={myStyle}>Header</h1>
+                <h2>Content</h2>
+                <p data-myattr="value">hello world!</p>
+                <p>1+10={1+10}</p>
+                <p>{i==1?'True':'False'}</p>
+                </div>
+               );
+    }
+}
+
+export default App;
