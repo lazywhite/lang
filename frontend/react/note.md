@@ -14,12 +14,21 @@
 form
 router
 ajax
+    this.serverRequest = $.get(this.props.source, function (result) {})
 flux
 table
 props
     defaultProps
 state
 component
+    api
+        setState()
+        replaceState()
+        setProps()
+        replaceProps()
+        forceUpdate()
+        findDOMNode()
+        isMounted()
 
 event
 expression
