@@ -3,22 +3,25 @@ Practice code of programming language
 
 ## Directory Architecture
 ```
-├── README.md
 ├── backend
-│   ├── java
+│   ├── bash
+│   ├── c
 │   ├── go
+│   ├── java
 │   ├── jsp
 │   ├── nodejs
 │   ├── php
 │   ├── ruby
 │   ├── scala
-│   ├── scheme
-│   └── shell
+│   └── scheme
 └── frontend
     ├── angular
     ├── angular2
     ├── bootstrap3
+    ├── bower
     ├── css
+    ├── grunt
+    ├── gulp
     ├── html
     ├── jqGrid
     ├── jquery
