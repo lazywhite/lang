@@ -38,23 +38,18 @@ public class Main{
         for (String arg: args){
             System.out.print(arg + ' ');
         }
+        weekDay day = weekDay.Mon;
+        System.out.println(day);
         Puppy inst = new Puppy("Jerry");
         inst.setAge(10);
         System.out.println("Age of puppy is: " + inst.getAge());
         inst = null;
         System.gc();
         // List
-        // initialize method 01
-//        List<Integer> aList = new ArrayList<Integer>();
         Integer[] aList =  { 10, 20, 30 };
-
         System.out.println(aList.toString());
-        // initialize method 02
-        Character[] cList = { 'h', 'e', 'w'};
-
-        // initialize method 03
         ArrayList<Object> bList = new ArrayList<Object>(Arrays.asList("a", 100));
-        
+        Character[] cList = { 'h', 'e', 'w'};
         //HashSet
         // initialize method 01
         HashSet<Object> mySet = new HashSet<Object>();
@@ -75,15 +70,11 @@ public class Main{
         for(String key: myDict.keySet()){
             System.out.println(key + ":" + myDict.get(key));
         }
-        // Todo get first key by value
         for (HashMap.Entry<String, Object> entry : myDict.entrySet()) {
                 String key = entry.getKey();
                 Object value = entry.getValue();
                 System.out.format("%s: %s%n", key, value.toString());
         }
-        // String
-        String testString = "hello world";
-        System.out.println(testString);
         // Array iteration
         for(int i=0;i<bList.size();i++){
             System.out.println(bList.get(i));
@@ -142,7 +133,6 @@ public class Main{
 
         System.out.println(test(1, "dog"));
         System.out.println(test("dog", 1));
-        showThing(aList);
         showThing(cList);
 
         List<String> strList = new ArrayList<String>();
