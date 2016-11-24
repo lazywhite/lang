@@ -37,7 +37,7 @@ thread priorities: help system to determine the executing order of threads
 2. 就绪状态: 线程处于就绪队列中, 等待jvm线程调度器进行调度
 3. 运行状态: 如果一个线程拿到CPU资源, 可以执行run()之后处于运行状态
 4. 阻塞状态: 执行sleep(), suspend(), wait()之后, 进入此状态, 三种类别
-        等待阻塞:
+        等待阻塞
         同步阻塞
         其他阻塞
 5. 死亡: 线程执行完毕或者被终止后, 进入死亡状态  
@@ -58,6 +58,7 @@ thread priorities: help system to determine the executing order of threads
 6. transient: indicate that one field should not be serialized
 7. strictfp: 精确浮点数, 可以修饰类或者接口
 8. assert \<cond\> [: "error message"];
+9. ```if (p instanceof Parent){}```
 
 ### 7.手动垃圾回收
 ```
