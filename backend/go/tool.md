@@ -19,9 +19,9 @@ compile and run Go programm
 print Go version
 
 ## fmt
-run gofmt on package source 
--n: prints commands that would be executed
--x: prints commands as they are executed
+run gofmt on package source   
+-n: prints commands that would be executed  
+-x: prints commands as they are executed  
 
 ## fix
 run go tool fix on package
