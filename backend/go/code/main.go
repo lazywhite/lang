@@ -29,6 +29,7 @@ const (
 	Prob string = "NOE"
 )
 
+var m rune = 'a'
 type Vertex struct{
 	X, Y float64
 }
@@ -173,6 +174,7 @@ func main() {
 	switch_demo()
 	switch_true()
 
+	fmt.Println(m)
 
 
 	/* Struct

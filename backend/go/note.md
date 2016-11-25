@@ -1,5 +1,17 @@
 ## Introduction
 静态强类型， 编译型， 并发型， 自动垃圾回收 
+1. no support for type inherience
+2. no support for method or operator overloading
+3. no support for circular dependencies among packages
+4. no support for pointer arithmetic
+5. no support for assertion
+6. no support for generic programming
+7. support for type inference \(short assignment\)
+8. compilation is fast
+9. conciseness simplicity and safety
+10. support for interface and type embedding
+11. production of statically linked native binaries without external dependency
+
 ## Key concept
 ```
 variable
@@ -64,14 +76,12 @@ continue     for          import       return       var
 32. fallthrough: no break and execute next case forcefully
 33. Maps are reference types, so they are allways passed by reference. You don't need a pointer.
 34. A "go" statement starts the execution of a function call as an independent concurrent thread of control, or goroutine, within the same address space. 
-
 35. TOML: Tom's Obvious, Minimal Language
-
 36. getopt
 37. struct  only fields starting with a capital letter are exported
 38. string concate
 39. log package
-40. type rune: just like "int32", is used to distinguish charactor value from integer
+40. type rune: just like "int32", is used to distinguish charactor value from integer, when fmt.Println(m rune), it always output a number, m can be a char
 41. better not use global variable, hard to test, use 
 I would pass it as a function param, or make it a struct method. Global variable is not very pragmatic for that even though it might seem so, a common way to do that is to define methods on a struct instead and keep the state there.
 42. do anything in goroutine and return the value over the channel
@@ -81,7 +91,6 @@ I would pass it as a function param, or make it a struct method. Global variable
 46. godoc <module> <function>
 47. Lexical tokens are enclosed in double quotes "" or back quotes ``
 48. import  "module",  every "init() of Go file" under that directory is called, without "sub_directories"
-
 49. error handling in Go, "error" type
 50. "* \<type>" define a pointer to "\<type>" , "&\<var>" get the pointer of <var>
 51. "revel" go webframework  
@@ -89,4 +98,6 @@ I would pass it as a function param, or make it a struct method. Global variable
 53. "strconv" conversions to and from "string" between "other data types"
 54. import "os/exec"; exec.Command("")
 56. "path/filepath"  
-57. "uinitptr" type is an integer type that is large enough to hold the bit pattern of any pointer  
+57. "uintptr" type is an integer type that is large enough to hold the bit pattern of any pointer  
+58. "label" and "goto"
+59. no "interpreter" interface in go
