@@ -1,4 +1,5 @@
 #!/usr/local/bin/lua
+local util = require "lib/util"
 str1 = "hello"
 str2 = "world"
 local apple, orange
@@ -23,10 +24,9 @@ end
 
 
 --[[ for loop --]]
-for i=10,1,-1
-    do
+for i=10,1,-1 do
         print(i)
-    end
+end
 
 --[[ repeate loop --]]
 a = 10
@@ -65,7 +65,7 @@ print(add(10, add5))
 function average(...) 
     result = 0
     local arg={...}
-    for i, v in ipairs(arg) do
+    for i, v in ipairs(arg) do --[[ interator --]]
         result = result + v
     end
     return result/#arg
@@ -82,6 +82,7 @@ print(string.rep(st3, 3))
 
 
 array = {"lua", "tutorial"}
+print("type of array:", type(array))
 for i=0, 2 do
     print(array[i])
 end
@@ -89,5 +90,47 @@ end
 mytable = {}
 print(type(mytable))
 mytable['key'] = 'value'
-print(mytable['key'])
+print("get value by key:", mytable['key'])
+print("get value by '.':", mytable.key)
+print("type of table:", type(mytable))
+print(mytable)
 
+print(util.add(10, 20))
+
+--setmetatable(mytable, {
+--    result = ""
+--    __tostring = function(mytable)
+--        for k, v in ipairs(mytable) do
+--            result = result..k..":"..v.." "
+--        end
+--        return result
+--    end
+--    }) 
+--print(mytable)
+
+mytable = setmetatable({ 10, 20, 30 }, {
+   __tostring = function(mytable)
+   sum = 0
+    
+      for k, v in pairs(mytable) do
+         sum = sum + v
+      end
+        
+      return "The sum of values in the table is " .. sum
+   end
+})
+print(mytable)
+
+
+
+function lines_from(file)
+    lines = {}
+    for line in io.lines(file) do
+        lines[#lines + 1] = line
+    end
+    return lines
+end
+
+--file = io.open("util.lua", "r+")
+--file:close()
+print(#lines_from("lib/util.lua"))
