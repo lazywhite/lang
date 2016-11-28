@@ -1,11 +1,14 @@
 package main
 
-import "fmt"
-import "time"
-import "math/rand"
-import "math"
-import "runtime"
-import "errors"
+import (
+	"fmt"
+	"time"
+	"math/rand"
+	"math"
+	"runtime"
+	"errors"
+	"reflect"
+)
 
 //import "github.com/lib/pq"
 
@@ -20,7 +23,7 @@ float32 float64
 complex64 complex128
 
 Type Casting: 
-	T(v) convert value "v" to type  "T"
+T(v) convert value "v" to type  "T"
 */
 
 var c, python, java bool //package level variable
@@ -55,8 +58,8 @@ func swap(x, y string) (string, string) {
 
 // generate a random number in a range
 func random(min, max int) int {
-    rand.Seed(time.Now().Unix())
-    return rand.Intn(max - min) + min
+	rand.Seed(time.Now().Unix())
+	return rand.Intn(max - min) + min
 }
 
 // named return value
@@ -97,10 +100,10 @@ func if_demo(x float64) bool {
 func switch_demo() {
 	fmt.Println("Swith statement: Detecting OS")
 	switch os := runtime.GOOS; os {
-	/**
-	1. switch statement can start with a short statement
-	2. cases evaluated from top to bottom, stopping when a case successed
-	**/
+		/**
+		1. switch statement can start with a short statement
+		2. cases evaluated from top to bottom, stopping when a case successed
+		**/
 
 	case "darwin":
 		fmt.Println("OS X")
@@ -184,8 +187,8 @@ func main() {
 	*/
 
 	/* 
-		go does not has class, however you can define methods on types
-		Method is a special function with a special "receiver" argument
+	go does not has class, however you can define methods on types
+	Method is a special function with a special "receiver" argument
 	*/
 	point := Vertex{30, 40}
 	fmt.Println("Type method example: ", point.Abs())
@@ -205,11 +208,15 @@ func main() {
 	9. slice high or low bound may be ommited, it will use its default
 	10. the zero value of a slice is "nil"
 	*/
+	autoLengthArray := [...]int{10, 20, 30}
 
+	fmt.Println("auto length array:", len(autoLengthArray))
+	fmt.Println("type of autoLengthArray:", reflect.TypeOf(autoLengthArray))
 	strArray := [2]string{"hello", "world"} // this declare an Array
 	fmt.Printf("%v\n", strArray)
 
 	var pow = []int{1, 2, 4, 8, 16, 32} // this create an Array then builds a slice reference it
+	fmt.Println("type of pow:", reflect.TypeOf(pow))
 
 	for i, v := range pow {
 		// range is used for iterate over slice or map
@@ -258,6 +265,8 @@ func main() {
 		fmt.Println(k, v)
 	}
 
+	// variadic function
+	fmt.Println("variadic function:", VarParam(10, 20, 30))
 
 	// Recursion
 	fmt.Println("Recursion test, fib(10): ", fib(10))
@@ -298,4 +307,12 @@ func Sqrt(value float64) (float64, error){
 	}else{
 		return math.Sqrt(value), nil
 	}
+}
+
+func VarParam(nums ...int) int {
+	total := 0
+	for _, v := range(nums){
+		total += v
+	}
+	return total
 }
