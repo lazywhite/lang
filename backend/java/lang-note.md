@@ -13,6 +13,32 @@
         class name
         default value of any reference variable is null
 ```
+## Built-in Exceptions
+```
+RuntimeException
+    ArithmeticException
+    ArrayIndexOutOfBoundsException
+    ArrayStoreException
+    ClassCastException
+    IllegalArgumentException
+    IllegalMonitorStateException
+    IllegalStateException
+    IllegalThreadStateException
+    IndexOutOfBoundsException
+    NagativeArraySizeException
+    NullPointerException
+    NumberFormatException
+    SecurityException
+    StringIndexOutOfBounds
+    UnsupportedOperationException
+    ClassNotFoundException
+    CloneNotSupportedException
+    IllegaleAccessException
+    InstantiationException
+    InterruptedException
+    NoSuchFieldException
+    NoSuchMethodException
+```
 ## Keyword
 ```
 abstract
