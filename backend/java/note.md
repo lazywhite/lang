@@ -59,6 +59,7 @@ thread priorities: help system to determine the executing order of threads
 7. strictfp: 精确浮点数, 可以修饰类或者接口
 8. assert \<cond\> [: "error message"];
 9. ```if (p instanceof Parent){}```
+10. java.lang is implicitly imported into all java program
 
 ### 7.手动垃圾回收
 ```
