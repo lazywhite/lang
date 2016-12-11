@@ -1,5 +1,6 @@
 ## Introduction
-静态强类型， 编译型， 并发型， 自动垃圾回收 
+静态强类型， 编译型， 并发型， 自动垃圾回收   
+  
 1. no support for type inherience
 2. no support for method or operator overloading
 3. no support for circular dependencies among packages
@@ -12,7 +13,7 @@
 10. support for interface and type embedding
 11. production of statically linked native binaries without external dependency
 
-## Key concept
+## Concept
 ```
 variable
 function
