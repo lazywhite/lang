@@ -153,7 +153,7 @@ HashMap(int capacity, float fillRatio)
 void clear() # remove all mapping from this map
 Object clone() # return shallow copy of this HashMap
 boolean containsKey(Object key) # return true if this map contains specified key
-boolean containValue(Object value)
+boolean containsValue(Object value)
 Set entrySet() # return a collection view of the mappings contained in this map
 Object get(Object key) 
 boolean isEmpty()
