@@ -1,4 +1,10 @@
-# Characteristic of MicroService
+## Defination
+A microserver is an isolated, loosly_coupled unit of development that works on  
+a single concern, follow the princeple or Unix "do one thing and do it well"  
+
+
+
+## Characteristic of MicroService
 1. componetiation via services
 2. organized around business capabilities
 3. products not projects
@@ -9,18 +15,21 @@
 8. design for failure
 9. evolutionary design 
   
-## requirement to use microService
+## applicable situation to use microService
 1. rapid provisioning
 2. basic monitoring
 3. rapid application deployment
 4. devops culture
  
-## Keyword
-```
-component: independently replaceable, upgradeable
-    library
-    service
-```
+## Topic
+2. api-proxy
+3. logging
+4. service discovery and registration
+5. data sharing and synchronizing 
+6. graceful failure
+7. automated deployment  
+
+
 ## 微服务好处
 1. 解耦合  
 2. 异构化  
@@ -63,3 +72,12 @@ components
     methods
     representation: json or trift
 ```
+
+## Usage of API-Gateway
+1. authentication: according to the rules that are specific to each microservice, the gateway either 
+                    routes the request to "service" or returns an error code 
+2. transport security: function as a single entrypoint for a public API
+3. load-balancing : distribute request among microservice-instances
+4. request dispatching: base on service registration and discovery, a request could be routed to the right "service"
+5. dependency resolution: provide "facade" or "virtual endpoint" that internally routed to many different "services"
+6. transport transformation: act like an adaptor between "clients" and "services"
