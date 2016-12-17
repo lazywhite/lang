@@ -1,6 +1,6 @@
 /*
-implement of interface is implicit, no bad will happend when method name is same
-with interface function
+"Interfaces" are named collections of method signatures
+implement of interface is implicit
 */
 package main
 

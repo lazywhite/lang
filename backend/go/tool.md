@@ -40,4 +40,5 @@ compile packages and dependencies
 ## list
 list packages
 
-
+## help
+go help gopath

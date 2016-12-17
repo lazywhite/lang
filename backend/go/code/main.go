@@ -120,7 +120,7 @@ func switch_demo() {
 
 func switch_true() {
 	t := time.Now()
-	//Switch without a condition is the same as switch true.
+	//Switch without a condition is the same as "switch true".
 	//This construct can be a clean way to write long if-then-else chains.
 	switch {
 	case t.Hour() < 12:
@@ -159,6 +159,7 @@ func main() {
 	**/
 
 	defer sayBye()
+	defer sayByeAgain()
 
 	fmt.Printf("random number between (10, 20) is : %d\n" , random(10, 20))
 	fmt.Printf("Const: %s\n" , GREET)
@@ -290,6 +291,9 @@ func sayBye(){
 	fmt.Println("Good bye")
 }
 
+func sayByeAgain(){
+	fmt.Println("Good bye again")
+}
 
 func fib(n int) int {
 	if n == 1{
