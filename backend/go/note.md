@@ -39,6 +39,35 @@ chan         else         goto         package      switch
 const        fallthrough  if           range        type
 continue     for          import       return       var
 ```
+## Triple dot
+```
+1.  go list ./...   in any folder lists all the packages, including packages of the standard library first followed by external libraries in your go workspace.
+2.  a := make([]int, 500)    
+SomeVariadicFunc(a...)  unpacking "a" as the arguments to a function
+3.  b := [...]int{1,2,3}  "..." is evaluated to size of array in compile time
+4. SomeVariadicFunc(a ...int)  define a variadic function
+```  
+## Format output
+```
+%v: the value in a default format
+%+v: when printing structs, the plus flag adds field names 
+%#v: a go-syntax representation of the value
+%T: a go-syntax representation of the type of the value 
+%%: a literal percent sign
+%t: the word true of false
+%b: base 2 
+%d: base 10 
+%o: base 8 
+%c: the character 
+%x: base 16, with lower-case letters for a-f
+%X: base 16, with upper-case letters for A-F
+%U: Unicode format: U+1234; same as "U+%04X"
+%f: decimal point but no exponent
+%s: the uninterpreted bytes of the string or slice
+%q: a double-quoted string safely escaped with Go syntax
+%p: base 16 notation, with leading 0x
+```
+
 ## Topic  
 1. In Go, a name is exported if it begins with a capital letter  
 2. When importing a package, you can refer only to its exported names. Any "unexported" names are not accessible from outside the package.  
@@ -52,7 +81,7 @@ continue     for          import       return       var
 9. module alias
 10. import number of modules
 11. make() to create array, map
-12. range keyword to iterater over containers
+12. range keyword to iterater over containers like "array" and "map"
 13. interface{} stand for any type
 14. import path conflict with standard library will get a  compile error of "redeclaration"
 15. import . "<pkg>"
@@ -102,3 +131,15 @@ I would pass it as a function param, or make it a struct method. Global variable
 57. "uintptr" type is an integer type that is large enough to hold the bit pattern of any pointer  
 58. "label" and "goto"
 59. no "interpreter" interface in go
+60. "GOPATH"  just like "PATH", you can have a list of "GOPATH"
+61. append(), cap(), delete(), len()
+62. when multiply different type of data, you should convert them to same type firstly
+63. if you use same rand.Seed(<number>), you will get a same rand.Intn(<number>)
+64. named return value, use return variable in function and just return
+65. short assignment is not available outside "func" body
+66. zero value: 0 for numeric types, false for boolean type and "" for string, "nil" for slice, "nil" for map
+67. const cannot be declared by using short assignment
+68. when declaring a const, type could be omitted
+69. you cannot define a function inside a function in Go
+70. slice could contain any type, include other slices
+71. you can skip the index or value by assigning to "_"
