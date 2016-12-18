@@ -74,7 +74,7 @@ SomeVariadicFunc(a...)  unpacking "a" as the arguments to a function
 
 3. extend an array
 4. use 'reflect' to get type of variable
-5. pointer to structure
+5. pointer of a  struct can used same as struct 
 6. no generic method
 7. interface implement is implicit
 8. package directory hierachy
@@ -132,7 +132,7 @@ I would pass it as a function param, or make it a struct method. Global variable
 58. "label" and "goto"
 59. no "interpreter" interface in go
 60. "GOPATH"  just like "PATH", you can have a list of "GOPATH"
-61. append(), cap(), delete(), len()
+61. append(), cap(), delete(), len(), panic()
 62. when multiply different type of data, you should convert them to same type firstly
 63. if you use same rand.Seed(<number>), you will get a same rand.Intn(<number>)
 64. named return value, use return variable in function and just return
@@ -142,4 +142,4 @@ I would pass it as a function param, or make it a struct method. Global variable
 68. when declaring a const, type could be omitted
 69. you cannot define a function inside a function in Go
 70. slice could contain any type, include other slices
-71. you can skip the index or value by assigning to "_"
+71. when iterate container by "range" you can skip the index or value by assigning it to "_"
