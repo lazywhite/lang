@@ -12,9 +12,9 @@ make install
 ```
 ## Usage
 ```
-make work_dir
+mkdir work_dir
 cd work_dir
-makedir logs conf
+mkdir logs conf
 
 /path/to/openresty -p `pwd` -c conf/nginx.conf
 
