@@ -1,11 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
+/*
+field tag
+	definition
+	access field tag of a struct by using "reflect"
+*/
 type Book struct {
 	title  string
 	author string
 	price  float64
+	desc string `category:"war" color:"blue"`
 }
 
 func main() {
@@ -19,5 +28,8 @@ func main() {
 		b.title,
 		b.author,
 		b.price)
+	st := reflect.TypeOf(b)
+	field := st.Field(3)
+	fmt.Println(field.Tag.Get("category"), field.Tag.Get("color"))
 
 }
