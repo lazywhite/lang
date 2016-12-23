@@ -23,7 +23,7 @@ interface
 array
 slice
 map
-structure
+struct
 pointer
 channel
 range
@@ -72,28 +72,28 @@ SomeVariadicFunc(a...)  unpacking "a" as the arguments to a function
 1. In Go, a name is exported if it begins with a capital letter  
 2. When importing a package, you can refer only to its exported names. Any "unexported" names are not accessible from outside the package.  
 
-3. extend an array
-4. use 'reflect' to get type of variable
-5. pointer of a  struct can used same as struct 
-6. no generic method
-7. interface implement is implicit
-8. package directory hierachy
-9. module alias
-10. import number of modules
+3. an array has fixed size  
+4. use 'reflect.TypeOf()' to get type of variable
+5. when using <&struct>.field, the pointer is automatically dereferenced   
+6. no generic method supported in golang  
+7. interface implementation is implicit  
+8. package directory hierachy  
+9. module alias  
+10. import number of modules  
 11. make() to create array, map
 12. range keyword to iterater over containers like "array" and "map"
 13. interface{} stand for any type
 14. import path conflict with standard library will get a  compile error of "redeclaration"
-15. import . "<pkg>"
+15. import . "<pkg>", everything is imported into current namespace
 16. import _ "<pkg>" solely for side effect, call init() only, a package can have multiple init()
     the order of calling is the lexical order of the filenames. multi init() in same "go" file 
     will get called by their source code order
 17. compile a package will not recursive
 18. error handling 
 19. "goto" keyword
-20. pointer to array
+20. pointer to array is meaning less, use "slice" instead  
 21. pointer arthmetic is not supported in Go
-22. string template
+22. string template  
 23. time.Sleep()
 24. calling between Go and C
 25. buildmode
@@ -116,10 +116,10 @@ SomeVariadicFunc(a...)  unpacking "a" as the arguments to a function
 I would pass it as a function param, or make it a struct method. Global variable is not very pragmatic for that even though it might seem so, a common way to do that is to define methods on a struct instead and keep the state there.
 42. do anything in goroutine and return the value over the channel
 43. import "path/to/dir"  "package name" can be different from "dir name"
-44. pass struct as arguments
+44. passing struct as arguments
 45. go get time time of execution
 46. godoc <module> <function>
-47. Lexical tokens are enclosed in double quotes "" or back quotes ``
+47. Lexical tokens are enclosed in double quotes "" or back quotes ``, back quote can not be escaped  
 48. import  "module",  every "init() of Go file" under that directory is called, without "sub_directories"
 49. error handling in Go, "error" type
 50. "* \<type>" define a pointer to "\<type>" , "&\<var>" get the pointer of <var>
@@ -143,3 +143,6 @@ I would pass it as a function param, or make it a struct method. Global variable
 69. you cannot define a function inside a function in Go
 70. slice could contain any type, include other slices
 71. when iterate container by "range" you can skip the index or value by assigning it to "_"
+72. main() of a program is called by 'runtime.main'  
+73. type assertion  <var>.(<type>), <var> should be an "interface" variable
+74. no fork() in golang, because there are other way to do it  
