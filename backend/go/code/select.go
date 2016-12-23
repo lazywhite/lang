@@ -7,6 +7,8 @@ import ("time"
 	/*
 	select let you wait on multiple channel operations, combining "goroutines"
 	and "channels" with "select" is a powerful feature of GO
+
+	withou "default", execution of "select" is blocked
 	*/
 
 func main(){

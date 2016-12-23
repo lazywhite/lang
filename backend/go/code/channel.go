@@ -7,6 +7,12 @@ import "fmt"
 		ch := make(chan int, 100)  //length is 100
 	3. sends is blocked when buffer is full
 	    recv is blocked when buffer is empty
+	4. by default channel is "unbuffered", meaning that they will only
+	    accept sends(chan <-) if there is a corresponding receive(<-chan) 
+		ready to receive the sent value
+
+		buffered channel accept a limited number of values without a 
+		corresponding receiver for those values
 */
 
 func fibonacci(n int, c chan int) {

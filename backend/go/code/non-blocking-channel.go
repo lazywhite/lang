@@ -1,5 +1,8 @@
 package main
 import "fmt"
+/* 
+with "default" case, execution of "select" is non-blocking
+*/
 
 func main(){
 	messages := make(chan string)
@@ -13,9 +16,8 @@ func main(){
 	}
 
 	msg := "hi"
-	go func(){messages <- msg}()
 	select {
-	case messages <- msg:
+		case messages <- msg:
 		fmt.Println("sent message", msg)
 	default:
 		fmt.Println("no message sent")
