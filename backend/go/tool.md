@@ -42,3 +42,11 @@ list packages
 
 ## help
 go help gopath
+
+
+## get help information
+```
+1. https://godoc.org/  
+2. go doc <package> [func]  
+3. godoc -http :6060  
+```
