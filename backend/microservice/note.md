@@ -2,8 +2,6 @@
 A microserver is an isolated, loosly_coupled unit of development that works on  
 a single concern, follow the princeple or Unix "do one thing and do it well"  
 
-
-
 ## Characteristic of MicroService
 1. componetiation via services
 2. organized around business capabilities
@@ -29,6 +27,15 @@ a single concern, follow the princeple or Unix "do one thing and do it well"
 6. graceful failure
 7. automated deployment  
 
+## Problem in a MicroService Architecture
+1. authentication
+2. service discovery & register
+3. circle breaker  
+4. load balancer  
+
+## Key components in miscroservice architecture
+1. api-gateway
+2. service registry
 
 ## 微服务好处
 1. 解耦合  
@@ -53,8 +60,8 @@ ESB: enterprise service bus
 2. third-party side: client talk to "ServiceManager" then ServiceManager talk to "Registry"
   
 ### 3. service discovery
-client side: talk to "Registry" then get "Service Location", talk to "API-Gateway", finally "Service"  
-server side: talk to "API-Gateway" directly, "API-Gateway" talk with "Registry" then call "Service"  
+客户端模式  
+服务端模式  
   
 ### 4. tools
 ```
@@ -73,7 +80,7 @@ components
     representation: json or trift
 ```
 
-## Usage of API-Gateway
+## 6. API-Gateway
 1. authentication: according to the rules that are specific to each microservice, the gateway either 
                     routes the request to "service" or returns an error code 
 2. transport security: function as a single entrypoint for a public API
@@ -81,3 +88,11 @@ components
 4. request dispatching: base on service registration and discovery, a request could be routed to the right "service"
 5. dependency resolution: provide "facade" or "virtual endpoint" that internally routed to many different "services"
 6. transport transformation: act like an adaptor between "clients" and "services"
+
+## 7. Circle breaker
+服务降级  
+服务限流  
+雪崩效应  
+超时设定  
+资源隔离  
+

@@ -1,15 +1,17 @@
 ## Introduction
 Practice code of programming language
 
-## Directory Architecture
+## Directory Layout
 ```
 ├── backend
 │   ├── bash
 │   ├── c
 │   ├── go
-│   ├── lua
 │   ├── java
 │   ├── jsp
+│   ├── lock.md
+│   ├── lua
+│   ├── microservice
 │   ├── nodejs
 │   ├── php
 │   ├── ruby
@@ -32,6 +34,5 @@ Practice code of programming language
     ├── react
     ├── sass
     ├── swift
-    ├── tool
     └── typescript
 ```
