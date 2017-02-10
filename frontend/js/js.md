@@ -291,3 +291,24 @@ var myMother = new Person("Sally", "Rally", 48, "green");
 Person.nationality = "English";
 
 ```
+
+
+## Topic
+### 1. 闭包
+```
+内部变量不声明就赋值，就会产生一个全局变量
+在函数内部声明一个内部函数，调用时返回内部函数，用来访问内部变量，称为闭包
+
+function f1(){
+　　var n=999;
+　　nAdd=function(){n+=1}
+　　function f2(){
+　　　　alert(n);
+　　}
+　　return f2;
+}
+var result=f1();
+result(); // 999
+nAdd();
+result(); // 1000
+```
