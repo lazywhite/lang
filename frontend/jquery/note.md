@@ -10,7 +10,7 @@
   
 ## Syntax
 ```
-#(select).action()
+$(selector).action()
 ```
 ### Selectors
 ```
@@ -106,3 +106,6 @@ eq(index) method returns an element with a specific index number of the selected
 filter() method lets you specify a criteria,  Elements that do not match the criteria are removed from the selection, and those that match will be returned
 not() method is the opposite of filter().
 ```
+
+## Topic
+1. $(selector) is same as jQuery(selector)
