@@ -312,3 +312,16 @@ result(); // 999
 nAdd();
 result(); // 1000
 ```
+### 2. set break point
+```
+debugger;
+```
+### 3. change current url
+```
+window.location.href = url;
+```
+### 4. get element attribute
+```
+ele.getAttribute("attr_name");
+btn.value
+```
