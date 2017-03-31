@@ -49,3 +49,13 @@ fixed, absolute 不占用正常文本流
 
 If the method attribute is set to GET, the browser drops the querystring 
 parameters from the action attribute before constructing the form argument values.
+
+
+
+a 
+    target
+        _blank
+        _self #default
+        _parent
+        _top #
+        <framename>

@@ -60,6 +60,8 @@ thread priorities: help system to determine the executing order of threads
 8. assert \<cond\> [: "error message"];
 9. ```if (p instanceof Parent){}```
 10. java.lang is implicitly imported into all java program
+11. 接口子类可以多重继承
+12. 抽象方法需要abstract修饰
 
 ### 7.手动垃圾回收
 ```

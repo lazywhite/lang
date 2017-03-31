@@ -53,6 +53,7 @@ dblclick
 text() - Sets or returns the text content of selected elements
 html() - Sets or returns the content of selected elements (including HTML markup)
 val() - Sets or returns the value of form fields
+attr(name[, value]) - Set or get the attribute of selected element
 
 append() - Inserts content at the end of the selected elements
 prepend() - Inserts content at the beginning of the selected elements
