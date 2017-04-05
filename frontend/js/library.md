@@ -12,3 +12,6 @@ charts
 Table
     [jqGrid](http://guriddo.net/)
     [Datatables](https://datatables.net/)
+
+Cookie
+    [Jquery-cookie](https://github.com/carhartl/jquery-cookie)

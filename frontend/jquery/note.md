@@ -29,6 +29,9 @@ pesudo element selecotr
 ```
 click 
 dblclick
+
+selector.bind( eventType[, eventData], handler)
+selector.unbind(eventType, handler)
 ```  
   
 ## Effects
@@ -54,6 +57,8 @@ text() - Sets or returns the text content of selected elements
 html() - Sets or returns the content of selected elements (including HTML markup)
 val() - Sets or returns the value of form fields
 attr(name[, value]) - Set or get the attribute of selected element
+
+selector.replaceWith('<h1>replaced</h1>')
 
 append() - Inserts content at the end of the selected elements
 prepend() - Inserts content at the beginning of the selected elements
