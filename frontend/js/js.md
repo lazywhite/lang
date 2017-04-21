@@ -325,3 +325,7 @@ window.location.href = url;
 ele.getAttribute("attr_name");
 btn.value
 ```
+### 5. call printer
+```
+onclick="window.print()"
+```
