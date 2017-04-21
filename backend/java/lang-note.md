@@ -128,6 +128,7 @@ constructor should have same name with class, a class can have more than one con
 19. A literal is the source code representation of a fixed value; literals are represented directly in your code without requiring computation
 20. Primitive types are special data types built into the language; they are not objects created from a class
 21. Always use 'single quotes' for char literals and "double quotes" for String literals.
+22. Local variables are slightly different; the compiler never assigns a default value to an uninitialized local variable. If you cannot initialize your local variable where it is declared, make sure to assign it a value before you attempt to use it. Accessing an uninitialized local variable will result in a compile-time error.
 
 
 
@@ -139,3 +140,4 @@ constructor should have same name with class, a class can have more than one con
 %n nextline
 %<.number>f float
 ```
+

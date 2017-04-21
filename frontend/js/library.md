@@ -15,3 +15,6 @@ Table
 
 Cookie
     [Jquery-cookie](https://github.com/carhartl/jquery-cookie)
+
+Autocomplte[http://jqueryui.com/autocomplete/]
+[Hello.js](https://adodson.com/hello.js/)
