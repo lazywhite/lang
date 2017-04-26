@@ -4,6 +4,7 @@
 
 #define PI 3.14
 #define NEWLINE "\n"
+#define STR "hello"
 
 int main(){
     /*
@@ -31,6 +32,10 @@ int main(){
 
     enum weekDay day = TUE;
 
+    //array
+    char greeting[] = "hello world"; //size could be omitted
+    double balance[] = {1000.0, 2.0, 3.4, 7.0, 50.0};
+
     // Structure
     struct rectangle{
         int width;
@@ -50,6 +55,8 @@ int main(){
     p = &a;
     const int width = 100;
     printf("value of area: %.2f\n", pow(width, 2) * PI);
-    printf("value of pointer p: %d\n", p);
+    printf("value of pointer p: %p\n", p);
+    printf("value of const string STR: %s\n", STR);
+    printf("value of string greeting: %s\n", greeting);
     return 0;
 }
