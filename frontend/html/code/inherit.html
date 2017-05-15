@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function Animal(name){
+            this.name = name || 'Animal';
+            this.sleep = function(){
+                console.log(this.name + '正在睡觉');
+            }
+        }
+
+        Animal.prototype.eat = function(food){ //原型方法
+            console.log(this.name + '正在吃' + food);
+        }
+
+        //1. 原型链继承
+        function Cat(){
+        }
+        Cat.prototype = new Animal();
+        Cat.prototype.name = 'cat';
+
+        var cat = new Cat();
+        console.log(cat.name);
+        cat.eat('fish');
+        cat.sleep();
+
+        console.log(cat instanceof Cat);  //true
+        console.log(cat instanceof Animal); //true
+
+        var boss = {
+            name: "david",
+            age: 10,
+            greet: function(){
+                console.log("hello");
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
