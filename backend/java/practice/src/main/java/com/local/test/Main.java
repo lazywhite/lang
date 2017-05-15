@@ -41,13 +41,15 @@ public class Main{
         weekDay day = weekDay.Mon;
         System.out.println(day);
         Puppy inst = new Puppy("Jerry");
+        System.out.println("Initial age of puppy is: " + inst.getAge());
+
         inst.setAge(10);
         System.out.println("Age of puppy is: " + inst.getAge());
         inst = null;
         System.gc();
         // List
         Integer[] aList =  { 10, 20, 30 };
-        System.out.println(aList.toString());
+        System.out.println(Arrays.toString(aList));
         ArrayList<Object> bList = new ArrayList<Object>(Arrays.asList("a", 100));
         Character[] cList = { 'h', 'e', 'w'};
         //HashSet

@@ -1,0 +1,45 @@
+死循环
+    while(true)
+    for(;;)
+java format output
+    %s
+    %u
+
+java变量命名规则
+    数字， 字母， '$', '_'
+
+long赋值加L
+    long date = 365L * 60 * 60 * 1000 * 92834824 //第一个数加L
+float赋值加f
+
+float 与double的区别， 精读不同， 都有舍入误差
+
+do while 需要用分号结束
+
+java变量只声明不初始化
+    局部变量： 无默认值
+    实例变量： 有默认值
+
+java打印整个数组  println(Arrays.toString(arr))
+
+java 遍历hashmap
+    Iterator
+
+java 数组
+    声明赋值
+    增删查改
+    扩容缩小
+    拷贝
+
+访问修饰符， 非访问修饰符
+
+java builtin object
+    Math
+
+get random number
+    //1
+    java.util.Random
+    Random r = new Random()
+    r.nextInt()
+    //2
+    int r = (int)(Math.random() * 10);

@@ -1,16 +1,17 @@
 package com.local.test;
 
 public class Puppy extends Animal{
-    String puppyName;
-    int puppyAge;
-    public Puppy(String name){
+    String name;
+    int age;
+    public Puppy(String puppyName){
+        this.name = puppyName;
         System.out.println("A new puppy is born");
     }
     public void setAge(int age){
-        puppyAge = age;
+        this.age =  age;
     }
     public int getAge(){
-        return puppyAge;
+        return age;
     }
 }
 
