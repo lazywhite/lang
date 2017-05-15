@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function eval(){
+            var score = document.getElementById("score");
+            var rt = parseInt(score.value)>=60?"及格":"不及格";
+            document.getElementById("dsp").innerHTML = rt;
+        }
+    </script>
+</head>
+<body>
+<div>
+    <input type="number" min="0" max="100" id="score" placeholder="Please input your score" />
+    <input type="button" value="提交" onclick="eval()"/>
+    <span id="dsp" style="color:red;"></span>
+</div>
+</body>
+</html>

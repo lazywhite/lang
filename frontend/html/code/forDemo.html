@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function echo(){
+            var paras = document.getElementsByClassName("test");
+            //type 01
+            for(var i=0;i<paras.length;i++){
+                console.log(paras[i].innerHTML);
+            }
+            //type 02
+//            for(var i in paras){
+
+        }
+    </script>
+</head>
+<body>
+
+<button onclick="echo()">click this </button>
+<div class="test">hehe01</div>
+<div class="test">hehe02</div>
+</body>
+</html>

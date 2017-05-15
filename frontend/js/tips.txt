@@ -1,0 +1,52 @@
+javascript是弱类型语言
+    list
+    json
+    function
+
+js变量命名规则
+    数字， 字母， 下划线
+
+
+
+js 变量声明不初始化， 则为'undefined'
+js element.value 默认全部是字符串
+
+js类型转换
+    parseInt()
+    parseFloat()
+    var.toString()
+    a = "100"; b = a - 0;
+    c = 100; d = c + "";
+
+getElementsByClassName() 返回一个array
+
+
+关键字
+    instanceof
+    null
+    true false
+
+
+javaScript
+    Array
+    String
+    Math
+
+js 运算符
+    比较运算符
+    算术运算符
+    逻辑运算符
+    赋值运算符
+
+
+
+Todo:
+    css浮动产生的原因
+    瀑布流
+    大风车
+    java instanceof
+    字体 em
+    课程列表
+    javascript array 负数索引
+    js格式化输出
+    mysql column nullable
