@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- html 进度条-->
+    <style type="text/css">
+    </style>
+    <script type="text/javascript">
+        function add(){
+            var p = document.getElementById("pro");
+            if (p.value >= 90){
+                p.value = 0;
+            }else{
+                var d = p.value + 15;
+                p.value = d;
+            }
+        }
+        setInterval("add()", 1000);
+    </script>
+</head>
+<body>
+<progress id="pro" value="20" min="0" max="100"></progress>
+<br />
+</body>
+</html>
