@@ -25,12 +25,14 @@ getElementsByClassName() 返回一个array
     instanceof
     null
     true false
+    NaN
 
-
-javaScript
-    Array
-    String
-    Math
+內建构造函数
+    Array()
+    String()
+    Math()
+    Date()
+    Number()
 
 js 运算符
     比较运算符
@@ -38,15 +40,36 @@ js 运算符
     逻辑运算符
     赋值运算符
 
+终止函数
+	return， 
+终止循环
+	break continue
+终止程序
+	暂无
 
 
-Todo:
-    css浮动产生的原因
-    瀑布流
-    大风车
-    java instanceof
-    字体 em
-    课程列表
-    javascript array 负数索引
-    js格式化输出
-    mysql column nullable
+java 变量类型
+	局部变量
+	类变量（静态变量）
+	成员变量
+
+final 变量无法修改， 方法不能被重写， 类不能有子类
+final无法修饰interface， 无法跟abstract， strictfp一起使用
+
+Java语言包含三种核心机制：Java 虚拟机、垃圾收集机制和代码安全检测
+1、Java 虚拟机(Java Virtual Machine，JVM)
+在一台计算机上由软件或硬件模拟的计算机。Java虚拟机读取并处理经编译过的平台无关的字节码class文件。
+2、垃圾收集机制(Garbage collection)
+在C/C++ 等语言中，由程序员负责回收无用内存。Java语言解除了程序员回收无用内存空间的责任。它提供一种系统级线程跟踪存储空间的分配情况。并在JVM的空闲时，检查并释放那些可被释放的存储器空间。垃圾收集在Java程序运行过程中自动进行，程序员无法精确控制和干预。  
+3、代码安全性检测(Code Security)
+Java执行代码的时候，由JVM对运行的代码进行安全性检测，当进行一些非法操作的时候，比如修改一些系统设置的时候，JVM会发出警告。
+--------
+抽象类可以implements interface
+Methods in interfaces are implicitly public
+--------
+接口可以继承多个接口
+class可以实现多重接口
+
+js一切皆对象
+js 继承
+	构造函数 + prototype

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- 颜色拾取器 -->
+    <style type="text/css">
+        #panel{
+            width: 500px;
+            height: 200px;
+            background-color: black;
+        }
+        span{
+            display: inline-block;
+            width:50px;
+
+        }
+
+    </style>
+    <script type="text/javascript">
+        function setColor() {
+            var red = document.getElementById("red").value;
+            var green = document.getElementById("green").value;
+            var blue = document.getElementById("blue").value;
+
+            var panel = document.getElementById("panel");
+            var colorValue = "rgb("+red+","+green+","+blue+")";
+            panel.style.backgroundColor = colorValue;
+            //panel.setAttribute("style", "background-color: rgb("+red+','+green+','+blue);
+            var result = document.getElementById("result");
+            result.innerHTML = colorValue;
+        }
+    </script>
+</head>
+<body>
+<span>red:</span><input type="range" value="0" max="255" min="0" id="red" onmousemove="setColor()"/><br />
+<span>green:</span><input type="range" value="0" max="255" min="0" id="green" onmousemove="setColor()"/><br />
+<span>blue:</span><input type="range" value="0" max="255" min="0" id="blue" onmousemove="setColor()"/><br />
+<div id="panel"></div>
+<div id="result"></div>
+</body>
+</html>
