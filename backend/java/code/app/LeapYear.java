@@ -1,8 +1,8 @@
-package basic;
+package app;
 import java.util.Scanner;
-/* ÈòÄê¼ÆËã¹æÔò
- * 1. ÄÜ±»4Õû³ı£¬ ²»ÄÜ±»100Õû³ı
- * 2. ÄÜ±»400Õû³ı
+/* é—°å¹´è®¡ç®—è§„åˆ™
+ * 1. èƒ½è¢«4æ•´é™¤ï¼Œ ä¸èƒ½è¢«100æ•´é™¤
+ * 2. èƒ½è¢«400æ•´é™¤
  * 
  */
 
@@ -12,9 +12,9 @@ public class LeapYear {
 		System.out.print("Please input year: ");
 		int m = sc.nextInt();
 		if ((m % 4 ==0 && m % 100 != 0)|| (m % 400 == 0)){
-			System.out.println("ÈòÄê");
+			System.out.println("é—°å¹´");
 		}else{
-			System.out.println("Æ½Äê");
+			System.out.println("å¹³å¹´");
 		}
 	}
 }

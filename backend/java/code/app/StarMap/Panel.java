@@ -8,7 +8,7 @@ import java.awt.Graphics;
 public class Panel extends JPanel {
 	public void paint(Graphics g){
 		super.paint(g);
-		g.setColor(Color.white);  //»­±ÊÑÕÉ«
+		g.setColor(Color.white);  //ç”»ç¬”é¢œè‰²
 		for (int i=0;i<100;i+=10){
 			for(int j=0;j<200;j+=10){
 				g.drawString("*", 
