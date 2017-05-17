@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <title></title>
     <!-- html 秒表 -->
+    <style type="text/css">
+        span{
+            display: inline-block;
+            color: red;
+        }
+        #show{
+            height: 100px;
+        }
+    </style>
     <script type="text/javascript">
-        var now;
         function getTimeString(){
             var d = new Date();
             var Y = d.getFullYear();
@@ -15,17 +23,28 @@
             var m = d.getMinutes();
             var s = d.getSeconds();
 
-            now = Y + "/" + M + "/" + D+ "&nbsp;" + h + ":" + m + ":" + s;
-
+            var now = Y + "/" + M + "/" + D+ "&nbsp;" + h + ":" + m + ":" + s;
             var show = document.getElementById("show");
             show.innerHTML = now;
         }
-        setInterval("getTimeString()", 1000);
+//        var dsp = setInterval("getTimeString()", 1000);
+
+        function switcher(){
+            var ck = document.getElementById("check");
+            if(ck.checked){
+                dsp = setInterval("getTimeString()", 1000);
+            }else{
+                console.log("here");
+                window.clearInterval(dsp);
+            }
+
+        }
     </script>
 </head>
 <body>
 <div id="show">
-
 </div>
+<span>开关</span> <input type="checkbox" id="check" onclick="switcher()" />
+<br />
 </body>
 </html>
