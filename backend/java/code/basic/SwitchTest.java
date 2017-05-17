@@ -1,5 +1,10 @@
-public class Demo1{
+package basic;
 
+public class SwitchTest{
+
+/*
+    没有break的case, 会fallthrough
+ */
     public static void main(String[] args) {
         int i = 24, j = 32, h = 58;
         switch (j - i) {

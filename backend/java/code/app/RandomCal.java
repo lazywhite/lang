@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class RandomCal {
 	public static void main(String[] args){
 		/*
-		 * Ëæ»úÉú³É10¸öËãÊõÌâ£¬ÈÃÓÃ»§ÊäÈë½á¹û ²¢¼ÆËãµÃ·Ö
-		 * ÊäÈë-1 ¿ÉÍË³ö³ÌĞò
+		 * éšæœºç”Ÿæˆ10ä¸ªç®—æœ¯é¢˜ï¼Œè®©ç”¨æˆ·è¾“å…¥ç»“æœ å¹¶è®¡ç®—å¾—åˆ†
+		 * è¾“å…¥-1 å¯é€€å‡ºç¨‹åº
 		 */
 		int x, y, result, input, score = 0;
 		Scanner sc = new Scanner(System.in);

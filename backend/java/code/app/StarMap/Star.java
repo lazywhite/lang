@@ -10,11 +10,11 @@ public class Star {
 	public static void genStar(){
 
 		JFrame jf = new JFrame();
-		jf.setTitle("ÂúÌìÐÇ"); 
+		jf.setTitle("æ»¡å¤©æ˜Ÿ"); 
 		jf.setSize(500, 500);  //setSize(width, height)
 		
 		Panel p = new Panel();
-		p.setBackground(Color.black); //»­²¼ÑÕÉ«
+		p.setBackground(Color.black); //ç”»å¸ƒé¢œè‰²
 
 		jf.add(p);
 		jf.setVisible(true);

@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-public class lame {
+public class ExecOSCommand {
 
     public static void main(String args[]) {
         try {
