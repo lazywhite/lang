@@ -4,38 +4,45 @@
     <meta charset="UTF-8">
     <title></title>
     <script type="text/javascript">
-        function Animal(name){
+
+        //构造函数存储私有变量和方法
+        //prototype存储共有变量和方法
+        function Animal(name) { //构造函数
             this.name = name || 'Animal';
-            this.sleep = function(){
-                console.log(this.name + '正在睡觉');
+            this.sleep = function () {
+                console.log(this.name + "is sleeping");
             }
-        }
 
-        Animal.prototype.eat = function(food){ //原型方法
-            console.log(this.name + '正在吃' + food);
         }
+        //console.log(Animal.prototype);
+        Animal.prototype.eat = function(food){
+            console.log(this.name + " is eating " + food);
+        };
 
-        //1. 原型链继承
-        function Cat(){
+        animalA = new Animal('A');
+        animalB = new Animal('B');
+        animalA.eat('some food');
+
+        function Cat(age){
+            this.age = age;
         }
         Cat.prototype = new Animal();
+        f = new Animal();
+        console.log(f);
+
+
         Cat.prototype.name = 'cat';
-
-        var cat = new Cat();
+        Cat.prototype.talk = function(){
+            console.log(this.name + " is talking");
+        };
+        var cat = new Cat(10);
+        console.log(cat);
         console.log(cat.name);
-        cat.eat('fish');
+        console.log(cat.age);
+        cat.eat('food');
         cat.sleep();
+        cat.talk();
 
-        console.log(cat instanceof Cat);  //true
-        console.log(cat instanceof Animal); //true
-
-        var boss = {
-            name: "david",
-            age: 10,
-            greet: function(){
-                console.log("hello");
-            }
-        }
 
 
     </script>

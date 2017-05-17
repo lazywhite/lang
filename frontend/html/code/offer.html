@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function check(){
+            var name = document.getElementById("name").value;
+            var age = parseInt(document.getElementById("age").value);
+            var degree = parseInt(document.getElementById("degree").value);
+            if(18<=age<=60 && degree >= 1){
+                console.log(name + " are employed");
+            }else{
+                console.log(name + ' not qualified')
+            }
+
+            console.log('debug');
+        }
+    </script>
+</head>
+<body>
+<div>
+    <span>姓名：</span><input type="text" id="name" /><br />
+    <span>年龄: </span><input type="number" max="100" min="0" id="age"/><br />
+    <span>学历：</span><select id="degree">
+        <option value="0">高中</option>
+        <option value="1">大专</option>
+        <option value="2">本科</option>
+        <option value="3">硕士</option>
+    </select>
+    <br />
+    <button  onclick="check()">提交</button>
+</div>
+
+</body>
+</html>s

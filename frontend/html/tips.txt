@@ -12,14 +12,42 @@ border-top-right-radius:5em;
 border-bottom-right-radius:5em;
 border-bottom-left-radius:5em;
 
-overflow
+overflow: 当内容溢出元素框时的行为
     hidden
-
-display
+    visible
+    scroll
+    auto
+    inherit
+display: 规定元素应该生成的框的类型
     block
     inline
-visibility
+    inline-block
+    none
+    list-item
+    run-in
+    compact
+    marker
+    table
+    inherite-table
+    table-row-group
+    table-header-group
+    table-footer-group
+    table-row
+    table-column
+    table-column-group
+    table-cell
+    table-caption
+    inherit
+
+
+
+visibility: 规定元素是否可见, 即使不可见的元素依然
+            会占用页面空间
     visible
+    hidden
+    collapse
+    inherite: 从父元素继承visibility的值
+
 position
     static
     fixed
@@ -74,3 +102,13 @@ input是行内元素
 
 float 脱离文本流， 使块元素成为行内元素
 float元素后面的， 必须要clear both
+
+
+<body onload="initialize()"> 页面加载完毕后触发
+
+span width
+	display: inline-block
+    inline 不能设置宽度， block自带换行
+    inline-block可兼容两种情况
+
+input range onchange onmousemove

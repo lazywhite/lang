@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- html 秒表 -->
+    <script type="text/javascript">
+        var now;
+        function getTimeString(){
+            var d = new Date();
+            var Y = d.getFullYear();
+            var M = d.getMonth();
+            var D = d.getDay();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+
+            now = Y + "/" + M + "/" + D+ "&nbsp;" + h + ":" + m + ":" + s;
+
+            var show = document.getElementById("show");
+            show.innerHTML = now;
+        }
+        setInterval("getTimeString()", 1000);
+    </script>
+</head>
+<body>
+<div id="show">
+
+</div>
+</body>
+</html>
