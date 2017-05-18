@@ -1,0 +1,76 @@
+<script src="jquery.min.js"></script>
+<style>
+    .panel {
+        width: 500px;
+        margin: 10px;
+    }
+    .panel-heading{
+        border: 1px;
+        border-style: solid;
+        border-bottom: 0px;
+        background-color: #ccc;
+        width: 100%;
+        height: 40px;
+
+    }
+    .panel-body{
+        border: 1px;
+        border-style: solid;
+        border-top: 0px;
+        width: 100%;
+        height: 150px;
+    }
+    .panel-heading-content{
+        padding-top: 5px;
+        padding-left: 15px;
+    }
+    .panel-body-content{
+        padding-top: 15px;
+        padding-left: 15px;
+    }
+
+</style>
+<div class="panel">
+    <div class="panel-heading">
+        <div class="panel-heading-content">
+        标题02
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="panel-body-content">
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        </div>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <div class="panel-heading-content">
+        标题01
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="panel-body-content">
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        aldfjalfjalkfj
+        </div>
+    </div>
+</div>
+
+
+<script>
+$(document).ready(
+    function(){
+        $(".panel-heading").click(function(event){
+            $(event.target).parent().parent().children(".panel-body").slideToggle();})});
+</script>
