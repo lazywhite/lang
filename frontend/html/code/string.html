@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--
+    The String object lets you work with a series of characters; it wraps Javascript's string primitive data type with a number of helper methods.
+
+    As JavaScript automatically converts between string primitives and String objects, you can call any of the helper methods of the String object on a string primitive.
+    -->
+    <script type="text/javascript">
+      var st  = new String("good morning");          
+      var name = "Bob";
+      var greeting = st.concat(name); //拼接字符串
+      console.log(greeting);
+      console.log('constructor of greeting is ' + greeting.constructor);
+      console.log('constructor of name is ' + name.constructor);
+      console.log(name.toUpperCase());
+      console.log(name.toLowerCase());
+      console.log(name.charAt(2));
+      console.log(name.charCodeAt(2));
+      console.log(name.indexOf('b'));
+      //match(regexp)
+      var ss = st.replace('morning', 'afternoon'); 
+      console.log(ss);
+      console.log(ss.search('good')); //search() -->0(true), -1(false)
+      var sg = ss.slice(3, 8);
+      console.log(sg);
+      var sp = ss.split(' '); 
+      console.log(sp);//return array
+      var sub = ss.substr(4, 9);
+      console.log(sub);//return array
+      console.log(ss.valueOf());//return primitive value of string
+
+
+      document.write(ss.bold());
+      document.write(ss.blink());
+document.write(ss.anchor());
+document.write(ss.big())
+document.write(ss.blink())
+document.write(ss.bold())
+document.write(ss.fixed())
+document.write(ss.fontcolor())
+document.write(ss.fontsize())
+document.write(ss.italics())
+document.write(ss.link())
+document.write(ss.small())
+document.write(ss.strike())
+document.write(ss.sub())
+document.write(ss.sup())
+    </script>
+</head>
+<body>
+</body>
+</html>

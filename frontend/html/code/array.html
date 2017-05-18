@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        var arr = new Array();
+        arr.push(3); //在数组末尾插入元素， 返回数组长度
+        arr.push(2);
+        arr.push(1);
+        arr.push(4);
+        arr.push(3);
+        console.log(arr); // --> [3, 2]
+        arr.pop(3); //pop(index)
+        console.log(arr);
+        arr.sort();
+        console.log(arr);
+        console.log(arr.toString())  // --> 2, 3
+        arr.forEach(function(s){console.log(s);}); //forEach loop
+        console.log(arr.indexOf(2)); //return index of first matched, -1 if not found
+        arr1 = arr.map(function(e){return e+1}); // return an array
+        console.log(arr1);
+        arr.reverse();
+        console.log(arr);
+        arr2 = arr.slice(1, 3); //include start, exclude end
+        console.log(arr2);
+
+        arr3 = arr.concat(arr2); //accept an array --> return an array
+        console.log(arr3);
+        console.log(arr.join('; ')); //accept a separator, return a string
+
+        while(arr3.length > 0){
+            var ele = arr3.shift(); //remove and return first element
+            console.log(ele);
+            
+        }
+       console.log(arr.every(function(e){return e > 0}));//return true if every
+       //element of array satisfy provided test function
+       console.log(arr.some(function(e){return e > 3}));//return true if any
+       //element of array satisfy provided test function
+
+       var arr4 = arr.reduce(function(x, y){return x+y}); //function only accept two arguments
+       console.log(arr4);
+       console.log(arr.length);
+       console.log(arr.unshift(100, 200));//在数组开始插入元素
+       console.log(arr);
+       var arr5 = arr.splice(3, 1);//在index为3的位置删除一位, 返回被删除的元素
+       console.log(arr5);
+       var arr6 = arr.splice(3, 0, 4949);
+       console.log(arr6); //没有元素被删除， arr6 为空
+       console.log(arr);
+    </script>
+</head>
+<body>
+</body>
+</html>
