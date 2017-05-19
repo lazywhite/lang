@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title></title>
     <!-- 
-        没有break， 将会继续执行剩余case语句， 直到碰到break
+        1. 没有break， 将会继续执行剩余case语句， 直到碰到break
+        2. case 只能是特定的值， 不能匹配到范围， 可以多个case写在一起
     -->
     <script type="text/javascript">
         var n = 3;
@@ -24,6 +25,29 @@
             default:
                 console.log("default");
 
+        }
+        
+        var m = 80;
+        switch(Math.floor(m/10)){
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                console.log("不及格");
+                break;
+            case 6:
+            case 7:
+                console.log("及格");
+                break;
+            case 8:
+            case 9:
+            case 10:
+                console.log("优秀");
+                break;
+            default:
+                console.log("unlegal");
+                break;
         }
     </script>
 </head>
