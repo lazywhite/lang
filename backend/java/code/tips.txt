@@ -26,6 +26,8 @@ do while 需要用分号结束
 java变量只声明不初始化
     局部变量： 无默认值
     实例变量： 有默认值
+        String default "null"
+        int default '0'
 
 java打印整个数组  println(Arrays.toString(arr))
 
@@ -72,3 +74,31 @@ java 数组不支持负数下标
     int[] arr = new int[10];
     int[] arr = {1, 2, 3};
     int[] arr = new int[]{1, 2, 3};
+
+
+
+object.getClass().getName()
+
+java无法获取变量的内存地址， hashcode()不等于内存地址
+
+变量分为值类型， 引用类型
+equals() 与 '==' 的区别
+Arrays.equals(arr1, arr2);
+
+java数组不支持负数索引
+
+
+Integer是类， int是基本数据类型
+Integer a = new Integer(1); int b = 1;
+ArrayList 只能存放object， 因此不能add(int), 可以add(Integer)
+
+当需要往ArrayList，HashMap中放东西时，像int，double这种内建类型是放不进去的，因为容器都是装object的，这是就需要这些内建类型的外覆类了。 
+
+
+class A{} ; A a = new A();
+a instanceof  A  -->true
+A.class.isInstance(a) -->true
+a.getClass().isInstance(a)  -->true
+
+Long l = Long.parseLong(var);
+Integer i = Integer.parseInt(var);

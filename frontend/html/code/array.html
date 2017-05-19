@@ -4,8 +4,14 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <!-- 
+        js array是可变的
+        在特定位置插入元素只能用splice()
+    -->
     <script type="text/javascript">
-        var arr = new Array();
+//        var arr = new Array(3); // element init value is "undefined"
+        var arr = new Array(); 
+        console.log(arr);
         arr.push(3); //在数组末尾插入元素， 返回数组长度
         arr.push(2);
         arr.push(1);
