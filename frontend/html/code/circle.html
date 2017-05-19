@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- html 画圆 -->
+    <style type="text/css">
+        #show{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            border-radius: 50%;
+        }
+    </style>
+    <script type="text/javascript">
+        function drawCircle(){
+            var radius = parseInt(document.getElementById("radius").value);
+            console.log(radius);
+            var show = document.getElementById("show");
+            show.style.width = radius + "px";
+            show.style.height = radius + "px";
+        }
+    </script>
+</head>
+<body>
+<div id="show">
+</div>
+<input type="text" placeholder="Please input circle radius" id="radius" />
+<button onclick="drawCircle()">更新</button>
+<br />
+</body>
+</html>
