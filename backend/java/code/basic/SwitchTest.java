@@ -1,5 +1,3 @@
-package basic;
-
 public class SwitchTest{
 
 /*
@@ -25,6 +23,21 @@ public class SwitchTest{
                 System.out.println("case default");
         }
         System.out.println(h);
+        int m = 3;
+        switch(m) {
+            case 1:
+            case 2:
+            case 3:
+                System.out.println("不及格");
+                break;
+            case 4:
+            case 5:
+                System.out.println("及格");
+                break;
+            default:
+                System.out.printf("不合法");
+        }
+
     }
 
 }

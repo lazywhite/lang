@@ -58,5 +58,10 @@ int main(){
     printf("value of pointer p: %p\n", p);
     printf("value of const string STR: %s\n", STR);
     printf("value of string greeting: %s\n", greeting);
+
+
+    int s = sizeof(int);
+    printf("Size of int: %d\n", s);
+        
     return 0;
 }

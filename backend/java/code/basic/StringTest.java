@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * String 类型为immutable, thread safe
  * StringBuilder类型是可变的， 在字符串拼接，修改时效率比较高；但不是线程安全的
@@ -7,7 +9,7 @@ public class StringTest{
     public static void main(String[] args){
         String st = "test01";
         StringBuilder strBuilder = new StringBuilder();
-        for(int i=0;i<=100;i++){
+        for(int i=0;i<=10;i++){
             strBuilder.append(i);
         }
         System.out.println(strBuilder);
@@ -15,5 +17,33 @@ public class StringTest{
         strBuffer.append("test string");
         strBuffer.append("test string");
         System.out.println(strBuffer);
+
+
+        String str = "new string";
+        String str1 = new String("new string");
+        System.out.println(str == str1); // -->false
+        System.out.println(str.equals(str1));// -->true
+        System.out.println(str.equalsIgnoreCase(str1));
+        System.out.println(str.startsWith("new"));
+
+        StringBuffer strBuf = new StringBuffer("good");
+        strBuf.append(" morning");
+        System.out.println(strBuf);
+
+
+        // String methods
+        String testStr = "abcd@test.com";
+        int index = testStr.indexOf('@'); //获取第一个匹配到的位置
+        System.out.println(index);
+        String subStr = testStr.substring(0, index); //包含start, 不包含end
+        System.out.println(subStr);
+        String[] all = testStr.split("@");//accept String RegExp, not Char
+        System.out.println(Arrays.toString(all));
+
+
+        String newStr = testStr.replaceAll("test", "local"); //origin string is not modified
+        System.out.println(newStr);
+
+
     }
 }

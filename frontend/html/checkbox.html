@@ -1,0 +1,47 @@
+<head>
+<script src="jquery.min.js"></script>
+</head>
+<body>
+<table border="1 solid blue">
+    <tr>
+        <th><input type="checkbox" id="checkAll" />全选</th>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>成绩</th>
+    </tr>
+    <tr>
+        <td><input type="checkbox" class="itemCheck" /></td>
+        <td>1001</td>
+        <td>user01</td>
+        <td>90</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" class="itemCheck" /></td>
+        <td>1002</td>
+        <td>user02</td>
+        <td>80</td>
+    </tr>
+</table>
+<script>
+$(document).ready(function(){
+        $("#checkAll").click(function(event){
+            if($(event.target).is(":checked")){
+            $(".itemCheck").each(function(){
+                //method 01
+                    $(this).attr("checked", true);
+                    $(this).prop("checked", true);
+                //method 02
+            //        this.checked = true;
+                });
+            }else{
+            $(".itemCheck").each(function(){
+                    $(this).attr("checked", false);
+                    $(this).prop("checked", false);
+             //       this.checked = false;
+                });
+                
+            };
+            });
+        })
+</script>
+</body>
