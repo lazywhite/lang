@@ -4,6 +4,8 @@ import java.util.Iterator;
  * Created by white on 17/5/19.
  * TreeSet 有序集合
  * TreeSet 只能通过迭代器进行遍历
+ * TreeSet是基于TreeMap实现的。TreeSet中的元素支持2种排序方式：自然排序 或者 根据创建TreeSet 时提供的 Comparator 进行排序。这取决于使用的构造方法。
+ TreeSet为基本操作（add、remove 和 contains）提供受保证的 log(n) 时间开销。
  */
 public class TreeSetTest {
     public static void main(String[] args) {
