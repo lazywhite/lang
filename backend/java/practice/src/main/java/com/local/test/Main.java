@@ -14,6 +14,8 @@ import java.io.*;
 import java.util.stream.Collectors;
 import java.util.Optional;
 
+import redis.clients.jedis.Jedis;
+
 public class Main{
        // Basic data type
        byte b = 64;
@@ -203,6 +205,16 @@ testLabel:
         Optional<Integer> b = Optional.of(value2);
 
         System.out.println(optionalSum(a, b));
+
+
+        //Redis usage
+        Jedis jedis = RedisUtil.getJedis();
+//      RedisUtil.testString(jedis);
+        RedisUtil.testMap(jedis);
+//      RedisUtil.testList(jedis);
+//      RedisUtil.testSet(jedis);
+
+        RedisUtil.close(jedis);
 
 
     }
