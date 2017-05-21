@@ -1,5 +1,6 @@
 package com.local.test;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.Date;
@@ -15,6 +16,8 @@ import java.util.stream.Collectors;
 import java.util.Optional;
 
 import redis.clients.jedis.Jedis;
+
+import java.sql.ResultSet;
 
 public class Main{
        // Basic data type
@@ -219,8 +222,25 @@ testLabel:
         //Mongodb Usage
         MongoUtil mu = new MongoUtil();
         mu.run();
+        //Mysql
+        String sql = "select * from user";
+        MySQLUtil  ms = new MySQLUtil(sql);
 
-    }
+            try {
+                ResultSet ret = ms.pst.executeQuery();//执行语句，得到结果集
+                while (ret.next()) {
+                    String uid = ret.getString(1);
+                    String ufname = ret.getString(2);
+                    String upassword = ret.getString(3);
+                    System.out.println(uid + "\t" + ufname + "\t" + upassword);
+                }//显示数据
+                ret.close();
+                ms.close();//关闭连接
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
     // Generic method
     public static <T> void showThing(T[] eles){
         for (T ele: eles){
