@@ -216,6 +216,9 @@ testLabel:
 
         RedisUtil.close(jedis);
 
+        //Mongodb Usage
+        MongoUtil mu = new MongoUtil();
+        mu.run();
 
     }
     // Generic method
