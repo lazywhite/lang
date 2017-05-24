@@ -10,17 +10,17 @@ class Shapes{
 public class ClassTest {
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
                                                     IllegalAccessException{
-        //获得一个Class对象, 均为泛型, 得到的是Object类
-        //第一种方式
+        //获得一个Class对象
+        //第一种方式, Class的静态方法
         Class obj = Class.forName("Shapes");
         System.out.println("class of obj: " + obj.getClass());
-        //第二种方式
+        //第二种方式, 对象的getClass()方法
         Shapes s = new Shapes();
         Class obj1 = s.getClass();
         System.out.println("class of obj1: " + obj1.getClass());
 //        Class obj2 = s.getSuperclass();
 //        System.out.println(obj2);
-        //第三种方式
+        //第三种方式, 类的class属性
         Class obj3 = Shapes.class;
         System.out.println("class of obj3: " + obj3.getClass());
 
