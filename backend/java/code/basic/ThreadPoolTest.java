@@ -15,6 +15,7 @@ public class ThreadPoolTest {
     }
 
     public static void run_cached_pool(){
+    //线程数量可变, 不足则新建, 空闲则回收
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
         for(int i=0; i<10;i++){
             final int index = i;
@@ -49,6 +50,7 @@ public class ThreadPoolTest {
         }
     }
     public static void run_schedule_pool(){
+        //支持定时任务和周期性任务
         ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(1);//池内的线程数量为5
         scheduledThreadPool.schedule(new Runnable(){ //在规定的时间之后, 仅执行一次, 相当于at
             public void run(){
