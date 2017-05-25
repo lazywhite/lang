@@ -4,6 +4,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 /**
  * Created by white on 17/5/24.
+ * thread pool 使用后要关闭
  */
 public class ThreadPoolTest {
     public static void main(String[] args) {
@@ -21,15 +22,17 @@ public class ThreadPoolTest {
             final int index = i;
             try{
                 Thread.sleep(index * 1000);
+                cachedThreadPool.execute(new Runnable(){
+                    public void run(){
+                        System.out.println("current index is: " + index);
+                    }
+                });
 
             }catch(InterruptedException e){
                 e.printStackTrace();
+            }finally{
+                cachedThreadPool.shutdown();
             }
-            cachedThreadPool.execute(new Runnable(){
-                public void run(){
-                    System.out.println("current index is: " + index);
-                }
-            });
         }
     }
     public static void run_fixed_size_pool(){
@@ -44,6 +47,8 @@ public class ThreadPoolTest {
                         Thread.sleep(2000);
                     }catch(InterruptedException e){
                         e.printStackTrace();
+                    }finally{
+                        fixedThreadPool.shutdown();
                     }
                 }
             });
@@ -51,7 +56,7 @@ public class ThreadPoolTest {
     }
     public static void run_schedule_pool(){
         //支持定时任务和周期性任务
-        ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(1);//池内的线程数量为5
+        ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);//池内的线程数量为5
         scheduledThreadPool.schedule(new Runnable(){ //在规定的时间之后, 仅执行一次, 相当于at
             public void run(){
                 System.out.println("delayed 3 seconds");
@@ -63,6 +68,7 @@ public class ThreadPoolTest {
                 System.out.println("delayed 1 second, then execute every 3 seconds");
             }
         }, 1, 3, TimeUnit.SECONDS);
+        scheduledThreadPool.shutdown();
     }
 
     public static void run_single_pool(){
@@ -77,6 +83,8 @@ public class ThreadPoolTest {
                         Thread.sleep(2000);
                     }catch(InterruptedException e){
                         e.printStackTrace();
+                    }finally{
+                        singleThreadPool.shutdown();
                     }
                 }
             });

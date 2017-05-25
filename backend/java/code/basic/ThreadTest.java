@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
 
 /**
  * Created by white on 17/5/21.
@@ -14,6 +19,11 @@
  * user thread: 可以理解为前台线程
  * daemon thread: 后台线程
  * 如果所有的user thread已经退出, 只剩下daemon thread, 则jvm会退出
+ *
+ * 创建线程的三种方式
+ * 1. 调用callable, 实现call(), 可以有返回值
+ * 2. 调用runable, 实现run(), 不能有返回值
+ * 3. 继承thread, 重写run(), 不能有返回值
  */
 
 class Thread01 extends Thread{
@@ -69,6 +79,17 @@ class Thread04 extends Thread {
         }
     }
 }
+
+class Thread05 implements Callable<String> {//String is return type
+    private int id;
+    public Thread05(int id){
+        this.id = id;
+    }
+    @Override
+    public String call() throws Exception{
+        return "result of Thread05: " + this.id;
+    }
+}
 public class ThreadTest {
     public static void main(String[] args) throws InterruptedException {
         try{
@@ -94,7 +115,21 @@ public class ThreadTest {
 //            t7.start();
 //            t6.join();//让主线程等待此线程结束
 //            t7.join();
-
+//            ExecutorService  cachedPool = Executors.newCachedThreadPool();
+            ExecutorService  pool = Executors.newFixedThreadPool(3);
+            ArrayList<Future<String>> results = new ArrayList<Future<String>>();
+            for(int i=0;i<10;i++){
+                results.add(pool.submit(new Thread05(i))); //submit a value-return task and return a Future
+            }
+            Thread.sleep(1000);
+            for(Future<String> fs: results){
+                if(fs.isDone()){
+                    System.out.println(fs.get());
+                }else{
+                    System.out.println("future result is not completed");
+                }
+            }
+            pool.shutdown();
         }catch(Exception e){
             e.printStackTrace();
         }
