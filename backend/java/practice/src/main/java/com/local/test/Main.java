@@ -1,6 +1,5 @@
 package com.local.test;
 
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.Date;
@@ -17,29 +16,28 @@ import java.util.Optional;
 
 import redis.clients.jedis.Jedis;
 
-import java.sql.ResultSet;
 
 public class Main{
-       // Basic data type
-       byte b = 64;
-       char c = 'a';
-       short s = 300;
-       int i = 600;
-       long l = 30000;
-       boolean bl = true;
-       float f = 3.4f;
-       double d = 19.149;
+    // Basic data type
+    byte b = 64;
+    char c = 'a';
+    short s = 300;
+    int i = 600;
+    long l = 30000;
+    boolean bl = true;
+    float f = 3.4f;
+    double d = 19.149;
 
-        // Enum 
-        public enum weekDay {Mon, Tue, Wed, Thu, Fri, Sat, Sun}
-        // Method Overload
-        public static int test(int i, String name){
-            return name.length() + i;
-        }
-        public static String test(String name, int i){
-            return name + i;
-        }
-        public static void main(String[] args) throws FileNotFoundException, IOException{
+    // Enum
+    public enum weekDay {Mon, Tue, Wed, Thu, Fri, Sat, Sun}
+    // Method Overload
+    public static int test(int i, String name){
+        return name.length() + i;
+    }
+    public static String test(String name, int i){
+        return name + i;
+    }
+    public static void main(String[] args) throws FileNotFoundException, IOException{
         for (String arg: args){
             System.out.print(arg + ' ');
         }
@@ -63,7 +61,7 @@ public class Main{
         mySet.add("omg");
         mySet.add(100);
         System.out.println("Size of set: " + mySet.size());
-        
+
         // initialize method 02
         HashSet<String> hs = new HashSet<String>(Arrays.asList("ab", "cd"));
         hs.add("ef");
@@ -78,9 +76,9 @@ public class Main{
             System.out.println(key + ":" + myDict.get(key));
         }
         for (HashMap.Entry<String, Object> entry : myDict.entrySet()) {
-                String key = entry.getKey();
-                Object value = entry.getValue();
-                System.out.format("%s: %s%n", key, value.toString());
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            System.out.format("%s: %s%n", key, value.toString());
         }
         // Array iteration
         for(int i=0;i<bList.size();i++){
@@ -89,12 +87,12 @@ public class Main{
         for(Object element: bList){
             System.out.println("element is:" + element);
         }
-        //Date 
+        //Date
         Date date = new Date();
         System.out.println(date.toString());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println(sdf.format(date));
-        
+
 
         //File
         String filename = "t.tmp";
@@ -125,7 +123,7 @@ public class Main{
             case 3: monthString = "March";
                     break;
             default: monthString = "Invalid Month";
-                    break;
+                     break;
         }
         System.out.println(monthString);
 
@@ -177,10 +175,10 @@ public class Main{
         System.out.println(doSum(20, 30));
 
         // File Input
-//        FileReader file = new FileReader("/Users/white/access.log");
-//        file.show();
+        //        FileReader file = new FileReader("/Users/white/access.log");
+        //        file.show();
 
-//         Label
+        //         Label
 testLabel:
         for(int y=0;y<=10;y++){
             if (y == 5){
@@ -188,7 +186,7 @@ testLabel:
             }else{
                 System.out.println(y);
             }
-            
+
         }
 
         // Stream and Method Reference
@@ -212,35 +210,17 @@ testLabel:
 
         //Redis usage
         Jedis jedis = RedisUtil.getJedis();
-//      RedisUtil.testString(jedis);
+        //      RedisUtil.testString(jedis);
         RedisUtil.testMap(jedis);
-//      RedisUtil.testList(jedis);
-//      RedisUtil.testSet(jedis);
+        //      RedisUtil.testList(jedis);
+        //      RedisUtil.testSet(jedis);
 
         RedisUtil.close(jedis);
 
         //Mongodb Usage
         MongoUtil mu = new MongoUtil();
         mu.run();
-        //Mysql
-        String sql = "select * from user";
-        MySQLUtil  ms = new MySQLUtil(sql);
-
-            try {
-                ResultSet ret = ms.pst.executeQuery();//执行语句，得到结果集
-                while (ret.next()) {
-                    String uid = ret.getString(1);
-                    String ufname = ret.getString(2);
-                    String upassword = ret.getString(3);
-                    System.out.println(uid + "\t" + ufname + "\t" + upassword);
-                }//显示数据
-                ret.close();
-                ms.close();//关闭连接
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
+    }
     // Generic method
     public static <T> void showThing(T[] eles){
         for (T ele: eles){
@@ -255,7 +235,7 @@ testLabel:
         }
         return sum;
     }
-    
+
     public static Integer optionalSum(Optional<Integer> a, Optional<Integer> b){
         System.out.println("Using Optional class Interface");
         System.out.println("First parameter is present: " + a.isPresent());
