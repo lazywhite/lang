@@ -3,10 +3,7 @@ javascript是弱类型语言
     json
     function
 
-js变量命名规则
-    数字， 字母， 下划线
-
-
+js变量命名规则与java一致
 
 js 变量声明不初始化， 则为'undefined'
 js element.value 默认全部是字符串
@@ -17,15 +14,53 @@ js类型转换
     var.toString()
     a = "100"; b = a - 0;
     c = 100; d = c + "";
+强制类型转换
+    var b1 = Boolean("abc");
+    var n1 = Number(false);
+    var s1 = String(null) //与toString()不同的是可以转换null与undefined值
+    var s1 = String(undefined)
 
-getElementsByClassName() 返回一个array
+js类型
+    undefined
+    Boolean
+    Number
+    String
 
+true == 1 --> true
+false == 0 --> true
+
+var iOctNum = 0123; //定义8进制数字
+var iHexNum = 0x123;//定义16进制数字
+var iFloat = 1.23;
+isNaN(var) 用来测试是否为一个数字
+var iNum = 123; //十进制
+iNum.toString(2); //转换为二进制
+iNum.toString(8); //转换为八进制
+iNum.toString(16); //转换为十进制
+parseInt("string", [2, 8, 16]);//字符串解析为对应进制的数字
+
+
+function sum(){ //定义可接受变长参数的函数
+    var sum = 0;
+    for(var i=0;i<arguments.length;i++){
+        sum += arguments[i];
+    }
+    return sum
+}
+
+//创建一个对象
+var st = new Object; 
+st.name = "akdjf";
+st.age = 100;
+
+因为js是弱类型语言， 因此不存在函数重载
 
 关键字
     instanceof
     null
     true false
     NaN
+    typeof 
 
 內建构造函数
     Array()
@@ -73,3 +108,29 @@ class可以实现多重接口
 js一切皆对象
 js 继承
 	构造函数 + prototype
+
+正则表达式
+    var reg1 = new RegExp("^i\w*$", "gi"); //i表示不区分大小写，g表示应用于整个str
+    var reg2 = /a\wb/gi; //另外一种定义正则表达式的方法
+    var str = "addddb";
+    reg1.test(str);
+    reg2.test(str);
+
+    var s = "axbcdaybx";
+    s.replace(reg2, "ok") --> "okcdaybx"
+
+
+    var regPhone = /^o\d{2,3}\-\d{7,8}$/;   //座机号码正则
+    var regEmail = /^(\w+\.?)*\w+@\w+\.\w+/; //email正则
+
+ajax: async javascript and xml, 应用到XMLHTTPRequest技术
+$.ajax({
+    async: true|false,
+    url: "upload.jsp",
+    type: "GET|POST", //请求方法
+    data: {name: "bob", age: 12},  //被转换成requestParam添加到url后面
+    dataType: json|xml, //返回的数据类型
+    success: function(){}, //成功的回调
+    error: function(){}, //失败的回调
+})
+
