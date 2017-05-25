@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 /**
  * Created by white on 17/5/20.
+ * java.io 两大基类 Stream(面向字节) Reader(面向字符)
  * InputStream是面向字节的流，因此每次操作都是针对于一个字节，因此就无法对中文进行处理
  */
 public class InputStreamTest {
