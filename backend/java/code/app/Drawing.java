@@ -32,5 +32,23 @@ public class Drawing{
                 System.out.print("*");
             System.out.println();
         }
+        //乘法表
+        for(int i=1;i<10;i++) {
+            for(int j=1;j<=i;j++){
+                String s = i + "*" + j + "=" + i * j;
+                s = getFixSizeStr(s, 10);
+                System.out.print(s);
+            }
+            System.out.println();
+        }
+
+    }
+    public static String getFixSizeStr(String str, int len){
+        StringBuilder strb = new StringBuilder();
+        strb.append(str);
+        while(strb.length() < len) {
+            strb.append(" ");
+        }
+        return strb.toString();
     }
 }
