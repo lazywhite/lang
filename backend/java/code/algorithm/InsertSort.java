@@ -8,23 +8,22 @@ import java.util.Arrays;
 public class InsertSort {
     public static void main(String[] args) {
         int[] a = {9, 8, 7, 6, 5};
-        int start = 0;
-        int end = a.length - 1;
         System.out.println(Arrays.toString(a));
-        sort(a, start, end);
+        sort(a);
         System.out.println(Arrays.toString(a));
     }
 
-    public static void sort(int[] arr, int start, int end) {
-        for(int i=1;i<end;i++){
-            int j = i - 1;
-            while(j>=0 && arr[j] > arr[j+1]){
-                int tmp;
-                tmp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = tmp;
+    public static void sort(int[] arr) {
+        int j, key, tmp;
+        int len = arr.length;
+        for(int i=1;i<len;i++){
+            j = i - 1;
+            key = arr[i];
+            while(j>=0 && arr[j] > key){
+                arr[j+1] = arr[j];
                 j--;
             }
+            arr[j+1] = key;
         }
     }
 }
