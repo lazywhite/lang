@@ -1,16 +1,12 @@
-import java.io.File;
 import  java.util.Properties;
 import  java.io.FileInputStream;
 import  java.io.IOException;
 
-public   final   class  PropertyTest {
-    private   static  String host;
-    private   static  int port;
-    /**
-     * 私有构造方法，不需要创建对象
-     */
+public final class PropertyTest {
+    private static String host;
+    private static int port;
     static{
-        final String dir = System.getProperty("user.dir");
+        final String dir = System.getProperty("user.dir");//current work dir
         System.out.println(dir);
         final String config = dir + "/basic/config.properties";
         System.out.println(config);
@@ -24,6 +20,9 @@ public   final   class  PropertyTest {
             e.printStackTrace();
         }
     }
+    /**
+     * 私有构造方法，不需要创建对象
+     */
     private  PropertyTest() {
     }
 
