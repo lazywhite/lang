@@ -133,6 +133,14 @@ public class DataType{
         double d4 = a2;
         System.out.println(d2 == d1);//类型转换失败
         System.out.println(d3 == d4);//类型转换成功
+
+        System.out.println(6<<2);//左移, 变大
+        System.out.println(6>>2);//右移, 变小
+        System.out.println(4|2);//按位或
+        System.out.println(4&2);//按位与
+        System.out.println(4^2);//按位异或
+        System.out.println(~5);//按位取反 --> -6 // 负数减一
+        System.out.println(~100);//按位取反 --> -101
     }
 
 }
