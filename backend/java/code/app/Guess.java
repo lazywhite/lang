@@ -8,11 +8,11 @@ public class Guess{
         int total=0;
         int num;
         Random r = new Random();
-        int pivot  = r.nextInt(100);
+        int pivot  = r.nextInt(100) + 1;
         Scanner sc = new Scanner(System.in);
         do{
             total++;
-            System.out.println("please input your number between 0 and 100");
+            System.out.println("please input your number between 1 and 100");
             num = sc.nextInt(); 
             if (num == pivot){
                 System.out.println("You are right, num is: " + pivot);
@@ -24,7 +24,6 @@ public class Guess{
             }else{
                 System.out.println("too small");
             }
-            continue;
 
         }while(true);
     }
