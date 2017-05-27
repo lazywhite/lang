@@ -5,4 +5,5 @@ package oo.generic;
  */
 public interface InterfaceTest<T> {
     public T getName();
+    public String name = "good";
 }
