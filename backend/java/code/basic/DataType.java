@@ -135,7 +135,8 @@ public class DataType{
         System.out.println(d3 == d4);//类型转换成功
 
         System.out.println(6<<2);//左移, 变大
-        System.out.println(6>>2);//右移, 变小
+        System.out.println(-6>>2);//有符号右移
+        System.out.println(-9>>>2);//无符号右移
         System.out.println(4|2);//按位或
         System.out.println(4&2);//按位与
         System.out.println(4^2);//按位异或
