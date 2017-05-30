@@ -1,8 +1,7 @@
 /*
- * 变量无初始化， 默认值
- * Scanner接口的简单使用
+ * 局部变量必须初始化
+ * 类变量和实例变量可以不初始化， 自带默认值
  */
-import java.util.Scanner;
 class EMP{
     public String name ;
     public int age;
@@ -13,6 +12,7 @@ class EMP{
     public static double clsDouble;
     public static String clsString;
     public static boolean clsBoolean;
+    public static char clsChar;
 
     public EMP(){}
     public EMP(String name, int age, float score){
@@ -28,23 +28,7 @@ class EMP{
 }
 public class VarInit{
     public static void main(String[] args){
-        System.out.println("Please input your name");
-        Scanner sc = new Scanner(System.in);
-        String name = sc.next(); //接受字符串
-        System.out.println("your name is: "  + name);
-
-        System.out.println("Please input your age");
-        int age = sc.nextInt(); //接受字符串
-        System.out.println("your age is: "  + age);
-        
-        System.out.println("Please input your score");
-        float score = sc.nextFloat(); //接受字符串
-        System.out.println("your score is: "  + score);
-
         EMP p = new EMP();
-        p.name = name;
-        p.age = age;
-        p.score = score;
         System.out.println(p);
         System.out.println(p.f1);
         System.out.println(p.alive);
@@ -52,5 +36,6 @@ public class VarInit{
         System.out.println(EMP.clsDouble);
         System.out.println(EMP.clsString);
         System.out.println(EMP.clsBoolean);
+        System.out.println(EMP.clsChar);
     }
 }
