@@ -18,9 +18,6 @@ public class ArrayDemo {
 		System.out.println(Arrays.toString(arr));
 		Arrays.sort(arr); //数组排序
         System.out.println(Arrays.toString(arr));
-        System.out.println(Arrays.toString(arr));
-//        Arrays.sort(arr, Collections.reverseOrder());
-        System.out.println(Arrays.toString(arr));
 
         List<Integer> arrList = new ArrayList<Integer>();
         arrList.add(3);
@@ -28,11 +25,11 @@ public class ArrayDemo {
         arrList.add(13);
         arrList.add(9);
         Collections.shuffle(arrList); //打乱元素顺序, 仅接受List<T>型参数
+        //forEach 遍历
         for(Integer i: arrList){
             System.out.print(i + " ");
         }
-
-		int[] arr1;
+        int[] arr1;
 		arr1 = new int[]{3, 2, 1}; //先声明， 后赋值
         Arrays.sort(arr1); //must sort array before use binarySearch()
         int index = Arrays.binarySearch(arr1, 1);//return -1 if not found
@@ -79,8 +76,6 @@ public class ArrayDemo {
         System.out.println(strList);//ArrayList 可以直接打印
         strList.remove(1);// remove() @Overload, accept "index" or "element"
         strList.remove("midnight");
-        System.out.println(strList);//ArrayList 可以直接打印
-
 
 	}
 
