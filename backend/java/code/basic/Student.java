@@ -1,11 +1,13 @@
+import java.io.Serializable;
 /**
  * Created by white on 17/5/18.
  * 
  */
-public class Student implements Comparable{
+public class Student implements Comparable, Serializable{
     private int id;
     private String name;
     private int age;
+    public transient String info;
 
     public Student(int id, String name, int age){
         this.id = id;
@@ -50,6 +52,6 @@ public class Student implements Comparable{
 
     @Override
     public String toString(){
-        return "Student: " + name + " Age: " + age + " id: " + id;
+        return "Student: " + this.getName()+ " Age: " + this.getAge()+ " id: " + this.getId() + " info: " + this.info;
     }
 }
