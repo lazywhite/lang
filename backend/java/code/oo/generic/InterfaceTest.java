@@ -5,5 +5,5 @@ package oo.generic;
  */
 public interface InterfaceTest<T> {
     public T getName();
-    public String name = "good";
+    String name = "good";//接口中的变量默认为public static final类型
 }
