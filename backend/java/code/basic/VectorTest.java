@@ -3,6 +3,7 @@ import java.util.Vector;
 /*
 * vector是线程安全的
 *   list, random_access, cloneable, serializable
+* Vector 是一个动态数组
 * 遍历方式
 *   index
 *   foreach
@@ -12,13 +13,16 @@ import java.util.Vector;
 public class VectorTest {
 
     public static void main(String[] args) {
-        Vector vec = new Vector();
+        Vector vec = new Vector(50);
+        System.out.println("size:"+vec.size());
         //添加
         vec.add("1");
         vec.add("2");
         vec.add("3");
         vec.add("4");
         vec.add("5");
+        System.out.println("size:"+vec.size());
+        System.out.println("size:"+vec.size());
         //替换
         vec.set(0, "100");
         vec.add(2, "300");

@@ -8,7 +8,7 @@ public class RandomTest{
         System.out.println(r.nextFloat());
         System.out.println(r.nextDouble());
         System.out.println(r.nextBoolean());
-        System.out.println(r.nextInt(100));
+        System.out.println(r.nextInt(100));//包括0, 不包括100
         byte[] bbbb = new byte[10];
         r.nextBytes(bbbb);
         System.out.println(Arrays.toString(bbbb));

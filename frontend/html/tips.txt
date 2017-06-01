@@ -112,3 +112,6 @@ span width
     inline-block可兼容两种情况
 
 input range onchange onmousemove
+
+如果某些元素没有设置样式， 则自动从父元素继承
+样式的定义有严格的先后顺序, 当发生重复时， 后定义的样式会覆盖前面的样式
