@@ -2,7 +2,7 @@
 POM: project object model
 java program lifecycle manage tool, use plugin to integrate with other tool
 
-###dependency management
+## Dependency management
 By default, maven download all dependencies from Maven Central Repo, we can   
 add more repos in pom.xml
   
@@ -35,10 +35,6 @@ add more repos in pom.xml
         plugins
             plugin
 ```            
-
-### Unittest
-maven-surefire
-
 
 ### Directory architecture
 ```

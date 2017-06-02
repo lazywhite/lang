@@ -1,0 +1,262 @@
+1. variable name should never start with '$'
+2. java ignore blank lines
+3. java allow single inherients
+4. an interface can be defined as a contract between objects on how to communicate with each other
+5. an interface defines the methods, a deriving class(subclass) should use, but the implemention of methods is totally up to the subclass
+6. if we don't explicitly write a constructor for a class, the java compiler builds a default constructor for that class
+7. each time a new object is created, at least one constructor will be invoked
+constructor should have same name with class, a class can have more than one constructor
+8. there can be only one public class per source file
+9. a source file can have multiple non public classes
+10. the public class name should be the name of source file
+11. if the class is defined inside a package , the package statement should be the first statement in the source file
+12. import statement should be written between package statement and class declaration
+13. import and package statement will imply to all the classes present in the source file
+14. classes have several access level: final, abstract etc.
+15. java package is a way of categorizing the classes and interfaces
+16. variables are nothing but reserved memory locations to store values
+17. you must declare all variables before they can be used
+18. instance variable have default values, number default is 0, boolean default is false,  object reference default null
+19. A literal is the source code representation of a fixed value; literals are represented directly in your code without requiring computation
+20. Primitive types are special data types built into the language; they are not objects created from a class
+21. Always use 'single quotes' for char literals and "double quotes" for String literals.
+22. Local variables are slightly different; the compiler never assigns a default value to an uninitialized local variable. If you cannot initialize your local variable where it is declared, make sure to assign it a value before you attempt to use it. Accessing an uninitialized local variable will result in a compile-time error.
+
+
+访问修饰符
+    default 
+        visible to package
+    private 
+        visible to class only
+    protected 
+        visible to class and subclass
+    public
+        visible to the world
+
+非访问修饰符
+    static final abstract strictfp volatile
+
+native 本地方法
+
+try catch finally 块级作用域
+
+死循环
+    while(true)
+    for(;;)
+java format output
+    %s
+    %u
+
+java变量命名规则
+    数字， 字母， '$', '_'
+
+long赋值加L
+    long date = 365L * 60 * 60 * 1000 * 92834824 //第一个数加L
+
+浮点数赋值默认是double, 想声明成float末尾加f或F, 
+
+float 与double的区别， 精度不同， 都有舍入误差
+
+输出数据类型可存储的最大， 最小值
+    Integer.MAX_VALUE
+    Integer.MIN_VALUE
+
+char类型赋值必须用单引号
+
+do while 需要用分号结束
+
+java变量只声明不初始化
+    局部变量： 无默认值， 必须要初始化
+    类变量, 实例变量： 有默认值
+        String default "null"
+        int default '0'
+        float, double default '0.0'
+        Boolean default 'false'
+        Character default '';
+
+java打印整个数组  println(Arrays.toString(arr))
+
+java 遍历hashmap
+    Iterator
+
+java 数组
+    声明赋值
+    增删查改
+    扩容缩小
+    拷贝
+
+访问修饰符， 非访问修饰符
+
+java builtin class
+    Math
+
+get random number
+    //1
+    java.util.Random
+    Random r = new Random()
+    r.nextInt()
+    //2
+    int r = (int)(Math.random() * 10);
+
+退出程序
+    java System.exit(1)
+
+System.currentTimeMillis()
+
+int a = true?value1:value2; 三目运算符
+
+java 数组不支持负数下标
+
+使用封装有三大好处：
+    良好的封装能够减少耦合。
+    类内部的结构可以自由修改。
+    可以对成员进行更精确的控制。
+    隐藏信息，实现细节。
+
+基本数据类型与字符串类型相加， 返回字符串
+
+
+数组声明的几种方式
+    int[] arr; arr = new int[]{1, 2, 3}
+    int[] arr = new int[10];
+    int[] arr = {1, 2, 3};
+    int[] arr = new int[]{1, 2, 3};
+
+
+
+object.getClass().getName()
+
+java无法获取变量的内存地址， hashcode()不等于内存地址
+
+变量分为值类型， 引用类型
+变量的类别
+    局部变量
+    成员变量
+    类变量
+equals() 与 '==' 的区别
+Arrays.equals(arr1, arr2);
+
+java数组不支持负数索引
+
+
+Integer是类， int是基本数据类型
+Integer a = new Integer(1); int b = 1;
+ArrayList 只能存放object， 因此不能add(int), 可以add(Integer)
+
+当需要往ArrayList，HashMap中放东西时，像int，double这种内建类型是放不进去的，因为容器都是装object的，这是就需要这些内建类型的外覆类了。 
+
+
+class A{} ; A a = new A();
+a instanceof  A  -->true
+A.class.isInstance(a) -->true
+a.getClass().isInstance(a)  -->true
+
+Long l = Long.parseLong(var);
+Integer i = Integer.parseInt(var);
+
+public class Foo {
+    {
+        //instance initializer 
+        // This code will be executed before every constructor
+        // but after the call to super()
+    }
+    static{//static initializer, executed when class is loaded by jvm
+    }
+
+    Foo() {
+
+    }
+}
+
+
+String.join(",", String[]);
+do while;
+printSum(int... args)
+
+
+
+final 无法修饰抽象类， 抽象方法， 接口
+在逻辑上Box<Number>不能视为Box<Integer>的父类
+Box<?> 代表Box<Number> 和Box<Integer>的父类
+java class static 区块只会在类被第一次加载时候调用,多个static按照定义顺序执行
+
+goto const 保留关键字
+
+char a = 'A', char b='B'   b-a 为int
+
+javac Atest.java;  java -cp .:<path/to/jar>  Atest
+
+int[][] arr = new int[][]{ {1, 2, 3}, { 4, 5, 6} }; //多维数组初始化
+
+构造方法与类名相同， 不能有返回值， 默认存在无参数的构造方法， 可以重载
+
+接口可以定义变量，一定要初始化, 默认是public static final的
+
+
+super用在构造方法中， 必须用在最前面
+super只能用在子类中
+public Puppy(){
+    super();
+}
+
+public void move(){
+    super.move();
+}
+
+重写一个方法， 必须保证返回值类型， 函数名， 参数类型和个数一致， 不能缩小访问权限
+
+实例化子类， 会默认调用父类的默认无参构造方法
+
+向上转型， 向下转型
+
+抽象类和接口不能有构造方法， 不能被实例化
+
+Throwable
+    Error: 系统层而不是程序本身出现的问题
+    Exception: 程序执行时出现的问题
+
+自定义异常  继承Exception 或RuntimeException类
+StringBuilder 可以append任意类型， String.concat()只能接收string
+
+泛型就是将参数类型也参数化
+泛型接口， 泛型类， 定义时跟在名称之后
+泛型方法写在返回值之前
+
+数组的
+    增加: 查找有没有null值， 若有则放入元素
+    删除:   将符合条件的元素后面的元素依次前移， 末尾置为null
+
+
+线程状态
+    新建 new
+    运行 running 获得cpu
+    阻塞 blocking  sleep()
+    就绪 runnable yield()
+    死亡 dead   
+线程优先级1-10, yield切换会参考优先级
+
+import static com.local.test.Main.*   #静态导入类中所有静态方法, 调用无需类名
+
+重载的构造函数, 可以通过this相互调用
+this和super不能同时出现
+
+三目运算符嵌套
+
+构造方法不能有返回值
+
+访问修饰符
+
+                同一个类             同一个包          其他地方
+public          可以使用             可以使用          可以使用
+protected       可以使用             可以使用          不能使用                     
+(default)       可以使用             可以使用          不能使用
+private         可以使用             不能使用          不能使用
+
+
+java8 接口可以有default method, 可以有实现体  
+synchronized: 多线程编程中用来修饰方法或者一段代码, 确保线程安全  
+volatile: 轻量级并发保证, 用来修饰变量, 不具备原子性
+transient: 标明不需要序列化的类属性
+strictfp: 精确浮点数, 可以修饰类或者接口
+assert <cond> [: "error message"];
+java.lang 默认被导入

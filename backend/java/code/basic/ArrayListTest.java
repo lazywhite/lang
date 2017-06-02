@@ -30,5 +30,10 @@ public class ArrayListTest {
             System.out.println(st.getName() + ":" + st.getId());
         }
 
+        ArrayList<Integer> al = new ArrayList<>(Arrays.asList(2, 3, 4, 5));
+        al.remove(2); //传入int 2， 按下标删除,  int 2 != Integer(2)
+        Integer tt = al.get(2);
+        al.remove(tt); //传入Integer, 按照对象删除
+
     }
 }
