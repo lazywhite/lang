@@ -18,4 +18,5 @@
 **/build/**
 **/.idea/**
 **/*.iml
-backend/java/code/out/**
+**/out/**
+**/target/**

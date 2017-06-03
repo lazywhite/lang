@@ -32,23 +32,6 @@ CATALINA_HOME: 指向bin, lib的父目录
 CATALINA_BASE: 指向每个tomcat目录私有信息, conf, logs, temp, webapps, work父目录
   
 
-server.xml
-    Host
-        Atrribute
-            name="localhost"
-            appBase="/path/to/abs_dir|relative_dir"
-            unpackWARS="true"
-            autoDeploy="true"
-
-        Context
-            Attribute
-                path="/c1"
-                docBase="/path/to/fs_path"
-                reloadable="true"
-                workDir="/path/to/workdir"
-
-```
-
 ## Server startup
 https://tomcat.apache.org/tomcat-8.0-doc/architecture/startup/serverStartup.pdf
 
@@ -70,64 +53,3 @@ jasper: jsp engine
 5. web server response html content
 
 jsp engine compare the mtime of jsp and servlet to decide whether to recompile 
-
-
-# Language 
-
-## scriptlet
-```
-<% code fragment %> or <jsp:scriptlet> code fragment </jsp:scriptlet>
-any text, HTML tags, JSP elements must be outside the scriptlet
-```
-
-## declarations
-```
-<%! declaration; [declaration;] ... %>
-<jsp:declaration> code fragment </jsp:declaration>
-```
-
-## expression
-
-```
-<%= expression %>
-<jsp:expression> expression </jsp:expression>
-```
-
-## comments
-```
-<%-- comment --%> (jsp comment, ignored by the jsp engine)
-<!-- comment --> (html comment, ignored by browser)
-<\% (represent static <% literal)
-%\> (represent static %> literal)
-```
-
-## directive
-```
-<%@ page %> (define page-dependent attributes)
-<%@ include ... %> (include a file during the translate phase)
-<%@ taglib ... %> (declare a tag library, containing custom actions)
-```
-
-## actions
-```
-There are two attributes that are common to all Action elements: the id attribute and the scope attribute.
-<jsp: action_name  attribute="value" />
-<jsp:useBean id="name" class="package.class" />
-<jsp:useBean id="myName" ... >
-...
-   <jsp:setProperty name="myName" property="someProperty" .../>
-</jsp:useBean>
-```
-
-## implicit objects
-```
-request
-response
-out
-session
-application
-config
-pageContext
-page
-Exception
-```
