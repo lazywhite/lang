@@ -11,10 +11,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class UserServlet implements Servlet {
-
+    /* 浏览器到服务器的编码 */
+    private String btsEncoding;
+    private String stbEncoding;
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         System.out.println("===============================servlet inited=======================");
+        btsEncoding = servletConfig.getInitParameter("btsEncoding");
+        stbEncoding = servletConfig.getInitParameter("stbEncoding");
     }
 
     @Override
@@ -24,14 +28,14 @@ public class UserServlet implements Servlet {
 
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
-        servletRequest.setCharacterEncoding("utf-8"); //解决浏览器到服务器的乱码问题
+        servletRequest.setCharacterEncoding(stbEncoding); //解决浏览器到服务器的乱码问题
         String username = servletRequest.getParameter("username");
         String password = servletRequest.getParameter("password");
         UserDao ud  = new UserDao();
         User u = ud.select(username, password);
         servletResponse.setContentType("text/html; charset=utf-8");//需要写在getWriter之前, 解决服务器到浏览器乱码问题
+//        servletResponse.setCharacterEncoding(btsEncoding);
         PrintWriter out = servletResponse.getWriter();
-//        servletResponse.setCharacterEncoding("utf-8");
         out.write("<!doctype html>");
         if(u != null){
             out.write("<html><head><title></title><meta charset='utf-8' /></head><body><h1>success</h1></body></html>");
