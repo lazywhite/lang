@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <!-- 自己实现数组-->
+        <script type="text/javascript">
+            function myArray(){
+                for(var i=0;i<arguments.length;i++){
+                    this[i] = arguments[i];
+                }
+                this.length = arguments.length;
+            }
+            var m = new myArray(10, 20, 30, 40);
+            
+            console.log(m.length);
+            for(var i=0;i<m.length;i++){
+            console.log(m[i]);
+
+            }
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
