@@ -17,8 +17,9 @@
         function getTimeString(){
             var d = new Date();
             var Y = d.getFullYear();
-            var M = d.getMonth();
-            var D = d.getDay();
+            var M = d.getMonth() + 1;//月份从0开始
+//            var D = d.getDay();//星期几
+            var D = d.getDate();//一个月的第几天
             var h = d.getHours();
             var m = d.getMinutes();
             var s = d.getSeconds();
@@ -27,14 +28,28 @@
             var show = document.getElementById("show");
             show.innerHTML = now;
         }
-//        var dsp = setInterval("getTimeString()", 1000);
+        function getTimeByWith(){
+            var d = new Date();
+            var str = "";
+            with(d){
+                str += getFullYear() + "年";
+                str += (getMonth() + 1) + "月";
+                str += getDate() + "日";
+                str += getHours() + "时";
+                str += getMinutes() + "分";
+                str += getSeconds() + "秒";
+            }
+            var show = document.getElementById("show");
+            show.innerHTML = str;
+
+        }
 
         function switcher(){
             var ck = document.getElementById("check");
             if(ck.checked){
-                dsp = setInterval("getTimeString()", 1000);
+                //dsp = setInterval("getTimeString()", 1000);
+                dsp = setInterval("getTimeByWith()", 1000);
             }else{
-                console.log("here");
                 window.clearInterval(dsp);
             }
 

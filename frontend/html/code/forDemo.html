@@ -1,25 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-    <script type="text/javascript">
-        function echo(){
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <script type="text/javascript">
+            function echo(){
             var paras = document.getElementsByClassName("test");
-            //type 01
+            console.log(typeof paras);//object not array
             for(var i=0;i<paras.length;i++){
-                console.log(paras[i].innerHTML);
+            console.log(paras[i].innerHTML);
             }
-            //type 02
-//            for(var i in paras){
 
-        }
-    </script>
-</head>
-<body>
+            function Person(name, age){
+            this.name = name;
+            this.age = age;
+            }
+            var p = new Person("bob", 10);
+            //            console.log(p["name"]);  访问对象属性
+            //            console.log(p.name);
 
-<button onclick="echo()">click this </button>
-<div class="test">hehe01</div>
-<div class="test">hehe02</div>
-</body>
+            //for..in 用来遍历对象
+            for(attr in p){
+            console.log(p[attr]);
+            }
+
+            var attr = new Array();
+            attr[0] = "apk";
+            attr[1] = "jdk";
+            attr[2] = "sdk";
+            console.log(typeof arr) //typeof 返回字符串
+            console.log(typeof 1.23)
+            console.log(typeof "ggod")
+            console.log(typeof true)
+    
+            //for..in 用来遍历数组
+            for(index in attr){
+            console.log(attr[index]);
+            }
+
+            }
+
+
+        </script>
+    </head>
+    <body>
+
+        <button onclick="echo()">click this </button>
+        <div class="test">hehe01</div>
+        <div class="test">hehe02</div>
+    </body>
 </html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <form id="form" action="" method="POST">
+        <input type="text" id="username" /><span id="uspan">汉字2-8个</span>
+        <br/>
+        <br/>
+        <input type="password" id="password" /> <span id="pspan">4-8位字母数字组合</span>
+        <br/>
+        <br/>
+        <input type="checkbox" class="hobby"/> 篮球
+        <input type="checkbox" class="hobby"/> 足球
+        <input type="checkbox" class="hobby"/> 冰球 <span "hobbyspan">至少选一个</span>
+        <br/>
+        <br/>
+        独白
+        <textarea cols="30" rows="5">
+        </textarea>
+        <input type="submit" />
+    </form>
+
+        <script type="text/javascript">
+            //此函数可通过window.$来访问
+            function $(selector){
+                if(typeof selector != 'string'){
+                    return;
+                }
+                if(selector.startsWith('#')){
+                    newslt  = selector.split('#')[1];
+                    return document.getElementById(newslt);
+                }else if(selector.startsWith('.')){
+                    newslt = selector.split('.')[1];
+                    return document.getElementsByClassName(newslt);
+                }
+            }
+
+            window.onload = function(){
+                var username = $("#username");
+                var uspan = $("#uspan");
+                var password = $("#password");
+                var pspan = $("#pspan");
+                var hobbies = $(".hobby");
+                var form = $("#form");
+                username.onblur = function(){
+                    var reg = /[\u4e00-\u9fff]/;
+                    var v = this.value;
+                    if(v.length == 0 || v == ''){
+                        uspan.innerHTML = "必填项";
+                        uspan.style.color = "red";
+                        return false;
+                    }else if(reg.test(v)) {
+                        uspan.innerHTML = "正确";
+                        uspan.style.color = "green";
+                        return true;
+                    }else{
+                        uspan.innerHTML = "名字不合法";
+                        uspan.style.color = "red";
+                        return false;
+                    }
+                }
+
+                password.onblur = function(){
+                    var v = this.value;
+                    var reg = /^[A-Za-z0-9]{6,20}$/;
+                    if(v.length == 0 || v == ''){
+                        pspan.innerHTML = "必填项";
+                        pspan.style.color = "red";
+                        return false;
+                    }else if(reg.test(v)) {
+                        pspan.innerHTML = "正确";
+                        pspan.style.color = "green";
+                        return true;
+                    }else{
+                        pspan.innerHTML = "密码不合法";
+                        pspan.style.color = "red";
+                        return false;
+                    }
+                }
+                var checkHobby = function(){
+                    var count = 0;
+                    for(var i=0; i<hobbies.length;i++){
+                        if(hobbies[i].checked){
+                            count++;
+                        }
+                    }
+                    console.log(count);
+                    return count>=1;
+                }
+
+                form.onsubmit = function(){
+                    //只有返回true， 表单才会提交
+                    return username.onblur() && password.onblur() && checkHobby();                    
+                }
+
+            }
+        </script>
+    </body>
+</html>
