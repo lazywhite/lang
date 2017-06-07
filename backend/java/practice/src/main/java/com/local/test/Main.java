@@ -1,15 +1,10 @@
 package com.local.test;
 
-import java.text.SimpleDateFormat;
-import java.util.Map;
-import java.util.Date;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.io.*;
 import java.util.stream.Collectors;
 import java.util.Optional;
@@ -87,78 +82,11 @@ public class Main{
         for(Object element: bList){
             System.out.println("element is:" + element);
         }
-        //Date
-        Date date = new Date();
-        System.out.println(date.toString());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println(sdf.format(date));
 
 
-        //File
-        String filename = "t.tmp";
-        File f = new File(filename);
-        // while loop
-        int x = 10;
-        while (x < 20){
-            System.out.println("number of x is: " + x);
-            x ++;
-            if (x == 15){
-                System.out.println("Loop break");
-                break;
-            }
-        }
-        // do while loop
-        do {
-            System.out.println("number of x is: " + x);
-            x ++;
-        }while (x<25);
-        // Switch
-        int month = 2;
-        String monthString;
-        switch (month) {
-            case 1: monthString = "January";
-                    break;
-            case 2: monthString = "February";
-                    break;
-            case 3: monthString = "March";
-                    break;
-            default: monthString = "Invalid Month";
-                     break;
-        }
-        System.out.println(monthString);
+        //XML
+        XMLUtil.run();
 
-        // Exception
-        try{
-            throw new MyException();
-        }
-        catch(Exception e)
-        {
-            System.out.println("Exception is:" + e.toString());
-        }
-
-        System.out.println(test(1, "dog"));
-        System.out.println(test("dog", 1));
-        showThing(cList);
-
-        List<String> strList = new ArrayList<String>();
-        strList.add("hello");
-        strList.add("world");
-
-        // Iterator
-        System.out.println("Using Iterator interface");
-        Iterator<String> iter = strList.iterator();
-        while(iter.hasNext()){
-            Object ele = iter.next();
-            System.out.println(ele);
-        }
-
-        // Inheriance
-        Father father = new Father("Bob");
-        Child child  = new Child("June", 13);
-        System.out.println(father.name);
-        System.out.println(child.name);
-        System.out.println(child.age);
-        child.say();
 
         // generic class
         OrderedPair<Integer, Integer> op = new OrderedPair<Integer, Integer>(100, 200);
@@ -170,18 +98,12 @@ public class Main{
         OrderedPair<Integer, String> p2 = new OrderedPair<Integer, String>(20, "sol");
         System.out.println(Util.compareTo(p1, p2));
 
-
         System.out.println(doSum(10, 20, 30));
         System.out.println(doSum(20, 30));
 
-        // File Input
-        //        FileReader file = new FileReader("/Users/white/access.log");
-        //        file.show();
-
-        //         Label
 testLabel:
         for(int y=0;y<=10;y++){
-            if (y == 5){
+            if (y == 3){
                 break testLabel;
             }else{
                 System.out.println(y);
@@ -192,6 +114,7 @@ testLabel:
         // Stream and Method Reference
         System.out.println("Using Stream API");
         List<String>strings = Arrays.asList("abc", "", "bc", "efg", "abcd","", "jkl");
+        // lambda
         List<String> filtered = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.toList());
 
         System.out.println("Filtered List: " + filtered);
@@ -210,11 +133,7 @@ testLabel:
 
         //Redis usage
         Jedis jedis = RedisUtil.getJedis();
-        //      RedisUtil.testString(jedis);
         RedisUtil.testMap(jedis);
-        //      RedisUtil.testList(jedis);
-        //      RedisUtil.testSet(jedis);
-
         RedisUtil.close(jedis);
 
         //Mongodb Usage
