@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
     http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
-    version="3.1">
+         version="3.1">
+
+    <context-param> <!--当前web应用的初始化参数-->
+        <param-name>project-name</param-name>
+        <param-value>servlet-test</param-value>
+    </context-param>
+    <context-param>
+        <param-name>driverClass</param-name>
+        <param-value>com.mysql.jdbc.Driver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>url</param-name>
+        <param-value>jdbc:mysql://localhost:3306/test?useSSL=false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>root</param-value>
+    </context-param>
     <servlet>
         <servlet-name>user</servlet-name>
         <servlet-class>servlet.UserServlet</servlet-class>
@@ -16,6 +37,14 @@
             <param-value>utf-8</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>test</servlet-name>
+        <servlet-class>servlet.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping> <!-- 将url路径跟servlet关联起来 -->
+        <servlet-name>test</servlet-name>
+        <url-pattern>/test.do</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>user</servlet-name>
         <url-pattern>/login.do</url-pattern>

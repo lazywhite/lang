@@ -7,18 +7,24 @@ import java.sql.*;
  */
 
 public class UserDao {
-    public static final String driver = "com.mysql.jdbc.Driver";
-    public static final String uri = "jdbc:mysql://localhost:3306/test?useSSL=false";
-    public static final String uname = "root";
-    public static final String pwd = "root";
-    public User select(String username, String password){
+    public String driver;
+    public String url;
+    public String username;
+    public String password;
+    public UserDao(String driver, String url, String username, String password){
+        this.driver = driver;
+        this.url = url;
+        this.username = username;
+        this.password = password;
+    }
+    public User select(String uname, String pwd){
         try {
             String sql = "select * from user where name=? and password=md5(?) limit 1";
             Class.forName(driver);
-            Connection conn = DriverManager.getConnection(uri, uname, pwd);
+            Connection conn = DriverManager.getConnection(url, username, password);
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, username);
-            ps.setString(2, password);
+            ps.setString(1, uname);
+            ps.setString(2, pwd);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 User u = new User();
