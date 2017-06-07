@@ -17,7 +17,7 @@ public class FileTest {
         }
         System.out.println(fl.getCanonicalPath());
 
-        int i = (int)(fl.length()/1024 + 1);
+        int i = (int)(fl.length()/1024 + 1); //f.length() 返回字节数
         System.out.println(i);
         fl.delete();
         test.delete();
