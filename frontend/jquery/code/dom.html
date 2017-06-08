@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <title>The jQuery Example</title>
+        <style>
+            ul li{
+                transition: font-size 1s, color 1s;
+            }
+            ul li:hover{
+                font-size: 30px;
+                color: red;
+            }
+        </style>
+        <script type = "text/javascript" 
+            src = "../../html/jquery.min.js"></script>
+
+        <script type = "text/javascript" language = "javascript">
+            $(function() {
+                catEle = $("#category");
+                valEle = $("input[type=text]");
+                $("input[type=button][value=添加]").click(function(){
+                    if(valEle.val()== ''){
+                        return;
+                    }
+                    if(catEle.val() == 0){
+                        //                        var ul = $("ul")[0];获取到的是DOM对象
+                        var ul = $("ul[name=first]");
+
+                        var lis = ul.children();
+                        for(var i=0;i<lis.length;i++){
+                            if(lis[i].innerHTML == valEle.val()){
+                                alert("已存在");
+                                return;
+                            }
+                        }
+                        ul.append($("<li>"+valEle.val()+"</li>"));
+                        valEle.val("");
+                    }
+                    if(catEle.val() == 1){
+                        var ul = $("ul[name=second]");
+                        var lis = ul.children();
+                        for(var i=0;i<lis.length;i++){
+                            if(lis[i].innerHTML == valEle.val()){
+                                alert("已存在");
+                                return;
+                            }
+                        }
+                        ul.append($("<li>"+valEle.val()+"</li>"));
+                        valEle.val("");
+                    }
+                });
+                $("input[type=button][value=删除]").click(function(){
+                    if(valEle.val()== ''){
+                        return;
+                    }
+                    if(catEle.val() == 0){
+                        //var ul = $("ul")[0];获取到的是DOM对象
+                        var ul = $("ul[name=first]");
+                        var lis = ul.children();
+                        for(var i=0;i<lis.length;i++){
+                            // var obj = lis[i];//DOM对象
+                            var obj = lis.eq(i)//jquery对象
+                            //obj.text(); obj.html()
+                            if(obj.text() == valEle.val()){;
+                                obj.remove();//删除对象
+                                break;
+                            }
+                        }
+                        valEle.val("");
+                    }
+                    if(catEle.val() == 1){
+                        var ul = $("ul[name=second]");
+                        var lis = ul.children();
+                        for(var i=0;i<lis.length;i++){
+                            // var obj = lis[i];//DOM对象
+                            var obj = lis.eq(i)//jquery对象
+                            //obj.text(); obj.html()
+                            if(obj.text() == valEle.val()){;
+                                obj.remove();
+                                break;
+                            }
+                        }
+                        valEle.val("");
+                    }
+
+                });
+
+            });
+        </script>
+
+    </head>
+
+    <body>
+        喜欢的电影
+        <ul type="circle" name="first">
+            <li>阿凡达</li>
+        </ul>
+        喜欢的游戏
+        <ul type="square" name="second">
+            <li>风暴英雄</li>
+        </ul>
+        类型:
+        <select id="category">
+            <option value="0">电影</option>
+            <option value="1">游戏</option>
+        </select>
+
+        <input type="text" id="content" />
+        <input type="button" value="添加"/>
+        <input type="button" value="删除"/>
+    </body>
+
+</html>
