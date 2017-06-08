@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            #tb1{
+                margin: 100px auto;
+            }
+
+        </style>
+    </head>
+    <body>
+        <table  cellspacing="0" cellpadding="10px" id="tb1">
+            <caption>添加新员工</caption>
+            <tr>
+                <td>姓名：<input type="text" id="name" /></td>
+                <td>年龄：<input type="text" id="age" /></td>
+                <td>邮箱：<input type="text" id="email" /></td>
+            </tr>
+            <tr align="center">
+                <td colspan="3"><input type="submit" value="提交" id="btn" /></td>
+            </tr>
+        </table>
+        <hr />
+        <table id="tb2" align="center" border=1 width="50%">
+            <caption>员工信息</caption>
+            <tr>
+                <th >姓名</th>
+                <th >年龄</th>
+                <th >邮箱</th>
+                <th >操作</th>
+            </tr>
+
+        </table>
+        <script type="text/javascript">
+
+            btn.onclick =  function(){
+                var name = document.getElementById("name");
+                var age = document.getElementById("age");
+                var email = document.getElementById("email");
+                var btn = document.getElementById("btn");
+                var tb2 = document.getElementById("tb2");
+                var tr = document.createElement("tr");
+
+                if(name.value == ""){
+                    return;
+                }
+
+                var td1 = document.createElement("td");
+                var txt1 = document.createTextNode(name.value);
+
+                td1.appendChild(txt1);
+                tr.appendChild(td1);
+                var td2 = document.createElement("td");
+                var txt2 = document.createTextNode(age.value);
+                td2.appendChild(txt2);
+                tr.appendChild(td2);
+                var td3 = document.createElement("td");
+                var txt3 = document.createTextNode(email.value);
+                td3.appendChild(txt3);
+                tr.appendChild(td3);
+                var td4 = document.createElement("td");
+                var a = document.createElement("a");
+                var txt4 = document.createTextNode("删除");
+                a.appendChild(txt4);
+                a.setAttribute("href", "javascript:;");
+                a.setAttribute("class", "del");
+                td4.appendChild(a);
+                tr.appendChild(td4)
+                tr.style.textAlign="center"; //给新添加的行增加样式
+                tb2.appendChild(tr);
+                name.value = "";  //将表格内容清空， 防止重新提交
+                age.value = "";
+                email.value = "";
+
+                var dels = document.getElementsByClassName("del");
+                for(var i=0;i<dels.length;i++){
+                    dels[i].onclick = delWorker;
+                }
+            }
+
+            function delWorker(){
+                var rt = confirm('确认删除?');
+                if(!rt){
+                    return;
+                }
+                this.parentNode.parentNode.remove();
+
+            }
+        </script>
+    </body>
+</html>
