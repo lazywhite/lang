@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>下拉列表二级联动</title>
+    </head>
+
+    <body>
+        省: <select id="pro">
+            <option value="0"> 请选择 </option>
+        </select>
+        市: <select id="city">
+            <option value="0"> 请选择 </option>
+        </select>
+        <script type="text/javascript">
+            data = [
+                {
+                    id: 1,
+                    name: "黑龙江",
+                    cities: [
+                        {
+                            id: 1,
+                            name: "哈尔滨",
+                        },
+                        {
+                            id: 2,
+                            name: "大庆"
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    name: "河北",
+                    cities:[
+                        {
+                            id: 3,
+                            name: "秦皇岛",
+                        },
+                        {
+                            id: 4,
+                            name: "保定"
+                        }
+                    ]
+
+                },
+            ]
+        </script>
+        <script type="text/javascript">
+            var pro = document.getElementById("pro");
+            var city = document.getElementById("city");
+            //创建一级下拉菜单内容
+            function createFirst(){
+                for(var i=0;i<data.length;i++){
+                    pro.innerHTML += ('<option value="' + data[i].id+'">' + data[i].name + '</option>');
+                }
+            }
+            function createFirst02(){
+                for(var i=0;i<data.length;i++){
+                    var id = data[i].id;
+                    var name = data[i].name;
+                    //创建元素
+                    var op = document.createElement('option');
+                    //设置属性
+                    op.setAttribute('value', id);
+                    //添加文本节点
+                    var txt = document.createTextNode(name);
+                    op.appendChild(txt);
+                    //给下拉菜单添加元素
+                    pro.appendChild(op);
+                }
+
+            }
+            createFirst02();
+            function changeSecond02(){
+                var pro_id = this.value;
+                var cities = null;
+                for(var z=0;z<data.length;z++){
+                    if(data[z].id == pro_id){
+                        cities = data[z].cities;
+                    }
+                }
+                city.innerHTML = "";
+                for(var j=0;j<cities.length;j++){
+                    var op = document.createElement("option");
+                    op.setAttribute("value", cities[j].id);
+                    var txt = document.createTextNode(cities[j].name);
+                    op.appendChild(txt);
+
+                    city.appendChild(op);
+            }
+                
+            
+            }
+            function changeSecond(){
+                var pro_id = this.value;
+                var cities = null;
+                for(var z=0;z<data.length;z++){
+                    if(data[z].id == pro_id){
+                        cities = data[z].cities;
+                    }
+                }
+                city.innerHTML = "";
+                for(var j=0;j<cities.length;j++){
+                    city.innerHTML += ('<option value="' + cities[j].id+'">' + cities[j].name + '</option>');
+
+                }
+            }
+
+            pro.onchange = changeSecond02;
+
+        </script>
+    </body>
+</html>
