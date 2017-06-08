@@ -46,7 +46,7 @@
                 var hobbies = $(".hobby");
                 var form = $("#form");
                 username.onblur = function(){
-                    var reg = /[\u4e00-\u9fff]/;
+                    var reg = /^[\u4e00-\u9fff]$/;
                     var v = this.value;
                     if(v.length == 0 || v == ''){
                         uspan.innerHTML = "必填项";
