@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>The jQuery Example</title>
+        <style>
+            #div1{
+                width: 100px;
+                height: 100px;
+                background-color: red;
+            }
+        </style>
+        <script type = "text/javascript" 
+            src = "../../html/jquery.min.js"></script>
+
+        <script type = "text/javascript" language = "javascript">
+            $(document).ready(function() {
+                /*
+                $("#div1").slideUp(1000).slideDown(1000);//滑动
+                $("#div1").toggle(1000);//显示或隐藏
+                $("#div1").fadeIn(1000).fadeOut(1000); 
+                */
+                $("#div1").fadeTo(1000, 0.1);//透明度
+                $("#div1").fadeTo(1000, 1);
+
+            });
+        </script>
+
+        <style>
+        </style>
+    </head>
+
+    <body>
+        <button id="btn">click me</button>
+        <div id="div1"></div>    
+    </body>
+
+</html>
