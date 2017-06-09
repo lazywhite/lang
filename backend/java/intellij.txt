@@ -1,7 +1,0 @@
-设置页面
-    command + , 
-
-智能补全
-    postfix completion
-源文件模板
-    Editor --> File and Code Templates
