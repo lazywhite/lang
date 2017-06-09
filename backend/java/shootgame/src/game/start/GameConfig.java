@@ -16,4 +16,5 @@ public class GameConfig {
     public static BufferedImage pause;//暂停图片
     public static BufferedImage gameover;//结束图片
     public static Plane plane;
+    public static GamePanel gp;
 }

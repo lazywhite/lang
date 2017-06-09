@@ -57,6 +57,10 @@ public class Plane extends FlyObj {
         this.y = (GameConfig.HEIGHT - this.height)/2;
     }
 
+    public void changeImage(){
+        this.index = (++this.index)%2;
+        this.image = this.images[this.index];
+    }
     @Override
     public void move() {
 
