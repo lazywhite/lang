@@ -1,8 +1,10 @@
 package game.start;
 
+import game.entity.Bullet;
 import game.entity.Plane;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by white on 17/6/8.
@@ -17,4 +19,5 @@ public class GameConfig {
     public static BufferedImage gameover;//结束图片
     public static Plane plane;
     public static GamePanel gp;
+    public static ArrayList<Bullet> bullets;
 }
