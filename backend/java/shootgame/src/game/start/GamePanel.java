@@ -2,6 +2,8 @@ package game.start;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.TimerTask;
+import java.util.Timer;
 
 
 /**
@@ -13,6 +15,7 @@ public class GamePanel extends JPanel {
     public void paint(Graphics g){
         g.drawImage(GameConfig.background, 0, 0, null);
         g.drawImage(GameConfig.plane.getImage(), GameConfig.plane.getX(), GameConfig.plane.getY(), null);
+
     }
 
 }
