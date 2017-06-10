@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by white on 17/6/8.
  */
-public abstract class FlyObj {
+public abstract class Item {
     protected int x;
     protected int y;
     protected int width;

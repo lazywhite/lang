@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by white on 17/6/8.
  */
-public class Plane extends FlyObj {
+public class Plane extends Item {
     private BufferedImage[] images;
     //当前图片所属下标
     private int index;
@@ -64,7 +64,12 @@ public class Plane extends FlyObj {
         this.image = this.images[this.index];
     }
     @Override
-    public void move() {
+    public void move(){
+    }
+
+    public void moveTo(int x, int y) {
+        this.x = x - this.width/2;
+        this.y = y - this.height/2;
 
     }
 
@@ -75,15 +80,12 @@ public class Plane extends FlyObj {
 
     public List<Bullet> shoot(){
         ArrayList<Bullet> bullets = new ArrayList<>();
-        if(doubleFire > 0){
-//            bulletes[0] = new Bullet(GameConfig.plane.getX() + GameConfig.plane.getWidth()/4, GameConfig.plane.getY());
-//            bulletes[1] = new Bullet(GameConfig.plane.getX() + (3 * GameConfig.plane.getWidth()/4), GameConfig.plane.getY());
-//            return bulletes;
-            bullets.add(new Bullet(GameConfig.plane.getX() + GameConfig.plane.getWidth()/4, GameConfig.plane.getY()));
-            bullets.add(new Bullet(GameConfig.plane.getX() + (3 * GameConfig.plane.getWidth()/4), GameConfig.plane.getY()));
+        if(this.doubleFire >= 2){
+            bullets.add(new Bullet(this.getX() + this.getWidth()/4, this.getY()));
+            bullets.add(new Bullet(this.getX() + (3 * this.getWidth()/4), this.getY()));
             return bullets;
         }else{
-            bullets.add(new Bullet(GameConfig.plane.getX() + GameConfig.plane.getWidth()/2, GameConfig.plane.getY()));
+            bullets.add(new Bullet(this.getX() + this.getWidth()/2, this.getY()));
             return bullets;
         }
     }

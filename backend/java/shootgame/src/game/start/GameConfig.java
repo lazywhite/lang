@@ -1,10 +1,12 @@
 package game.start;
 
-import game.entity.Bullet;
-import game.entity.Plane;
+import game.entity.*;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import java.util.concurrent.locks.ReadWriteLock;
 
 /**
  * Created by white on 17/6/8.
@@ -19,5 +21,9 @@ public class GameConfig {
     public static BufferedImage gameover;//结束图片
     public static Plane plane;
     public static GamePanel gp;
-    public static ArrayList<Bullet> bullets;
+    public static List<Bullet> bullets;
+    public static List<MinionBullet> minionBullets;
+    public static List<Minion> minions;
+    public static List<Bee> bees;
+    public static int SCORE;
 }
