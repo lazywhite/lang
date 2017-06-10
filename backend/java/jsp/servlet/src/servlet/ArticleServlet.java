@@ -20,15 +20,6 @@ public class ArticleServlet extends HttpServlet {
     }
 
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res){
-        try {
-            ServletOutputStream out = res.getOutputStream();
-            out.print("hello");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -50,5 +41,6 @@ public class ArticleServlet extends HttpServlet {
         System.out.println("get header: " + req.getHeader("accept"));
         System.out.println("content length: " + req.getContentLength());
         System.out.println("content type: " + req.getContentType());
+        resp.sendRedirect(req.getContextPath() + "/login.do");
     }
 }
