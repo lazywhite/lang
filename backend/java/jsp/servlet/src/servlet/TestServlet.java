@@ -2,12 +2,17 @@ package servlet;
 
 import javax.servlet.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 
 /**
  * Created by white on 17/6/6.
  */
 public class TestServlet extends BaseServlet{
+
+    public TestServlet(){
+        System.out.println("test servlet");
+    }
 
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
@@ -24,6 +29,7 @@ public class TestServlet extends BaseServlet{
 
     @Override
     public ServletConfig getServletConfig() {
+        System.out.println("======= get servlet config =======");
         return null;
     }
 
@@ -35,16 +41,28 @@ public class TestServlet extends BaseServlet{
             System.out.println(pn);
             System.out.println(servletRequest.getParameter(pn));
         }
-
+        System.out.println("service");
+        PrintWriter out = servletResponse.getWriter();
+        out.write("<!doctype html>");
+        out.write("<html>");
+        out.write("<head>");
+        out.write("<title>test page</title>");
+        out.write("</head>");
+        out.write("<body>");
+        out.write("<h1>this is test</h1>");
+        out.write("</body>");
+        out.write("</html>");
     }
 
     @Override
     public String getServletInfo() {
+        System.out.println("========== get servlet info ===========");
         return null;
     }
 
     @Override
     public void destroy() {
+        System.out.println("========== test servlet destroied ===========");
 
     }
 }

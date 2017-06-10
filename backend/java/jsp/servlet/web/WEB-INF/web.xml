@@ -2,7 +2,7 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-    http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
+         http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
     <context-param> <!--当前web应用的初始化参数-->
@@ -26,6 +26,18 @@
         <param-value>root</param-value>
     </context-param>
     <servlet>
+        <servlet-name>article</servlet-name>
+        <servlet-class>servlet.ArticleServlet</servlet-class>
+        <init-param>
+            <param-name>btsEncoding </param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>stbEncoding </param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
         <servlet-name>user</servlet-name>
         <servlet-class>servlet.UserServlet</servlet-class>
         <init-param>
@@ -41,12 +53,24 @@
         <servlet-name>test</servlet-name>
         <servlet-class>servlet.TestServlet</servlet-class>
     </servlet>
-    <servlet-mapping> <!-- 将url路径跟servlet关联起来 -->
+    <servlet-mapping>
         <servlet-name>test</servlet-name>
         <url-pattern>/test.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping> <!-- 多个url映射到一个servlet -->
+        <servlet-name>test</servlet-name>
+        <url-pattern>/testSecond.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>test</servlet-name>
+        <url-pattern>/prefix/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>user</servlet-name>
         <url-pattern>/login.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>article</servlet-name>
+        <url-pattern>/article.do</url-pattern>
     </servlet-mapping>
 </web-app>
