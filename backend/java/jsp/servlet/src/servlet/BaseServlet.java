@@ -27,10 +27,6 @@ public class BaseServlet implements Servlet {
         url = sc.getInitParameter("url");
         username = sc.getInitParameter("username");
         password = sc.getInitParameter("password");
-        System.out.println(username);
-        System.out.println(password);
-
-//        String realPath = sc.getRealPath(""); //获取当前绝对路径
     }
 
     @Override
