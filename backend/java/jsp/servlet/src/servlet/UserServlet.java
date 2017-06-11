@@ -15,7 +15,7 @@ public class UserServlet extends BaseServlet {
 
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
-        servletRequest.setCharacterEncoding(stbEncoding); //解决浏览器到服务器的乱码问题
+//        servletRequest.setCharacterEncoding(stbEncoding); //解决浏览器到服务器的乱码问题
         String uname = servletRequest.getParameter("username");
         String pwd = servletRequest.getParameter("password");
         UserDao ud  = new UserDao(driverClass, url, username, password);
@@ -24,8 +24,8 @@ public class UserServlet extends BaseServlet {
 
 //        ud.update("update user set password=md5(?) where name=?", "1234", "bob");
 
-        servletResponse.setContentType("text/html; charset=utf-8");
-        servletResponse.setCharacterEncoding(btsEncoding);//需要写在getWriter之前, 解决服务器到浏览器乱码问题
+//        servletResponse.setContentType("text/html; charset=utf-8");
+//        servletResponse.setCharacterEncoding(btsEncoding);//需要写在getWriter之前, 解决服务器到浏览器乱码问题
         PrintWriter out = servletResponse.getWriter();
         out.write("<!doctype html>");
         if(list.size() != 0){

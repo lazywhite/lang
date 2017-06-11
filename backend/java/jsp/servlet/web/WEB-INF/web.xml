@@ -62,10 +62,6 @@
         <url-pattern>/testSecond.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>test</servlet-name>
-        <url-pattern>/prefix/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>user</servlet-name>
         <url-pattern>/login.do</url-pattern>
     </servlet-mapping>
@@ -73,4 +69,17 @@
         <servlet-name>article</servlet-name>
         <url-pattern>/article.do</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>character</filter-name>
+        <filter-class>filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>key</param-name>
+            <param-value>value</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>character</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
 </web-app>
