@@ -1,7 +1,5 @@
 package dao;
 
-import model.User;
-import java.sql.*;
 /**
  * Created by white on 17/6/4.
  */

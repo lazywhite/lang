@@ -2,10 +2,7 @@ package servlet;
 
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 /**
@@ -23,6 +20,7 @@ public class ArticleServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+
         System.out.println("request method: "+  req.getMethod());//如果有get请求， doGet不会被调用
         System.out.println("remote user: " + req.getRemoteUser());
         System.out.println("request uri: " + req.getRequestURI());//返回请求的资源部分
@@ -41,6 +39,25 @@ public class ArticleServlet extends HttpServlet {
         System.out.println("get header: " + req.getHeader("accept"));
         System.out.println("content length: " + req.getContentLength());
         System.out.println("content type: " + req.getContentType());
-        resp.sendRedirect(req.getContextPath() + "/login.do");
+//        resp.sendRedirect(req.getContextPath() + "/login.do");
+        HttpSession hs = req.getSession();
+        String username;
+        username = (String)hs.getAttribute("username");
+        if(username == null) {
+            System.out.println("setting username");
+            hs.setAttribute("username", "test");
+        }else{
+            System.out.println(username);
+        }
+        hs.setMaxInactiveInterval(2 * 60 * 60);// 单位 秒
+        System.out.println(req.getRequestedSessionId());
+
+        Cookie c = new Cookie("cookie-key", "cookie-value");
+        resp.addCookie(c);
+        Cookie[] cs = req.getCookies();
+        for(Cookie cc: cs){
+            System.out.println(cc.getName() + ":" + cc.getValue());
+        }
+
     }
 }

@@ -1,6 +1,5 @@
 package dao;
 
-import model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -76,5 +75,39 @@ public class BaseDao {
             }
         }
         return null;
+    }
+
+    public int update(String sql, Object... params){
+        Connection conn = null;
+        PreparedStatement stat = null;
+        try{
+            conn = this.getConn();
+            stat = conn.prepareStatement(sql);
+            for(int i=1;i<=params.length;i++){
+                stat.setObject(i, params[i-1]);
+            }
+
+            int n = stat.executeUpdate();
+            System.out.println(stat);
+            return n;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return 0;
+        }finally{
+            try {
+                stat.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+    public static void main(String[] args){
+
     }
 }
