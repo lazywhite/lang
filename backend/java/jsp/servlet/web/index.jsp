@@ -8,6 +8,8 @@
     </jsp:forward>
     <% } %>
     <br />
+    <% out.println("good");%>morning<br />
+    <% out.print("hello");%>world
 </body>
 </html>
 
