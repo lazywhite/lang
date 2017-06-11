@@ -82,4 +82,11 @@
         <url-pattern>/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
+
+    <listener>
+        <listener-class>listener.RequestListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>listener.HttpListener</listener-class>
+    </listener>
 </web-app>
