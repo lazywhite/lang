@@ -19,7 +19,7 @@ public class ArticleServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
+//        req.setCharacterEncoding("UTF-8");
 
         System.out.println("request method: "+  req.getMethod());//如果有get请求， doGet不会被调用
         System.out.println("remote user: " + req.getRemoteUser());

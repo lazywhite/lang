@@ -41,7 +41,6 @@ public class TestServlet extends BaseServlet{
             System.out.println(pn);
             System.out.println(servletRequest.getParameter(pn));
         }
-        System.out.println("service");
         PrintWriter out = servletResponse.getWriter();
         out.write("<!doctype html>");
         out.write("<html>");
