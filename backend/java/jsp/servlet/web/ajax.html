@@ -1,0 +1,13 @@
+<body>
+    <script src="/js/jquery.min.js"> </script>
+
+    <script>
+        $.ajax({
+            url: "/servlet/test.do",
+            method: "get",
+            success: function(data){
+                console.log(data);
+            }
+        })
+    </script>
+</body>
