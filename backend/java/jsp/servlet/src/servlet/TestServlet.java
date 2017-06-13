@@ -1,5 +1,8 @@
 package servlet;
 
+import com.google.gson.Gson;
+import model.User;
+
 import javax.servlet.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,15 +45,12 @@ public class TestServlet extends BaseServlet{
             System.out.println(servletRequest.getParameter(pn));
         }
         PrintWriter out = servletResponse.getWriter();
-        out.write("<!doctype html>");
-        out.write("<html>");
-        out.write("<head>");
-        out.write("<title>test page</title>");
-        out.write("</head>");
-        out.write("<body>");
-        out.write("<h1>this is test</h1>");
-        out.write("</body>");
-        out.write("</html>");
+        User u = new User();
+        u.setId(10);
+        u.setName("bob");
+        Gson gson = new Gson();
+        String data = gson.toJson(u);
+        out.write(data);
     }
 
     @Override
