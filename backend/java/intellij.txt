@@ -1,0 +1,30 @@
+设置页面
+    command + , 
+
+智能补全
+    postfix completion
+
+源文件模板
+    Editor --> File and Code Templates
+
+创建普通jsp项目
+    Java Enterprise--> Application Server --> create from template<JavaEE web template>
+
+创建用maven管理的web项目
+    MAVEN-->create from archetype--> maven-archetype-webapp
+    
+创建spring项目
+    http://start.spring.io or Spring Initializer
+
+创建普通struts2项目
+    create project--> javaEE (additional library and framework) --> struts2
+
+缺少mysql driver
+    File-->Project Architecture --> Library --> add java 
+
+添加tomcat部署支持
+    File --> Project Architecture --> artifacts (add web:war explorded)
+    右上角 edit configuration
+
+添加项目访问路径前缀
+    Edit configuration-->Deployment-->application context
