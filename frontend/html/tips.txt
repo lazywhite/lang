@@ -1,10 +1,4 @@
 <img src="" alt="加载失败提示信息"/>
-<s>strike line<s> 删除线标签
-
-text-decoration:none 无装饰，通常对html下划线标签去掉下划线样式
-text-decoration:underline 下划线样式
-text-decoration:line-through 删除线样式-贯穿线样式
-text-decoration:overline 上划线样式
 
 border-radius: 5px;
 border-top-left-radius:5em;
@@ -18,28 +12,14 @@ overflow: 当内容溢出元素框时的行为
     scroll
     auto
     inherit
+
 display: 规定元素应该生成的框的类型
+    none
     block
     inline
     inline-block
-    none
     list-item
-    run-in
-    compact
-    marker
-    table
-    inherite-table
-    table-row-group
-    table-header-group
-    table-footer-group
-    table-row
-    table-column
-    table-column-group
-    table-cell
-    table-caption
     inherit
-
-
 
 visibility: 规定元素是否可见, 即使不可见的元素依然
             会占用页面空间
@@ -49,10 +29,28 @@ visibility: 规定元素是否可见, 即使不可见的元素依然
     inherite: 从父元素继承visibility的值
 
 position
-    static
-    fixed
-    absolute
-    relative
+    static: 默认值, 正常文本流, 此时top, left等无效
+    fixed: 脱离文本流， 相对于浏览器固定在一个位置
+    absolute: 脱离文本流, 如果父级元素定位非static则跟随父级， 没有则跟随浏览器窗口
+    relative: 正常文本流偏移位置
+
+z-index
+    只能应用在非static position定位的元素, 值越大离用户越近
+
+clear: both; 元素左右两边均没有浮动元素
+
+text-decoration
+    none
+    underline: 下划线
+    blink: 闪烁
+    overline: 上划线
+    line-through: 贯穿线
+
+font-weight
+    normal
+    bold: 加粗
+    bolder: 特粗
+    lighter: 细体
 
 html5
     audio
@@ -66,13 +64,48 @@ html5
 
 
 <marquee>滚动标签
+<b>粗体标签
+<i>斜体
+<big>小号字体
+<small>
+<s>strike line<s>
+<bdo dir="rtl">line</bdo>
 
-table @align @cellspacing @border
+a @target
+    _blank: 在新窗口中打开
+    _self: 在相同框架中打开
+    _parent: 在父框架集中打开
+    _top: 在整个窗口中打开被链接的文档
+
+table @align @cellspacing:单元格间距 @cellpadding:文字到单元格距离 @border @align 
     caption: 标题
     thead: 表头
+        tr
+            th
     tbody
         tr @align @valign
             td @colspan @rowspan @bgcolor @background image        
+    tfoot
+
+table, div是块级元素
+
+iframe
+dl
+    dt
+    dd
+
+frameset rows|cols="20%,80%" frameborder="0"
+    frame src=""
+
+select 
+    multiple="multiple" size="5"  展开下拉列表，可同时选5个
+    disabled="disabled"
+    option 
+        selected="selected"
+
+
+<label><input type="radio" name="gender" value="femal"/>女</label> 整体可点击
+给一组radio赋相同的名字
 
 browser object model(BOM)
     window
@@ -97,13 +130,24 @@ input type
     text
     radio 单选框
     submit
+    image
+    reset
 
 input是行内元素
 
-float 脱离文本流， 使块元素成为行内元素
-float元素后面的， 必须要clear both
+浮动起来的元素可以覆盖元素， 但不能覆盖文字
 
+元素的border不占用其width, height
+元素所占浏览器的面积为width+padding+border+margin
 
+css 样式优先级
+    !important>id选择器>属性选择器>类选择器> 标签选择器
+
+    background-color: #555 !important; #特权规定
+
+fieldset
+    legend
+        form
 <body onload="initialize()"> 页面加载完毕后触发
 
 span width
@@ -115,3 +159,4 @@ input range onchange onmousemove
 
 如果某些元素没有设置样式， 则自动从父元素继承
 样式的定义有严格的先后顺序, 当发生重复时， 后定义的样式会覆盖前面的样式
+
