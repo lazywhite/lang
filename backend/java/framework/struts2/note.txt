@@ -1,0 +1,62 @@
+
+前身 webwork
+    struts1(apache), 扩展性较差
+
+struts2 = webwork框架 + struts1生态系统
+
+what when where how
+
+
+mvc: 分层思想
+    controller 控制器， 负责分发请求
+    model 业务模型， 负责处理业务逻辑
+    view 呈现业务数据
+
+dispatcher
+    struts.xml
+    url = hello
+        HelloAction class
+            sayHello method
+                result
+
+url <--> action
+
+el表达式在struts2里面也可以使用
+
+pageContext
+request
+
+
+action
+    基本属性注入
+    域属性注入
+        form
+            input name="user.name" 
+
+action
+    input 属性
+    output属性
+
+${action.user}
+
+get方式解决乱码
+    server.xml
+        Connector URIEncoding="UTF-8"
+    
+'2012/12/12' 默认类型转换器不支持转换此类型为Date
+
+
+struts.xml
+    配置url和action的对应关系
+    action method属性默认值是execute
+    result 默认是success
+
+    result 
+        name 默认值是success
+        type
+            chain
+            dispatcher: 转发
+            redirect: 无法获取action的属性值
+            freemaker
+            xslt
+            redirectAction
