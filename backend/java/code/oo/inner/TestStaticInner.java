@@ -13,7 +13,7 @@ class StaticOuter {
             System.out.println("local x is " + x);
             System.out.println("inner x is " + this.x);
             System.out.println("outer static x is " + StaticOuter.x);
-            System.out.println("outer y is " + y);
+//            System.out.println("outer y is " + y);
         }
 
     }

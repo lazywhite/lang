@@ -1,8 +1,6 @@
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
+
 /**
  * Created by white on 17/5/24.
  * 反射允许检查或修改程序的运行时行为, 例如获取类, 接口, 变量及方法的信息
@@ -36,16 +34,22 @@ final class MethodDemo implements Alive{
     }
     public void move(){
     }
-    private void alive(){
+    public void alive(String b){
+        System.out.println(b);
     }
 }
 public class ReflectTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         MethodDemo md = new MethodDemo();
         Class mdCls = md.getClass();
         System.out.println(mdCls.getModifiers());
         System.out.println(Modifier.isFinal(mdCls.getModifiers()));
         System.out.println(Modifier.isStatic(mdCls.getModifiers()));
+
+        //根据方法名获得方法
+        Method method = mdCls.getDeclaredMethod("alive", String.class);
+        method.invoke(md,"good");//调用时必须加上对象参数
+        //private 的方法， 能反射到， 但不能调用
 
         Class intCls = Integer.class;
         System.out.println(intCls.getPackage());//获取类的包信息
