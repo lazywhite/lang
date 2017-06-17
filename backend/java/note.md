@@ -131,3 +131,31 @@ jdk1.8.0
                rt.jar
                charsets.jar
 ```
+
+## 创建可执行jar包
+```
+├── classes
+│   ├── MANIFEST.ini
+│   └── com
+│       └── local
+│           └── test
+│               ├── Test.class
+│               └── User.class
+└── src
+    └── com
+        └── local
+            └── test
+                ├── Test.java
+                └── User.java
+
+
+javac -d classes  src/com/local/test/*.java
+
+touch classes/MANIFEST.ini
+    Main-Class: com.local.test.Test
+
+cd classes
+jar -cvmf MANIFEST.ini app.jar com
+
+java -jar app.jar
+```

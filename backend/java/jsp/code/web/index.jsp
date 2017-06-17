@@ -4,8 +4,6 @@
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;Charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ taglib prefix="" tagdir="/WEB-INF/tags"%>
-
 <%! Float PI = 3.14f;%>
 
 <html lang="en">
