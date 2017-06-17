@@ -20,11 +20,16 @@ js类型转换
     var s1 = String(null) //与toString()不同的是可以转换null与undefined值
     var s1 = String(undefined)
 
-js类型
+js基本类型
     undefined
     Boolean
     Number
     String
+    null
+js符合数据类型
+    object
+    Function
+    Array
 
 true == 1 --> true
 false == 0 --> true
@@ -134,3 +139,45 @@ $.ajax({
     error: function(){}, //失败的回调
 })
 
+js静态对象
+    Date
+    String
+    Math
+    Array
+    Number
+    RegExp
+    Boolean
+
+typeof <>  --> 'number', 'string', 'boolean'
+
+js中的数组可以是任何元素, 初始化值是undefined
+js没有块级语句之分，在块内定义的元素， 外面也可以用
+js有全局变量和局部变量之分
+
+定义函数
+    function test(){}
+        函数调用可在定义之后
+    var test = function(){}
+        函数调用必须在定义之后
+    var test = new Function("arg1","arg2"... "alert(arg1+arg2)")
+    (function(a){alert(a);})(100);
+函数没有返回值， 则函数调用的结果是undefined
+函数内部调用变量早于定义， 则返回undefined， 不会去找同名全局变量
+
+//定义一个对象
+var p = {
+    name: "bob", 
+    age: 10
+    show: function(){
+        console.log(this.name + this.age)
+    }
+}
+p.age || p['age'] 访问属性
+
+function Person(name, age){
+    this.name = name;
+    this.age = age;
+}
+Person.prototype.show = function(){
+    console.log(this.name + this.age)
+}
