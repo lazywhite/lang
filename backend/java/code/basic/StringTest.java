@@ -8,13 +8,17 @@ import java.util.Arrays;
  */
 public class StringTest{
     public static void main(String[] args){
-        System.out.println("========");
+        //StringBuilder API
         StringBuilder strBuilder = new StringBuilder();
-        for(int i=0;i<=10;i++){
-            strBuilder.append(i);
-        }
+        strBuilder.append("a string");
+        strBuilder.append("a char");
+        strBuilder.setCharAt(3, 'b');
+        strBuilder.insert(5, "good");
+        strBuilder.insert(8, 'c');
+        strBuilder.delete(0, 5);//包括start， 不包括end
         System.out.println(strBuilder);
 
+        //StringBuffer API与StringBuilder相同
         StringBuffer strBuffer = new StringBuffer();
         strBuffer.append("test string");
         strBuffer.append("test string");
