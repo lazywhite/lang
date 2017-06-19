@@ -15,5 +15,26 @@
             <result name="registerPage">/register.jsp</result>
             <result >/index.jsp</result>
         </action>
+        <action name="empView" class="action.EmpViewAction" method="execute">
+            <result name="success" type="dispatcher">/emp/empview.jsp</result>
+        </action>
+        <action name="empToAdd" class="action.EmpToAddAction" method="execute">
+            <result name="success" type="dispatcher">/emp/empadd.jsp</result>
+        </action>
+        <action name="empAdd" class="action.EmpAddAction" method="execute">
+            <result name="success" type="redirectAction">empView</result>
+        </action>
+        <action name="empBatchDel" class="action.EmpBatchDelAction" method="execute">
+            <result name="success" type="redirectAction">empView</result>
+        </action>
+        <action name="empDel" class="action.EmpDelAction" method="execute">
+            <result name="success" type="redirectAction">empView</result>
+        </action>
+        <action name="empToUpd" class="action.EmpToUpdAction" method="execute">
+            <result name="success" type="dispatcher">/emp/empupdate.jsp</result>
+        </action>
+        <action name="empUpd" class="action.EmpUpdAction" method="execute">
+            <result name="success" type="redirectAction">empView</result>
+        </action>
     </package>
 </struts>

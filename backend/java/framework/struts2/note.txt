@@ -60,3 +60,5 @@ struts.xml
             freemaker
             xslt
             redirectAction
+
+action方法必须是返回string无参的
