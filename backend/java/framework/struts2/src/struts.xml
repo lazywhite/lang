@@ -5,7 +5,7 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <package name="test" extends="struts-default">
+    <package name="emp" extends="struts-default" namespace="/emp">
         <action name="login" class="action.LoginAction" method="execute">
             <result name="failed">/login.jsp</result>
             <result >/index.jsp</result>
@@ -35,6 +35,11 @@
         </action>
         <action name="empUpd" class="action.EmpUpdAction" method="execute">
             <result name="success" type="redirectAction">empView</result>
+        </action>
+    </package>
+    <package name="test" extends="struts-default" namespace="/test">
+        <action name="scope" class="action.BaseAction" method="execute">
+            <result name="success" type="dispatcher">/test.jsp</result>
         </action>
     </package>
 </struts>

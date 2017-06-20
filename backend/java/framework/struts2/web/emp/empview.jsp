@@ -7,6 +7,7 @@ To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set value="${pageContext.request.contextPath}" var="path"></c:set>
 <html>
 <head>
     <script type="text/javascript">
@@ -20,7 +21,7 @@ To change this template use File | Settings | File Templates.
             }
             var rt = confirm("确认删除?");
             if(rt == true){
-                location.href="empDel?id=" + id;
+                location.href="${path}/emp/empDel?id=" + id;
             }
         }
         function checkAll(){
@@ -44,7 +45,7 @@ To change this template use File | Settings | File Templates.
     </script>
 </head>
 <body>
-<a href="empToAdd" >新增</a>
+<a href="${path}/emp/empToAdd" >新增</a>
 <hr />
 <form id="search" action="empView" method="post">
     <fieldset>
@@ -60,7 +61,7 @@ To change this template use File | Settings | File Templates.
     </fieldset>
 </form>
 
-<form action="empBatchDel" method="post" onsubmit="return confirm()">
+<form action="${path}/emp/empBatchDel" method="post" onsubmit="return confirm()">
     <table cellspacing="0px" cellpadding="10px" border="1px">
         <thead>
         <th><label><input type="checkbox" id="checkAllbtn" onclick="checkAll()" />全选</label></th>
@@ -87,7 +88,7 @@ To change this template use File | Settings | File Templates.
                 <td>${emp.sex}</td>
                 <td>${emp.hiredate}</td>
                 <td>${emp.deptName}</td>
-                <td><a href="empToUpd?id=${emp.empno}">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="delEmp(${emp.empno})">删除</a></td>
+                <td><a href="${path}/emp/empToUpd?id=${emp.empno}">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="delEmp(${emp.empno})">删除</a></td>
             </tr>
 
         </c:forEach>
@@ -95,7 +96,6 @@ To change this template use File | Settings | File Templates.
     </table>
     <input type="submit" value="删除所选"/>
 </form>
-<hr />
 <hr />
 <c:if test="${curPage > 1}">
     <a href="javascript:;" onclick="jump(1)">首页</a>
