@@ -14,9 +14,9 @@ import java.util.Map;
  * Created by white on 17/6/19.
  */
 public abstract class BaseAction extends ActionSupport implements RequestAware, SessionAware, ApplicationAware{
-    private Map<String, Object> request;
-    private Map<String, Object> session;
-    private Map<String, Object> application;
+    protected Map<String, Object> request;
+    protected Map<String, Object> session;
+    protected Map<String, Object> application;
 
     @Override
     public abstract String execute() throws Exception;

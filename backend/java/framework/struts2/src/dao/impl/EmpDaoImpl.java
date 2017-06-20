@@ -179,10 +179,10 @@ public class EmpDaoImpl implements EmpDao {
         ResultSet rs = null;
         PreparedStatement ps = null;
         ps = conn.prepareStatement(sql);
-        ps.setString(1, emp.getEname());
-        ps.setString(2, emp.getJob());
-        ps.setFloat(3, emp.getSalary());
-        ps.setDouble(4, emp.getBonus());
+        ps.setString(1, emp.getEname() == null?"":emp.getEname());
+        ps.setString(2, emp.getJob()==null?"":emp.getJob());
+        ps.setFloat(3, emp.getSalary()==null?0.0f:emp.getSalary());
+        ps.setDouble(4, emp.getBonus()==null?0.0:emp.getBonus());
         ps.setString(5, emp.getSex());
         ps.setDate(6,  new java.sql.Date(emp.getHiredate().getTime()));
         ps.setInt(7, emp.getDept().getDeptno());
