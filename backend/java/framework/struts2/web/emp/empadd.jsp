@@ -7,11 +7,12 @@ To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set value="${pageContext.request.contextPath}" var="path"></c:set>
 <html>
     <head>
     </head>
     <body>
-        <form id="search" action="empAdd" method="post">
+        <form id="search" action="${path}/emp/empAdd" method="post">
             名称:<input type="text" name="emp.ename" id="name" /><br/>
             职位:<input type="text" name="emp.job" /><br/>
             工资:<input type="text" name="emp.salary" /><br/>

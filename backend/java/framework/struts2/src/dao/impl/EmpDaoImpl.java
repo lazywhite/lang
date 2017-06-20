@@ -19,6 +19,7 @@ public class EmpDaoImpl implements EmpDao {
 
     @Override
     public List<EmpWrapper> findEmpByPage(Integer curPage, Integer pageSize, Map<String, Object> map) throws SQLException {
+        //Todo: 入职日期的范围搜索
         List<EmpWrapper> list = new ArrayList<>();
         StringBuilder str = new StringBuilder();
         str.append("select empno, ename, job, salary, bonus, sex, hiredate, emp.deptno, deptname from emp ");
@@ -172,6 +173,7 @@ public class EmpDaoImpl implements EmpDao {
 
     @Override
     public void update(Emp emp) throws SQLException {
+        //TODO: null值检测
         String sql = "update emp set ename=?, job=?, salary=?, bonus=?, sex=?, hiredate=?, deptno=?  where empno = ?";
         Connection conn = ConnUtil.getConn();
         ResultSet rs = null;
