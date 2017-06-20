@@ -9,8 +9,10 @@ public class User {
     private String name;
     private String password;
     private Date birthDay;
-    public Integer[] getHobby() {
-        return hobby;
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 
     public Date getBirthDay() {
@@ -21,11 +23,16 @@ public class User {
         this.birthDay = birthDay;
     }
 
-    public void setHobby(Integer[] hobby) {
+
+    public String[] getHobby() {
+        return hobby;
+    }
+
+    public void setHobby(String[] hobby) {
         this.hobby = hobby;
     }
 
-    private Integer[] hobby;
+    private String[] hobby;
 
     public User() {
         System.out.println("实例化User");
@@ -43,6 +50,13 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                '}';
     }
 
     public void setName(String name) {

@@ -12,8 +12,12 @@ To change this template use File | Settings | File Templates.
 <head>
     <script type="text/javascript">
         function jump(page){
-            document.getElementById("curPage").value = page;
-            document.getElementById("search").submit();
+            if(page > ${totalPage}){
+                return;
+            }else {
+                document.getElementById("curPage").value = page;
+                document.getElementById("search").submit();
+            }
         }
         function delEmp(id){
             if(id == null || id == undefined){
@@ -102,6 +106,7 @@ To change this template use File | Settings | File Templates.
     <a href="javascript:;" onclick="jump(${curPage -1})">上一页</a>
 </c:if>
 第${curPage}页/共${totalPage}页
+<input type="number" id="ipt" min="1" max="${totalPage}" onchange="jump(this.value)" />
 <c:if test="${curPage < totalPage}">
     <a href="javascript:;" onclick="jump(${curPage +1})">下一页</a>
     <a href="javascript:;" onclick="jump(${totalPage})">尾页</a>
