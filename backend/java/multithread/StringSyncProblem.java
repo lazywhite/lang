@@ -42,7 +42,8 @@ public class StringSyncProblem {
         Service s2 = new Service();
 
         Athread a = new Athread(s1, "AA");
-        Athread b = new Athread(s2, "AA");
+        Athread b = new Athread(s2, "BB");//线程相互独立
+//        Athread b = new Athread(s2, "AA");//s2无法运行
 
         a.start();
         b.start();
