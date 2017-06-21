@@ -5,7 +5,7 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <package name="main" extends="struts-default" namespace="/">
+    <package name="main" extends="json-default" namespace="/">
         <action name="login" class="action.LoginAction" method="execute">
             <result name="failed">/login.jsp</result>
             <result >/index.jsp</result>
@@ -14,6 +14,23 @@
             <result name="failed">/login.jsp</result>
             <result name="registerPage">/register.jsp</result>
             <result >/index.jsp</result>
+        </action>
+        <action name="download" class="action.DownloadAction" method="execute">
+            <result type="stream" name="success">
+               <param name="inputName">inputStream</param>
+               <param name="bufferSize">5*1024</param>
+            </result>
+        </action>
+        <action name="validcode" class="action.ValidCodeAction" method="execute">
+            <result type="stream" name="success">
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+        <action name="checkcode" class="action.CheckCodeAction" method="execute">
+            <result type="json" name="success">
+                <param name="includeProperties">flag</param>
+            </result>
         </action>
 
     </package>

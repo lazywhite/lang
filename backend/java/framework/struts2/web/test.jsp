@@ -20,6 +20,32 @@
 
     </style>
 
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#img").click(function(){
+                var id = Math.random();
+                $(this).attr("src", "${pageContext.request.contextPath}/validcode?id=" + id);
+            })
+        })
+        function valid(){
+            var code = $("#userInput").val();
+            $.ajax({
+                url: "${pageContext.request.contextPath}/checkcode?code=" + code,
+                method: "get",
+                dataType: "json",
+                success: function(data){
+                    var flag = data.flag;
+                    if(flag){
+                        alert("you are right");
+                    }else{
+                        alert("you are wrong");
+                    }
+                    $("#img").click();
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 request:${requestKey}
@@ -91,13 +117,23 @@ sessionSize:<s:property value="#session.size" /> <br/>  <!--注意var不要跟se
 <s:property value="sex" />
 <s:a action="login" namespace="/" > 访问登录页面</s:a> <!--必须指定namespace -->
 
-<s:select  name="testSelect" list="list"  listKey="name" listValue="password" ></s:select>
-<s:form action="register" namespace="/">
+<!-- name 规定默认选定的option -->
+<s:select  list="list"  listKey="password" listValue="name"
+headerKey="----select---" headerValue="-1" name="selectedOptionValue"
+ ></s:select>
+<s:form action="register" namespace="/" theme="simple" id="ff" >
     <s:textfield label="用户名" name="test" class="test"></s:textfield>
     <s:textfield label="密码" name="password" ></s:textfield>
-    <s:checkboxlist list="hobby" name="hobby"></s:checkboxlist>
+    <!-- showPassword true显示黑点, false不显示任何东西 -->
+    <s:password showPassword="true" value="test"></s:password>
+    <%--<s:checkboxlist list="intList" listKey="intId" listValue="intName"></s:checkboxlist>--%>
     <s:submit align="left" value="提交" ></s:submit>
     <s:reset></s:reset>
 </s:form>
+
+<a href="${pageContext.request.contextPath}/download?filename=<%=java.net.URLEncoder.encode("测试用的rar.rar", "utf-8").toString().replace("%", "_")%>">点击下载</a>
+<input type="text" id="userInput" placeholder="请输入验证码" onblur="valid()"/>
+<img src="${pageContext.request.contextPath}/validcode" id="img" />
+
 </body>
 </html>

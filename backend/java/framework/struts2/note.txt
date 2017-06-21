@@ -62,3 +62,25 @@ struts.xml
             redirectAction
 
 action方法必须是返回string无参的
+
+package
+    @namespace
+/emp/ 路径省略
+<c:set name="" value=""></c:set>
+
+获取request, session, application对象的三种方式
+    1. ActionContext
+    2. ServletActionContext
+    3. implements RequestAware, SessionAware, ApplicationAware
+    ${sessionScope.key}
+
+ognl表达式只能在标签里面用
+标签
+    <s:if test="">
+    <s:elsif test="">
+    <s:else>
+    <s:iterator begin="" end="" step="">
+    <s:iterator value="" var="" status="">
+    <s:property value="">   
+    <s:a action="" namespace="">
+
