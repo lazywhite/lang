@@ -1,15 +1,11 @@
 package action;
 
-import com.opensymphony.xwork2.ActionSupport;
+import model.Interest;
 import model.User;
-import org.apache.struts2.interceptor.ApplicationAware;
-import org.apache.struts2.interceptor.RequestAware;
-import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by white on 17/6/19.
@@ -21,6 +17,25 @@ public class ScopeAction extends BaseAction {
     private List<User> list;
     private String sex;
     private String[] hobby;
+    private String selectedOptionValue;
+
+    public List<Interest> getIntList() {
+        return intList;
+    }
+
+    public void setIntList(List<Interest> intList) {
+        this.intList = intList;
+    }
+
+    private List<Interest> intList;
+
+    public String getSelectedOptionValue() {
+        return selectedOptionValue;
+    }
+
+    public void setSelectedOptionValue(String selectedOptionValue) {
+        this.selectedOptionValue = selectedOptionValue;
+    }
 
     public String getSex() {
         return sex;
@@ -81,10 +96,15 @@ public class ScopeAction extends BaseAction {
         application.put("appKey", 300);
         list = new ArrayList<>();
         list.add(new User("bob", "1234"));
-        list.add(new User("marry", "1234"));
-        list.add(new User("delian", "1234"));
-        list.add(new User("hekafj", "1234"));
-        hobby = new String[]{"10", "02", "03"};
+        list.add(new User("marry", "123124"));
+        list.add(new User("delian", "1231924"));
+        list.add(new User("hekafj", "1231234"));
+        selectedOptionValue = "1234";
+        intList = new ArrayList<>();
+        intList.add(new Interest(1, "吃"));
+        intList.add(new Interest(2, "喝"));
+        intList.add(new Interest(3, "玩"));
+        intList.add(new Interest(4, "乐"));
         return "success";
     }
 }
