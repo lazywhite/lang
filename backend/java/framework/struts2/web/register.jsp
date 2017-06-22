@@ -6,13 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <html>
 <head>
   <title>$Title$</title>
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/register" method="post">
+<form action="${pageContext.request.contextPath}/register" method="post" enctype="multipart/form-data">
   <fieldset>
     <caption>注册信息</caption>
     <br/>
@@ -39,6 +40,9 @@
       生日：<input type="text" name="user.birthDay" />
     </label>
     <br/>
+    <label>
+      头像: <s:file name="portrait"></s:file>
+    </label>
     <input type="submit" />
   </fieldset>
 </form>

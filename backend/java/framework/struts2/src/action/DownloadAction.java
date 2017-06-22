@@ -25,7 +25,10 @@ public class DownloadAction extends BaseAction {
         String realPath = ServletActionContext.getServletContext().getRealPath("upload");
         FileInputStream fs = new FileInputStream(new File(realPath + File.separator + filename));
         HttpServletResponse response = ServletActionContext.getResponse();
-        response.setHeader("Content-Disposition", "attachment;filename=" + filename);
+//        ServletActionContext.getActionContext().getApplication();
+//        ServletActionContext.getRequest()
+//        ServletActionContext.getRequest().getSession();
+//        response.setHeader("Content-Disposition", "attachment;filename=" + filename);
         return fs;
     }
 

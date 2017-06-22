@@ -10,6 +10,6 @@
   <head>
   </head>
   <body>
-  <h1> ${action.user.name } is logged in</h1>
+    this is index page
   </body>
 </html>

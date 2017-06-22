@@ -1,21 +1,13 @@
 package action;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import model.User;
-import org.apache.struts2.ServletActionContext;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 /**
  * Created by white on 17/6/17.
  */
 public class LoginAction extends ActionSupport{
     private String name;
+    private String password;
 
     public String getName() {
         return name;
@@ -33,18 +25,28 @@ public class LoginAction extends ActionSupport{
         this.password = password;
     }
 
-    private String password;
+    public void volidate(){
+        super.validate();
+        if("".equals(this.getName())){
+            this.addFieldError("name", "用户名不能为空");
+        }
+        if("".equals(this.getPassword())){
+            this.addFieldError("password", "密码不能为空");
+        }
+
+    }
 
     @Override
     public String execute() throws Exception {
-        //类型与servlet的session不同
-        Map<String, Object> session = ActionContext.getContext().getSession();
-        Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
-        ActionContext.getContext().getApplication();
+        /*获取map类型的三大对象*/
+//        Map<String, Object> session = ActionContext.getContext().getSession();
+//        Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+//        Map<String, Object> application = ActionContext.getContext().getApplication();
 
-        HttpServletRequest httpRequest = ServletActionContext.getRequest();
-        HttpServletResponse httpResponse = ServletActionContext.getResponse();
-        HttpSession httpSession = httpRequest.getSession();
+        /*获取servlet类型的 三大对象 */
+//        HttpServletRequest httpRequest = ServletActionContext.getRequest();
+//        HttpServletResponse httpResponse = ServletActionContext.getResponse();
+//        HttpSession httpSession = httpRequest.getSession();
         if (name != null) {
             return "success";
         }else{
