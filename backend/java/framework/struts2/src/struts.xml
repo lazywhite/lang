@@ -50,6 +50,12 @@
                 <param name="includeProperties">keywords.*</param> <!-- 如果不加此属性, 会将action所有的属性都返回-->
             </result>
         </action>
+        <action name="jsonGet" class="action.JsonGetAction" method="execute">
+            <result>/index.jsp</result>
+        </action>
+        <action name="jsonPost" class="action.JsonPostAction" method="execute">
+            <result>/index.jsp</result>
+        </action>
 
     </package>
     <package name="emp" extends="struts-default" namespace="/emp">

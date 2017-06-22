@@ -21,3 +21,4 @@
 **/out/**
 **/target/**
 **/*.jar
+**/upload/*

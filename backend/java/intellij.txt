@@ -28,3 +28,11 @@
 
 添加项目访问路径前缀
     Edit configuration-->Deployment-->application context
+
+热部署
+    JRebel + Compiler auto build
+    src/rebel.xml
+        classpath
+        web path
+
+jrebel使用中, 如果导入jar包, 需要重新部署
