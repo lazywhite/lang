@@ -54,14 +54,32 @@ struts.xml
     result 
         name 默认值是success
         type
-            chain
+            chain: 转发到action
             dispatcher: 转发
             redirect: 无法获取action的属性值
             freemaker
-            xslt
-            redirectAction
+            redirectAction: 重定向到其他action, 可以通过配置携带参数
+            stream: 字节形式返回
+            json
 
 action方法必须是返回string无参的
+
+<result type="chain">
+    <param name="inputStream">inputStream</param>
+    <param name="contentDisposition">attachment:filename=${filename}</param>
+    <param name="contentType">inputStream</param>
+    <param name="bufferSize">5*1024</param> //5K字节
+    
+struts.xml 可以include其他xml来实现多配置文件开发
+访问action的不同方法
+    list!listUser.action
+    <action name="listUser" class="controller.User" method="listUser">
+
+全局result
+    struts
+        package
+            global-results
+                <result name="oneResult">/onResult.jsp</result>
 
 package
     @namespace
@@ -84,3 +102,16 @@ ognl表达式只能在标签里面用
     <s:property value="">   
     <s:a action="" namespace="">
 
+    <s:select>
+
+下载
+ 
+session取出的东西要强转
+拦截器
+    1. 编写公共代码
+    2. 根据url地址或参数决定是否调用action
+
+如果action没有配置拦截器, 则会配置一个默认的拦截器栈defaultStack
+一旦配置了一个拦截器, 就不会再提供了, 需要手动配置
+
+StrutsTypeConverter

@@ -17,6 +17,15 @@
         table td.even {
             color: green;
         }
+        #show{
+            border: 0px solid blue;
+        }
+
+        .alternate:hover{
+            color: red;
+            font-size: 30px;
+            background-color: grey;
+        }
 
     </style>
 
@@ -26,7 +35,7 @@
             $("#img").click(function(){
                 var id = Math.random();
                 $(this).attr("src", "${pageContext.request.contextPath}/validcode?id=" + id);
-            })
+            });
         })
         function valid(){
             var code = $("#userInput").val();
@@ -44,6 +53,34 @@
                     $("#img").click();
                 }
             });
+
+        }
+
+        function getCompletion(){
+            var input = $("#popup").val();
+            var show = $("#show");
+            if(input == null || input == undefined || input == ""){
+                show.empty();
+                show.css("border", "0px solid blue");
+                return;
+            }
+            $.ajax({
+                method: "get",
+                url: "${pageContext.request.contextPath}/keyword?input=" + input,
+                success: function(data){
+                    var keywords  = data.keywords;
+                    show.empty();
+                    for(var i=0;i<keywords.length;i++){
+                        var op = $("<div class='alternate'>" + keywords[i] + "</div>");
+                        show.append(op);
+                    }
+
+                    show.css("border", "1px solid blue");
+                    $(".alternate").mouseover(function(){
+                        $("#popup").val($(this).text());
+                    })
+                }
+            })
         }
     </script>
 </head>
@@ -119,8 +156,8 @@ sessionSize:<s:property value="#session.size" /> <br/>  <!--注意var不要跟se
 
 <!-- name 规定默认选定的option -->
 <s:select  list="list"  listKey="password" listValue="name"
-headerKey="----select---" headerValue="-1" name="selectedOptionValue"
- ></s:select>
+           headerKey="----select---" headerValue="-1" name="selectedOptionValue"
+></s:select>
 <s:form action="register" namespace="/" theme="simple" id="ff" >
     <s:textfield label="用户名" name="test" class="test"></s:textfield>
     <s:textfield label="密码" name="password" ></s:textfield>
@@ -135,5 +172,10 @@ headerKey="----select---" headerValue="-1" name="selectedOptionValue"
 <input type="text" id="userInput" placeholder="请输入验证码" onblur="valid()"/>
 <img src="${pageContext.request.contextPath}/validcode" id="img" />
 
+<br />
+<input type="text" id="popup" onkeyup="getCompletion()" />
+<div id="show">
+
+</div>
 </body>
 </html>

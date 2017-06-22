@@ -6,9 +6,17 @@ package action;
 public class CheckCodeAction extends BaseAction {
     private String code;
     private Boolean flag;
-
+    private String mm = "kadjf";
     public String getCode() {
         return code;
+    }
+
+    public String getMm() {
+        return mm;
+    }
+
+    public void setMm(String mm) {
+        this.mm = mm;
     }
 
     public Boolean getFlag() {
