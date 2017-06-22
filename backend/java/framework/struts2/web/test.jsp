@@ -82,6 +82,30 @@
                 }
             })
         }
+        function postJson(){
+
+            var obj = {
+                name: "bob",
+                password: "passwd",
+                age: 20
+            }
+            <%--$.ajax({--%>
+                <%--url: "${pageContext.request.contextPath}/jsonPost?jsonString=" + JSON.stringify(obj),--%>
+                <%--method: "GET",--%>
+                <%--success: function(data){--%>
+                    <%--console.log('done');--%>
+                <%--}--%>
+            <%--})--%>
+            $.ajax({
+                url: "${pageContext.request.contextPath}/jsonPost" ,
+                method: "GET",
+                dataType: "json",
+                data: {"data":JSON.stringify(obj)},
+                success: function(data){
+                    console.log('done');
+                }
+            })
+        }
     </script>
 </head>
 <body>
@@ -176,6 +200,7 @@ sessionSize:<s:property value="#session.size" /> <br/>  <!--注意var不要跟se
 <input type="text" id="popup" onkeyup="getCompletion()" />
 <div id="show">
 
+    <button onclick="postJson()">测试json post</button>
 </div>
 </body>
 </html>

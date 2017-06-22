@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -65,8 +66,13 @@ public class User {
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", birthDay=" + birthDay +
+                ", hobby=" + Arrays.toString(hobby) +
+                ", portraitPath='" + portraitPath + '\'' +
                 '}';
     }
+
     public User() {
         System.out.println("实例化User");
     }

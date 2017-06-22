@@ -151,8 +151,10 @@ jdk1.8.0
 
 javac -d classes  src/com/local/test/*.java
 
-touch classes/MANIFEST.ini
-    Main-Class: com.local.test.Test
+touch classes/MANIFEST.MF
+    Sealed: true  #包密封， 不允许出现包顶替
+    Manifest-Version: 1.0
+    Main-Class: com.local.test.Test  #必须有换行
 
 cd classes
 jar -cvmf MANIFEST.ini app.jar com
