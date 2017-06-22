@@ -200,7 +200,12 @@ sessionSize:<s:property value="#session.size" /> <br/>  <!--注意var不要跟se
 <input type="text" id="popup" onkeyup="getCompletion()" />
 <div id="show">
 
-    <button onclick="postJson()">测试json post</button>
+
 </div>
+<button onclick="postJson()">测试json post</button>
+<img src="${pageContext.request.contextPath}/chart/pie" />
+<br />
+<img src="${pageContext.request.contextPath}/chart/bar" />
+
 </body>
 </html>

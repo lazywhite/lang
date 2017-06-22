@@ -86,4 +86,20 @@
             <result name="success" type="dispatcher">/test.jsp</result>
         </action>
     </package>
+    <package name="chart" extends="jfreechart-default" namespace="/chart">
+        <action name="bar" class="action.BarChartAction" method="execute">
+            <result type="chart">
+                <param name="value">chart</param>
+                <param name="height">400</param>
+                <param name="width">500</param>
+            </result>
+        </action>
+        <action name="pie" class="action.PieChartAction" method="execute">
+            <result type="chart">
+                <param name="value">chart</param>
+                <param name="height">400</param>
+                <param name="width">500</param>
+            </result>
+        </action>
+    </package>
 </struts>
