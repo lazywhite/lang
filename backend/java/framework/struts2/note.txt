@@ -23,9 +23,6 @@ url <--> action
 
 el表达式在struts2里面也可以使用
 
-pageContext
-request
-
 
 action
     基本属性注入
@@ -34,7 +31,7 @@ action
             input name="user.name" 
 
 action
-    input 属性
+    input属性
     output属性
 
 ${action.user}
@@ -43,6 +40,7 @@ get方式解决乱码
     server.xml
         Connector URIEncoding="UTF-8"
     
+StrutsTypeConverter可以自定义属性转换器
 '2012/12/12' 默认类型转换器不支持转换此类型为Date
 
 
@@ -52,7 +50,7 @@ struts.xml
     result 默认是success
 
     result 
-        name 默认值是success
+        name 
         type
             chain: 转发到action
             dispatcher: 转发
@@ -62,9 +60,9 @@ struts.xml
             stream: 字节形式返回
             json
 
-action方法必须是返回string无参的
+action方法必须是无参的并返回string
 
-<result type="chain">
+<result type="stream">
     <param name="inputStream">inputStream</param>
     <param name="contentDisposition">attachment:filename=${filename}</param>
     <param name="contentType">inputStream</param>
@@ -84,7 +82,6 @@ struts.xml 可以include其他xml来实现多配置文件开发
 package
     @namespace
 /emp/ 路径省略
-<c:set name="" value=""></c:set>
 
 获取request, session, application对象的三种方式
     1. ActionContext
@@ -101,12 +98,15 @@ ognl表达式只能在标签里面用
     <s:iterator value="" var="" status="">
     <s:property value="">   
     <s:a action="" namespace="">
-
     <s:select>
 
-下载
+html标签
+    <s:doubleselect>
+    <s:form>
+    <s:file>
+    <s:textfield>
  
-session取出的东西要强转
+session是Map<String, Object>的, 所以取出的东西要强转
 拦截器
     1. 编写公共代码
     2. 根据url地址或参数决定是否调用action
@@ -114,4 +114,12 @@ session取出的东西要强转
 如果action没有配置拦截器, 则会配置一个默认的拦截器栈defaultStack
 一旦配置了一个拦截器, 就不会再提供了, 需要手动配置
 
-StrutsTypeConverter
+ognl: 对象图导航语言
+    提供一个对象, 然后获取对象中的属性值进行运算
+    valueStack
+        root区: 栈结构, 主要存放action对象, 会将当前正在使用的action对象压入栈顶
+        context区: map结构, 主要存放request, session, application对象
+        ognl引擎: 执行ognl表达式,  有"#"前缀去context查找值 没有去root区栈顶查找,             
+国际化
+    在src/struts.properties里规定使用的i18n文件
+    src/i18n/struts-message-zh.properties, 中文内容必须转换为unicode

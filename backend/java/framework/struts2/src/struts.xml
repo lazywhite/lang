@@ -6,24 +6,41 @@
 
 <struts>
     <constant name="struts.ui.theme" value="simple"></constant>
+
     <package name="main" extends="json-default" namespace="/">
+        <!--<global-exception-mappings>-->
+            <!--<exception-mapping exception="java.lang.RuntimeException" result="error">/error.jsp</exception-mapping>-->
+        <!--</global-exception-mappings>-->
         <interceptors>
-            <interceptor name="countTime" class="interceptor.TimeInterceptor"></interceptor>
+            <interceptor name="timeInterceptor" class="interceptor.TimeInterceptor"></interceptor>
+            <interceptor name="sessionInterceptor" class="interceptor.SessionInterceptor"></interceptor>
             <interceptor-stack name="myStack"> <!-- 自定义拦截器栈-->
                 <interceptor-ref name="defaultStack"></interceptor-ref>
-                <interceptor-ref name="countTime"></interceptor-ref>
+                <interceptor-ref name="timeInterceptor"></interceptor-ref>
+                <interceptor-ref name="sessionInterceptor"></interceptor-ref>
             </interceptor-stack>
         </interceptors>
-        <!--<default-interceptor-ref name="myStack"></default-interceptor-ref> &lt;!&ndash; 规定默认拦截器栈 &ndash;&gt;-->
+        <default-interceptor-ref name="myStack"></default-interceptor-ref> <!-- 规定默认拦截器栈 , 顺序必须放在global-results之前-->
+        <global-results>
+            <result name="login">/login.jsp</result>
+        </global-results>
         <action name="login" class="action.LoginAction" method="execute">
-            <result name="failed">/login.jsp</result>
-            <result >/index.jsp</result>
+            <interceptor-ref name="defaultStack"></interceptor-ref> <!-- login action不能用sessionInterceptor, 会造成永远无法登陆 -->
+            <result name="success">/index.jsp</result>
+            <result name="input">/login.jsp</result>
         </action>
         <action name="register" class="action.RegisterAction" method="execute">
+            <interceptor-ref name="fileUpload">
+                <param  name="maximumSize"> 1000</param> <!--最大2M, 否则需要覆盖全局参数 -->
+                <param name="allowedTyeps">image/jpeg, image/png, image/gif</param>
+                <!--<param name="allowdExtensions">.jpeg,.png,.gif</param> 第二种类型限制方式-->
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref><!-- 必须放在fileUpload之后, 不然fileUpload将不起作用 -->
             <result name="success">/login.jsp</result>
-            <result name="input">/index.jsp</result>
+            <result name="input">/register.jsp</result> <!-- 拦截器失败时调用的result, name必须是input , 配合<s:fielderror>使用 -->
         </action>
         <action name="regPage" class="action.RegisterAction" method="regPage">
+            <interceptor-ref name="defaultStack"></interceptor-ref> <!-- login action不能用sessionInterceptor, 会造成永远无法登陆 -->
             <result>/register.jsp</result>
         </action>
         <action name="download" class="action.DownloadAction" method="execute">

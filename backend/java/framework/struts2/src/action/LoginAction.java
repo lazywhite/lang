@@ -1,11 +1,11 @@
 package action;
 
-import com.opensymphony.xwork2.ActionSupport;
+import model.User;
 
 /**
  * Created by white on 17/6/17.
  */
-public class LoginAction extends ActionSupport{
+public class LoginAction extends BaseAction{
     private String name;
     private String password;
 
@@ -25,17 +25,6 @@ public class LoginAction extends ActionSupport{
         this.password = password;
     }
 
-    public void volidate(){
-        super.validate();
-        if("".equals(this.getName())){
-            this.addFieldError("name", "用户名不能为空");
-        }
-        if("".equals(this.getPassword())){
-            this.addFieldError("password", "密码不能为空");
-        }
-
-    }
-
     @Override
     public String execute() throws Exception {
         /*获取map类型的三大对象*/
@@ -47,10 +36,21 @@ public class LoginAction extends ActionSupport{
 //        HttpServletRequest httpRequest = ServletActionContext.getRequest();
 //        HttpServletResponse httpResponse = ServletActionContext.getResponse();
 //        HttpSession httpSession = httpRequest.getSession();
-        if (name != null) {
+        if ("admin".equals(name) && "1234".equals(password)) {
+            User u = new User("admin", "1234");
+            session.put("user", u);
             return "success";
         }else{
-            return "failed";
+            return "login";
         }
+    }
+
+    @Override
+    public void validate() {
+        if(name == null || "".equals(name)){
+            this.addFieldError("username", "名称不能为空");
+            return;
+        }
+        super.validate();
     }
 }

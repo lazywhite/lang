@@ -41,7 +41,7 @@
     </label>
     <br/>
     <label>
-      头像: <s:file name="portrait"></s:file>
+      头像: <s:file name="portrait"></s:file><span color="red"><s:fielderror></s:fielderror></span>
     </label>
     <input type="submit" />
   </fieldset>
