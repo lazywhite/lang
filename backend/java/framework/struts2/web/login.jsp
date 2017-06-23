@@ -10,12 +10,20 @@
 <html>
 <head>
   <title>Login Page</title>
+  <style type="text/css">
+    ul.errorMessage {color: #FF3300;}
+    ul.errorMessage {list-style-type: none;display: inline;margin: 0px;padding: 3px;}
+    ul.errorMessage li {list-style-type: none;display: inline;}
+  </style>
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/login" method="post">
-  <s:textfield name="name"  label="用户名"></s:textfield>${errors.name[0]}
+  <s:textfield name="name"  label="用户名"></s:textfield>
+<s:fielderror>
+
+</s:fielderror>
   <br />
-  <s:textfield name="password" label="密码"></s:textfield>${errors.password[0]}
+  <s:textfield name="password" label="密码"></s:textfield>
   <br />
   <s:submit value="提交"></s:submit>
 </form>
