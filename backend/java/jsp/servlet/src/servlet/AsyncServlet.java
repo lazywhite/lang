@@ -1,7 +1,8 @@
 package servlet;
 import executor.TestExecutor;
+import listener.AsyncListener;
+
 import javax.servlet.*;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,7 @@ public class AsyncServlet extends HttpServlet{
         out.flush();
 
         AsyncContext ac = req.startAsync();
+        ac.addListener(new AsyncListener());
         ac.setTimeout(30 * 1000);
         ac.start(new TestExecutor(ac));
         out.println("离开servlet时间: " + new java.util.Date() + "<br />");
