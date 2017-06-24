@@ -1,48 +1,25 @@
 package dao;
 
 
+import javax.servlet.ServletRequest;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by white on 17/6/4.
- */
 
 public class BaseDao {
-    protected String driver;
-    protected String url;
-    protected String username;
-    protected String password;
-    protected Connection conn;
-
-    public BaseDao(String driver, String url, String username, String password){
-        this.driver = driver;
-        this.url = url;
-        this.username = username;
-        this.password = password;
+    private ServletRequest request;
+    private Connection conn;
+    public BaseDao(ServletRequest request) {
+        this.request = request;
+        this.conn = (Connection) request.getServletContext().getAttribute("conn");
     }
-
-    public Connection getConn(){
-        try {
-            Class.forName(driver);
-            Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
-            return conn;
-        }catch(Exception e){
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
     public List<Map<String, Object>> query(String sql, Object... params){
-        Connection conn;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conn = this.getConn();
             ps = conn.prepareStatement(sql);
             for(int i=1;i<=params.length;i++){
                 ps.setObject(i, params[i-1]);
@@ -78,10 +55,8 @@ public class BaseDao {
     }
 
     public int update(String sql, Object... params){
-        Connection conn = null;
         PreparedStatement stat = null;
         try{
-            conn = this.getConn();
             stat = conn.prepareStatement(sql);
             for(int i=1;i<=params.length;i++){
                 stat.setObject(i, params[i-1]);
@@ -105,9 +80,6 @@ public class BaseDao {
                 e.printStackTrace();
             }
         }
-
-    }
-    public static void main(String[] args){
 
     }
 }

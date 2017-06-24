@@ -9,13 +9,6 @@ import java.io.IOException;
  * Created by white on 17/6/10.
  */
 public class ArticleServlet extends HttpServlet {
-    private String btsEncoding;
-    private String stbEncoding;
-    public void init() throws ServletException{
-        btsEncoding = this.getInitParameter("btsEncoding");
-        stbEncoding = this.getInitParameter("stbEncoding");
-    }
-
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
