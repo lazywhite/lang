@@ -1,3 +1,4 @@
+package basic;
 import java.util.Arrays;
 /*
  * java数据类型分为

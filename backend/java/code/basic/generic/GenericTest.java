@@ -1,3 +1,4 @@
+package basic.generic;
 import java.util.*;
 /**
  * Created by white on 17/5/19.

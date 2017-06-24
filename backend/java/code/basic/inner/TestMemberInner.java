@@ -1,3 +1,4 @@
+package basic.inner;
 class MemberOuter{
     static int x = 3;
     int y = 5;

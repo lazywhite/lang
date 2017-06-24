@@ -1,4 +1,5 @@
-import java.util.*;
+package tool;
+
 import java.io.*;
 public class ExecOSCommand {
 

@@ -1,3 +1,4 @@
+package basic.inner;
 /**
  * Created by white on 17/5/20.
  * 匿名内部类
