@@ -7,7 +7,8 @@
 	<title></title>
 </head>
 <body>
-    <%= exception.getMessage() %>
+    异常类型: <%= exception.getClass() %>
+    异常种类: <%= exception.getMessage() %>
     <h1>error page</h1>
 </body>
 </html>
