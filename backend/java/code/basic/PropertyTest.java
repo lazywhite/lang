@@ -1,3 +1,4 @@
+package basic;
 import  java.util.Properties;
 import  java.io.FileInputStream;
 import  java.io.IOException;
@@ -7,9 +8,7 @@ public final class PropertyTest {
     private static int port;
     static{
         final String dir = System.getProperty("user.dir");//current work dir
-        System.out.println(dir);
         final String config = dir + "/basic/config.properties";
-        System.out.println(config);
         Properties prop =  new  Properties();
         try {
             FileInputStream fin = new FileInputStream(config);
@@ -20,23 +19,9 @@ public final class PropertyTest {
             e.printStackTrace();
         }
     }
-    /**
-     * 私有构造方法，不需要创建对象
-     */
-    private  PropertyTest() {
-    }
-
-    public   static  String getHost() {
-        return  host;
-    }
-
-    public   static  int getPort() {
-        return  port;
-    }
-
     public static void main(String args[]) throws IOException{
 
-        System.out.println(getHost());
-        System.out.println(getPort());
+        System.out.println(host);
+        System.out.println(port);
     }
 }

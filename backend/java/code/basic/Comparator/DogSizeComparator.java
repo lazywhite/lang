@@ -1,3 +1,4 @@
+package basic.Comparator;
 import java.util.Comparator;
 
 public class DogSizeComparator implements Comparator<Dog>{

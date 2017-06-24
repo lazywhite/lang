@@ -1,3 +1,4 @@
+package algorithm;
 import java.util.Arrays;
 /**
  * 把剩下的元素中的最小值交换到当前位置

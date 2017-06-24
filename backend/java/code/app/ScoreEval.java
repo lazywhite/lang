@@ -1,3 +1,4 @@
+package app;
 import java.util.Scanner;
 public class ScoreEval{
     public static void main(String[] args){

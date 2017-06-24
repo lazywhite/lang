@@ -1,3 +1,4 @@
+package app;
 public class Yanghui{
     public static void main(String[] args){ 
         gen(7);

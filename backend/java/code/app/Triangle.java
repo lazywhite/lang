@@ -1,3 +1,4 @@
+package app;
 /*
  * Triangle.java
  * Copyright (C) 2017 white <white@Whites-Mac-Air.local>

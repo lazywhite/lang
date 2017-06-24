@@ -1,3 +1,4 @@
+package basic;
 import java.io.Serializable;
 /**
  * Created by white on 17/5/18.

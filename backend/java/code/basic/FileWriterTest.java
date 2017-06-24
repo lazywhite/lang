@@ -1,3 +1,4 @@
+package basic;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;

@@ -1,3 +1,4 @@
+package basic.Comparator;
 import java.util.Arrays;
 
 public class Main{

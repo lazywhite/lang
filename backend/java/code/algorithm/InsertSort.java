@@ -1,3 +1,4 @@
+package algorithm;
 import java.util.Arrays;
 /**
  * Created by white on 17/5/20.
