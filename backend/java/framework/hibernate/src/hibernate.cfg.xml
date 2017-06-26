@@ -4,10 +4,9 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/test?useSSL=false&amp;characterEncoding=utf-8&amp;</property>
-        <property name="connection.driver_class"> com.mysql.jdbc.Driver </property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/test?useSSL=false</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">root</property>
-
         <property name="connection.password">root</property>
 
         <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
@@ -20,6 +19,8 @@
         <!-- 关联映射文件-->
         <mapping resource="mapping/User.hbm.xml" />
         <mapping resource="mapping/UserInfo.hbm.xml" />
+        <mapping resource="mapping/Emp.hbm.xml"/>
+        <mapping resource="mapping/Dept.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

@@ -1,3 +1,21 @@
+view
+    tool window
+        database
+            add new datasource
+        persistence
+            generate persistence mapping
+                by database schema
 使用persistence自动生成entity及mapping文件
     1. 生成后的mapping.xml class必须含有id属性, 并且放在最开始
     2. 注意hibernate.cfg.xml是否丢失用户名,密码配置
+
+hibernate.cfg.xml
+    hibernate-configuration
+        session-factory
+            property @name 
+            mapping @resource
+User.hbm.xml
+    hibernate-mapping
+        class @name @table @schema
+            id
+            property @name

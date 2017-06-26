@@ -2,7 +2,6 @@
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<<<<<<< HEAD
 <hibernate-mapping package="entity">
     <class name="User" table="user" >
         <id name="id" column="id">
@@ -10,14 +9,5 @@
         </id>
         <property name="name" column="name" type="java.lang.String"> </property>
         <property name="password" ></property>
-=======
-<hibernate-mapping>
-    <class name="model.User" table="user" >
-        <id name="id" column="id">
-            <generator class="increment" /> 
-        </id>
-        <property name="name" column="name" type="java.lang.String"> </property>
-        <property name="password" column="password" type="java.lang.String"></property>
->>>>>>> c0e26632d8f3991c13a16de4b0f5ec24a2762dc9
     </class>
 </hibernate-mapping>        
