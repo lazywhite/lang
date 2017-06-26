@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/test?useSSL=false&amp;characterEncoding=utf-8&amp;</property>
+        <property name="connection.driver_class"> com.mysql.jdbc.Driver </property>
+        <property name="connection.username">root</property>
+
+        <property name="connection.password">root</property>
+
+        <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+        <!-- 显示sql语句 -->
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+
+        <!-- 关联映射文件-->
+        <mapping resource="mapping/User.hbm.xml" />
+        <mapping resource="mapping/UserInfo.hbm.xml" />
+
+    </session-factory>
+</hibernate-configuration>
