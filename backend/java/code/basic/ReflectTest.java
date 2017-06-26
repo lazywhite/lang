@@ -14,8 +14,10 @@ import java.lang.reflect.*;
 @ClsAnno(name="clsAnno", value=100)
 final class MethodDemo implements Alive{
     private int num = 2;
+
     @FieldAnno(name="fieldAnno", value=200)
     public String str = "hello";
+
     public MethodDemo(){
     }
 
@@ -29,14 +31,20 @@ final class MethodDemo implements Alive{
     public void setNum(int num){
         this.num = num;
     }
+
     @MethodAnno(name="methodAnno", value=10)
     public int addResult(@ParamAnno(name="paramAnno", value=30)int addNum){
         return  num +  addNum;
     }
     public void move(){
+        System.out.println("moving....");
     }
     public void alive(String b){
-        System.out.println(b);
+        System.out.println("alive ..." + b);
+    }
+
+    public static void clsMethod(){
+        System.out.println("printed by class method");
     }
 }
 public class ReflectTest {
@@ -160,6 +168,26 @@ public class ReflectTest {
                 }
             }
         }catch(NoSuchMethodException e){
+            e.printStackTrace();
+        }
+
+        try {
+            System.out.println("=========================");
+            Class cls = Class.forName("basic.MethodDemo");
+            Object o = cls.newInstance();//调用无参构造
+            Constructor con = cls.getConstructor(int.class, String.class);//获取有参构造
+            Object op = con.newInstance(10, "good");//生成有参构造对象
+            Method m1 = cls.getDeclaredMethod("move");//获取无参方法
+            m1.invoke(op);
+            Method m2 = cls.getDeclaredMethod("alive", String.class);
+            m2.invoke(op, "paramValue");
+
+            Method m3 = cls.getDeclaredMethod("clsMethod");//获取静态方法
+            m3.invoke(op);
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
             e.printStackTrace();
         }
     }
