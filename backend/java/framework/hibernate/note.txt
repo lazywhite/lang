@@ -18,4 +18,30 @@ User.hbm.xml
     hibernate-mapping
         class @name @table @schema
             id
+                generator
+                    assigned: 自己指定
+                    increment: hibernate自己max() + 1
+                    native: 采用数据库自身能力自增
+                        mysql: auto_increment
+                        oracle: sequence
+                        sqlserver: identity
             property @name
+                @type
+                    java.lang.Integer or integer(hibernate简写类型)
+
+            many-to-one //正向映射
+                @unique = "true" 一对一映射, 此列不允许重复
+                @name = student
+                @class = Student
+                @column = sid
+            one-to-one //反向映射
+                @name
+                @class
+                @property-ref
+                @cascade
+                    delete
+                    save-update
+                    none
+                    all
+
+基于interceptor的hibernate事务

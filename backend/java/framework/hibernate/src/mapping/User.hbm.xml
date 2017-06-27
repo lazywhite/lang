@@ -9,5 +9,7 @@
         </id>
         <property name="name" column="name" type="java.lang.String"> </property>
         <property name="password" ></property>
+        <one-to-one name="userinfo" class="UserInfo" property-ref="user" cascade="none"></one-to-one>
     </class>
+
 </hibernate-mapping>        

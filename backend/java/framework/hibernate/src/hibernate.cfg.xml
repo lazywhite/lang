@@ -16,6 +16,8 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
+        <property name="current_session_context_class">thread</property>
+
         <!-- 关联映射文件-->
         <mapping resource="mapping/User.hbm.xml" />
         <mapping resource="mapping/UserInfo.hbm.xml" />
