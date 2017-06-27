@@ -7,7 +7,8 @@
         <id name="id" column="id">
             <generator class="native" />
         </id>
-        <property name="uid" column="uid" type="java.lang.Integer"> </property>
         <property name="location" ></property>
+
+        <many-to-one column="uid" name="user" class="User" cascade="none" unique="true" ></many-to-one>
     </class>
 </hibernate-mapping>        

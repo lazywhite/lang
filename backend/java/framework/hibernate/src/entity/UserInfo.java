@@ -13,41 +13,28 @@ package entity;
  */
 public class UserInfo {
     private Integer id;
-    private Integer uid;
     private String location;
+    private User user;
 
-    public UserInfo(Integer uid, String location) {
-        this.uid = uid;
-        this.location = location;
+    public User getUser() {
+        return user;
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
     public UserInfo() {
 
     }
 
     public Integer getId() {
-
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getUid() {
-        return uid;
-    }
-
-    @Override
-    public String toString() {
-        return "UserInfo{" +
-                "uid=" + uid +
-                ", location='" + location + '\'' +
-                '}';
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
     }
 
     public String getLocation() {
@@ -57,6 +44,5 @@ public class UserInfo {
     public void setLocation(String location) {
         this.location = location;
     }
-
 
 }
