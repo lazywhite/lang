@@ -1,4 +1,4 @@
-view
+intelliji View
     tool window
         database
             add new datasource
@@ -14,18 +14,19 @@ hibernate.cfg.xml
         session-factory
             property @name 
             mapping @resource
+                @package  //需要注解支持
 User.hbm.xml
-    hibernate-mapping
+    hibernate-mapping @package
         class @name @table @schema
             id
-                generator
+                generator @class
                     assigned: 自己指定
                     increment: hibernate自己max() + 1
                     native: 采用数据库自身能力自增
                         mysql: auto_increment
                         oracle: sequence
                         sqlserver: identity
-            property @name
+            property @name @column
                 @type
                     java.lang.Integer or integer(hibernate简写类型)
 
@@ -43,5 +44,23 @@ User.hbm.xml
                     save-update
                     none
                     all
+            set //配置在父表
+                //lazy=true时, 不能配置fetch=join
+                @name
+                @cascade
+                @lazy  延迟加载, 用时才查询
+                @inverse 由子表维护映射关系, 否则会自己去update子表的gid
+                @fetch
+                    join 表连接进行查询, 只有1条sql
+                    select 分成两条sql查询
+                    subselect 
+                key @column
+                one-to-many @class
 
 基于interceptor的hibernate事务
+
+关系属性4要素
+    关系属性名
+    关系属性类
+    外键列名
+    cascade

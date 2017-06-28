@@ -10,6 +10,12 @@
         <property name="name" column="name" type="java.lang.String"> </property>
         <property name="password" ></property>
         <one-to-one name="userinfo" class="UserInfo" property-ref="user" cascade="none"></one-to-one>
+
+
+        <set name="articles" inverse="true" lazy="false" cascade="none" fetch="join">
+            <key column="uid"></key>
+            <one-to-many class="Article"></one-to-many>
+        </set>
     </class>
 
 </hibernate-mapping>        

@@ -1,13 +1,16 @@
 import dao.UserDao;
 import dao.impl.UserDaoHbmImpl;
+import entity.Article;
 import entity.User;
 import entity.UserInfo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.junit.Test;
 import util.HibernateUtil;
 
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -18,7 +21,8 @@ public class Main {
 
 
 //        testSelect();
-        testInsert();
+//        testInsert();
+        testOne2Many();
     }
 
     public static void basic(){
@@ -65,5 +69,39 @@ public class Main {
         session.save(uinfo);
         session.save(u);  //不开启cascade, 如果不执行此语句会报错
         tx.commit();
+    }
+
+    public static void testOne2Many(){
+        Session session = HibernateUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        User u = (User) session.get(User.class, 7);
+        for(Article a: u.getArticles()){
+            System.out.println(a.getContent());
+        }
+        Article a = (Article) session.get(Article.class, 4);
+        System.out.printf("get user by article" + a.getUser().getName());
+
+        User u2 = new User();
+        u2.setName("celine");
+        u2.setPassword("akdjf");
+
+        Article a1 = new Article();
+        a1.setContent("content 01");
+        Article a2 = new Article();
+        a2.setContent("content 02");
+
+        a1.setUser(u2);
+        a2.setUser(u2);
+
+        session.save(u2);
+        session.save(a1);
+        session.save(a2);
+        tx.commit();
+        //无法获取articles问题
+//        for(Article b: u2.getArticles()){
+//            System.out.println(b.getContent());
+//        }
+
+        HibernateUtil.closeSession();
     }
 }

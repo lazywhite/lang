@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="entity">
+
+    <class name="entity.Article" table="article" schema="test">
+        <id name="id" column="id">
+            <generator class="native"></generator>
+        </id>
+        <property name="content" column="content"/>
+
+        <many-to-one name="user" class="User" column="uid"></many-to-one>
+    </class>
+</hibernate-mapping>
