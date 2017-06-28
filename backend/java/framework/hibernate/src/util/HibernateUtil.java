@@ -23,6 +23,14 @@ public class HibernateUtil {
         return session;
     }
 
+    public static void closeSession(){
+        try{
+            threadLocal.get().close();
+        }catch(Exception e ){
+            e.printStackTrace();
+        }
+    }
+
     public static SessionFactory getSessionFactory(){
         return sessionFactory;
     }

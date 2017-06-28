@@ -1,5 +1,8 @@
 package entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by white on 17/6/26.
  * +----------+-------------+------+-----+---------+----------------+
@@ -18,6 +21,15 @@ public class User {
     private String name;
     private String password;
     private UserInfo userinfo;
+    private Set<Article> articles = new HashSet<>();
+
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(Set<Article> articles) {
+        this.articles = articles;
+    }
 
     public UserInfo getUserinfo() {
         return userinfo;
