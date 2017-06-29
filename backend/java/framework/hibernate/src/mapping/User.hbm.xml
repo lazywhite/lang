@@ -9,18 +9,33 @@
         </id>
         <property name="name" column="name" type="java.lang.String"> </property>
         <property name="password" ></property>
+        <!-- user_info  1-1 映射 -->
         <one-to-one name="userinfo" class="UserInfo" property-ref="user" cascade="none"></one-to-one>
 
-
-        <set name="articles" inverse="true" lazy="false" cascade="none" fetch="join">
+        <!-- article 1-N 映射 -->
+        <set name="articles" inverse="true" lazy="true" cascade="none" fetch="join">
             <key column="uid"></key>
             <one-to-many class="Article"></one-to-many>
         </set>
 
+        <!-- role N-N 映射 -->
         <set name="roles" table="map_user_role"  cascade="none" lazy="true"> <!-- 只需要一方配置inverse -->
             <key column="uid"/>
             <many-to-many column="rid" class="Role" ></many-to-many>
         </set>
+
+        <!-- park N-1 映射 , 使用连接表 map_user_park-->
+        <join table="map_user_park">
+            <key column="uid" />
+            <!-- cascade
+                1. none, 新建父子记录, 如果只保存子记录, 则会报错
+                2. save-update, 新建父子记录, 如果只保存子记录, 则会自动保存父记录, 再保存子记录
+                3. delete, 会删除映射表及父表的记录, 非常危险, 只能用在1-1映射中
+                -->
+
+            <many-to-one name="park" class="Park" column="pid" cascade="save-update"  />
+        </join>
+
     </class>
 
 </hibernate-mapping>        
