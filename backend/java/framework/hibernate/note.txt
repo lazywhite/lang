@@ -89,3 +89,26 @@ User.hbm.xml
         基于中间表
     双向N-N
         基于中间表
+
+延迟加载
+    类级别 <class lazy="true>
+        get() 立即加载发送sql
+        load() 默认是延迟加载,用的时候才发sql,取得的对象是代理类型
+    关联级别
+        <set lazy="true">
+
+对象状态
+    临时态(瞬时态)
+        刚new出来的状态, 有可能被gc, 表中没有对应记录, 不被session管理
+    持久态
+        不能被gc, 被session管理(处于一级缓存区), 表中有对应记录
+        session.save()
+        session.saveOrUpdate()
+        session.persist()
+    游离态
+        对象不被session管理, 可以被gc
+        session.close()
+        session.clear()
+        session.evict()
+        
+
