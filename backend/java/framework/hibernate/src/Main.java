@@ -1,15 +1,15 @@
 import dao.UserDao;
 import dao.impl.UserDaoHbmImpl;
 import entity.Article;
+import entity.Role;
 import entity.User;
 import entity.UserInfo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.junit.Test;
 import util.HibernateUtil;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -22,7 +22,8 @@ public class Main {
 
 //        testSelect();
 //        testInsert();
-        testOne2Many();
+//        testOne2Many();
+        testMany2Many();
     }
 
     public static void basic(){
@@ -103,5 +104,44 @@ public class Main {
 //        }
 
         HibernateUtil.closeSession();
+    }
+
+    public static void testMany2Many(){
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+
+            User u = (User)session.get(User.class, 7);
+            System.out.printf(u.getName());
+            for(Role role: u.getRoles()){
+                System.out.println(role.getName());
+            }
+
+            Role r = (Role) session.get(Role.class, 2);
+            for(User user : r.getUsers()){
+                System.out.println(user.getName());
+            }
+
+            Role r1 = new Role();
+            r1.setName("协管员");
+            User u1 = new User();
+            u1.setName("huni");
+            u1.setPassword("pwd");
+
+            Set<Role> roles = new HashSet<>();
+            roles.add(r);
+            roles.add(r1);
+
+            u1.setRoles(roles);//此处会保存映射关系, save(u1)的时候必须由user表来负责映射才能成功保存, 即role.hbm.xml要配置inverse="true"
+            session.save(u1);
+            session.save(r1);
+            transaction.commit();
+        }catch(Exception e){
+            transaction.rollback();
+            e.printStackTrace();
+        }
+        HibernateUtil.closeSession();
+
     }
 }
