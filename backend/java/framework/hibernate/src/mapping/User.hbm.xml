@@ -25,16 +25,16 @@
         </set>
 
         <!-- park N-1 映射 , 使用连接表 map_user_park-->
-        <join table="map_user_park">
-            <key column="uid" />
-            <!-- cascade
-                1. none, 新建父子记录, 如果只保存子记录, 则会报错
-                2. save-update, 新建父子记录, 如果只保存子记录, 则会自动保存父记录, 再保存子记录
-                3. delete, 会删除映射表及父表的记录, 非常危险, 只能用在1-1映射中
-                -->
+        <!--<join table="map_user_park">-->
+            <!--<key column="uid" />-->
+            <!--&lt;!&ndash; cascade-->
+                <!--1. none, 新建父子记录, 如果只保存子记录, 则会报错-->
+                <!--2. save-update, 新建父子记录, 如果只保存子记录, 则会自动保存父记录, 再保存子记录-->
+                <!--3. delete, 会删除映射表及父表的记录, 非常危险, 只能用在1-1映射中-->
+                <!--&ndash;&gt;-->
 
-            <many-to-one name="park" class="Park" column="pid" cascade="save-update"  />
-        </join>
+            <!--<many-to-one name="park" class="Park" column="pid" cascade="save-update" />-->
+        <!--</join>-->
 
     </class>
 

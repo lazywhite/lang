@@ -4,9 +4,11 @@ import entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import util.HibernateUtil;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -22,7 +24,8 @@ public class Main {
 //        testOne2Many();
 //        testMany2Many();
 //        test1NJoin();
-        test1Nreverse();
+//        test1Nreverse();
+        hqlTest01();
     }
 
     public static void basic(){
@@ -218,4 +221,19 @@ public class Main {
         HibernateUtil.closeSession();
     }
 
+    public static void hqlTest01(){
+        Session session = HibernateUtil.getSession();
+//        String hql = "select u.name, count(u.id) from Article a join a.user u group by u.name";
+//        String hql = "select r1.id, count(r1.id) from Role r1 join r1.users group by r1.id having count(r1.id) > (select count(*) from Role r join r.users where r.id = 3 group by r.id)";
+//        String hql = "select r1.id, count(r1.id) from Role r1 join r1.users group by r1.id";
+        String sql = "select * from user";
+//        Query q = session.createQuery(hql);
+        Query q = session.createSQLQuery(sql);
+//        q.setMaxResults(5);
+//        q.setFirstResult(2);   //limit 2, 5;
+        List<Object[]> list = q.list();
+        for(Object[] u: list){
+            System.out.println(u[0] + ":" + u[1]);
+        }
+    }
 }
