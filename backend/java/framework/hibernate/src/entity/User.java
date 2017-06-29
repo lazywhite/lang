@@ -22,7 +22,15 @@ public class User {
     private String password;
     private UserInfo userinfo;
     private Set<Article> articles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
     public Set<Article> getArticles() {
         return articles;
     }

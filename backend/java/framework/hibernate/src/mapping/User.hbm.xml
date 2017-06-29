@@ -16,6 +16,11 @@
             <key column="uid"></key>
             <one-to-many class="Article"></one-to-many>
         </set>
+
+        <set name="roles" table="map_user_role"  cascade="none" lazy="true"> <!-- 只需要一方配置inverse -->
+            <key column="uid"/>
+            <many-to-many column="rid" class="Role" ></many-to-many>
+        </set>
     </class>
 
 </hibernate-mapping>        
