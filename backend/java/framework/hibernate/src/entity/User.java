@@ -24,6 +24,16 @@ public class User {
     private Set<Article> articles = new HashSet<>();
     private Set<Role> roles = new HashSet<>();
 
+    private Park park;
+
+    public Park getPark() {
+        return park;
+    }
+
+    public void setPark(Park park) {
+        this.park = park;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }

@@ -25,6 +25,7 @@
         <mapping resource="mapping/Dept.hbm.xml"/>
         <mapping resource="mapping/Article.hbm.xml"/>
         <mapping resource="mapping/Role.hbm.xml"/>
+        <mapping resource="mapping/Park.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

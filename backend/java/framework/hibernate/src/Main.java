@@ -1,9 +1,6 @@
 import dao.UserDao;
 import dao.impl.UserDaoHbmImpl;
-import entity.Article;
-import entity.Role;
-import entity.User;
-import entity.UserInfo;
+import entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -23,7 +20,9 @@ public class Main {
 //        testSelect();
 //        testInsert();
 //        testOne2Many();
-        testMany2Many();
+//        testMany2Many();
+//        test1NJoin();
+        test1Nreverse();
     }
 
     public static void basic(){
@@ -144,4 +143,79 @@ public class Main {
         HibernateUtil.closeSession();
 
     }
+
+    public static void test1NJoin(){
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+        /* 新建操作 */
+//            User u = new User("lilian" , "pass");
+//            Park p = new Park("北京中关村");
+//            u.setPark(p);
+//            session.save(u);
+        /* 删除操作 */
+            User u = (User)session.get(User.class, 23);
+            /*
+            即使配置了lazy, 仍然查询了多余的表
+                select
+                    user0_.id as id1_8_0_,
+                    user0_.name as name2_8_0_,
+                    user0_.password as password3_8_0_,
+                    user0_1_.pid as pid2_6_0_,
+                    userinfo1_.id as id1_0_1_,
+                    userinfo1_.location as location2_0_1_,
+                    userinfo1_.uid as uid3_0_1_,
+                    articles2_.uid as uid3_1_2_,
+                    articles2_.id as id1_1_2_,
+                    articles2_.id as id1_1_3_,
+                    articles2_.content as content2_1_3_,
+                    articles2_.uid as uid3_1_3_
+                from
+                    user user0_
+                inner join
+                    map_user_park user0_1_
+                        on user0_.id=user0_1_.uid
+                left outer join
+                    test.user_info userinfo1_
+                        on user0_.id=userinfo1_.uid
+                left outer join
+                    article articles2_
+                        on user0_.id=articles2_.uid
+                where
+                    user0_.id=?
+             */
+            session.delete(u);
+
+            transaction.commit();
+
+
+        }catch(Exception e){
+            transaction.rollback();
+        }
+        HibernateUtil.closeSession();
+
+    }
+
+    public static void test1Nreverse(){
+        /*基于中间表的 1-N 双向 */
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        System.out.println("what");
+
+        try{
+            Park p = (Park)session.get(Park.class, 7);
+            System.out.println(p.getLoc());
+            for(User user: p.getUsers()){
+                System.out.println(user.getName());
+            }
+            transaction.commit();
+
+        }catch(Exception e){
+            transaction.rollback();
+            e.printStackTrace();
+        }
+        HibernateUtil.closeSession();
+    }
+
 }
