@@ -1,11 +1,72 @@
 package basic;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+
+@Retention(RetentionPolicy.RUNTIME) //表示这个注解可以在运行时通过反射访问, 不定义则信息不会保留到运行期
+@Target(ElementType.TYPE)//表示注解只能用在类和接口上
+@interface ClsAnno {
+    int value();
+    String name();
+    int age() default 0;
+}
+
+
+@Retention(RetentionPolicy.RUNTIME) //表示这个注解可以在运行时通过反射访问, 不定义则信息不会保留到运行期
+@Target(ElementType.METHOD)//表示注解只能用在方法上
+@interface MethodAnno {
+    int value();
+    String name();
+    int age() default 0;
+}
+
+@Retention(RetentionPolicy.RUNTIME) //表示这个注解可以在运行时通过反射访问, 不定义则信息不会保留到运行期
+@Target(ElementType.PARAMETER)//表示注解只能用在参数上
+@interface ParamAnno {
+    int value();
+    String name();
+    int age() default 0;
+}
+
+
+@Retention(RetentionPolicy.RUNTIME) //表示这个注解可以在运行时通过反射访问, 不定义则信息不会保留到运行期
+@Target(ElementType.FIELD)//表示注解只能用在类和接口上
+@interface FieldAnno {
+    int value();
+    String name();
+    int age() default 0;
+}
 
 /**
- * Created by white on 17/5/24.
  * 反射允许检查或修改程序的运行时行为, 例如获取类, 接口, 变量及方法的信息
  * 自省是根据bean的设计模式来获取bean的属性, 事件和方法 的一系列自动化过程
+ *
+ * 注解: 描述代码的原数据, 由消费者(其他代码)获取并执行逻辑
+ *
+ * 自定义注解
+ * @Documented: 注解是否将包含在javadoc里面
+ * @Retention: 注解留存策略
+ *      RetentionPolicy.SOURCE – 在编译阶段丢弃
+ *      RetentionPolicy.CLASS – 在类加载的时候丢弃, 默认值
+ *      RetentionPolicy.RUNTIME– 始终不会丢弃，运行期也保留该注解, 可以通过反射获取信息 
+ * @Target: 适用对象
+ *      ElementType.TYPE: 类, 接口, enum
+ *      ElementType.FIELD: 描述类的属性
+ *      ElementType.FIELD: 描述类的方法
+ *      ElementType.PARAMETER: 描述类的方法参数
+ *      ElementType.CONSTRUCTOR: 描述类的构造方法
+ *      ElementType.LOCAL_VARIABLE: 描述局部变量
+ *      ElementType.ANNOTATION_TYPE: 描述另一个注解
+ *      ElementType.PACKAGE: 描述java文件的包
+ *
+ * @Inherited: 是否允许子类继承注解
+ *
+ * 1. 注解中所有的属性被定义成方法, 并且提供默认值, 属性的值只能是基本数据类型, String, 或Enum
+ * 2. 如果注解只有一个属性, 则可以直接定义为value(), 使用时无需标注属性名 @Author("bob") 
  */
  interface Alive{
     void move();
