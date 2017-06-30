@@ -1,4 +1,4 @@
-package entity;
+package com.local.entity;
 
 import java.util.Set;
 

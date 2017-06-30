@@ -1,11 +1,15 @@
-import dao.UserDao;
-import dao.impl.UserDaoHbmImpl;
-import entity.*;
+package com.local;
+
+/**
+ * Created by white on 17/6/30.
+ */
+import com.local.dao.impl.UserDaoHbmImpl;
+import com.local.util.HibernateUtil;
+import com.local.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import util.HibernateUtil;
+import org.hibernate.Query;
 
 import java.util.HashSet;
 import java.util.List;
@@ -25,8 +29,11 @@ public class Main {
 //        testMany2Many();
 //        test1NJoin();
 //        test1Nreverse();
-        hqlTest01();
+//        hqlTest01();
+//testAnnotation();
+        testOne2OneByPrimaryKey();
     }
+
 
     public static void basic(){
         UserDaoHbmImpl ud = new UserDaoHbmImpl();
@@ -235,5 +242,26 @@ public class Main {
         for(Object[] u: list){
             System.out.println(u[0] + ":" + u[1]);
         }
+    }
+
+    public static void testOne2OneByPrimaryKey() {
+        Session session = HibernateUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        Person p = session.get(Person.class, 1);
+//        PersonAttr pa = new PersonAttr();
+//        pa.setAttr("good");
+//        pa.setPerson(p);
+//        session.save(pa);
+        System.out.println(p.getAttr().getAttr());
+
+        Person p1 = new Person();
+        p1.setName("bob");
+        PersonAttr pa1 = new PersonAttr();
+        pa1.setAttr("good");
+        pa1.setPerson(p1);
+        session.save(p1);
+        tx.commit();
+        HibernateUtil.closeSession();
+
     }
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="entity">
+<hibernate-mapping package="com.local.entity">
 
     <class name="Role" table="role" schema="test">
         <id name="id" column="id">

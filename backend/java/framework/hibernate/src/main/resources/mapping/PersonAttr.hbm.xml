@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.local.entity">
+    <class name="PersonAttr" table="person_attr" lazy="true">
+        <id name="id" column="id">
+            <generator class="foreign" >
+                <param name="property">person</param>
+            </generator>
+        </id>
+        <property name="attr" column="attr" type="string"></property>
+        <one-to-one name="person" />
+
+    </class>
+</hibernate-mapping>        

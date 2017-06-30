@@ -1,4 +1,4 @@
-package entity;
+package com.local.entity;
 
 /**
  * Created by white on 17/6/28.

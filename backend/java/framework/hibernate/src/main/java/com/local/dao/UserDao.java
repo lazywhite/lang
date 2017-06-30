@@ -1,6 +1,7 @@
-package dao;
+package com.local.dao;
 
-import entity.User;
+import com.local.entity.User;
+
 import java.util.List;
 
 /**
