@@ -1,11 +1,11 @@
-package dao.impl;
+package com.local.dao.impl;
 
-import dao.UserDao;
-import entity.User;
+import com.local.dao.UserDao;
+import com.local.entity.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import util.HibernateUtil;
+import com.local.util.HibernateUtil;
 
 import java.util.List;
 

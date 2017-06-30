@@ -1,4 +1,4 @@
-package util;
+package com.local.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +11,14 @@ public class HibernateUtil {
     private static SessionFactory sessionFactory;
     static{
         Configuration conf = new Configuration();
-        conf.configure("hibernate.cfg.xml");
+//        conf.configure("hibernate.cfg.xml");
+        conf.configure();
+        /*添加基于注解的实体类的两种方式
+            1. conf.addAnnotatedClass
+            2. hibernate.cfg.xml
+                <mapping class="com.local.entity.PersonAttr />
+         */
+//        conf.addAnnotatedClass(com.local.entity.PersonAttr.class);
         sessionFactory =  conf.buildSessionFactory();
     }
     public static Session getSession(){
