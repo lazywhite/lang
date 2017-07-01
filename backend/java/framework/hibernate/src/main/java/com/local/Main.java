@@ -12,9 +12,9 @@ import org.hibernate.Transaction;
 import org.hibernate.Query;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 
 /**
  * Created by white on 17/6/26.
@@ -31,7 +31,10 @@ public class Main {
 //        test1Nreverse();
 //        hqlTest01();
 //testAnnotation();
-        testOne2OneByPrimaryKey();
+//        testOne2OneByPrimaryKey();
+//testCache();
+//testCache02();
+        testCache03();
     }
 
 
@@ -261,6 +264,59 @@ public class Main {
         pa1.setPerson(p1);
         session.save(p1);
         tx.commit();
+        HibernateUtil.closeSession();
+
+    }
+    public static void testCache(){
+        Session session = HibernateUtil.getSession();
+        Person p = (Person) session.get(Person.class, 1);
+        System.out.println("==============");
+        Person p2 = (Person) session.get(Person.class, 1);//不会重新查询, 已经有session cache
+        System.out.println(p.getName());
+        session.clear();//清空缓存数据
+        session.evict(p);//清空缓存数据
+        System.out.println(p.getName());
+        HibernateUtil.closeSession();
+        session = HibernateUtil.getSession();
+        Person p3 = (Person) session.get(Person.class, 1);//重新开启session, 缓存丢失
+        System.out.println(p3.getName());
+    }
+    /* 开启二级缓存后 */
+    public static void testCache02() {
+        Session session = HibernateUtil.getSession();
+        Person p = (Person) session.get(Person.class, 1);
+        HibernateUtil.closeSession();
+        Session s2 = HibernateUtil.getSession();
+        Person p1 = (Person) s2.get(Person.class, 1);
+        System.out.println("==============");
+        System.out.println(p1.getName());//没有重复发送sql, 从二级缓存得到了数据
+
+    }
+
+    /*开启hql查询缓存*/
+    public static void testCache03(){
+        Session session = HibernateUtil.getSession();
+        String hql = "from Person p where p.name like '%a%'";
+        Query q = session.createQuery(hql);
+        q.setCacheable(true);
+        List<Person> list1 = q.list();
+        for(Person p: list1){
+            System.out.println(p.getName());
+        }
+        HibernateUtil.closeSession();
+        Session s2 = HibernateUtil.getSession();
+        Query q2 = s2.createQuery(hql) ;
+        q2.setCacheable(true);
+        Person p3 = (Person)s2.get(Person.class, 1);
+        Transaction tx = s2.beginTransaction();
+        p3.setName("ally");
+        s2.save(p3);
+        tx.commit();
+        System.out.println("==========");
+        List<Person> list = q2.list();
+        for(Person p: list){
+            System.out.println(p.getName());
+        }
         HibernateUtil.closeSession();
 
     }
