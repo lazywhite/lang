@@ -4,7 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-
 public class HibernateUtil {
     /* 避免用户过度开销session */
     static ThreadLocal<Session> threadLocal = new ThreadLocal<>();

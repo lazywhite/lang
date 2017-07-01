@@ -16,8 +16,15 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
-        <property name="current_session_context_class">thread</property>
+        <!-- 开启查询缓存 -->
+        <property name="cache.use_query_cache">true</property>
 
+        <!--配置二级缓存-->
+        <property name="cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+
+        <!-- session 上下文-->
+        <property name="current_session_context_class">thread</property>
         <!-- 关联映射文件-->
         <mapping resource="mapping/User.hbm.xml" />
         <mapping resource="mapping/UserInfo.hbm.xml" />

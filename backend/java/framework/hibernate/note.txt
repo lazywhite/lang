@@ -110,5 +110,37 @@ User.hbm.xml
         session.close()
         session.clear()
         session.evict()
-        
 
+一级缓存(session级别)
+    缓存不能跨session访问
+    事务提交, session缓存自动被清空
+    通过session.clear(),session.evict(obj)来清空缓存
+二级缓存(sessionFactory级别)
+    默认关闭
+    多个session可共享数据
+    只提供单服务器二级缓存
+    事务提交后, 默认清理缓存, 避免脏读
+    开启方法
+        引入jar包
+        hibernate.cfg.xml设置Provider
+        ehcache.xml 配置参数
+        mapping.xml cache region
+查询缓存
+    通过hql语句得到的数据可以使用
+    开启方法
+        缓存对象可序列化
+        开启二级缓存
+        开启查询缓存功能
+        query.setCacheable(true)
+
+批量操作
+    session.save(obj)
+    session.flush() 持久化
+    session.clear() 清空缓存
+
+JPA是一个接口, hibernate实现了这些接口
+Annotation
+    @Entity: 标记为实体类, 必须含有无参构造
+    @Table(name="person")
+    @Id: primary key, 自动识别主键生成策略, 用@GeneratedValue来覆盖
+    @Column(name="col", length="", nullable, unique)
