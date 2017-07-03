@@ -1,3 +1,10 @@
+## Feature
+1. Dependency Injection
+2. AOP
+3. spring mvc , restfull web service 
+4. foundational support for JDBC, JPA, JMS
+
+  
 ## Keyword
 ```
 bean
@@ -34,19 +41,19 @@ annotation
 @RequestParam - must be passed as method parameter (optional based on the required property)
  http://localhost:8080/employee/call/7865467
 
- @RequestMapping(value=“/call/{callId}", method = RequestMethod.GET)
+ @RequestMapping(value="/call/{callId}", method = RequestMethod.GET)
  public List<Calls> getAgentCallById(
-            @PathVariable(“callId") int callId,
-            @RequestParam(value = “status", required = false) String callStatus) {
+            @PathVariable("callId") int callId,
+            @RequestParam(value = "status", required = false) String callStatus) {
 
     }
 
 http://localhost:8080/app/call/7865467?status=Cancelled
 
-@RequestMapping(value=“/call/{callId}", method = RequestMethod.GET)
+@RequestMapping(value="/call/{callId}", method = RequestMethod.GET)
 public List<Calls> getAgentCallById(
-            @PathVariable(“callId") int callId,
-            @RequestParam(value = “status", required = true) String callStatus) {
+            @PathVariable("callId") int callId,
+            @RequestParam(value = "status", required = true) String callStatus) {
 
 }
 ```

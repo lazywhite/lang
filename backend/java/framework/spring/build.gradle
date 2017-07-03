@@ -1,0 +1,21 @@
+plugins{
+    id 'java'
+    id 'war'
+    id 'org.akhikhl.gretty' version '1.4.2'
+}
+
+group 'local'
+version '1.0-SNAPSHOT'
+
+
+sourceCompatibility = 1.8
+
+repositories {
+//    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile 'org.springframework:spring-context:4.3.9.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
