@@ -114,3 +114,21 @@ println func(10, 20)
 
 args = [0, 1]
 println func(*args)
+
+
+//闭包
+//def func = { [ arguments list -> ] statement }
+//如果闭包只接受一个参数, 则可以省略不写, 默认用it来调用
+def closure = {
+    println it
+}
+//不接受参数的闭包
+def noParamClosure = { -> true }
+//闭包的调用
+closure.call("string")
+closure("string")
+
+def closure02 = {
+    a, b -> a + b
+}
+println closure02(10, 20)
