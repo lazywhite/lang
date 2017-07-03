@@ -1,0 +1,35 @@
+plugins{
+    id  'java'
+    id  'war'
+    id 'org.akhikhl.gretty' version '1.4.2'
+}
+group 'local'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile group: 'org.apache.struts', name: 'struts2-core', version: '2.5.10.1'
+    compile group: 'org.apache.struts', name: 'struts2-convention-plugin', version: '2.5.10.1'
+    compile group: 'org.apache.struts', name: 'struts2-config-browser-plugin', version: '2.5.10.1'
+
+//    compile group: 'org.apache.struts.xwork', name: 'xwork-core', version: '2.3.32'
+
+
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.8.2'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.2'
+
+
+
+    compile group: 'org.apache.taglibs', name: 'taglibs-standard-impl', version: '1.2.5'
+    compile group: 'org.apache.taglibs', name: 'taglibs-standard-spec', version: '1.2.5'
+
+
+
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
