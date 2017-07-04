@@ -1,6 +1,7 @@
 package local.mybatis.util;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -25,6 +26,10 @@ public class MybatisUtil {
 
     public static SqlSessionFactory getSessionFactory(){
         return sessionFactory;
+    }
+
+    public static SqlSession getSession(){
+        return sessionFactory.openSession();
     }
 
 
