@@ -10,6 +10,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         返回sql语句中一条记录对应的类型
 -->
     <sql id="userColumns">id, name, password </sql>
+    <sql id="searchCondition">
+        <if test="condition != null">
+            <!-- mybatis会自动删除跟where离得最近的and -->
+            <!--<if test="condition.name != null and condition.name != '-1'.toString()">-->
+                <!--and name like #{condition.name}-->
+            <!--</if>-->
+            <!--<if test="condition.password != null and condition.password != '-1'.toString()">-->
+                <!--and password like #{condition.password}-->
+            <!--</if>-->
+
+            <choose>
+                <when   test="condition.name != null and condition.name != '-1'.toString()">
+                    and name like #{condition.name}
+                </when>
+
+                <when   test="condition.password != null and condition.password != '-1'.toString()">
+                    and password like #{condition.password}
+                </when>
+                <otherwise>
+                    id > 10
+                </otherwise>
+            </choose>
+        </if>
+    </sql>
     <select id="getUserById" parameterType="int" resultType="user">
         select <include refid="userColumns" /> from user where id = #{id}
     </select>
@@ -22,18 +46,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select <include refid="userColumns" /> from user
     </select>
 
-    <select id="getUsersCount"  resultType="int">
+    <select id="getUsersCount"  resultType="int" parameterType="page">
         select count(`id`) from user
+        <!--<if test="condition.name != null and condition.name != '-1'.toString()">-->
+        <where>
+            <include refid="searchCondition" />
+        </where>
     </select>
+    <select id="selectPage" resultType="user" parameterType="page">
+        select * from user
+        <where>
+            <include refid="searchCondition" />
+        </where>
+        order by `id` limit #{offset}, #{pageSize}
+    </select>
+    <!--
+        Mysql 实现主键自增
+            1. 字段配置auto_increment
+            2. 使用useGeneratedKeys, keyProperty(仅仅是标注作用)
+        Oracle
+            <selectKey>
+                从序列获取值
+            </selectKey>
 
-    <insert id="createUser" parameterType="user" >
+        字符串类型
+            select uuid()
+    -->
+    <insert id="createUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
         insert into user(name, password) values(#{name}, #{password})
     </insert>
-    <delete id="deleteUser" parameterType="user">
-        delete from user where `id` = #{id}
+    <delete id="deleteUser" parameterType="int[]">
+        delete from user where `id` in
+        <!--
+            1. 直接用数组传递时, parameterType = int[], collection值必须为array
+            2. 用map来传递, parameterType = HashMap,   collection="key"
+            -->
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </delete>
 
-    <update id="changeUserPassword" parameterType="user">
-        update user set password = #{password} where `id` = #{id}
+    <update id="updateUser" parameterType="user">
+        update user
+        <set>
+           <if test="name != null">name = #{name}, </if>
+            <if test="password != null">password = #{password}</if>
+        </set>
+        where `id` = #{id}
     </update>
 </mapper>

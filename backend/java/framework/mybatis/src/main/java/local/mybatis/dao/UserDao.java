@@ -7,6 +7,7 @@ package local.mybatis.dao;
  */
 
 import local.mybatis.entity.User;
+import local.mybatis.util.Page;
 
 import java.util.List;
 
@@ -17,12 +18,14 @@ public interface UserDao {
 
     void createUser(User u);
 
-    void changeUserPassword(User u);
-
-    void deleteUser(User u);
+    void updateUser(User u);
 
     User getUserByName(String name);
 
-    Integer getUsersCount();
+    Integer getUsersCount(Page p);
+
+    //方法语法上可以重载, 但因为要跟UserMapper.xml结合使用, 有语句ID限制 不能重载
+    List<User> selectPage(Page p);
+    void deleteUser(int[] ids);
 }
 

@@ -14,6 +14,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <!-- 第一种, 手动指定 -->
         <!--<typeAlias type="local.mybatis.entity.User" alias="user" />-->
         <!-- 第二种, 全包扫描, 默认是类名首字母小写 -->
+        <typeAlias type="local.mybatis.util.Page" alias="page" />
         <package name="local.mybatis.entity" />
     </typeAliases>
     <environments default="dev">
