@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="user">
+<mapper namespace="local.mybatis.dao.UserDao">
 <!-- parameterType
         基本类型或别名, 则 #{}可以随便写
         对象类型, #{}必须写对象的属性名
@@ -11,15 +11,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
     <sql id="userColumns">id, name, password </sql>
     <select id="getUserById" parameterType="int" resultType="user">
-        select <include refid="userColumns" /> from User where id = #{id}
+        select <include refid="userColumns" /> from user where id = #{id}
     </select>
 
     <select id="getUserByName" parameterType="string" resultType="user">
-        select <include refid="userColumns" /> from User where name = #{name}
+        select <include refid="userColumns" /> from user where name = #{name}
     </select>
 
     <select id="getUsers"  resultType="user">
-        select <include refid="userColumns" /> from User
+        select <include refid="userColumns" /> from user
     </select>
 
     <select id="getUsersCount"  resultType="int">
@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="createUser" parameterType="user" >
         insert into user(name, password) values(#{name}, #{password})
     </insert>
-    <delete id="deleteUserById" parameterType="user">
+    <delete id="deleteUser" parameterType="user">
         delete from user where `id` = #{id}
     </delete>
 
