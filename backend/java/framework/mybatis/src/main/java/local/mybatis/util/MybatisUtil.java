@@ -29,7 +29,7 @@ public class MybatisUtil {
     }
 
     public static SqlSession getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.openSession(false); //关闭自动提交
     }
 
 

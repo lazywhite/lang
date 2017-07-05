@@ -9,7 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      resultType:
         返回sql语句中一条记录对应的类型
 -->
-    <sql id="userColumns">id, name, password </sql>
+    <resultMap  type="user" id="usermap">
+        <id column="id" property="id" />
+        <id column="name" property="name" />
+        <collection property="articles" select="local.mybatis.dao.ArticleDao.getArticlesByUID" column="id">
+
+        </collection>
+    </resultMap>
+    <sql id="userColumns">id, name</sql>
     <sql id="searchCondition">
         <if test="condition != null">
             <!-- mybatis会自动删除跟where离得最近的and -->
@@ -34,12 +41,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             </choose>
         </if>
     </sql>
-    <select id="getUserById" parameterType="int" resultType="user">
+
+    <select id="getUserById"  resultMap="usermap">
         select <include refid="userColumns" /> from user where id = #{id}
     </select>
 
-    <select id="getUserByName" parameterType="string" resultType="user">
-        select <include refid="userColumns" /> from user where name = #{name}
+    <select id="getUserByAuth"  resultType="user">
+        select <include refid="userColumns" /> from user where name = #{name} and `password` = #{password}
     </select>
 
     <select id="getUsers"  resultType="user">
@@ -62,9 +70,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     <!--
         Mysql 实现主键自增
-            1. 字段配置auto_increment
-            2. 使用useGeneratedKeys, keyProperty(仅仅是标注作用)
+            1. 字段配置auto_increment, 即可
         Oracle
+            使用useGeneratedKeys, keyProperty(仅仅是标注作用)
             <selectKey>
                 从序列获取值
             </selectKey>
@@ -75,13 +83,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="createUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
         insert into user(name, password) values(#{name}, #{password})
     </insert>
-    <delete id="deleteUser" parameterType="int[]">
+    <delete id="deleteUser">
         delete from user where `id` in
         <!--
             1. 直接用数组传递时, parameterType = int[], collection值必须为array
             2. 用map来传递, parameterType = HashMap,   collection="key"
+            3. 省略parameterType, 使用@Param("var")传递, collection="var"
             -->
-        <foreach collection="array" item="id" open="(" separator="," close=")">
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
     </delete>
