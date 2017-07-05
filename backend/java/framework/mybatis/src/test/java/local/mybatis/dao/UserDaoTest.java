@@ -1,6 +1,7 @@
-package local.mybatis;
+package local.mybatis.dao;
 
 import local.mybatis.dao.UserDao;
+import local.mybatis.entity.Article;
 import local.mybatis.entity.User;
 import local.mybatis.util.MybatisUtil;
 import local.mybatis.util.Page;
@@ -14,7 +15,7 @@ import java.util.Map;
 /**
  * Created by white on 17/7/4.
  */
-public class UserMapperTest {
+public class UserDaoTest {
 
     @Test
     public void testGetUserById(){
@@ -24,6 +25,12 @@ public class UserMapperTest {
         System.out.println(userMapper.getClass().getName());
         User u = userMapper.getUserById(7);
         System.out.println(u.getName());
+        System.out.println("===== before lazy loading =====");
+        List<Article> articles = u.getArticles();
+        for(Article a: articles){
+            System.out.println(a.getContent());
+//            System.out.println(a.getUser().getName());  重复调用
+        }
         session.close();
     }
 
@@ -60,7 +67,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void deleteUser(){
+    public void testDeleteUser(){
         SqlSession session = MybatisUtil.getSession();
         UserDao userMapper = session.getMapper(UserDao.class);
         int[] ids = new int[]{1, 2, 3};
@@ -68,4 +75,14 @@ public class UserMapperTest {
 //        session.commit();
         session.close();
     }
+
+    @Test
+    public void testGetUserByAuth(){
+        SqlSession session = MybatisUtil.getSession();
+        UserDao userMapper = session.getMapper(UserDao.class);
+        User u = userMapper.getUserByAuth("test7", "pass");
+        System.out.println(u.getId());
+        session.close();
+    }
+
 }

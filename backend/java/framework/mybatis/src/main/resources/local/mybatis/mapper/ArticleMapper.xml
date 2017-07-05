@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="local.mybatis.dao.ArticleDao">
+    <!--
+        association的两种方式
+            1. 嵌套的resultMap
+            2. 嵌套的select语句, 可以实现懒加载
+    -->
+    <!--<resultMap id="articleMap" type="Article">-->
+        <!--<id column="id" property="id" />-->
+        <!--<result column="content" property="content" />-->
+        <!--<association property="user" javaType="User">-->
+            <!--<id property="id" column="uid" />-->
+            <!--<result property="name" column="name" />-->
+        <!--</association>-->
+    <!--</resultMap>-->
+
+    <!--<select id="getArticleById" resultMap="articleMap">-->
+        <!--select A.id, A.uid, A.content, U.name-->
+            <!--from article A left join user U-->
+            <!--on  A.uid = U.id-->
+            <!--where A.id = #{id}-->
+    <!--</select>-->
+    <resultMap id="articleMap" type="Article">
+        <id column="id" property="id" />
+        <result column="content" property="content" />
+        <association property="user" column="uid" select="local.mybatis.dao.UserDao.getUserById"></association>
+    </resultMap>
+    <select id="getArticleById" resultMap="articleMap">
+        select * from article where id = #{id}
+    </select>
+
+    <select id="getArticlesByUID" resultType="article">
+        select * from article where uid = #{uid}
+    </select>
+</mapper>

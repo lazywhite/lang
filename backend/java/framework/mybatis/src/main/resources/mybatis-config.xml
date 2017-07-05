@@ -9,6 +9,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     </properties>
     <settings>
         <setting name="logImpl" value="SLF4J"/>
+        <!-- 开启全局性设置懒加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 开启按需加载 -->
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
     <typeAliases>
         <!-- 第一种, 手动指定 -->
@@ -20,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <environments default="dev">
         <environment id="dev">
             <transactionManager type="JDBC"/>
-            <dataSource type="POOLED">
+            <dataSource type="POOLED" >
                 <property name="driver" value="${jdbc.driver}"/>
                 <property name="url" value="${jdbc.url}" />
                 <property name="username" value="${jdbc.username}"/>
@@ -29,6 +33,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="local/mybatis/mapper/UserMapper.xml"/>
+        <mapper resource="local/mybatis/mapper/ArticleMapper.xml"/>
+        <!-- 全包扫描 -->
+        <!--<package name="local.mybatis.mapper" />-->
     </mappers>
 </configuration>

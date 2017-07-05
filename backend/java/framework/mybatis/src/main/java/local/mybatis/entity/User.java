@@ -20,6 +20,16 @@ public class User {
     private String name;
     private String password;
 
+    private List<Article> articles;
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
+
     public User(String name, String password) {
         this.name = name;
         this.password = password;
