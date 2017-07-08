@@ -8,34 +8,32 @@ public class QuickSort {
         System.out.println(Arrays.toString(arr));
     }
     public static void quickSort(int[] arr, int start, int end){
-        if(start >= end || arr.length == 0){
+        if(start >= end || arr.length == 1){
             return;
         }
         int middle = start + (end - start)/2;
         int pivot = arr[middle];
         int low = start;
         int high = end;
-        while(high >= low){
-            while(arr[low] < pivot){
+        while(high >= low){ //循环入口是可以相等的
+            while(arr[low] < pivot){ //与key的比较不能相等
                 low++;
             }
             while(arr[high] > pivot){
                 high--;
             }
-            if(high >= low){
+            if(high >= low){ //跟while循环入口一致, 可以相等
                 int tmp;
                 tmp = arr[low];
-                arr[low] = arr[high];
-                arr[high] = tmp;
-                low++;
-                high--;
+                arr[low++] = arr[high]; //隐含一次low的递增
+                arr[high--] = tmp;
             }
-            if(start < high){
-                quickSort(arr, start, high);
-            }
-            if(end > low){
-                quickSort(arr, low, end);
-            }
+        }//将比基准值小的全移动到左边, 大的全到右面
+        if(start <= high){
+            quickSort(arr, start, high);
+        }
+        if(end >= low){
+            quickSort(arr, low, end);
         }
 
     }
