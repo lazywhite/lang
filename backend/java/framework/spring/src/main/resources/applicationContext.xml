@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+       default-lazy-init="true">
+
+    <!--bean手动配置-->
+    <!--<bean id="userHBMDao" claUserHBMDaoMDao" lazy-init="true" />-->
+    <!--<bean id="userMybatisDao" claUserMybatisDaosDao" scope="singleton"-->
+          <!--init-method="init" destroy-method="destroy" lazy-init="true"/>-->
+    <!--<bean id="userServiceImpl" claUserServiceImplImpl">-->
+        <!--<property name="userDao">-->
+            <!--<ref bean="userMybatisDao" />-->
+        <!--</property>-->
+        <!--<property name="name" value="user service" />-->
+    <!--</bean>-->
+
+    <!--<bean id="userDao" claUserDaorDao" abstract="true" />-->
+
+
+    <!--<bean claArticleMybatisDaosDao" id="articleMybatisDao"/>-->
+    <!--<bean claArticleServiceImplImpl" id="articleService" >-->
+        <!--<constructor-arg  index="0"> &lt;!&ndash; 如果参数只要一个, index可省略 &ndash;&gt;-->
+            <!--<ref bean="articleMybatisDao" />-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+
+    <!--<bean claArticleMybatisDaosDao" id="articleMybatisDao"/>-->
+    <!--<bean claArticleServiceImplImpl" id="articleService" autowire="byName" />-->
+
+    <!--<bean id="cal" class="java.util.GregorianCalendar" factory-method="getInstance"></bean>-->
+    <!--<bean id="date" class="java.util.Date" factory-bean="cal"  factory-method="getTime"></bean>-->
+
+    <!--注解扫描-->
+    <context:component-scan base-package="com.local.spring" />
+</beans>
