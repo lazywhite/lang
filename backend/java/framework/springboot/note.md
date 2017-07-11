@@ -23,4 +23,7 @@ bash> spring run app.groovy
 cd /path/to/springboot/project
 mvn clean package 
 java -jar target/demo.jar
+
+## 3. 配置文件
+src/main/resource/application.[yml,properties]
 ```

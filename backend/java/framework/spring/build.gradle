@@ -4,7 +4,7 @@ plugins{
     id 'org.akhikhl.gretty' version '1.4.2'
 }
 
-group 'local'
+group 'com.local'
 version '1.0-SNAPSHOT'
 
 
@@ -17,5 +17,16 @@ repositories {
 
 dependencies {
     compile 'org.springframework:spring-context:4.3.9.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    compile group: 'org.springframework', name: 'spring-core', version: '4.3.9.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-beans
+    compile group: 'org.springframework', name: 'spring-beans', version: '4.3.9.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-expression
+    compile group: 'org.springframework', name: 'spring-expression', version: '4.3.9.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-tx
+    compile group: 'org.springframework', name: 'spring-tx', version: '4.3.9.RELEASE'
+
+
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
