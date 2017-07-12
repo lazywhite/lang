@@ -13,6 +13,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <setting name="lazyLoadingEnabled" value="true"/>
         <!-- 开启按需加载 -->
         <setting name="aggressiveLazyLoading" value="false"/>
+
+        <!--<setting name="cacheEnable" value="true" />-->
     </settings>
     <typeAliases>
         <!-- 第一种, 手动指定 -->
