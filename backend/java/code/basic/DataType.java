@@ -5,9 +5,10 @@ import java.util.Arrays;
  *      基本数据类型
  *      引用数据类型
  *
- *java基础数据类型都不是面向对象的， 所以采用包装类
- *       Byte
- *       Short
+ * java保留基础数据类型是因为相对包装类型, 性能比较好
+ * 采用包装类是为了能方便调用一些面向对象的方法
+ *      Byte
+ *      Short
  *      Integer
  *      Long
  *      Boolean
@@ -15,7 +16,27 @@ import java.util.Arrays;
  *      Float
  *      Double
  *
- * 包装类与基本类型的转换
+ * 包装类与基本类型的互换
+ *      int i = 10
+ *      Integer m = new Integer(i)  装箱
+ *      m.intValue() 拆箱
+ *
+ * 基本类型与String类型互换
+ *      基本类型转String
+     *      int i = 10;
+            String str = String.valueOf(i);
+ *      String 转基本类型
+ *          int m = Integer.parseInt(str);
+ *
+ *  包装类与String互换
+ *      Integer i = 10;
+ *      String str = i.toString();
+ *
+ *      Integer m = Integer.valueOf(str);
+ *
+ *  自动拆箱装箱
+ *      Integer i = 10; // 自动装箱   Integer i = Integer.valueOf(10)
+ *      int t = i; 自动拆箱   int t = i.intValue();
  */
 
 public class DataType{
@@ -28,9 +49,9 @@ public class DataType{
         String s = "hello";
         Byte x = new Byte(b); //Byte类接受两种参数 byte 和string
         //Byte y = new Byte(s);
+        byte ccc = x.byteValue();
         System.out.println(x);
         //System.out.println(y);
-
 
 
         /*
@@ -63,10 +84,7 @@ public class DataType{
         i = 0xff;//0x开头表示十六进制
         System.out.println(i);
 
-
         Integer ii = new Integer(i);
-        System.out.println(ii);
-
         System.out.println(ii.intValue());
 
         /* Long 类型, 8字节
