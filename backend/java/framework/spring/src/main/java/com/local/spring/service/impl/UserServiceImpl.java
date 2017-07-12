@@ -3,6 +3,8 @@ package com.local.spring.service.impl;
 import com.local.spring.dao.UserDao;
 import com.local.spring.service.UserService;
 import com.local.spring.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +22,10 @@ public class UserServiceImpl implements UserService {
         System.out.println("user service created");
     }
 
-//    @Autowired //无需getter, setter
-//    @Qualifier(value="userHBMDao") //区分到底使用哪个实现类
+    @Autowired //无需getter, setter
+    @Qualifier(value="userHBMDao") //区分到底使用哪个实现类
 
-    @Resource(name="userHBMDao")
+//    @Resource(name="userMybatisDao")
     private UserDao userDao;
     private String name;
 
@@ -36,12 +38,19 @@ public class UserServiceImpl implements UserService {
         this.name = name;
     }
 
-//    public void setUserDao(UserDao userDao) {
-//        System.out.println("user dao injected");
-//        this.userDao = userDao;
-//    }
-
+    @Override
     public List<User> findAllUser(){
         return userDao.findAll();
+    }
+
+
+    @Override
+    public User findUserByID(int id){
+        return userDao.findByID(id);
+    }
+
+    @Override
+    public int findUsersCount() {
+        return 1000;
     }
 }

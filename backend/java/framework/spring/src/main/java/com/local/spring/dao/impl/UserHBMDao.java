@@ -20,4 +20,10 @@ public class UserHBMDao implements UserDao {
         list.add(u);
         return list;
     }
+
+    @Override
+    public User findByID(int id) {
+        return null;
+    }
+
 }
