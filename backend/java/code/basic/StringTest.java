@@ -8,6 +8,13 @@ import java.util.Arrays;
  * StringBuffer类型跟StringBuilder特性基本相同， 但是thread safe的
  */
 public class StringTest{
+    public static String reverse(String str){
+        //递归实现字符串反转
+        if(str.length() == 1){
+            return str;
+        }
+        return reverse(str.substring(1)) + str.charAt(0);
+    }
     public static void main(String[] args){
         //StringBuilder API
         StringBuilder strBuilder = new StringBuilder();
@@ -34,7 +41,7 @@ public class StringTest{
         System.out.println(str.equals(str1));// -->true
         System.out.println(str.equalsIgnoreCase(str1));
         System.out.println(str.startsWith("new"));
-
+        str.intern();
 
         // String methods
         String testStr = "abcd@test.com";

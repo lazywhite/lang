@@ -32,3 +32,7 @@ synchronized可以修饰静态方法,普通方法, 任意对象,this, class ,修
 jps jstack -l <pid>可检测是否存在死锁现象
 a.join() 当前线程会等待a线程执行完毕才继续执行, 底层是wait()
 a.join(time) 只等待一段时间
+wait()会释放锁, sleep()不会释放
+sleep()对象会让其他线程获取运行机会, 不考虑优先级, yield()则只会让优先级大于等于自己的线程运行
+sleep()后进入TimeWaiting状态, yield()之后进入Runnable状态
+新建的线程通过start()启动, 才能作为独立的线程接受线程调度器管理,  通过run()启动, 相当于在主线程执行了一个普通方法, 不是多线程
