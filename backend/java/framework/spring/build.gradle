@@ -23,6 +23,19 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-beans', version: '4.3.9.RELEASE'
     // https://mvnrepository.com/artifact/org.springframework/spring-expression
     compile group: 'org.springframework', name: 'spring-expression', version: '4.3.9.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-aop
+
+
+    compile group: 'org.springframework', name: 'spring-aop', version: '4.3.9.RELEASE'
+    // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+    compile group: 'org.aspectj', name: 'aspectjrt', version: '1.8.10'
+    // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+    compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.10'
+    // https://mvnrepository.com/artifact/aopalliance/aopalliance
+    compile group: 'aopalliance', name: 'aopalliance', version: '1.0'
+
+
+
 
     // https://mvnrepository.com/artifact/org.springframework/spring-tx
     compile group: 'org.springframework', name: 'spring-tx', version: '4.3.9.RELEASE'
