@@ -1,6 +1,6 @@
 package local.mybatis.dao;
 /*
- * UserDao.java
+ * UserMapper.java
  * Copyright (C) 2017 white <white@localhost>
  *
  * Distributed under terms of the MIT license.
@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserMapper {
      
     User getUserById(@Param("id") int id); //可以省略 parameterType, 多个条件时不必封装为map传进去
     List<User> getUsers();

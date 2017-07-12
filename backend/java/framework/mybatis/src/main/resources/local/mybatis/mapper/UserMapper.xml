@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="local.mybatis.dao.UserDao">
+<mapper namespace="local.mybatis.dao.UserMapper">
 <!-- parameterType
         基本类型或别名, 则 #{}可以随便写
         对象类型, #{}必须写对象的属性名
@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap  type="user" id="usermap">
         <id column="id" property="id" />
         <id column="name" property="name" />
-        <collection property="articles" select="local.mybatis.dao.ArticleDao.getArticlesByUID" column="id">
+        <collection property="articles" select="local.mybatis.dao.ArticleMapper.getArticlesByUID" column="id">
 
         </collection>
     </resultMap>
