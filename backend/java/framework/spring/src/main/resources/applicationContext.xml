@@ -49,6 +49,48 @@
         <!--<context:include-filter type="" expression=""-->
     </context:component-scan>
 
+
+    <!--配置第一种适配器对象, 只能调用实现了Controller接口的对象-->
+    <!--<bean id="handlerAdaptor" class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" ></bean>-->
+
+    <!--配置第二种适配器, 只能调动实现了HttpRequestHandler接口的对象-->
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+    <!--配置第一种映射器
+    -->
+    <!--<bean id="mappingHanlder" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
+        <!--<property name="mappings">-->
+            <!--<props>-->
+                <!--<prop key="test.do">testHandler</prop>-->
+                <!--<prop key="http.do">httpHandler</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--第二种映射器-->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+
+
+    <!--配置视图解析器-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix">
+            <value>/user/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+    <!--name属性配合BeanNameUrlHandlerMapping 使用-->
+    <bean id="testHandler" class="com.local.spring.handler.TestHandler" name="/test.do">
+        <property name="hello">
+            <value>xml注入</value>
+        </property>
+    </bean>
+
+    <bean id="httpHandler" class="com.local.spring.handler.HttpHandler" name="/http.do">
+
+    </bean>
+
     <!--启用AOP自动代理-->
     <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
     <aop:config>
