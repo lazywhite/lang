@@ -35,6 +35,15 @@ dependencies {
     compile group: 'aopalliance', name: 'aopalliance', version: '1.0'
 
 
+    // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.9.RELEASE'
+
+
+
+    compile group: 'org.apache.taglibs', name: 'taglibs-standard-impl', version: '1.2.5'
+    compile group: 'org.apache.taglibs', name: 'taglibs-standard-spec', version: '1.2.5'
+
+    compile 'com.alibaba:fastjson:1.2.34'
 
 
     // https://mvnrepository.com/artifact/org.springframework/spring-tx

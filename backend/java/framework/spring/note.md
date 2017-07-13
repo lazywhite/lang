@@ -111,27 +111,58 @@ AOP
     登录验证
 
 aop
+    横切关注点
+        一个业务逻辑由多个关注点组成
+        对哪些方法进行拦截, 拦截后怎样处理, 这些关注点称为横切关注点
     aspect 切面
+        对横切关注点的抽象
+        切面由pointcut和advice组成
     advice 通知
-        前置通知: 作用在目标方法之前
-        后置通知: 目标方法成功执行之后调用通知
-        环绕通知: 先执行一部分切面功能在调用目标方法,再执行切面另外一部分功能
-        异常通知: 目标方法出现异常时调用通知
-        最终通知: 不管目标方法有没有执行成功都通知
+        拦截到连接点后要执行的逻辑
+            before 前置通知: 作用在目标方法之前
+            after-returning 后置通知: 目标方法成功执行之后调用通知
+            around 环绕通知
+            after-exception 异常通知: 目标方法出现异常时调用通知
+            after 最终通知: 不管目标方法有没有执行成功都通知
     pointcut 切入点
-        需要应用切面的方法的匹配表达式
+        对哪些连接点进行拦截的匹配表达式
     joinpoint 连接点
-        被作用的对象
+        被拦截到的点, 一般是方法, 还可以是字段或构造器
+    weaving 织入
+        将切面应用到目标对象并导致代理对象创建的过程
+    introduce 引入
+        在不修改代码的前提下, 在运行期间为类动态的添加一些字段或方法
+
 
 如果一个方法同时应用了前置通知和环绕通知, 执行按照xml配置顺序
-后置通知获取方法的返回值
-pointcut
-    expression
-        within()
-        execution(public * com.local.service..*(..))
-        bean(*Service)
+
+<aop:config>
+    <aop:aspect>
+        <aop:pointcut>
+            @expression
+                within()
+                execution(public * com.local.service..*(..))
+                bean(*Service)
 
 @Configuration 代替applicationContext.xml
 @Bean
 
 所有的bean不能手工新建, 被spring容器管理才会起作用
+
+
+springMVC
+    DispatcherServlet: 主控制器
+    Handler: 获取请求参数, 调用业务模型, 处理请求
+    HandlerAdaptor: 调用执行对应规则的Handler对象, 相当于struts ActionInvocation
+    HandlerMapping: 负责url与handler的对应
+    ViewResolver: 视图解析器
+        /WEB-INF/jsp/add.jsp
+        prefix: /WEB-INF/jsp
+        suffix: .jsp
+        逻辑视图名称: add
+    ModelAndView模型数据和视图
+        
+
+DispatcherServlet-->HandlerMapping--->HandlerAdaptor-->Handler-->ModelAndView-->ViewResolver
+
+
