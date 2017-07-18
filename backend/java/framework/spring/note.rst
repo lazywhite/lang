@@ -148,9 +148,11 @@ aop
 @Bean
 
 所有的bean不能手工新建, 被spring容器管理才会起作用
+使用xml需要实现接口, 使用注解不需要
 
 
 springMVC
+================
     DispatcherServlet: 主控制器
     Handler: 获取请求参数, 调用业务模型, 处理请求
     HandlerAdaptor: 调用执行对应规则的Handler对象, 相当于struts ActionInvocation
@@ -166,3 +168,66 @@ springMVC
 DispatcherServlet-->HandlerMapping--->HandlerAdaptor-->Handler-->ModelAndView-->ViewResolver
 
 
+    @RequestMapping
+        value="/pets/{petId}
+        method=RequestMethod.GET
+        consumes="application/json" 指定提交的内容类型
+        produces="application/xml" 指定返回的内容类型
+        params="key=value" 请求包含对应键值对才进行处理
+        headers="Referer=http://www.xx.com" 请求包含响应header才进行处理
+    @RequestParam
+    @RequestHeader
+    @PathVariable
+    @RequestBody
+        $.ajax({url: "http://", 
+            data: {
+                id: 1000, 
+                name: "bob"}
+            })
+        当以post方式传递时
+    @ResponseBody
+
+方法传值
+    参数名与函数形参名字一致即可传值
+1. 基本类型 func(String name)
+    <input name="name" />
+2. 数组 func(String[] interest)
+   <input type="checkbox" name="interest" />
+   <input type="checkbox" name="interest" />
+3. 复合类型 
+User
+    name
+    age
+    Adress
+        id
+        name
+传入方法
+    <input name="name"
+    <input name="age"
+    <input name="address.id"
+    <input name="address.name"
+4. List<User>
+5. Map
+    input name='userMap["name"]'
+6. Date
+        
+
+mvc:annotation-driver conversion-service="FormattingConversionServiceFactoryBean"
+    converter
+    formatter
+        
+方法返回值类型
+    ModelAndView
+    String
+    void  参数绑定
+
+
+ModelMap
+Model
+ModelAndView
+
+controller method 名字可以相同, 可以有不同的@RequestMapping
+
+不使用@Responsebody, 手动返回json
+return String 是否走视图解析器
+空返回注入原理
