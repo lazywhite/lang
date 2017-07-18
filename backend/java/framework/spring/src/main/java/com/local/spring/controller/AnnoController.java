@@ -4,21 +4,17 @@ import com.alibaba.fastjson.JSON;
 import com.local.spring.entity.Anno;
 import com.local.spring.entity.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by white on 17/7/14.
@@ -55,7 +51,7 @@ public class AnnoController {
     @RequestMapping("/toAdd")
     public ModelAndView toAdd(){
         ModelAndView  mav = new ModelAndView();
-        mav.setViewName("/anno/add4");
+        mav.setViewName("/anno/add6");
         return mav;
     }
 
@@ -103,6 +99,25 @@ public class AnnoController {
     public String test04(String str, String username){
         System.out.println(str);
         System.out.println(username);
+        return "/anno/list";
+    }
+
+    @RequestMapping("/test05")
+    public String test05(Map userMap){
+        // 传入Map类型参数
+        System.out.println(userMap.get("name"));
+        return "/anno/list";
+    }
+
+    @RequestMapping("/test06")
+    public String test06(MultipartFile portrait){
+        System.out.println(portrait.getOriginalFilename());
+        return "/anno/list";
+    }
+
+    @RequestMapping("/test07/{id}/")
+    public String test07(@PathVariable("id") int id){
+        System.out.println(id);
         return "/anno/list";
     }
 

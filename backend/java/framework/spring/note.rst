@@ -210,11 +210,8 @@ User
 5. Map
     input name='userMap["name"]'
 6. Date
+    Formatter
         
-
-mvc:annotation-driver conversion-service="FormattingConversionServiceFactoryBean"
-    converter
-    formatter
         
 方法返回值类型
     ModelAndView
@@ -231,3 +228,9 @@ controller method 名字可以相同, 可以有不同的@RequestMapping
 不使用@Responsebody, 手动返回json
 return String 是否走视图解析器
 空返回注入原理
+
+
+文件上传
+    func(MultipartFile inputName)
+    CommonsMultipartResolver
+

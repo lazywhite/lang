@@ -14,7 +14,8 @@ import java.util.Locale;
  */
 
 //自定义formatter必须调用Formatter接口
-public class StringToDate implements Formatter<Date> {
+@Component
+public class DateFormatter implements Formatter<Date> {
     //Formatter<Date>  字符串到其他类型的转换
     //Converter: 任意类型到任意类型的转换
 
