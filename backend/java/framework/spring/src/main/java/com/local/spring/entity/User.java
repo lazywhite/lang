@@ -1,5 +1,8 @@
 package com.local.spring.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Size;
 import java.util.*;
 
 /**
@@ -17,7 +20,9 @@ import java.util.*;
 public class User {
 
     private Integer id;
+    @NotEmpty(message="{user.name.empty}")
     private String name;
+    @Size(min=6, max=20, message="{password.length.error}")
     private String password;
 
     public User(String name, String password) {
