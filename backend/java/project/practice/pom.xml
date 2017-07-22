@@ -80,6 +80,20 @@
             <artifactId>dom4j</artifactId>
             <version>1.6.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/ojdbc/ojdbc -->
+        <dependency>
+            <groupId>ojdbc</groupId>
+            <artifactId>ojdbc</artifactId>
+            <version>14</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/ojdbc/ojdbc -->
+        <dependency>
+            <groupId>ojdbc</groupId>
+            <artifactId>ojdbc</artifactId>
+            <version>14-10gR3</version>
+        </dependency>
+
 
     </dependencies>
 </project>
