@@ -2,7 +2,8 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="local.mybatis.dao.ArticleMapper">
+<mapper namespace="local.mybatis.dao.ArticleDao" >
+    <cache type="org.mybatis.caches.redis.RedisCache" />
     <!--
         association的两种方式
             1. 嵌套的resultMap
@@ -26,13 +27,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap id="articleMap" type="Article">
         <id column="id" property="id" />
         <result column="content" property="content" />
-        <association property="user" column="uid" select="local.mybatis.dao.UserMapper.getUserById"></association>
+        <association property="user" column="uid" select="local.mybatis.dao.UserDao.getUserById"></association>
     </resultMap>
-    <select id="getArticleById" resultMap="articleMap">
-        select * from article where id = #{id}
+    <select id="getArticleById" resultMap="articleMap" >
+        select id, content, uid from article where id = #{id}
     </select>
 
-    <select id="getArticlesByUID" resultType="article">
+    <select id="getArticlesByUID" resultType="article" useCache="false">
         select * from article where uid = #{uid}
     </select>
+
+    <update id="updateArticle" parameterType="article">
+        update article set content = #{content}  where id = #{id}
+    </update>
+
+    <delete id="deleteArticle" parameterType="article">
+        delete from article where id = #{id}
+    </delete>
+
+    <insert id="saveArticle" parameterType="article" >
+        insert into article(id, uid, content) values(#{id}, ${user.id}, #{content})
+    </insert>
+
 </mapper>

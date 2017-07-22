@@ -1,5 +1,6 @@
 package local.mybatis.dao;
 
+import local.mybatis.dao.UserDao;
 import local.mybatis.entity.Article;
 import local.mybatis.entity.User;
 import local.mybatis.util.MybatisUtil;
@@ -16,14 +17,14 @@ import java.util.Map;
 /**
  * Created by white on 17/7/4.
  */
-public class UserMapperTest {
+public class UserDaoTest {
     private SqlSession session;
-    private UserMapper userMapper;
+    private UserDao userDao;
 
     @Before
     public void getSession(){
         session = MybatisUtil.getSession();
-        userMapper = session.getMapper(UserMapper.class);
+        userDao = session.getMapper(UserDao.class);
     }
     @After
     public void closeSession(){
@@ -32,13 +33,8 @@ public class UserMapperTest {
 
     @Test
     public void testGetUserById(){
-        User u = userMapper.getUserById(7);
+        User u = userDao.getUserById(125);
         System.out.println(u.getName());
-        List<Article> articles = u.getArticles();
-        for(Article a: articles){
-            System.out.println(a.getContent());
-//            System.out.println(a.getUser().getName());  重复调用
-        }
     }
 
     @Test
@@ -49,9 +45,9 @@ public class UserMapperTest {
         Page p = new Page();
         p.setCondition(condition);
 
-        p.setTotalRecords(userMapper.getUsersCount(p));
+        p.setTotalRecords(userDao.getUsersCount(p));
         p.setCurPage(1);
-        List<User> list = userMapper.selectPage(p);
+        List<User> list = userDao.selectPage(p);
 
         for(User u : list){
             System.out.println(u.getName());
@@ -59,24 +55,45 @@ public class UserMapperTest {
     }
     @Test
     public void testUpdateUser(){
-        User u = userMapper.getUserById(4);
+        User u = userDao.getUserById(125);
         u.setName("changed");
         u.setPassword(null);
-        userMapper.updateUser(u);
+        userDao.updateUser(u);
         session.commit();
     }
 
     @Test
-    public void testDeleteUser(){
-        int[] ids = new int[]{1, 2, 3};
-        userMapper.deleteUser(ids);
-//        session.commit();
+    public void testGetCount(){
+        Page p = new Page();
+        System.out.println(userDao.getUsersCount(p));
+    }
+
+    @Test
+    public void testDelete(){
+        User u = new User("testUser", "1234");
+        userDao.createUser(u);
+        session.commit();
+        System.out.println(u.getId());
+        userDao.deleteUser(u);
+        session.commit();
+    }
+
+    @Test
+    public void testCreate() {
+        User u = new User("testUser", "1234");
+        userDao.createUser(u);
+        session.commit();
     }
 
     @Test
     public void testGetUserByAuth(){
-        User u = userMapper.getUserByAuth("test7", "pass");
+        User u = userDao.getUserByAuth("test7", "pass");
         System.out.println(u.getId());
     }
 
+    @Test
+    public void testGetAllUsers(){
+        List<User> users = userDao.getAllUsers();
+        System.out.println(users.size());
+    }
 }

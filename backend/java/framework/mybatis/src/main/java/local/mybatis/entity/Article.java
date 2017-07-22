@@ -1,10 +1,14 @@
 package local.mybatis.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by white on 17/7/5.
  */
-public class Article {
+public class Article implements Serializable {
 
+
+    private static final long  serialVersionUID = 5280688164610107575L;
     private Integer id;
     private String content;
 
@@ -32,5 +36,13 @@ public class Article {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                '}';
     }
 }
