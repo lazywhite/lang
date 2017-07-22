@@ -9,12 +9,16 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     </properties>
     <settings>
         <setting name="logImpl" value="SLF4J"/>
-        <!-- 开启全局性设置懒加载 -->
+
+
+        <setting name="multipleResultSetsEnabled" value="false"/>
+        <!-- 全局启用缓存, 默认为true -->
+        <setting name="cacheEnabled" value="true" />
+        <!-- 开启全局性懒加载 -->
         <setting name="lazyLoadingEnabled" value="true"/>
         <!-- 开启按需加载 -->
         <setting name="aggressiveLazyLoading" value="false"/>
 
-        <!--<setting name="cacheEnable" value="true" />-->
     </settings>
     <typeAliases>
         <!-- 第一种, 手动指定 -->
@@ -37,6 +41,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <mappers>
         <mapper resource="local/mybatis/mapper/UserMapper.xml"/>
         <mapper resource="local/mybatis/mapper/ArticleMapper.xml"/>
+        <mapper resource="local/mybatis/mapper/ParkMapper.xml"/>
         <!-- 全包扫描 -->
         <!--<package name="local.mybatis.mapper" />-->
     </mappers>

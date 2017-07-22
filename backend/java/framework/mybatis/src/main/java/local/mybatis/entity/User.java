@@ -1,5 +1,6 @@
 package local.mybatis.entity;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -14,30 +15,19 @@ import java.util.*;
 
  */
 
-public class User {
+public class User implements Serializable {
 
+    private static final long serialVersionUID = 1113799434508676095L;
     private Integer id;
     private String name;
     private String password;
-
-    private List<Article> articles;
-
-    public List<Article> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
-    }
 
     public User(String name, String password) {
         this.name = name;
         this.password = password;
     }
 
-    public User() {
-
-    }
+    public User() { }
 
     public Integer getId() {
         return id;
@@ -61,5 +51,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

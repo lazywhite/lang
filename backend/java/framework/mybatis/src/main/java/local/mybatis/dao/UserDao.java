@@ -1,6 +1,5 @@
 package local.mybatis.dao;
 /*
- * UserMapper.java
  * Copyright (C) 2017 white <white@localhost>
  *
  * Distributed under terms of the MIT license.
@@ -12,10 +11,12 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface UserMapper {
+public interface UserDao {
      
     User getUserById(@Param("id") int id); //可以省略 parameterType, 多个条件时不必封装为map传进去
-    List<User> getUsers();
+    List<User> getAllUsers();
+
+    List<User> getUsersByParkId(@Param("pid") Integer id);
 
     void createUser(User u);
 
@@ -27,7 +28,8 @@ public interface UserMapper {
 
     //方法语法上可以重载, 但因为要跟UserMapper.xml结合使用, 有语句ID限制 不能重载
     List<User> selectPage(Page p);
-    void deleteUser(@Param("ids") int[] ids);
+    void batchDelete(@Param("id") int[] ids);
+    void deleteUser(User u);
 
 }
 

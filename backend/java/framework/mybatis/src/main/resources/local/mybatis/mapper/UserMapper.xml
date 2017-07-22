@@ -2,20 +2,14 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="local.mybatis.dao.UserMapper">
+<mapper namespace="local.mybatis.dao.UserDao">
+    <cache type="org.mybatis.caches.redis.RedisCache" />
 <!-- parameterType
         基本类型或别名, 则 #{}可以随便写
         对象类型, #{}必须写对象的属性名
      resultType:
         返回sql语句中一条记录对应的类型
 -->
-    <resultMap  type="user" id="usermap">
-        <id column="id" property="id" />
-        <id column="name" property="name" />
-        <collection property="articles" select="local.mybatis.dao.ArticleMapper.getArticlesByUID" column="id">
-
-        </collection>
-    </resultMap>
     <sql id="userColumns">id, name</sql>
     <sql id="searchCondition">
         <if test="condition != null">
@@ -42,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </if>
     </sql>
 
-    <select id="getUserById"  resultMap="usermap">
+    <select id="getUserById"  resultType="user" >
         select <include refid="userColumns" /> from user where id = #{id}
     </select>
 
@@ -50,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select <include refid="userColumns" /> from user where name = #{name} and `password` = #{password}
     </select>
 
-    <select id="getUsers"  resultType="user">
+    <select id="getAllUsers"  resultType="user">
         select <include refid="userColumns" /> from user
     </select>
 
@@ -62,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
     <select id="selectPage" resultType="user" parameterType="page">
-        select * from user
+        select <include refid="userColumns" /> from user
         <where>
             <include refid="searchCondition" />
         </where>
@@ -80,10 +74,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         字符串类型
             select uuid()
     -->
-    <insert id="createUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+    <insert id="createUser" parameterType="user" useGeneratedKeys="true" keyProperty="id" flushCache="true">
         insert into user(name, password) values(#{name}, #{password})
     </insert>
-    <delete id="deleteUser">
+    <delete id="batchDelete" flushCache="true">
         delete from user where `id` in
         <!--
             1. 直接用数组传递时, parameterType = int[], collection值必须为array
@@ -95,7 +89,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
-    <update id="updateUser" parameterType="user">
+    <delete id="deleteUser" flushCache="true" parameterType="user">
+        delete from user where `id` = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="user" flushCache="true">
         update user
         <set>
            <if test="name != null">name = #{name}, </if>
@@ -103,4 +101,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </set>
         where `id` = #{id}
     </update>
+
+    <select id="getUsersByParkId" resultType="user" useCache="true">
+        select u.id, u.name from user u
+            left join map_user_park m
+            on u.id =  m.uid
+            left join park p
+            on m.pid = p.id
+            where pid = #{pid}
+    </select>
 </mapper>
