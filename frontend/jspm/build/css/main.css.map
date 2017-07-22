@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAOA,IAAK,CACD,gBAAgB,CARJ,OAAO,CASnB,KAAK,CARS,OAAO,CASrB,WAAW,CARH,mBAAoB",
-"sources": ["../../src/sass/main.scss"],
-"names": [],
-"file": "main.css"
-}
