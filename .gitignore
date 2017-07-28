@@ -23,3 +23,6 @@
 **/*.jar
 **/upload/*
 **/rebel.xml
+**/*.Rout
+**/*.Rdata
+**/*.Rhistory
