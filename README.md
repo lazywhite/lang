@@ -1,15 +1,16 @@
 ## Introduction
-Practice code of programming language
+Practice code of programming languages
 
 ## Directory Layout
 ```
 ├── backend
+│   ├── R
 │   ├── bash
 │   ├── c
+│   ├── cpp
 │   ├── go
+│   ├── groovy
 │   ├── java
-│   ├── jsp
-│   ├── lock.md
 │   ├── lua
 │   ├── microservice
 │   ├── nodejs
@@ -20,6 +21,7 @@ Practice code of programming language
 └── frontend
     ├── angular
     ├── angular2
+    ├── angular2.md
     ├── bootstrap3
     ├── bower
     ├── css
@@ -29,10 +31,10 @@ Practice code of programming language
     ├── jqGrid
     ├── jquery
     ├── js
-    ├── jspm
     ├── markdown
     ├── react
     ├── sass
     ├── swift
     └── typescript
 ```
+
