@@ -21,7 +21,6 @@ Practice code of programming languages
 └── frontend
     ├── angular
     ├── angular2
-    ├── angular2.md
     ├── bootstrap3
     ├── bower
     ├── css
