@@ -56,6 +56,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework/spring-tx
     compile group: 'org.springframework', name: 'spring-tx', version: '4.3.9.RELEASE'
 
+    // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring4
+    compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.7.RELEASE'
+
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

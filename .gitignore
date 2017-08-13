@@ -26,3 +26,4 @@
 **/*.Rout
 **/*.Rdata
 **/*.Rhistory
+**/rebel.xml

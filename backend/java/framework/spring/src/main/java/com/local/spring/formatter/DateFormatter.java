@@ -1,8 +1,9 @@
-package com.local.spring.util;
+package com.local.spring.formatter;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,8 +23,14 @@ public class DateFormatter implements Formatter<Date> {
     @Override
     public Date parse(String text, Locale locale) throws ParseException {
         String[] parts = text.split("[-/:\\s]+");
-        String tr = String.join(" ", parts);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MM dd HH mm ss");
+        SimpleDateFormat sdf = null;
+        String tr = null;
+        if(parts.length == 6){
+            sdf = new SimpleDateFormat("yyyy MM dd HH mm ss");
+        }else if(parts.length == 3){
+            sdf = new SimpleDateFormat("yyyy MM dd");
+        }
+        tr = String.join(" ", parts);
         Date d = null;
         try {
             d = sdf.parse(tr);
