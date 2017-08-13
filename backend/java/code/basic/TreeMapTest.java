@@ -32,5 +32,6 @@ public class TreeMapTest {
 //        tm.pollFirstEntry(); //remove and return the smallest element
 //        tm.pollLastEntry();//remove and return the largest element
 //        tm.clone();//shadow copy
+//          tm.descendingMap()//倒序view
     }
 }

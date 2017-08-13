@@ -7,9 +7,11 @@ gradle init --type java-application|java-library|scala-library|groovy-library|ba
 src
     main
         java
+        resource
         webapp
     test
         java
+        resource
 ```
 
 ## Topic
@@ -20,10 +22,13 @@ src
 5. tasks without a group are considered as private tasks
 6. convert a maven project to gradle: [maven_pro_dir]# grade init --type pom
 7. 使用getty插件:  gradle appRun
+8. gradle test
+9. 自定义task  
+
 
 ## build.gradle for war project
 ```
-plugins{
+plugins{  //必须放在文件最前面
     id 'java'
     id 'war'
     id 'org.akhikhl.gretty' version '1.4.2'
@@ -41,4 +46,9 @@ dependencies {
     testCompile 'junit:junit:4.12' 
 }
 
+```
+## Command
+```
+gradle tasks --all
+gradle [app:]dependencies  //app是子模块名称
 ```

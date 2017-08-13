@@ -5,11 +5,7 @@
 jdbc事务管理, 默认自动提交, 可以关闭自动提交
 直接在session上提交事务
 
-mapper.xml
-    select
-        @id
-        @resultType
-        @parameterType  完整类名或别名
+resultType, parameterType可以是完整类名或别名
 
 multi datasource
 
@@ -47,11 +43,35 @@ lazyload
     5. select 语句默认flushCache="false", useCache="true"
     
 
-给entity设置private static final long serialVersionUID, 解决序列化问题
-mybatis-generator
+给entity设置private static final long serialVersionUID, 解决重启应用后因类的版本不对无法使用缓存的问题
 
-mybatis-redis 使用JediPool
 
 #{}: 占位符
-${}: 字符串拼接
+${}: 字符串拼接, 容易产生SQL注入攻击
+
+mysql-generator 
+sql注解
+    @Select
+    @Update
+    @Delete
+    @Insert
+
+<mappers>
+    <mapper class="ssm.dao.UserDao" />  //注解开发
+    <mapper resource="path/to/UserMapper.xml" /> //配置文件开发
+    <package  name="ssm.dao" /> //全包扫描
+</mappers>
+
+mybatis-plus
+    热加载
+
+
+<insert id="addUser" parameterType="user" useGeneratedKeys="true" keyProperty="id"> 
+        <!-- keyProperty 是entity属性名 --> 
+        insert into user(name) values(#{name})
+</insert>
+
+User user  = new User("bob");
+userDao.addUser(user);
+user.getId() 即可返回自增ID
 

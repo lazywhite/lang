@@ -115,7 +115,7 @@ User.hbm.xml
     缓存不能跨session访问
     事务提交, session缓存自动被清空
     通过session.clear(),session.evict(obj)来清空缓存
-二级缓存(sessionFactory级别)
+二级缓存(sessionFactory级别, 必须是同一个factory)
     默认关闭
     多个session可共享数据
     只提供单服务器二级缓存
