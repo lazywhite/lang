@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress SpringModelInspection -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd" >
+
+    <bean id="anno" class="com.local.spring.entity.Anno" >
+        <property name="name" value="bob" />
+    </bean>
+
+    <bean id="annoDao" class="com.local.spring.dao.impl.AnnoDaoImpl" />
+
+    <!--AnnoServiceImpl被AOP修饰, 无法再用下列xml配置来获得-->
+    <!--<bean id="annoService" class="com.local.spring.service.impl.AnnoServiceImpl" >-->
+        <!--<property name="ad" ref="annoDao" />-->
+    <!--</bean>-->
+
+
+    <!--基于注解的AOP配置-->
+    <bean id="loggingAspect" class="com.local.spring.aspect.LoggingAspect" />
+    <aop:config>
+        <aop:aspect ref="loggingAspect" >
+               <!--只包含service包里的所有类, 不包括子包-->
+            <!--<aop:pointcut id="services" expression="execution(public * com.local.spring.service.*.*(..))" />-->
+            <!--包含service下所有类及子包的所有类-->
+            <!--<aop:pointcut id="logging" expression="execution(public * com.local.spring.service..*(..))" />-->
+
+            <aop:pointcut id="annoPoint" expression="execution(public * com.local.spring.service.impl.AnnoServiceImpl.*(..))" />
+
+            <aop:before method="before"  pointcut-ref="annoPoint" />
+            <aop:after method="after" pointcut-ref="annoPoint" />
+            <aop:around method="around" pointcut-ref="annoPoint" />
+        </aop:aspect>
+    </aop:config>
+</beans>

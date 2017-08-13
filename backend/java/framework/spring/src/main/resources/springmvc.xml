@@ -3,7 +3,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
 
@@ -12,8 +11,6 @@
     http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-    http://www.springframework.org/schema/tx
-    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
@@ -21,16 +18,23 @@
        default-lazy-init="true">
 
     <context:component-scan base-package="com.local.spring" />
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+    <!--mvc 注解驱动-->
+    <!--1. 引入了基于注解的映射器和适配器-->
+    <!--2. 支持自定义类型转换器-->
+    <!--3. 支持json的注解响应 @ResponseBody-->
+    <mvc:default-servlet-handler/>
     <mvc:annotation-driven conversion-service="conversionService">
         <mvc:message-converters register-defaults="true">
             <ref bean="jsonHttpMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
+
     <mvc:interceptors>
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/*" />-->
-            <!--<bean class="com.local.spring.interceptor.TestInterceptor" />-->
-        <!--</mvc:interceptor>-->
+        <mvc:interceptor>
+            <mvc:mapping path="/anno/*" />
+            <bean class="com.local.spring.interceptor.TestInterceptor" />
+        </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <ref bean="localeChangeInterceptor"/>
@@ -41,22 +45,53 @@
     <mvc:resources mapping="/js/**" location="/js/" />
     <mvc:resources mapping="/css/**" location="/css/" />
 
-    <!-- 默认配置, 可以省略 -->
+
+    <!--======== 适配器, 映射器配置============-->
+    <!--配置第一种适配器对象, 只能调用实现了Controller接口的对象-->
+    <!--<bean id="handlerAdaptor" class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" ></bean>-->
+
+    <!--配置第二种适配器, 只能调动实现了HttpRequestHandler接口的对象-->
+    <!--<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />-->
+
+    <!--配置第一种映射器 -->
+    <!--<bean id="mappingHanlder" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
+    <!--<property name="mappings">-->
+    <!--<props>-->
+    <!--<prop key="test.do">testHandler</prop>-->
+    <!--<prop key="http.do">httpHandler</prop>-->
+    <!--</props>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="testHandler" class="com.local.spring.handler.TestHandler">-->
+    <!--</bean>-->
+
+    <!--第二种映射器-->
+    <!--<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />-->
+
+    <!--<bean id="testHandler" class="com.local.spring.handler.TestHandler" name="/test.do">-->
+    <!--<property name="hello">-->
+    <!--<value>xml注入</value>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!--第三种适配器-->
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />-->
+    <!--第三种映射器-->
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />-->
+
+
+    <!--jsp视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix" value="/jsp" />
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <!--mvc 注解驱动-->
-    <!--1. 引入了基于注解的映射器和适配器-->
-    <!--2. 支持自定义类型转换器-->
-    <!--3. 支持json的注解响应 @ResponseBody-->
 
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
             <set>
-                <bean class="com.local.spring.util.DateFormatter" />
+                <bean class="com.local.spring.formatter.DateFormatter" />
             </set>
         </property>
     </bean>
@@ -100,4 +135,7 @@
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>
+    
+    <!--<import resource="spring-thymeleaf.xml" />-->
+
 </beans>

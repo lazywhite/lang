@@ -1,118 +1,70 @@
 package com.local.spring.controller;
-
-import com.alibaba.fastjson.JSON;
 import com.local.spring.entity.Anno;
-import com.local.spring.entity.User;
+import com.local.spring.service.AnnoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 /**
  * Created by white on 17/7/14.
  */
 @Controller
-@RequestMapping("/anno")  /* 类似struts namespace TODO: no namespace*/
+@RequestMapping("/anno")
+@SessionAttributes(value={"attr1"})
 public class AnnoController {
 
-    /* 返回值类型
-        1. String
-        2. void
-        3. ModelAndView
+    @Autowired
+    AnnoService annoService;
 
-        method 默认支持POST, GET, 写了就只支持一种
-     */
-
+    @ModelAttribute("share") //在每个方法执行前执行
+    public Anno getAnno(){
+        Random r = new Random();
+        return new Anno("share", "1234" + r.nextInt(100));
+    }
 
     @RequestMapping(value="/list", method=RequestMethod.GET)
     public ModelAndView list(){
-        ModelAndView mav = new ModelAndView();
-//        md.setViewName("list");
-//        ModelAndView mav = new ModelAndView("/anno/list"); //默认forward
-//        ModelAndView mav = new ModelAndView("redirect:/anno/list.jsp"); //重定向, 必须写jsp后缀
-        List<User> list = new ArrayList<>();
-        list.add(new User("bob", "1234"));
-        list.add(new User("marry", "1234"));
-        list.add(new User("alice", "1234"));
-        mav.addObject("list", list);
-//        mav.setViewName("redirect:/anno/list.jsp");
-        mav.setViewName("/anno/list");
+        List<Anno> list = annoService.getList();
+        ModelAndView mav = new ModelAndView("/anno/list", "list", list);
         return mav;
     }
 
-    @RequestMapping("/toAdd")
-    public ModelAndView toAdd(){
-        ModelAndView  mav = new ModelAndView();
-        mav.setViewName("/anno/add6");
-        return mav;
+    @RequestMapping("/form")
+    public String form( String attr1){
+        return "/anno/form";
     }
 
-    @RequestMapping("/add")
-    public String add(Anno anno, @RequestParam("extra") String name){ //@RequestParam仅用在形参与表单中的name不一致情况下
-        //将post数据封装成一个对象
-        System.out.println(anno.getName());
-        System.out.println(anno.getGender());
-        System.out.println(Arrays.toString(anno.getInterest()));
-        System.out.println(name);
-        return "/anno/list.jsp"; //不走视图解析器
-//        return "list";  //走视图解析器
-        //return "forward:add" //转发
-        //return "redirect:add" //重定向
+    @RequestMapping(value="/view")
+    public String view(ModelMap map){
+        System.out.println(map.get("attr1"));
+        return "/anno/form";
     }
-
-    @RequestMapping("/test")
-    public void test(HttpServletRequest request, HttpServletResponse response, int id ) throws ServletException, IOException {
-        //id也可以接受参数
-        List<User> list = new ArrayList<>();
-        list.add(new User("bob", "1234"));
-        list.add(new User("marry", "1234"));
-        list.add(new User("alice", "1234"));
-
-        String st = JSON.toJSONString(list);
-//        request.getRequestDispatcher("/anno/list.jsp").forward(request, response);
-        PrintWriter pw = response.getWriter();
-        pw.print(st);
-    }
-    @RequestMapping("/test02")
-    public String test02(List<Anno> list){
-        for(Anno anno: list){
-            System.out.println(anno.getName());
-        }
-        return "/anno/list";
-    }
+    //日期注入, 调用formatter转换
     @RequestMapping("/test03")
-    public String test03(Date birthday){
-        System.out.println(birthday); //默认支持  "2016/07/01" 形式的Date
-        return "/anno/list";
-
+    public ModelAndView test03(@DateTimeFormat(pattern = "yyyy-MM-dd")Date  birthday, @ModelAttribute("extra") String extra){
+        ModelAndView mav = new ModelAndView("/anno/info");
+        System.out.println(birthday);
+        mav.addObject("attr1", "attr1-value");
+        return mav;
     }
 
-    @RequestMapping("/test04")
-    public String test04(String str, String username){
-        System.out.println(str);
-        System.out.println(username);
-        return "/anno/list";
-    }
 
-    @RequestMapping("/test05")
-    public String test05(Map userMap){
-        // 传入Map类型参数
-        System.out.println(userMap.get("name"));
-        return "/anno/list";
-    }
 
+    //文件上传
+    @ResponseBody
     @RequestMapping("/test06")
-    public String test06(MultipartFile portrait){
-        System.out.println(portrait.getOriginalFilename());
-        return "/anno/list";
+    public Map test06(MultipartFile portrait){
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", portrait.getOriginalFilename());
+        return map;
     }
 
     @RequestMapping("/test07/{id}/")
@@ -121,6 +73,7 @@ public class AnnoController {
         return "/anno/list";
     }
 
+    //json返回
     @RequestMapping("/json")
     @ResponseBody
     public Anno json(){
@@ -129,4 +82,16 @@ public class AnnoController {
         anno.setGender(1);
         return anno;
     }
+
+    @RequestMapping("/home")
+    public String home(){
+        return "login";
+    }
+    @RequestMapping("/login")
+    public ModelAndView login(Anno anno){
+        ModelAndView mav = new ModelAndView("info");
+        mav.addObject("anno", anno);
+        return mav;
+    }
+
 }

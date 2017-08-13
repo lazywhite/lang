@@ -7,7 +7,6 @@ import org.springframework.util.StopWatch;
 /**
  * Created by white on 17/7/12.
  */
-@Component
 public class LoggingAspect {
 
     public void before(){
