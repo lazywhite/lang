@@ -1,48 +1,44 @@
-
 前身 webwork
     struts1(apache), 扩展性较差
 
 struts2 = webwork框架 + struts1生态系统
 
-what when where how
-
-
 mvc: 分层思想
-    controller 控制器， 负责分发请求
+    controller 控制器， 负责分发请求, model与view的映射
     model 业务模型， 负责处理业务逻辑
     view 呈现业务数据
 
-dispatcher
-    struts.xml
-    url = hello
-        HelloAction class
-            sayHello method
-                result
-
-url <--> action
-
 el表达式在struts2里面也可以使用
-
 
 action
     基本属性注入
     域属性注入
         form
             input name="user.name" 
-
-action
-    input属性
-    output属性
-
-${action.user}
+    
+    输入属性
+    输出属性
 
 get方式解决乱码
     server.xml
         Connector URIEncoding="UTF-8"
     
 StrutsTypeConverter可以自定义属性转换器
-'2012/12/12' 默认类型转换器不支持转换此类型为Date
+'2012/12/12' 默认类型转换器不支持转换此类型为Date, 必须为2012-01-01类型
 
+strutrs.xml
+    constant @name @value
+    package @namespace
+        global-results
+            result @name
+        global-exception-mapping
+        interceptors
+            interceptor
+        interceptor-stack
+            interceptor-ref name
+        default-interceptor-ref
+        action @name @class
+            result @name  @type 
 
 struts.xml
     配置url和action的对应关系
@@ -55,20 +51,26 @@ struts.xml
             chain: 转发到action
             dispatcher: 转发
             redirect: 无法获取action的属性值
-            freemaker
+            freemaker: 模板
             redirectAction: 重定向到其他action, 可以通过配置携带参数
             stream: 字节形式返回
-            json
+            json: 配置插件
 
-action方法必须是无参的并返回string
+映射为action的方法必须是无参的并返回string
 
-<result type="stream">
-    <param name="inputStream">inputStream</param>
-    <param name="contentDisposition">attachment:filename=${filename}</param>
-    <param name="contentType">inputStream</param>
-    <param name="bufferSize">5*1024</param> //5K字节
+下载文件
+    <result type="stream">
+        <param name="inputStream">inputStream</param>
+        <param name="contentDisposition">attachment:filename=${filename}</param>
+        <param name="contentType">inputStream</param>
+        <param name="bufferSize">5*1024</param> //5K字节
+上传文件
+    File portrait
+    String portraitFileName
+    String portraitContentType
     
 struts.xml 可以include其他xml来实现多配置文件开发
+
 访问action的不同方法
     list!listUser.action
     <action name="listUser" class="controller.User" method="listUser">
@@ -76,21 +78,15 @@ struts.xml 可以include其他xml来实现多配置文件开发
 全局result
     struts
         package
-            global-results
+            global-results #必须属于某个package
                 <result name="oneResult">/onResult.jsp</result>
-
-package
-    @namespace
-/emp/ 路径省略
 
 获取request, session, application对象的三种方式
     1. ActionContext
     2. ServletActionContext
     3. implements RequestAware, SessionAware, ApplicationAware
-    ${sessionScope.key}
 
 ognl表达式只能在标签里面用
-标签
     <s:if test="">
     <s:elsif test="">
     <s:else>
@@ -100,26 +96,76 @@ ognl表达式只能在标签里面用
     <s:a action="" namespace="">
     <s:select>
 
-html标签
-    <s:doubleselect>
-    <s:form>
-    <s:file>
-    <s:textfield>
+    html标签
+        <s:doubleselect>
+        <s:form>
+        <s:file>
+        <s:textfield>
  
 session是Map<String, Object>的, 所以取出的东西要强转
 拦截器
     1. 编写公共代码
     2. 根据url地址或参数决定是否调用action
+    3. 拦截器产生作用的顺序跟xml里规定的顺序一致
+    AbstractInterceptor
+        intercept(invocation)
+            invocatin.invoke()
+            
+异常捕获
+    全局异常<global-exception-mapping>
+    局部异常<exception-mapping exception="java.lang.Exception>
+    <s:property value="exception"  />
+    <s:property value="exception.message"  />
+        
 
 如果action没有配置拦截器, 则会配置一个默认的拦截器栈defaultStack
 一旦配置了一个拦截器, 就不会再提供了, 需要手动配置
 
-ognl: 对象图导航语言
+ognl: object graph navigation language 对象图导航语言
     提供一个对象, 然后获取对象中的属性值进行运算
     valueStack
         root区: 栈结构, 主要存放action对象, 会将当前正在使用的action对象压入栈顶
         context区: map结构, 主要存放request, session, application对象
-        ognl引擎: 执行ognl表达式,  有"#"前缀去context查找值 没有去root区栈顶查找,             
+        ognl引擎: 执行ognl表达式,  有"#"前缀去context查找值 没有去root区栈顶查找
+    对象
+        parameters
+        request
+        session
+        application
+        attr
+        action
 国际化
     在src/struts.properties里规定使用的i18n文件
-    src/i18n/struts-message-zh.properties, 中文内容必须转换为unicode
+    src/i18n/struts-message-zh.properties, 中文内容必须转换为unicode native2ascii
+    src/i18n/mess-zh.properties
+        loginPage=欢迎登陆
+        failTip={0}, 登陆失败
+    jsp
+        <s:text name="loginPage" />访问国际化信息
+        <s:text name="failTip">
+            <s:param><s:property value="username" /></s:param>
+        </s:text>
+    action
+        getText("loginPage")
+        getText("failTip", new String[]{"bob"})
+    
+Convention插件-->无需使用struts.xml
+    package org.local.test.actions.user;
+        LoginAction ---> /user/login.action
+        GetBooksAction --> /user/get-books.action
+    return "input" --> WEB-INF/content/login.jsp 
+    return "success" --> WEB-INF/content/login-success.jsp 
+    return "error" --> WEB-INF/content/login-error.jsp 
+    FirstAction
+        return "second" --> FirstSecondAction
+config browser plugin
+
+
+StrutsPrepareAndExecuteFilter
+    ActionProxy  --> InterceptorStack
+        ConfigurationExecutor
+            struts.xml
+
+Method page for action login is not allowed!
+    struts.enable.DynamicMethodInvocation=true
+    <global-allowed-methods>regex:.*</global-allowed-methods>

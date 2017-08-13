@@ -1,0 +1,398 @@
+<% %>  or <jsp:scriptlet>   </jsp:scriptlet>脚本区域
+<%! %> or <jsp:declaration> </jsp:declaration>声明区域
+<%= %> or <jsp:expression> </jsp:expression>表达式
+<%--   --%>  comments
+
+<%@ directive attribute="value" %> or  <jsp:directive.include attribute="value" /> 指令
+    <%@ page 
+        contentType="text/html;Charset=UTF-8" 
+        pageEncoding="UTF-8" 
+        session="true" 开启session跟踪
+        isThreadSafe="false" 产生的servlet是否线程安全
+        errorPage="error.jsp"  声明错误页面位置
+        isErrorPage="true" 声明自己为错误页面 
+
+<%@ page extends %> 继承父类
+<%@ page buffer %> 定义out对象如何处理缓存
+<%@ page session %> 页面中是否有session对象
+    <%@ taglib prefix="" tagdir="/WEB-INF/tags"%>
+    <%@ include file = "relative url" %>
+
+错误页面可以使用exception内置对象 <%= exception.getMessage() %>, 只有错误页面被其他页面调用时才有效果, jsp:declare部分的代码不能触发错误页面， 必须是jsp:scriptlet部分才能触发
+
+<jsp:action attribute="value" />动作
+    include
+        <jsp:include page="xx.jsp">
+    useBean
+        <jsp:useBean id="user" class="com.local.User" scope="session">
+            <jsp:setProperty name="user" property="name" value="bob" />
+        </jsp:useBean>
+    setProperty
+    getProperty
+        <jsp:getProperty name="user" property="name" />
+    forward: 转发到页面
+        <jsp:forward>
+            <jsp:param name="" value="" />
+        </jsp:forward>
+    plugin: 下载applet
+
+expression最后计算的结果是字符串， 不能用分号结束
+EL支持算术运算符和逻辑运算符
+
+內建对象
+    request
+        getSession()
+        getRequestDispatcher().forward()
+        setAttribute()
+        getHeaders()
+        getParameter()
+        getCookies()
+    response
+        getWriter()
+        getOutputStream()
+        sendRedirect()
+        addCookie()
+    session
+        isNew()
+        getId()
+        setAttribute()
+        getAttribute()
+    application
+        createFilter()
+        addFilter()
+        createListener()
+        addListener()
+        createServelet()
+        addServelet()
+        getAttributeNames()
+        setAttribute(String name, Object value)
+        getInitParameter()
+    config
+        getInitParameter()
+    pageContext
+        setAttribute(key, value, scope)
+        getAttribute(scope, key)
+    page
+        servlet自身, 相当于this
+    exception
+    out
+        println()
+        print()
+
+servlet 3.0新特性
+    支持注解配置servlet
+    支持编程式添加servlet, filter, listener
+    servlet异步
+    Part接口处理文件上传
+
+为jsp添加额外的库支持
+    mkdir -p ROOT/WEB-INF/lib; copy jar here
+
+jsp页面被编译后默认添加了异常处理, 所以jsp页面内无需处理异常, 只需要指定errorPage
+
+过滤器是增强版servlet
+    filter-chain
+
+监听器, 观察者模式
+    ServletContexListener
+    ServletContexAttributeListener
+    ServletRequestListener
+    ServletRequestAttributeListener
+    HttpSessionListener
+    HttpSessionAttributeListener
+
+jstl支持
+    taglibs-standard-spec-1.2.5.jar
+    taglibs-standard-impl-1.2.5.jar
+    1. project architecture添加
+    2. 拷贝至WEB-INF/lib/内
+
+jstl
+    <c:forEach var="i" begin="1" end="5" step="1">
+        ${i}
+    </c:forEach>
+    <c:forEach var="item" items="${items}">
+        ${item.attr}
+    </c:forEach>
+    <c:forEach begin="1" end="5" varStatus="status">
+        ${status.count} #已经进行的次数
+        ${status.index} #当前的值
+        ${status.current} #当前迭代的项目
+        ${status.first} #是否为第一次迭代
+        ${status.last} #是否为最后一次迭代
+        ${status.begin} #获得begin属性值
+        ${status.end} #获得end属性值
+        ${status.step} #获得step属性值
+    </c:forEach>
+
+    <c:if test="${age > 18}">
+    </c:if>
+    <c:choose>
+        <c:when test="${age > 60}">
+            老年了
+        </c:when>
+        <c:when test="${age > 18}">
+            成年了
+        </c:when>
+        <c:otherwise>
+            不清楚
+        </c:otherwise>
+    </c:choose>
+
+    <c:set var="path" value=${pageContext.servletContext.contextPath}"></c:set>
+    <c:out value="${name}" escapeXml="true" default="bob" />
+    <c:remove var="name" />移除一个变量
+    <c:import url="" /> 类似于<jsp:include> 
+
+
+form改用multipart/form-data之后, servlet无法request.getParameter()来获取post数据 
+
+
+Servlet
+    GenericServlet
+        HttpServlet
+            service: 优先级高于下面两个
+            doGet
+            doPost
+
+作用域
+    application: 指servlet容器(tomcat)
+    request: 一次请求
+    session： 一次会话
+    page: 当前servlet
+
+
+servlet容器启动时就创建所有过滤器, 监听器
+chain.doFilter(req,resp) 传递给下一个filter处理，如果是最后一个则传递给servlet
+request会从前向后穿过所有filter, response会从后向前穿越所有filter
+如果一个请求被多个filter截取， 则执行顺序按照web.xml里面filter-mapping定义的顺序
+
+异步servlet需要配置异步filter使用
+
+<servlet>
+    <load-on-startup>NUM</load-on-startup>  让servlet在容器启动时就创建, 值越小越早
+</servlet>
+
+filter-dispatcher: 默认同时过滤5种
+    REQUEST请求的时候才触发
+    FORWARD: servlet之间有转发才触发
+    INCLUDE: 
+    ERROR: 
+    ASYNC
+
+过滤器通常用来做登录判断， 权限判断， 日志
+可以把多个servlet都要执行的代码提到filter中
+
+
+out.println()不会导致html页面换行， 只会增加一个空格, out.print()不会增加空格
+
+通过application作用域，可以达到不同工程之间互传数据， 而且不限制是转发或重定向
+通过给request作用域设置属性，只能通过转发共享数据， 重定向无法传递
+ 
+
+请求的转发
+    一个servlet处理一部分后交给后续的servlet去处理
+    浏览器只发送了一次请求
+    浏览器看到的url不会发生变化
+    转发只能在应用内部进行， 不能转发给其他应用
+
+
+请求的重定向
+    浏览器发出到servletA的请求
+    servletA sendRedirect
+    浏览器发起第二个到servletB的请求
+    servletB 发出响应
+    浏览器会发送两次以上的请求
+    浏览器看到的url会发生变化
+
+转发和重定向的区别
+    转发适合发生在多个servlet相互依赖的情况， 重定向适合servlet分工明确的情况
+    转发浏览器只会发一次请求， 重定向浏览器会发送两次以上的请求
+    看到的url转发不会变， 重定向会改变
+    转发会将req， resp传递个下一个servlet, 重定向不会
+    转发只能在应用内， 重定向不限制
+
+转发传递的参数jsp内需要强制转换类型, jstl不需要
+
+http协议建立在tcp协议之上规定了浏览器跟服务器通信的过程和数据格式
+如果有keep-alive参数， 则服务端在响应后不会立即关闭tcp连接
+
+定义完servlet需要到web.xml配置, 或者添加注解
+
+html form 默认method是GET
+
+http header 不区分大小写
+
+servlet容器为web应用提供运行时环境， 负责管理servlet和jsp的生命周期, 以及管理他们的共享数据
+
+web应用三种部署方式
+    1. webapps/<appdir>
+    2. 分离appdir, 配置server.xml  
+        <Host>
+            <Context docBase="sysdir" path="urlprefix" reloadable="true" unpackWARs="true">
+            </Context>
+        </Host>
+
+        localhost:8080/urlprefix/
+    3. mkdir -p conf/catalina/localhost/; touch test.xml
+            <Context docBase="sysdir"  reloadable="true" unpackWARs="true">
+            </Context>
+        localhost:8080/test/
+        
+jsp里面也可以用System.out.println(), 会输出到后台日志
+
+
+servlet = server applet 服务端小应用
+狭义上servlet是指所有实现了javax.servlet.Servlet接口的java类
+servlet是用来处理浏览器请求并做出响应
+
+javax.servlet.Servlet
+    getServletConfig()
+    getServletInfo()
+    init(ServletConfig config)
+    service()
+    destroy()
+
+
+javax.servlet.Servlet
+    javax.servlet.GenericServlet
+        javax.servlet.http.HttpServlet
+            doGet()
+            doPost()
+            doDelete()
+            doPut()
+            doOptions()
+            doTrace()
+            getLastModified()
+            service()
+web.xml
+    context-param
+    servlet
+        servlet-class
+        servlet-name
+        init-param
+            param-name
+            param-value
+    servlet-mapping
+        url-pattern
+        servlet-name
+            一个servlet可以映射多个url
+            url-pattern可以有通配符
+
+    filter
+        filter-name
+        filter-class
+        init-param
+            param-name
+            param-value
+    filter-mapping
+        filter-name
+        url-pattren
+        dispatcher
+
+    listener
+        listener-class
+
+servlet生命周期
+    有浏览器第一次访问url时, 开始创建servlet对象， 调用init 和 service方法
+    后续访问仅调用service方法
+    app关闭调用所有被初始化过的servlet的destroy方法
+
+jsp最终被转义成servlet来执行
+jsp可以看做servlet模板
+servlet是单例的, 不是单例模式， 是由容器管理的
+
+
+jsp执行流程
+    servlet容器(tomcat)接受到jsp结尾的路径请求， 交给jsp引擎(jasper)去执行， jsp会被
+    翻译成一个servlet java class， 然后再由servlet容器解析执行
+
+
+jsp脚本区域内无法定义属性,方法,类, 因为所有代码最终放在servlet.service()内执行
+可以在声明区域定义类，属性，方法等
+
+如果在web.xml找到了url,就不再去web目录下面寻找了
+
+
+绝对路径
+    http://localhost/jsp/login.do
+    /jsp/login.do
+
+servlet 
+    取 页面的提交数据
+    调 调用dao层
+    跳 给其他jsp页面(无法是html)传递信息并跳转
+
+解决post提交中文问题
+    request.setCharacterEncoding("UTF-8")
+
+解决get提交中文问题
+    1. username = new String(username.getBytes("ISO-8859-1"), "UTF-8");
+    2. server.xml  <Connector  URIEncoding="UTF-8">
+解决浏览器页面乱码
+    resp.setContentType("text/html; charset=utf-8");
+
+jsp静态引入
+    <%@ include file="xx.jspf" %>
+    相当于把代码拷贝过来, 最后编译成一个servlet
+jsp动态引入
+    <jsp:include page="xx.jsp">
+    自己编译成一个servlet， 然后去include另一个页面产生的结果， 改变会即使生效
+
+
+EL表达式只能读取，不能修改
+如果有则输出， 如果为null则什么都不输出
+${user["name"]}同${user.name} 实际上调用user.getName()
+${user}将在pageScope, requestScope, sessionScope, applicationScope中依次寻找
+${sessionScope.user}手动指定域可以提交性能， 并防止变量重名
+
+<%= request.getParameter("username") %>  ${param.username}
+<%= request.getHeader("accept") %> ${header.accept}
+<%= pageContext.findAttribute("xxx") %>  ${xxx}
+<%= pageContext.getAttribute("xxx") %> = ${pageScope.xxx}
+<%= request.getAttribute("xxx") %> = ${requestScope.xxx}
+<%= application.getAttribute("xxx") %> = ${applicationScope.xxx}
+<%= session.getAttribute("xxx") %> = ${sessionScope.xxx}
+${ 10 % 3 } == ${10 mod 3} --> 1
+
+
+页面中需要使用绝对路径时， 且不允许有java代码时， 可使用
+    ${pageContext.servletContext.contextPath} = <%= request.getContextPath() %>
+
+
+
+jsp页面中js代码中也可以写EL表达式, 通过script标签引入的js无效
+
+工具代码
+    验证码
+    下载excel
+
+session默认过期时间为30分钟, 距离最后一次访问间隔30分钟之内都有效
+    tomcat/conf/web.xml
+        <session-config>
+            <session-timeout>
+                30(单位分钟)
+            </session-timeout>
+        </session-config> 
+
+普通的cookie是临时cookie， 浏览器关闭就会消失
+手动设置的cookie是持久的, 默认没有过期时间
+浏览器访问服务器会在request header附加当前域的cookie
+
+7天免登陆功能
+    用户认证成功后， 将其用户名和密码保存在cookie中, 后续session过期， 尝试用cookie中的信息进行登陆
+
+cookie的value默认不允许存储中文, 需要用URLEncoder转换
+session里面的属性值必须是可序列化的
+
+servlet没有内置对象, jsp有
+
+javax.servlet.Servlet
+    需要导入servlet容器lib里面的servlet-api.jar
+
+获取servlet配置
+    servlet: init(){this.getInitParameter("name")}
+    jsp: config.getInitParameter("name")
+获取全局配置
+    servlet: init(){servletConfig.getServletContext().getInitParameter("name")} 
+    jsp: application.getInitParameter("name")

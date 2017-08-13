@@ -1,0 +1,542 @@
+非访问修饰符
+    static final abstract strictfp volatile native sychronized
+
+访问修饰符
+    public protected private
+
+try catch finally 块级作用域
+块级作用域内部的局部变量, 互相不可见
+
+死循环
+    while(true)
+    for(;;)
+
+java变量命名规则
+    数字， 字母， '$', '_'
+    不能跟关键字重名
+    不能以数字开头
+    最好不要以'$'开头
+
+long赋值加L
+    long date = 365L * 60 * 60 * 1000 * 92834824 //第一个数加L
+
+浮点数赋值默认是double, 想声明成float末尾加f或F, 
+
+输出数据类型可存储的最大， 最小值
+    Integer.MAX_VALUE
+    Integer.MIN_VALUE
+
+char类型赋值必须用单引号
+
+do while 需要用分号结束
+
+java变量只声明不初始化
+    局部变量： 无默认值， 必须要初始化
+    类变量, 实例变量： 有默认值
+        封装类默认是null
+            Float, Double Character...
+        String default "null"
+        int, char, short, byte: 0
+        float, double: '0.0'
+        boolean: false
+
+
+java遍历
+    for index
+    forEach
+    Iterator
+    Enumeration
+    stream().forEach()
+
+
+get random number
+    //1
+    java.util.Random
+    Random r = new Random()
+    r.nextInt()
+    //2
+    int r = (int)(Math.random() * 10);
+
+退出程序
+    System.exit(1)
+
+System.currentTimeMillis()
+
+int a = booleanTest?value1:value2; 三目运算符
+
+java 数组不支持负数下标
+
+使用封装有三大好处：
+    良好的封装能够减少耦合。
+    可以对成员进行更精确的控制。
+    隐藏信息实现细节。
+
+基本数据类型与字符串类型相加， 返回字符串
+
+数组声明的几种方式
+    int[] arr; arr = new int[]{1, 2, 3}
+    int[] arr = new int[10];
+    int[] arr = {1, 2, 3};
+    int[] arr = new int[]{1, 2, 3};
+    int[][] arr = new int[][]{ {1, 2, 3}, { 4, 5, 6} }; //多维数组初始化
+
+java无法获取变量的内存地址， hashcode()不等于内存地址
+
+switch可以接受byte short char int String Enum
+
+变量分为值类型， 引用类型
+变量的类别
+    局部变量
+    成员变量
+    类变量
+equals() 与 '==' 的区别
+Arrays.equals(arr1, arr2);
+
+ArrayList 只能存放object， 因此不能add(int), 可以add(Integer)
+
+class A{} ; A a = new A();
+a instanceof  A  -->true
+A.class.isInstance(a) -->true
+
+public class Foo {
+    {
+        对象被创建时， 在super()被调用之后执行
+    }
+    static{
+        当类被jvm加载时执行
+    }
+    Foo() {
+    }
+}
+
+
+String.join(",", String[]);
+可变长度参数
+    printSum(int... args)
+        args为一个数组, 类型是int[]
+    printSum(String... args)
+        args为一个数组, 类型是String[]
+
+final 无法修饰抽象类， 抽象方法， 接口
+final 
+    修饰的变量， 初始化后不能修改, 称为常量,一般全大写
+    修饰的类， 不能被继承
+    修饰的方法， 不能被重写
+
+在逻辑上Box<Number>不能视为Box<Integer>的父类
+Box<?> 代表Box<Number> 和Box<Integer>的父类
+java class static 区块只会在类被第一次加载时候调用,多个static按照定义顺序执行
+
+goto const 保留关键字
+
+char a = 'A', char b='B'   b-a 为int
+
+javac Atest.java;  java -cp .:<path/to/jar>  Atest
+
+
+构造方法与类名相同， 不能有返回值
+
+super用在构造方法中， 必须用在最前面
+super只能用在子类中
+public Puppy(){
+    super();
+}
+
+public void move(){
+    super.move();
+}
+
+实例化子类，无论调用哪种构造器, 均会按顺序调用继承链上所有父类的的无参构造方法
+构造器无法被继承, 因此不能被重写, 但可以重载
+
+
+向上转型
+    调用的方法如果被重写， 就调用被重写的方法
+    无法调用子类独有的方法
+    Father f = new Child()
+向下转型
+    转型后的对象可以调用子类特有方法
+    if(f instanceof Child){ //通过检查才能转型
+        Child c = (Child) f;
+    }
+    
+接口不能有构造方法
+接口可以定义变量，一定要初始化, 默认是public static final的
+接口方法默认是public abstract的, 两个修饰符都可以省略， 但是重写时必须加上public
+
+抽象类可以有构造方法
+抽象类中才可以存在抽象方法
+抽象类不能被实例化
+抽象类可以不包含抽象方法
+final, static, native, sychronized无法修饰抽象方法
+抽象类也可以定义静态方法, 并可以直接调用
+如果抽象类有构造器， 子类必须要有构造器， 并且构造器必须要调用父类构造器
+实体子类可以继承抽象类, 必须全部重写抽象方法, 必须调用父类构造器
+抽象类可以继承抽象类, 必须实现父类构造器, 可以不实现抽象方法
+抽象类可以继承实体类
+抽象类可以implements接口， 但不实现
+
+Object
+    Throwable
+        Error: 系统层而不是程序本身出现的问题
+        Exception: 程序执行时出现的问题
+
+(编译时)检查型异常  
+(编译时)非检查型异常 RuntimeException, ArrayIndexOutOfBounds()
+
+StringBuilder 可以append任意类型， String.concat()只能接收string
+
+泛型就是将参数类型也参数化
+泛型增强了程序的可读性和安全性， 是一种代码复用的手段
+泛型接口， 泛型类， 定义时跟在名称之后
+    class Consumer<T>{}
+    interface CanRun<T>{}
+泛型方法写在返回值之前
+    public <T> T test(T t){}
+
+
+线程状态
+    new
+    runnable
+    timed waiting
+    waiting
+    blocked
+    terminated
+
+线程优先级1-10, 越大优先级越高， yield()只会切换给大于等于自己优先级的线程, sleep()切换不考虑优先级
+
+import static com.local.test.Main.*   #静态导入类中所有静态方法, 调用无需类名
+
+访问修饰符
+
+                同一个类     同一个包     子类     外部包
+public            ✓           ✓           ✓          ✓          
+protected         ✓           ✓           ✓
+(default)         ✓           ✓
+private           ✓
+
+如果子类和父类在同一个包, 则父类(default)的属性和方法子类均可访问, 如果不同包, 则不能访问
+
+private属性只有在类的内部才能访问，类的实例及类本身无法直接访问
+
+java8 接口可以有default method, 可以有静态方法, 两者均有函数体  
+synchronized: 多线程编程中用来修饰方法或者代码块, 确保线程安全  
+volatile: 轻量级并发保证, 用来修饰变量, 不具备原子性
+transient: 标明不需要序列化的类属性
+strictfp: 精确浮点数, 可以修饰类或者接口
+assert <cond> [: "error message"];  java -ea 开启, 默认关闭
+java.lang 默认被导入
+
+
+重载的规则
+    方法名必须相同
+    返回值不同无法重载
+    访问修饰符不同无法重载
+    参数的个数不同视为重载
+    参数个数相同， 顺序不同视为重载
+    参数个数相同， 其中某些参数类型不同， 视为重载
+
+重写规则
+    必须保证返回值， 方法名， 参数个数和类型都相同， 不能缩小访问权限
+
+String和內建数据类型的包装类都是final的， 无法被继承
+
+
+成员内部类 
+    无法定义静态变量
+    可以访问外部类静态和非静态变量
+局部内部类
+    无法定义静态变量
+    可以访问外部类静态和非静态变量
+静态内部类 
+    可以定义静态变量
+    可以访问外部类静态变量
+    无法访问外部类非静态变量
+匿名内部类
+    没有类名称
+
+return 之后不能有语句
+抛出异常之后不能有语句
+
+标签+break跳出多重循环
+
+精确正数,浮点数运算
+    BigInteger
+    BigDecimal
+
+类内部可以定义私有方法作为公共方法的辅助
+对象可以调用静态方法和静态变量
+静态变量可以有getter, setter方法
+
+
+
+当类没有提供任何构造器时， 系统会提供一个默认的无参构造器， 并完成属性初始化
+如果写了含参构造器, 则不再提供无参构造器
+
+class A{
+    private String name;
+    private Integer age;
+
+    public  A(String name, Integer age){
+        this(name); //调用其他构造器, 必须放在第一行
+        this.age = age;
+    }
+
+    public A(String name){
+        //存放公共初始化代码
+        this.name = name;
+    }
+}
+
+finalize()将在对象被垃圾回收之前调用, jvm不保证finalize()方法一定会被调用
+
+package的存在是为了保证类的唯一性
+import可以用通配符导入一个合法package内所有class, impprot java.* 将报错
+
+如果类重名 可以写类的完全路径  
+    java.util.Date d = new java.util.Date()
+如果用通配符导入不小心覆盖了想用的同名类， 则最后用
+    import java.util.Date;  进行特指
+
+编译器编译时不检查目录结构, 运行时加载class文件需要指明classpath
+
+类加载器禁止加载用户自定义的java.开头的类
+
+java注释格式： free-form text, /** 开头， */结尾
+1. 类注释必须放在import语句之后， 类定义之前
+    @author
+    @version
+    @since 
+    @deprecated  use <bold>setVisible()</bold> instead
+    @see <a href="www.xx.com">change link</a>
+    @see com.local.com.Employee#raiseSalary(double)
+    @see {@link package.class#feature label}
+2. 方法注释必须放在方法定义之前
+    @param 变量描述, 所有变量描述必须放在一起
+    @return 返回值描述， 可以使用html标记
+    @throws 异常描述
+3. 静态常量注释， 放在public static final var = 1 之前；
+
+4. 包注释
+    package.html
+    package-info.java
+
+javadoc -d docs nameOfPackage
+
+类设计技巧
+    一定要保证数据私有
+    一定要对数据初始化
+    不要在类中使用过多基本类型
+
+
+
+Object Wrapper
+    Number
+        Integer
+        Long
+        Float
+        Double
+        Short
+        Byte
+    Character
+    Void
+    Boolean
+
+一旦构造了对象包装器，就不允许改变其中的值
+自动装箱和拆箱
+        Integer b = 10;
+        b == 10
+
+使用JUnit时报错java.lang.NoClassDefFoundError: org/hamcrest/SelfDescribing
+4.11后使用junit需要引入hamcrest-core-1.3.jar
+
+java8接口
+    interface B{
+        //默认方法
+        default String value(){  
+            return "value";
+        }
+        //静态方法
+        //调用: B.func()
+        static String func(){
+            return "static";
+        }
+    }
+
+如果类实现了多个接口, 这些接口有同名的default method, 那么会编译报错
+方法引用
+    class A{
+        static void func(){}
+        void func02(){}
+    }
+    A  a = new A();
+
+    A::func//类的静态方法
+    a::func02 //对象的实例方法
+    A::new //类的无参构造方法
+    String::compareToIgnoreCase //类型对象的实例方法
+
+java8 支持@Repeatable , 重复注解, 相同注解会以集合形式存在
+
+String, byte[] 互相转化
+    String str = "中文"
+    byte[] asBytes = str.getBytes();
+    String orig = new String(asBytes, "UTF-8")
+
+junit
+    @Before
+    @After
+    @BeforeClass
+    @AfterClass
+    @Test(timeout=1000, expected = ArithmeticException.class)
+    @Ignore
+
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(TestJunit.class);
+
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+
+      System.out.println(result.wasSuccessful());
+   }
+}
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+@RunWith(Suite.class)
+
+@Suite.SuiteClasses({
+   TestJunit1.class,
+   TestJunit2.class
+})
+
+public class JunitTestSuite {
+}
+
+禁止显示awt图标
+    -Djava.awt.headless=true
+
+java.util.Date cannot be cast to java.sql.Date
+
+Arrays.copyOf
+System.copyarray
+
+HashTable是线程安全的, HashMap不是
+ConcurrentHashMap 是HashMap的替代品
+Iterator可以在迭代集合的同时安全删除元素, iter.remove()
+
+java native 方法
+    书写包含native方法的A.java类
+    编译java类, 产生A.class文件
+        javac A.java
+    生成c头文件
+        javah -jni A
+    书写c源代码, 实现方法
+        #include "A.h"
+    编译cpp至A.o 
+        export C_INCLUDE_PATH=$JAVA_HOME/include:$JAVA_HOME/include/darwin
+        gcc -c A.c 
+    编译A.o为动态链接库
+        libtool -o A A.o(win dll, linux so, mac dylib)
+    在java 类静态代码域引入 System.load("lib") 
+
+自动拆装箱
+    Integer a = 10;
+    Integer b = new Integer(10);
+    Integer c = 165;
+    int d = 165;
+    //自动装箱其实调用了Integer.valueOf(num)方法, 如果num
+    //范围是-128, 127 则不新建对象
+    //Integer使用池中对象, 只发生在自动装箱场景
+    Integer e = 30;
+    Integer f = 30;
+    Integer x = 300;
+    Integer y = 300;
+    //new 的对象, 指针永远不会相同
+    System.out.println( a == b);  false
+    //c会被自动拆箱, 跟d作比较
+    System.out.println( c == d);  true
+    System.out.println( e == f);  true
+    System.out.println( x == y);  false
+
+克隆相关
+    浅拷贝
+        Object.clone()是一个native方法, 仅仅是浅拷贝
+        基本类型拷贝值,  引用类型只拷贝指针
+    深拷贝
+        基本类型拷贝值,  引用类型拷贝引用对象, 并引用新对象
+        可以用Serializable接口实现深拷贝
+
+显式隐式类型转换
+    String str = (String)session.get("str");
+    int a = 10; long num = a; 
+
+无符号右移 >>>  永远在高位补0
+带符号右移 >>  如果是正数在高位补0, 负数则在高位补1
+
+包中多个类可以同时拥有main函数, 只有被运行的类才会调用main方法
+一个类可以有多个main方法, 可以运行的main必须是public static void
+
+StringTokenizer可以将一个字符串按分隔符分割成token, 最好用StringObj.split("spliter") 来实现
+
+如果 x.equals(y) == true, 则x.hashcode()一定等于y.hashcode(), 反之不成立
+
+String s1 = "hello";
+String s2 = new String("hello");
+String s3 = "hello";
+s1 == s2 --> false;
+s1 == s3 --> true; //字符串常量池
+
+jvm加载class流程
+    加载
+        读取类文件到内存
+        产生Class对象
+    连接
+        验证
+        准备
+            为静态变量分配内存并设置默认值
+        解析
+            将符号引用替换为直接引用
+    初始化
+        如果有父类并且父类未初始化, 则先初始化父类
+        如果存在初始化语句, 就依次执行
+
+类加载器
+    bootstrap 根加载器
+    extension 扩展加载器
+    system 系统加载器
+    用户自定义加载器
+
+类加载过程采取父亲委托机制PDM
+
+静态方法无法被重写, 即使子类含有跟父类相同的静态方法, 两者也是独立存在
+静态方法可以被重载
+静态方法不能使用this
+静态方法可以访问静态变量或静态常量, 无法访问实例变量
+
+不建议在finally里做return, 最好在try里面return, 并且finally的代码会在try里面的return执行前执行
+
+多catch块, 会按照从前到后的顺序匹配, 符合某个catch就不再匹配后续的catch, 如果某个catch块永远不会捕获到, 会报编译错误, 所以catch块要按从小到大的顺序书写
+
+如果类实现多个接口, 接口包含完全一样的方法声明, 类只要实现一次就可以了
+如果同名的方法声明有不同的返回值, 会报编译错误
+
+
+abstract interface 跟interface意义相同
+
+JNDI
+    将一个对象跟一个名称绑定
+    通过类似于目录的接口来查询
+    应用可以通过名字来查询或接收对象和数据
+
+
+手动垃圾回收 p = null; System.gc();
+
+java方法参数没有默认值, 需要用重载替换

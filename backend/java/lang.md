@@ -1,29 +1,18 @@
-### 1. 接口与抽象类的区别
-    1. 接口里面所有的方法均为public
-    2. 接口中的成员变量默认为public static final
-    3. 接口中不存在已实现的方法
-    4. 实现接口的非抽象类必须实现所有方法, 抽象类可以不用全部实现
-    5. 接口用implements实现, 抽象类用extends实现
-    6. 抽象类可以有构造器, 接口没有构造器
-    7. 抽象方法可以有main方法并且可以运行, 接口没有
-    8. 抽象类可以继承一个类并实现多个接口  
+## 名词
+```
+JPA: Java Persistence API
+POJO: Plain Ordinary Java Object
+PO: POJO + Annotation
 
-
-### Lifecycle of thread
-
-1. New state: 新建状态, 直到调用start()
-2. 就绪状态: 线程处于就绪队列中, 等待jvm线程调度器进行调度
-3. 运行状态: 如果一个线程拿到CPU资源, 可以执行run()之后处于运行状态
-4. 阻塞状态: 执行sleep(), suspend(), wait()之后, 进入此状态, 三种类别
-        等待阻塞
-        同步阻塞
-        其他阻塞
-5. 死亡: 线程执行完毕或者被终止后, 进入死亡状态  
-
-
-### 7.手动垃圾回收
-    p = null;
-    System.gc();
+ajp: apache jserv protocol
+jre: java runtime environment
+jdk: java development kit
+jndi: java namespace and directory interface
+jdbc: java database connectivity
+jpa: java persistence api
+jmx: java management extensions
+apr: apache portable runtime(support for openssl, epoll, sendfile)
+```
 
 
 ## Number methods
@@ -97,7 +86,7 @@ Collection values() # return a collection view of the values contained in this m
 ## Jar包构成
 ```
 jar xf /path/to/jar
-    META-INFO
+    META-INF
         MANIFEST.MF
             Main-Class 
             Build-Jdk

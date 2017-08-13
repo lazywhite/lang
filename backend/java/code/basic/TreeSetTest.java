@@ -6,7 +6,7 @@ import java.util.Iterator;
  * TreeSet 有序集合
  * TreeSet 只能通过迭代器进行遍历
  * TreeSet是基于TreeMap实现的。TreeSet中的元素支持2种排序方式：自然排序 或者 根据创建TreeSet 时提供的 Comparator 进行排序。这取决于使用的构造方法。
- TreeSet为基本操作（add、remove 和 contains）提供受保证的 log(n) 时间开销。
+ * TreeSet为基本操作（add、remove 和 contains）提供受保证的 log(n) 时间开销。
  */
 public class TreeSetTest {
     public static void main(String[] args) {
@@ -37,9 +37,10 @@ public class TreeSetTest {
         System.out.println(ts.pollLast()); //删除并返回最大的元素
 //        ts.clear(); //清空集合
 
+        //ts.descendingIterator() //反向iterator
+        ///ts.descendingSet() //倒序集合
 
-        //遍历
-//        Iterator iter = ts.iterator();
+//        Iterator iter = ts.iterator(); //正向遍历
 //        while(iter.hasNext()){
 //            System.out.println(iter.next());
 //        }

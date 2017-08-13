@@ -38,12 +38,17 @@ public class NewDateAPI {
         LocalTime d3 = LocalTime.of(22, 15);
         System.out.println(d3);
 
-        LocalTime d4 = LocalTime.parse("22:03:24");
+        LocalTime d4 = LocalTime.parse("22:03:24", DateTimeFormatter.ofPattern("HH:mm:ss"));
         System.out.println(d4);
 
+        LocalDate d5 = LocalDate.parse("2017-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        System.out.println(d5);
 
-        // ZonedDateTime
+        /*
+         * ZonedDateTime
+         */
         ZonedDateTime date1 = ZonedDateTime.parse("2007-12-03T10:15:30+05:30[Asia/Shanghai]");
+
         ZoneId zoneId = ZoneId.of("Europe/Paris");
         System.out.println("zone id: " + zoneId);
 
@@ -51,7 +56,9 @@ public class NewDateAPI {
         System.out.println(currentZone);
 
 
-        //ChronoUnit  (python: timedelta)
+        /*
+         * ChronoUnit  (python: timedelta)
+         */
         LocalDate today = LocalDate.now();
         System.out.println(today);
         LocalDate nextWeek = today.plus(1, ChronoUnit.WEEKS);
@@ -62,12 +69,16 @@ public class NewDateAPI {
 
         System.out.println(today.withMonth(now.getMonthValue() + 1).withDayOfMonth(1).plus(-1, ChronoUnit.DAYS));//本月的最后一天
 
-        //Period (date based difference) Duration(time based difference)
+        /*
+         * Period (date based difference) Duration(time based difference)
+         */
         System.out.println(Period.between(nextWeek, today).getDays()); // (second - first),  getMonth(), getYear()
         System.out.println(Duration.between(now, now.plus(1, ChronoUnit.SECONDS)).getSeconds());
 
 
-        // transform between old Date API
+        /*
+         * transform between old Date API
+         */
         Date oldNow = new Date();
         System.out.println(oldNow);
         Instant newNow = oldNow.toInstant();

@@ -56,7 +56,7 @@ import java.lang.annotation.Target;
  * @Target: 适用对象
  *      ElementType.TYPE: 类, 接口, enum
  *      ElementType.FIELD: 描述类的属性
- *      ElementType.FIELD: 描述类的方法
+ *      ElementType.METHOD: 描述类的方法
  *      ElementType.PARAMETER: 描述类的方法参数
  *      ElementType.CONSTRUCTOR: 描述类的构造方法
  *      ElementType.LOCAL_VARIABLE: 描述局部变量
@@ -235,6 +235,10 @@ public class ReflectTest {
         try {
             System.out.println("=========================");
             Class cls = Class.forName("basic.MethodDemo");
+            //cls.getSuperclass().getCanonicalName();//获取父类
+            //cls.getSuperclass().getSimpleName();//获取父类 简短名
+            //cls.getSuperclass().getModifiers();
+            //cls.getSuperclass().getPackage(); 包名
             Object o = cls.newInstance();//调用无参构造
             Constructor con = cls.getConstructor(int.class, String.class);//获取有参构造
             Object op = con.newInstance(10, "good");//生成有参构造对象

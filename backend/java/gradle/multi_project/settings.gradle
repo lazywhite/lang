@@ -1,1 +1,2 @@
+//这里规定include其他的子项目
 include  ':app', ':core'

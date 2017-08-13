@@ -31,8 +31,34 @@
 
 热部署
     JRebel + Compiler auto build
-    src/rebel.xml
-        classpath
-        web path
+    Preference--> Build,Execution,Deployment-->Compiler-->Build Project automaticalyy
+    Edit Configuration-->Server --> On Update Action && On frame deactivation
+
 
 jrebel使用中, 如果导入jar包, 需要重新部署
+
+添加livetemplate
+    全局配置--> LiveTemplate --> Add Group --> Add live @name, @text, @applicable context
+
+自动生成junit测试类
+    Plugin --> Junit2
+    command + N --> Generate JUnit test 
+
+不自动打开上次的工程
+    Behavior --> System settings --> Reopen last project on startup
+
+图形化git merge
+    开启git integration插件
+    git merge 产生冲突, 标示出红色文件
+    点击红色文件, 右键 git --> solve merge confict
+
+快捷键
+    切换标签 ctrl + tab
+
+JRebel executor中文乱码
+    intellij edit customer vm option 
+        -Dfile.encoding=UTF-8
+        -Dsun.jnu.encoding=UTF-8
+    project configuration
+        tomcat vmoption
+            -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8

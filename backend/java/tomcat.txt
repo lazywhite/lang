@@ -1,0 +1,30 @@
+
+server.xml
+    Server
+        Listener(security, apr, memory leak prevent)
+        GlobalNamingResources
+        Service(name)
+            Connector(port, protocol)
+            Engine(name, defaultHost)
+                Realm
+                Host(name, appBase)
+                    Valve(logging config)
+
+
+CATALINA_HOME: 指向bin, lib的父目录
+CATALINA_BASE: 指向每个tomcat目录私有信息, conf, logs, temp, webapps, work父目录
+  
+
+catalina: tomcat servlet container
+coyote: http connector
+jasper: jsp engine
+
+tomcat目录结构
+    bin: 启动停止脚本
+    conf: 服务器配置
+    lib: tomcat服务器和所有web应用程序需要访问的jar包
+    logs
+    temp
+    webapps
+    work: 存放jsp生成的servlet源文件和字节码文件
+
