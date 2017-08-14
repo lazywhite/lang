@@ -19,7 +19,6 @@ ${a[*]} ${#a[*])
 a="echo good";$a直接打印good
 bash 变量不分类型
 let "a+=1"
-a=122;b=${a/2/b} 只会把第一个2变为字母b
 位置变量,局部变量,环境变量,变量声明
 \n:newline;\r:return;\t:tab;
 if :;then echo ":和true关键字表示条件为真";fi
@@ -47,6 +46,7 @@ $# 参数个数 $*所有位置参数,被视为一个单词 ;$@ 所有位置参�
 
 字符串操作
 ${#string}字符串长度
+a=/bin/bash;b=${a/bash/zsh} 字符串替换
 
 ${variablename?} 可检测脚本中变量是否被设定
 :${variablename?"ERROR MESSAGE"}可设定出错信息
