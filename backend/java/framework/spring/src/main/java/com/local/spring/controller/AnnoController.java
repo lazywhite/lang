@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -18,7 +20,7 @@ import java.util.*;
  */
 @Controller
 @RequestMapping("/anno")
-@SessionAttributes(value={"attr1"})
+@SessionAttributes(value={"attr1", "locale"})
 public class AnnoController {
 
     @Autowired
@@ -56,6 +58,13 @@ public class AnnoController {
         return mav;
     }
 
+    @RequestMapping("/i18n")
+    public ModelAndView i18n(HttpServletRequest req){
+        ModelAndView mav = new ModelAndView("/anno/i18n");
+        Locale locale = Locale.US;
+        mav.addObject("locale", locale);
+        return mav;
+    }
 
 
     //文件上传
