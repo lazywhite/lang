@@ -1,4 +1,4 @@
-: ${PGUSER:=100}
+: ${PGUSER:=100} # PGUSER is not set, export PGUSER=100
 echo 'PGUSER ' $PGUSER
 
 PGPASS=${PGUSER:-200} # PGUSER is set, PGPASS=PGUSER
@@ -14,10 +14,10 @@ echo ${#PGUSER}
 echo 'PGUSER1 ' $PGUSER1
 
 
-PGHOST=${PGUSER1:+200}
+PGHOST=${PGUSER1:+200} # PGUSER1 is not set, PGHOST=""
 echo 'PGHOST ' $PGHOST
 
-PGHOST1=${PGUSER:+200}
+PGHOST1=${PGUSER:+200} # PGUSER is set, PGHOST=200
 echo 'PGHOST1 ' $PGHOST1
 
 branch='remote/origin/master' ## remove matched part from string

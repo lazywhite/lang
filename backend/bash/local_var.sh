@@ -6,10 +6,10 @@ function test {
 }
 
 function test2 {
-    local Demo=300
+    Demo=300 # 不加local关键词, 会将global Demo的值修改
     echo $Demo
 }
 
-test
+#test
 test2
 echo $Demo

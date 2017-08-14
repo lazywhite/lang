@@ -1,3 +1,12 @@
-## Topic
-1. ```set -e: "enable exit immediately", set +e "disable exit immediately"```
-2. ```set -x: "enable debug output", set +x "disable debug output"```
+set -e: 
+    脚本中有命令返回非0则退出
+set +e 
+    脚本中有命令返回非0也不退出
+    
+set -x
+    开启debug输出
+set +x 
+    隐藏debug输出, 默认值
+    
+
+grep "oo" <<< "good" 将后续内容作为前面命令的标准输入
