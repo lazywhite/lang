@@ -115,3 +115,10 @@ not() method is the opposite of filter().
 
 ## Topic
 1. $(selector) is same as jQuery(selector)
+2. dom_obj.value == $(obj).val()
+
+## 三大用途
+$(<selector>) 获取dom元素
+$("<p>paragraph</p>")生成元素
+$(dom_obj) 将dom object转化为jquery object
+

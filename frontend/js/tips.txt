@@ -26,7 +26,7 @@ js基本类型
     Number
     String
     null
-js符合数据类型
+js复合数据类型
     object
     Function
     Array
@@ -54,7 +54,7 @@ function sum(){ //定义可接受变长参数的函数
 }
 
 //创建一个对象
-var st = new Object; 
+var st = new Object(); 
 st.name = "akdjf";
 st.age = 100;
 
@@ -67,13 +67,24 @@ st.age = 100;
     NaN
     typeof 
 
-內建构造函数
+js 对象
     Array()
-    String()
-    Math()
-    Date()
+        var arr = new Array();
     Number()
+        var a = new Number(10);
+    String()
+        var str = new String("bob");
+    Date()
+        var d = new Date();
+         var msecs = Date.parse( "Aug 28, 2008 23:30:00" );
+    Math
+        var a = Math.abs(-100);
+    RegExp
+        var pattern = new RegExp(pattern, attributes);
+        var pattern = /pattern/attributes;
 
+var s = "string"; console.log(typeof s) --> string
+var s = new String("string"); console.log(typeof s) --> object
 js 运算符
     比较运算符
     算术运算符
@@ -81,36 +92,14 @@ js 运算符
     赋值运算符
 
 终止函数
-	return， 
+	return
 终止循环
 	break continue
 终止程序
 	暂无
 
+js无法退出脚本
 
-java 变量类型
-	局部变量
-	类变量（静态变量）
-	成员变量
-
-final 变量无法修改， 方法不能被重写， 类不能有子类
-final无法修饰interface， 无法跟abstract， strictfp一起使用
-
-Java语言包含三种核心机制：Java 虚拟机、垃圾收集机制和代码安全检测
-1、Java 虚拟机(Java Virtual Machine，JVM)
-在一台计算机上由软件或硬件模拟的计算机。Java虚拟机读取并处理经编译过的平台无关的字节码class文件。
-2、垃圾收集机制(Garbage collection)
-在C/C++ 等语言中，由程序员负责回收无用内存。Java语言解除了程序员回收无用内存空间的责任。它提供一种系统级线程跟踪存储空间的分配情况。并在JVM的空闲时，检查并释放那些可被释放的存储器空间。垃圾收集在Java程序运行过程中自动进行，程序员无法精确控制和干预。  
-3、代码安全性检测(Code Security)
-Java执行代码的时候，由JVM对运行的代码进行安全性检测，当进行一些非法操作的时候，比如修改一些系统设置的时候，JVM会发出警告。
---------
-抽象类可以implements interface
-Methods in interfaces are implicitly public
---------
-接口可以继承多个接口
-class可以实现多重接口
-
-js一切皆对象
 js 继承
 	构造函数 + prototype
 
@@ -139,15 +128,6 @@ $.ajax({
     error: function(){}, //失败的回调
 })
 
-js静态对象
-    Date
-    String
-    Math
-    Array
-    Number
-    RegExp
-    Boolean
-
 typeof <>  --> 'number', 'string', 'boolean'
 
 js中的数组可以是任何元素, 初始化值是undefined
@@ -174,10 +154,16 @@ var p = {
 }
 p.age || p['age'] 访问属性
 
+构造函数
 function Person(name, age){
     this.name = name;
     this.age = age;
 }
+公共函数
 Person.prototype.show = function(){
     console.log(this.name + this.age)
 }
+
+
+
+    
