@@ -8,9 +8,8 @@
 7. you should use "className" and "htmlFor" as XML attribute names instead of "class" and "for"
 
 
-## Keyword
+## Glossary
 ```  
-
 form
 router
 ajax

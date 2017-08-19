@@ -73,11 +73,11 @@ A typical module is a cohesive block of code dedicated to a single purpose. A mo
 ```
   
 ### Template
-A template is a form of HTML that tells Angular how to render the Component.
+	A template is a form of HTML that tells Angular how to render the Component.
 
 
 ### Component
-A class has defined property and function tho generate a view with template  
+	A class has defined property and function tho generate a view with template  
    
 ```
 @Component function takes the configuration object and turns it into metadata that it attaches to the component class definition. Angular discovers this metadata at runtime and thus knows how to do "the right thing".
@@ -94,7 +94,7 @@ Angular inserts an instance of the HeroListComponent view between those tags.
   
 #### Service 
 
-"Service" is a broad category encompassing any value, function or feature that our application needs.
+	"Service" is a broad category encompassing any value, function or feature that our application needs.
 
 
 #### Dependence injection
@@ -120,9 +120,9 @@ we register providers with injectors.
 ## linting
 ## Shapes
 ## Decorators
-    property decorator
+	property decorator
 ## Structural directives
-    the asterisk(*) syntax
+	the asterisk(*) syntax
 ## Pipe
 ## Projection
 ## Observable
@@ -133,17 +133,17 @@ we register providers with injectors.
   
 ## Change detection
 ## Immutable
-## Component Lifecycle
-directive and component
-component only
+
 ## view encapsulation
+```
 emulated  
 native  
 @Component   
 None  
         
+```
 ## ElementRef
-    provide access to the underlying native element(DOM node)
+	provide access to the underlying native element(DOM node)
     
 ## Router
 ### programmingly use router
@@ -153,8 +153,10 @@ this._router.navigate('route_name', {})
 ### ChildRouter
 ### Auxiliary Route
 ### RouterParameter
-redirectTo 
+	redirectTo 
 ###Lifecycle
+```
 @CanActivate
 @CanDeactivate
+```
 ## Lazyload

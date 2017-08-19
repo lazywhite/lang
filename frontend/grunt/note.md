@@ -1,5 +1,5 @@
-##Installation
-```
+## Installation
+```bash
 npm install -g grunt-cli #just a script call grunt of work directory
 cd work_dir
 npm install --save-dev grunt ## Grunt will be devDependency
@@ -39,6 +39,6 @@ module.exports = function(grunt) {
 
 
 ## Topic 
-```
+```bash
 uglify dynamic_mapping and static_mapping
 ```
