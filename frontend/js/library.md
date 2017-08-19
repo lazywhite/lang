@@ -1,3 +1,4 @@
+
 page load progress bar 
     [pace](http://github.hubspot.com/pace/docs/welcome/)
 
@@ -14,7 +15,10 @@ Table
     [Datatables](https://datatables.net/)
 
 Cookie
-    [Jquery-cookie](https://github.com/carhartl/jquery-cookie)
-
-Autocomplte[http://jqueryui.com/autocomplete/]
-[Hello.js](https://adodson.com/hello.js/)
+    [Jquery-cookie](https://github.com/carhartl/jquery-cookie)  
+    
+Search prompt
+[Autocomplte](http://jqueryui.com/autocomplete/)  
+  
+Oauth
+	[Hello.js](https://adodson.com/hello.js/)

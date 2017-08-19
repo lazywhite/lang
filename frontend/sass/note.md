@@ -1,4 +1,4 @@
-## Common
+## Tips
 ```
 comment: /* */ 
 ';' as line end;

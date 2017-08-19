@@ -1,24 +1,15 @@
 ## Introduction
-Typescript is a typed superset of Javascript that compiles to plain javascript  
+Javascript的超集, 可以编译成Javascript, 使用时可以预先在服务器端编译或者在客户端调用system.js进行编译  
 
-## Topic
-### watch ts files and auto compile
 
+## Tips
+1. let声明常量, var声明变量
+2. jasmin, tsunit测试工具
+
+
+## 源文件监测  
+```bash
 npm install -g typescript-watcher
 tswatch watch|w <source dir> <output dir> [<options>]
+```
 
-### project config file
-tsconfig.json
-
-### variable declearation, "let" vs "var"
-
-## Usage
-using typescript with require.js or system.js
-1. typescript get precompile on server side, then use module loader to 
-load compiled js file
-2. get compiled on client's brower
-
-
-## unittest
-jasmin
-tsunit
