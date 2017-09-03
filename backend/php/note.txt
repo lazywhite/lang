@@ -1,0 +1,292 @@
+数据类型
+    种类
+        Integer
+        Double
+        Boolean
+        Null
+        String
+        Array
+        Object
+        Resource
+    类型转换
+        settype($numStr, "int")
+        intval(), floatval(), strval()
+        (int) (float) (double) (string) (bool) (array) (object)
+
+
+常量
+    define("PI", 3.14 [, true|false]); 默认false, 对大小写敏感
+    echo PI;
+    echo constant("PI");
+    const M1 = 100;
+
+特殊变量
+    __METHOD__
+    __CLASS__
+    __FILE__: 绝对路径
+    __LINE__: 无视include
+    __FUNCTION__
+    __NAMESPACE__
+
+超全局变量
+    $GLOBALS
+    $_SERVER: request header信息, server信息
+    $_REQUEST
+    $_GET
+    $_POST
+    $_FILES
+    $_ENV
+    $_COOKIE
+    $_SESSION
+
+类
+    构造函数
+        __construct()
+        子类自动从父类继承构造函数, 可以重写
+    析构函数
+        __destruct()  
+        $obj = null; 可以触发垃圾回收
+    __call($method, $args)
+
+数组
+    普通数组
+        $arr = array("bob", "marry", "alice");
+        echo "i'm $arr[1]";
+
+        遍历
+            for($x=0;$x<count($arr);$x++){
+                echo $arr[$x];
+            }
+
+    关联数组
+        $sts = array("bob"=>"100", "marry"=>"20");
+        echo $sts["bob"];
+        遍历
+            foreach($sts as $key => $value){}
+
+    多维数组
+        $multi_array = array(
+            array(1, 2, 3), 
+            array(4, 5, 6)
+        );
+    排序
+        ksort() key升序
+        krsort() key降序
+        asort() value升序
+        arsort() value降序
+
+类
+    实例变量
+        echo $obj->name;
+    实例方法
+        $obj->test();
+    静态变量
+        echo Student::$cls;
+    静态方法
+        Student::info();
+    继承
+        class Student extends People{}
+    访问修饰符(跟java基本一致)
+        public
+        protected
+        private 
+
+    调用父类方法  
+        parent::__construct()
+        parent::greet();
+        ClassName::__construct()
+    抽象类/抽象方法
+
+接口
+    类可以同时实现多个接口
+    function只能有定义, 不能有实现
+    不允许包含变量, 只能包含function
+    function可以是静态的, 也必须实现一个静态的
+    可以包含常量
+    成员都是public访问修饰
+
+命名空间
+    declare(encoding="utf-8"); //特例
+    namespace "MyProject"//必须写在第一行
+    子命名空间
+    引用
+        非限定名称
+        限定名称
+        完全限定名称
+
+
+
+函数
+    php是弱类型语言, 不支持函数重载
+    函数重写无需显式指明 
+    传值方式
+        call by value 默认
+        call by reference
+            function test01(&$args){
+                $args += 100;
+            }
+    变长参数函数
+        function sum($name, ...$args){
+            echo $name;
+            return array_sum($args);
+        }
+
+        echo sum("bob", 1, 2, 3);
+
+    参数默认值
+        function test($arg=100){} 默认值不能是变量
+
+
+循环
+    for
+    foreach
+    while
+    do while
+
+Here document
+    $var <<EOF
+    line1
+    line2
+    EOF
+
+
+模块导入
+    include() 失败报warning
+    include "inc.php";
+    require() 失败报error
+    include_once() 避免重复导入
+    require_once()
+
+
+php.ini
+    ini_set("display_error","1")
+    ini_get('display_errors')
+    ini_get_all()
+    ini_restore('display_errors')
+
+Cookie
+    setcookie("user", "Alex Porter", time()+3600);
+Session
+    session_start()
+    session_destroy()
+Header
+    header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+    header("Cache-Control: no-cache");
+    header("Pragma: no-cache");
+
+Filter
+    filter_var() - Filters a single variable with a specified filter
+    filter_var_array() - Filter several variables with the same or different filters
+    filter_input - Get one input variable and filter it
+    filter_input_array - Get several input variables and filter them with the same or different filters
+    
+错误处理
+Date
+    date_default_timezone_set()
+    echo date("Y-m-d H:i:s");
+    time()
+    sleep(10)
+
+正则
+    preg_match() 
+    preg_match_all()
+
+xml
+    $xml=simplexml_load_file("note.xml");
+    foreach($result=$xml->xpath() as $a){
+        echo $a;
+    }
+    print_r($xml);
+
+Database
+    mysql_connect("host","user","passwd"，"database") 
+    mysql_close() 
+    mysql_error()
+    mysql_select_db() 
+    mysql_query()
+File
+    fopen("file.txt","r")
+    fgets()fgetc() feof()
+    file() fgets()(读取整行) fgetc()（读取字符） fopen() fread() fclose() filesize() fwrite() 
+    readfile() file_put_content() rename("original","another")
+    opendir() readdir()   pathinfo(file)['extension']
+    move_uploaded_file($_FILES['name']['tmp_name'],$location.$name)
+
+Mail
+    mail(to,subject,body,header)
+
+String
+    str_word_count() 
+    str_shuffle('a-z0-9') 
+    substr($str,0,strlen($str))
+    strrev() 
+    similar_text($str1,$str2,$result) 
+    strtr() 
+    strtoupper() 
+    strtolower()
+    trim() 
+    ltrim() 
+    rtrim() 
+    strpos() 
+    substr_replace() 
+    str_ireplace('old','new','target')
+    explode(',', string)->array  
+    implode(',', array)->string  
+
+测试函数
+    extension_loaded('mysql')
+    isset() 
+    is_dir()
+    function_exists("readfile")
+    empty()
+    get_cfg_var()
+    file_exists()
+
+数学计算
+    ceil() 
+    floor() 
+    pow() 
+    abs() 
+    sqrt() 
+    exp()
+
+Hash
+    hash('md5',$string) crypt() md5() sha1()
+    hash_file() md5_file() 
+
+
+Special Method
+    __clone() $this, $that
+    __toString()
+    __call($method, $args)  // 有且仅有两个参数
+
+
+Serialize
+    __sleep()
+    __wakeup()
+
+Tips
+    htmlentities("<")
+    变量使用之前必须赋值
+    var_dump($multi_array)
+    print_r($var)
+    php不支持多重继承
+    final class无法被继承, final function无法被重写, 属性无法被final修饰
+    is_subclass_of("Student", "People")
+    ($s1 instanceof Student)  Student无需引号
+    gettype($var) 获取数据类型
+    并置运算符 (.) 用于把两个字符串值连接起来
+    ===恒等，必须值与数据类型全部一致
+    $result = $grade>=60?passed:failed;
+    @()错误抑制,不输出命令的错误信息
+    number_format($result,2) 浮点数四舍五入
+    global $var;
+    die('message') exit()
+    exec() ob_start() ob_end_clean() ob_end_flush()
+    非静态函数访问静态变量, 使用Class::$var, self::$var
+
+    $obj1 = clone $obj2; 默认是浅拷贝,  深拷贝需要实现__clone()
+    函数局部变量跟全局变量是隔绝的, 想要访问全局变量, 必须使用global, $GLOBALS
+    global $var; 只是创建一个全局变量的引用, $GLOBALS访问真实的全局变量
+    $arr = array("name"=>"bob"); $obj = (object)$arr; $obj->name
+
