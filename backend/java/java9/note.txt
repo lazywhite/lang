@@ -1,0 +1,18 @@
+编译指定jdk版本的jar包
+    javac -release [6-9]
+
+打印jar包的依赖信息
+    jdeps /path/to/jar 
+
+扫描是否有depracated api使用
+    jdeprscan  [options] <jar|class|dir> 
+
+
+module-info.java
+    module <moduel-name>{
+        requires ## 依赖mod
+        exports com.greeting.util  ##导出的包, 不是类
+        uses
+        provides with
+    }
+

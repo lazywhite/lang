@@ -562,3 +562,28 @@ Java语言包含三种核心机制：Java 虚拟机、垃圾收集机制和代�
 在C/C++ 等语言中，由程序员负责回收无用内存。Java语言解除了程序员回收无用内存空间的责任。它提供一种系统级线程跟踪存储空间的分配情况。并在JVM的空闲时，检查并释放那些可被释放的存储器空间。垃圾收集在Java程序运行过程中自动进行，程序员无法精确控制和干预。  
 3、代码安全性检测(Code Security)
 Java执行代码的时候，由JVM对运行的代码进行安全性检测，当进行一些非法操作的时候，比如修改一些系统设置的时候，JVM会发出警告。
+
+
+1 —oracle—
+    驱动：oracle.jdbc.driver.OracleDriver
+    URL：jdbc:oracle:thin:@machine_name:port:dbname
+    注：machine_name：数据库所在的机器的名称；
+    port：端口号，默认是1521
+
+2 —mysql—
+    驱动：com.mysql.jdbc.Driver
+    URL：jdbc:mysql://machine_name:port/dbname
+    注：machine_name：数据库所在的机器的名称；
+    port：端口号，默认3306
+
+3 —SQL Server—
+    驱动：com.microsoft.jdbc.sqlserver.SQLServerDriver
+    URL：jdbc:microsoft:sqlserver://<machine_name><:port>;DatabaseName=<dbname>
+    注：machine_name：数据库所在的机器的名称；
+    port：端口号，默认是1433
+
+4 —DB2—
+    驱动：com.ibm.db2.jdbc.app.DB2Driver
+    URL：jdbc:db2://<machine_name><:port>/dbname
+    注：machine_name：数据库所在的机器的名称；
+    port：端口号，默认是5000
