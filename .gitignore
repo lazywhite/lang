@@ -27,3 +27,5 @@
 **/*.Rdata
 **/*.Rhistory
 **/rebel.xml
+
+**/*.jmod

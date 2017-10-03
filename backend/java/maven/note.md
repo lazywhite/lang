@@ -102,12 +102,8 @@ or
 
 ```
 ```
-> mvn archetype:generate
--DgroupId=com.companyname.bank
--DartifactId=consumerBanking
--DarchetypeArtifactId=maven-archetype-quickstart   //普通java程序
+mvn archetype:generate -DgroupId=com.greeting -DartifactId=test -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false    //普通java程序 
 // -DarchetypeArtifactId=maven-archetype-webapp      //web应用
--DinteractiveMode=false
 ```
 plugin
     build plugin
