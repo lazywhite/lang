@@ -1,0 +1,72 @@
+<style>
+	.profile {
+		width: 100px;
+		height: 200px;
+		background: #223;
+	}
+	.blog {
+		width: 200px;
+		height: 200px;
+		background: purple;
+	}
+</style>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<div id="app">
+	<h1>Hello App!</h1>
+	<!-- 路由出口 -->
+	<router-view name='nav'></router-view>
+	<router-view name='sidebar'></router-view>
+</div>
+
+
+
+<script> 
+    const Nav = { template: '<div>我是导航栏<router-view></router-view></div>' }
+	const TestNav = { template: '<div>我是test导航栏<router-view></router-view></div>' }
+	const Sidebar = { template: '<div>我是侧边栏</div>' }
+    const TestProfile = { template: '<div>测试环境profile</div>' }
+    const ProdProfile = { template: '<div>生产环境profile</div>' }
+
+	const  routes = [
+        { path: '/',
+            // a single route can define multiple named components
+            // which will be rendered into <router-view>s with corresponding names.
+            components: {
+                nav: Nav,
+                sidebar: Sidebar
+            },
+            children:[
+                {
+                    path: 'profile',
+                    component: ProdProfile,
+                }
+            ]
+        },
+        { path: '/test/:id',
+            // a single route can define multiple named components
+            // which will be rendered into <router-view>s with corresponding names.
+            components: {
+                nav: TestNav,
+                sidebar: Sidebar
+            },
+            children:[
+                {
+                    path: 'profile',
+                    component: TestProfile,
+                }
+            ]
+        }
+	];
+	const router = new VueRouter({
+		routes // （缩写）相当于 routes: routes
+	})
+
+	const app = new Vue({
+		router
+	}).$mount('#app')
+
+</script>
+
+

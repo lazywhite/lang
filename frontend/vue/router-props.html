@@ -1,0 +1,49 @@
+<style>
+	.profile {
+		width: 100px;
+		height: 200px;
+		background: #223;
+	}
+	.blog {
+		width: 200px;
+		height: 200px;
+		background: purple;
+	}
+</style>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<div id="app">
+	<h1>Hello App!</h1>
+	<!-- 路由出口 -->
+	<router-view ></router-view>
+</div>
+
+
+
+<script> 
+
+    const User = { 
+        template: '<div>User {{id}}</div>',
+        props: ['id'],
+    };
+
+	const  routes = [
+        { path: '/user/:id',
+            // a single route can define multiple named components
+            // which will be rendered into <router-view>s with corresponding names.
+            component: User,
+            props: true,
+        },
+	];
+	const router = new VueRouter({
+		routes // （缩写）相当于 routes: routes
+	})
+
+	const app = new Vue({
+		router
+	}).$mount('#app')
+
+</script>
+
+

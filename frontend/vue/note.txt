@@ -1,0 +1,311 @@
+属性
+    {{var}}
+    如果var包含原始html, {{var}}将会原样显示, 使用以下指令
+    <span v-html="rawHTML"></span>
+
+条件
+    <p v-if="type === 'A'">A</p>
+    <p v-else-if="type === 'B'">B</p>
+    <p v-else>no</p>
+
+    元素必须紧跟
+
+循环
+    <ol>
+        <li v-for="{index, todo} in todos">
+            {{todo.text}}
+        </li>
+    </ol>
+
+事件
+    <button v-on:click="reverseMessage">click me </button>
+    <button @click="reverseMessage">click me </button>缩写
+
+双向绑定
+    <p>{{message}}</p> 
+    <input type="text" v-model="message" />
+
+单向绑定
+    <span v-bind:title="message" >content</span>  
+    <span :title="message" >content</span> 缩写 
+
+动态属性
+    <p name="{{data}}"></p> # 错误
+    <p :name="data"></p> # 正确
+    data, 不能使用{{}}, 只能使用v-bind
+
+组件
+    全局组件
+        注册
+            Vue.component("todo-item", {
+                template: `<li>todo item</li>`,
+            })
+        使用
+            <todo-item></todo-item>
+
+仅渲染一次
+    <span v-once>{{message}}</span>
+
+
+js 表达式
+    {{ number + 1 }}
+    {{ ok? "yes":"no" }}
+
+Life Cycle
+    beforeCreated
+    created
+    beforeUpdated
+    updated
+    beforeDestroyed
+    destroyed
+    beforeMounted
+    mounted
+
+
+计算属性
+    computed:{
+        fullName: {
+            get function(){
+                return this.firstName + ' ' + this.lastName;
+            },
+            set function(newValue){
+                var names = newValue.split(" "); 
+                this.firstName = names[0];
+                this.lastName = names[name.length - 1];
+            }
+        },
+        greet: function(){
+            return "I'm" + " " + this.firstName;
+        },
+    }
+    引用与普通属性相同, 跟method相比的好处是有缓存, 不会重复计算
+    计算属性默认只有getter, 可以添加setter
+
+属性侦听
+    watch:{
+        quetion: function(newQuestion){
+        } # question发生变化, 此函数被执行
+    }
+
+Dynamic class
+    <div v-bind:class="{active: isActive}"></div>
+
+Dynamic style
+    <div v-bind:style="{color: activeColor}"></div>
+
+元素唯一标志    
+    <input key="uuid" />
+
+v-show v-if
+    <h1 v-show="false">hello</h1> # display: none
+    <h1 v-if="false">hello</h1> # none h1 in DOM
+
+事件修饰符
+    .stop
+    .prevent
+    .capture
+    .self
+    .once
+
+    
+	<!-- 阻止单击事件继续传播 -->
+	<a v-on:click.stop="doThis"></a>
+	<!-- 提交事件不再重载页面 -->
+	<form v-on:submit.prevent="onSubmit"></form>
+	<!-- 修饰符可以串联 -->
+	<a v-on:click.stop.prevent="doThat"></a>
+	<!-- 只有修饰符 -->
+	<form v-on:submit.prevent></form>
+	<!-- 添加事件监听器时使用事件捕获模式 -->
+	<!-- 即内部元素触发的事件先在此处处理，然后才交由内部元素自身进行处理 -->
+	<div v-on:click.capture="doThis">...</div>
+	<!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+	<!-- 即事件不是从内部元素触发的 -->
+	<div v-on:click.self="doThat">...</div>
+
+
+filter
+    注册
+        global
+            Vue.filter("toUpper", function(value){
+                return value.toUpperCase();
+            })
+        local
+            filters:{
+                toUpper: function(value){}
+            }
+    使用
+        {{variable|filter-name}}
+directive
+    注册
+        global
+            Vue.directive("rainbow", {
+                bind(el, binding, vnode){
+                    el.style.color = "red";
+                }
+            })
+        local
+            directives:{}
+
+    使用
+        <p v-rainbow></p>
+        
+mixin
+    将组件公共属性单独存放以便共享
+
+Nested component
+    components:{
+        'app-header': AppHeader,
+    }
+
+Dynamic component
+    <component :is="componentName"></component>
+    components:[
+        'component-one': Com1,
+        'component-two': Com2,
+    ],
+    data:{
+        componentName: "component-one"
+    }
+
+Named router-view
+    <router-view ></router-view>
+    <router-view name="sidebar"></router-view>
+    <router-view name="content"></router-view>
+    {path: '/', components:[
+        default: Foo,
+        one: Bar,
+        two: Demo,
+    ]}
+
+
+
+Multi Vue Instance 
+    var vm1 = new Vue()
+    var vm2 = new Vue()
+
+Event
+    this.$emit
+Event Bus
+    var bus = new Vue()
+    bus.$emit
+
+Refs
+    <p ref="name"></p> 
+    this.$refs.name 
+
+Slots
+    声明
+        FormHelper.vue
+            <template>
+                <div>
+                    <h1>demo</h1>
+                    <slot name="title></slot>
+                <div>
+            <template>
+    调用
+        <form-helper>
+            <h1 slot="title">haha</h1>
+        </form-helper>
+
+内部css
+    <style scoped></script>
+
+
+Props 
+    传递的可能是引用类型(Array)或主类型(String)
+    props:{
+        ninja:{ 
+            type: Array,
+            required: true,
+        }
+    }
+    props: ['ninja']
+    传递props给子组件
+        <template>
+            <sub ninja="value"></sub>
+        </template>
+
+
+路由
+    动态路由
+        routes: [
+            // 动态路径参数 以冒号开头
+            { path: '/user/:id', component: User }
+          ]
+          this.$route.params.id
+
+        {path: "/user/:id", component: User}
+            /user/1 /user/2 都会匹配到, 但User组件会复用, 不会调用lifecycle hook, 通过
+        watch: {
+           '$route' (to, from) {
+             // 对路由变化作出响应...
+           }
+        }
+
+	命名路由
+        { path: '/user/:id', component: User, name: "user"}
+		<router-link :to="{ name: 'user', params: { id: 123 }, query:{ name: "terry" }}">User</router-link>
+    Router-link
+        :to
+        active-class
+        tag
+        exact-active-class
+        event
+	重定向
+        输入/test, 显示为/user/10
+		{path: '/test', redirect: '/user/10'}
+	别名
+        输入/b, 仍显示为/b
+		{path: '/a', component: A, alias: '/b' }
+	Props 
+		解耦合, 不再通过this.$route.params获取, 直接作为属性用this.id获取
+		{path: '/a/:id', component: A, props: true }
+
+    嵌套路由
+        组件有层级关系, 通过路由规则, 顶级组件可以有自己的router-view
+
+    模式
+        history
+            location / {
+              try_files $uri $uri/ /index.html;  #单页应用, 默认返回index.html
+            }
+        hash(default)
+    api
+        通过代码进行跳转, 相当于用户点击<router-link>
+            router.push({ path: '/user/123', query: { age: 20 }})
+            router.push({ name: 'user', params: { userId: 123 }, query: { age: 20 }})
+        替换当前history
+            router.replace(location, onComplete?, onAbort?)
+        回退n步
+            router.go(n)
+    过度动画
+        <transition name="fade"><div class="bar"></div></transition>
+
+Tips
+    blogs.filter(blog=>{})
+    blogs.map(blog=>{})
+    blogs.forEach(blog=>{})
+    父组件通过props传递数据, 子组件触发event通知给父组件
+    <p v-text="user.firstName"></p>
+
+    数据更新, vue会重新渲染, 导致method重新执行, 因此可使用"计算属性"
+    v-show 会将元素的display设置为none, 不会从dom中删除, v-if直接删除
+
+Veux
+    用于组件间共享数据, 不必经过复杂的props, event, update流程
+    state
+        like data
+    getters
+        like computed attribute
+    mutations
+        can be commited
+    actions
+        async
+        can be dispatched
+
+
+vue-cli
+    npm install -G vue-cli
+    vue init webpack vueapp
+    vue init webpack-simple vueapp
