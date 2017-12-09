@@ -1,0 +1,164 @@
+# kotlinc hello.kt -include-runtime -d hello.jar 
+# java -jar hello.jar ||  kotlin hello.jar
+
+交互式
+    kotlinc-jvm
+
+
+运行脚本
+    kotlinc -script /path/to/file.kts
+
+
+val常量
+var变量
+
+var n:String? = "test"  ## 声明字符串变量n, 可以接受null值
+
+var name = "bob"
+var s1 = "this is $name"  or var s1 = "this is ${name}"
+val s2 = "${s1.replace("is", "was")}"  # 双引号无需escape
+
+三元运算符   var max = if(a>b) a else b
+
+
+range
+    1..10 (包括边界)
+    1 until 10 (不包括右边界)
+    10 downTo 1 (包括边界)
+    1..10 step 2 (默认步长为1)
+    
+
+类
+    classModifier: 类属性修饰符
+        abstract    // 抽象类
+        final       // 类不可继承，默认属性
+        enum        // 枚举类
+        open        // 类可继承，类默认是final的
+        annotation  // 注解类
+        data        // 数据类
+        sealed      // 密封类
+
+
+    accessModifier: 访问权限修饰符
+        private    // 仅在同一个文件中可见
+        protected  // 同一个文件中或子类可见
+        public     // 所有调用的地方都可见
+        internal   // 同一个模块中可见
+        
+
+    Any
+        toString()
+        hashCode()
+        equals()
+
+
+
+只读列表
+    val list = listOf("a", "b", "c")
+只读映射
+    val map = mapOf("a" to 1, "b" to 2, "c" to 3)
+
+
+
+属性托管
+    val prop:String by Delegate()
+
+lazy Property
+    当访问某个lazy property时, 计算lambda表达式来返回, 非线程安全
+
+delegates.notNull()
+
+扩展方法, 用this来访问自身
+
+object 初始化, 不需要加一对小括号
+
+构造函数不能设置默认值
+如果主构造函数没有annotation或者visibility modifier修饰, 则constructor可以省略
+
+如果有主构造, 则次构造必须调用主构造, 用this来引用
+如果类没有任何构造函数, 怎会自动得到一个public的无参构造
+
+Any为超级类
+
+如果子类含有主构造, 则必须在声明的地方进行父类的初始化
+如果子类没有主构造, 只有次构造, 则需要在次构造中调用super()完成父类初始化
+
+没有open修饰的类, 默认都是final的
+父类的function必须用open修饰, 子类才可以override
+被override的function, 默认是open的, 可以使用final修饰让其不会被override
+
+property可以被override, 需要保证类型一致, val可以变成var, 反之不行
+内部类调用外部类的父类  super@Outer
+
+类没有static fun, 可以用package-level fun来替代
+class property的getter(), setter(), initilizer()可以省略, val修饰的property默认没有setter()
+property backing field: 使用field 关键字来引用
+
+lateinit 声明lazy property, 只能修饰var, 不能在主构造器中使用, 类型不能是primitive type
+必须在赋值之后才能使用
+
+类只能单继承, 接口和父类声明在一起
+
+接口可以包含concret function
+接口可以包含abstract property(没有初始化, 可以是var或val), 或者只读的val
+
+
+
+null值检测
+    var a :String? = "bob" // a为nullable, 调用时必须使用a?
+    println(a?.length) //
+    a = null
+    println(a!!.length) //如果a为null, 强制报空指针错误
+    println(a?.length ?:0) // "?:"elvis operator, 如果为null, 默认值为0
+
+
+
+Number
+    Double
+    Float
+    Long
+    Int
+    Short
+    Byte
+Characters
+    Char
+Strings
+    String
+
+Booleans
+    Boolean
+Arrays
+    Array
+        arrayOf()
+        arrayOfNulls()
+
+Visibility Modifier
+    public
+    internal: module内部可见
+    private 
+    protected
+
+
+function 是顶级元素
+没有packge语句, 则所有元素属于"没有名称的默认包"
+import foo.Bar as bar
+
+last expression is the value of block
+
+!in !is
+
+for((index, value) in array.withIndex()){}
+
+loop@  给code block打label,  break@loop 跳出代码块
+
+primary constructor, secondary constructors
+init{} initializer block, 可以使用primary constructor传入的值
+
+Local variables, functions and classes can not have visibility modifiers.
+
+extension
+    property
+    function: 不能有initializer, 只能用getter(), setter()
+
+
+
