@@ -1,5 +1,6 @@
 <template>
     <div>
+        {{test}}
         <h1>this is user profile</h1>
         <user-main >
         </user-main>
@@ -16,7 +17,13 @@
             'user-main': UserMain,
             'user-photo': UserPhoto,
         },
-        mixins: [Mixins]
+        mixins: [Mixins],
+        computed:{
+            test:function(){
+                return this.greet("bob");
+            }
+        }
+
     }
 
 </script>

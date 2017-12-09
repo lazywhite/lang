@@ -223,7 +223,7 @@ Props
     props: ['ninja']
     传递props给子组件
         <template>
-            <sub ninja="value"></sub>
+            <sub :ninja="value"></sub>
         </template>
 
 
@@ -309,3 +309,9 @@ vue-cli
     npm install -G vue-cli
     vue init webpack vueapp
     vue init webpack-simple vueapp
+
+
+element-ui封装的el-input 键盘事件bug
+    <input @keyup.enter="submit" />
+    修改为
+        <input @keyup.enter.native="submit" />
