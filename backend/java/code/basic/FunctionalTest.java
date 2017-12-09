@@ -13,7 +13,7 @@ import java.util.function.*;
     Predicate<T>:  接受一个T类型参数, 返回boolean结果
     Supplier<T>: 不接受参数, 返回一个T类型的结果
     Consumer<T>: 接受一个T类型参数, 不返回任何结果
-        DoubleConsumer = Consumer<Double>
+    DoubleConsumer = Consumer<Double>
     UnaryOperator<T>: 接受一个T类型参数, 返回一个T类型结果
     BinaryOperator<T>: 接受两个T类型参数, 返回一个T类型参数
     Function<T, R>: 接受一个T类型参数, 返回一个R类型参数

@@ -3,6 +3,7 @@
 
 打印jar包的依赖信息
     jdeps /path/to/jar 
+    jdeps -jdkinternals   /path/to/jar # 查看jdk内部api使用情况
 
 扫描是否有depracated api使用
     jdeprscan  [options] <jar|class|dir> 
@@ -10,9 +11,20 @@
 
 module-info.java
     module <moduel-name>{
-        requires ## 依赖mod
-        exports com.greeting.util  ##导出的包, 不是类
+        requires [transitive] <module-name>
+        exports com.greeting.util  ##导出包, 使包内public类可用
         uses
         provides with
     }
 
+java --list-modules 
+java --list-modules java.base
+
+
+生成仅使模块正常运行的镜像
+    $ jlink --add-modules java.base --module-path /Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home/jmods --output only-base
+    $ only-base/bin/java --list-modules
+
+java --module-path dir1:dir2:dir3
+
+underscore keyword

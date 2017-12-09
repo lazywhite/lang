@@ -1,5 +1,3 @@
---module-path [- p]
-
 按模块编译
     com.greetings 依赖 org.astro
     javac -d mods/org.astro src/org.astro/module-info.java src/org.astro/org/astro/World.java
@@ -10,14 +8,15 @@
     javac -d mods --module-source-path src $(find src -name "*.java")
 
 运行
-    java --module-path mods -m com.greetings/com.greetings.Main
-
+    java --module-path|-p mods -m|--module com.greetings/com.greetings.Main
 
 
 
 jar打包
+    -C: 更改为指定的目录并包含下面的文件
+    --file: 目标jar文件
     jar --create --file jars/org.astro-1.0.0.jar --module-version=1.0.0 -C mods/org.astro  .
-    jar --create --file jars/com.greetings-1.0.0.jar --module-version=1.0.0 -C mods/com.greetings  .
+    jar --create --file jars/com.greetings-1.0.0.jar --module-version=1.0.0 --main-class com.greetings.Main -C mods/com.greetings  .
 
     运行
     java -cp jars/org.astro-1.0.0.jar:jars/com.greetings-1.0.0.jar  com.greetings.Main
@@ -28,7 +27,4 @@ jar打包
 
     jmod list com.greetings-1.0.jmod
     jmod describe com.greetings-1.0.jmod
-
-链接
-    jlink -p jmods:$JAVA_HOME/jmods --add-modules com.greetings --output out
 
