@@ -56,6 +56,10 @@ public class StringTest{
         String newStr = testStr.replaceAll("test", "local"); //origin string is not modified
         System.out.println(newStr);
         String concatStr = newStr.concat("concat test");//concat method
-        System.out.println(concatStr); 
+        System.out.println(concatStr);
+
+        String template = "my name is %s";
+        String s1 = String.format(template, "bob");
+        System.out.println(s1);
     }
 }
