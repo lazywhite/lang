@@ -1,0 +1,28 @@
+container
+    display: flex 
+    flex-wrap(空间不足是否换行)
+        nowrap(default)
+        wrap(后续的在第二行)
+        wrap-reverse(后续的排在第一行)
+        justify-content(在主轴的排列行为)
+            flex-start 左对齐, 紧靠边框
+            center 全部居中
+            flex-end  右对齐, 紧靠边框
+            space-between 紧靠左右边框, item间距等分
+            space-around item与边框和其他item的左右间距都相同
+        align-items (在交叉轴上的排列行为)
+            flex-start: 起点对齐
+            center: 居中
+            flex-end: 终点对齐
+            baseline: 每个item的第一行文字对齐
+            stretch: 如果size为auto将占满整个屏幕
+
+    flex-direction
+        row(default) # 默认水平排放, 起点在左端
+        row-reverse # 起点在右端
+        column # 垂直排放, 起点在top
+        column-reverse # 起点在bottom
+
+item
+    flex-grow: 1  # 默认为0, 有剩余空间将会按照比例放大
+    flex-shrink: 0 # 默认为1, 空间不足则会按比例缩小, 为0则不缩小

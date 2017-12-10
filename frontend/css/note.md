@@ -50,3 +50,14 @@ transition with transform:  transition: transform 2s;
     @media rule, introduced in CSS2, made it possible to define different style rules for different media types.
 
 
+## 引入css的方式
+```
+1. inline
+    <p style="color: red">content</p>
+2. internal
+    <style type="text/css">
+    </style>
+3. external
+    <link type="text/css" rel="stylesheet" href="">
+    </style>
+```
