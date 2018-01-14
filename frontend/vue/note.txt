@@ -11,23 +11,44 @@
     元素必须紧跟
 
 循环
-    <ol>
+    迭代基本数组
         <li v-for="{index, todo} in todos">
             {{todo.text}}
         </li>
-    </ol>
+    迭代对象数组
+        <li v-for="item in items">
+            {{item.attr}}
+        </li>
+    控制循环次数
+        <span v-for="n in 10">{{n}}</span>
 
 事件
     <button v-on:click="reverseMessage">click me </button>
     <button @click="reverseMessage">click me </button>缩写
 
-双向绑定
+v-model
+    语法糖, 背后是v-on v-bind
     <p>{{message}}</p> 
     <input type="text" v-model="message" />
+
+非父子组件间通信
+    1. 使用一个空的vue instance作为事件总线
+        var bus = new Vue()
+        bus.$emit("id-selected", 1)
+        bus.$on('id-selected", function(id){});
+    2. 使用vuex等专门的状态管理器
 
 单向绑定
     <span v-bind:title="message" >content</span>  
     <span :title="message" >content</span> 缩写 
+
+    传递某个对象的所有属性
+    todo:{
+        title: "test",
+        content: "test",
+    }
+    <todo-item v-bind="todo"></todo-item>
+    直接访问{{title}} {{content}}, 无需加todo.前缀
 
 动态属性
     <p name="{{data}}"></p> # 错误
@@ -42,9 +63,65 @@
             })
         使用
             <todo-item></todo-item>
+    局部组件
+        components:{
+            'child': Child,
+        }
+    父子组件传值
+        1. props
+        2. 无需定义props, 任意的属性被自动赋值给子组件的根元素
+            <template>
+                <div>
+                    <p>greet</p>
+                </div>
+            </template>
+            <child-component some-attr="value"></child-component>
+            则最后渲染的结果为
+                <div some-attr="value">
+                    <p>greet</p>
+                </div>
 
-仅渲染一次
-    <span v-once>{{message}}</span>
+        3. 默认父组件传值给子组件会覆盖子组件的属性, 只有style和class不会覆盖而是衍合
+    子组件触发事件给父组件
+        1. 自定义事件
+            <child @increment="increTotal"></child>
+        2. 原生事件
+            <my-component v-on:click.native="doTheThing"></my-component>
+        3. sync prop, 语法糖, 背后是自定义事件系统
+            <child :foo.sync="val"></child>
+            当子组件更新一个带有sync修饰符的prop时, 父组件也会同步更改
+
+    子组件引用
+        <child ref="child"></child>
+        this.$ref.child
+    动态组件
+        让多个组件可以使用同一个挂载点
+        data(){
+            return {
+                currentView: 'home',
+            }
+        },
+        components:{
+            'home': Home,
+            'posts': Posts,
+        }
+        <component v-bind:is="currentView">
+      <!-- 组件在 vm.currentview 变化时改变！ -->
+        </component>
+    keep-alive, 用来保存组件的状态(表单内容), 或避免重新渲染
+        <keep-alive>
+            <child></child>
+        </keep-alive>
+    异步组件
+    递归组件
+    组件循环引用
+
+v-once
+    当组件内容为静态时, 考虑仅渲染一次并暂存, 可以加快速度
+    <template>
+        <div v-once>
+        </div>
+    </template>
 
 
 js 表达式
@@ -106,6 +183,7 @@ v-show v-if
     .capture
     .self
     .once
+    .native
 
     
 	<!-- 阻止单击事件继续传播 -->
@@ -208,6 +286,24 @@ Slots
             <h1 slot="title">haha</h1>
         </form-helper>
 
+
+Template
+    父子组件模板均在各自的作用域内编译
+    内容分发系统规定了父子模板组合的规则
+    slot用来将额外的内容组合在组件中
+
+    子组件没有slot
+        父组件传入的任何内容都被丢弃
+    子组件单个没有属性的slot
+        父组件传入的整个内容片段将插入到插槽所在的 DOM 位置，并替换掉插槽标签本身。
+        最初在slot内的内容为备用内容, 仅当父组件没有传递内容进来时显示
+    子组件多个有name属性的slot
+        没有name属性的slot为匿名插槽, 如果子组件没有匿名(default) slot, 则传入的找不到slot的内容会被丢弃
+
+    scoped slot
+        父template可以从子template中获取传递的值, 保存在slot-scope="var" 的var中
+        
+
 内部css
     <style scoped></script>
 
@@ -218,13 +314,31 @@ Props
         ninja:{ 
             type: Array,
             required: true,
+            //default: 100,
+            default: function(){
+                return "greet " + 100,
+            }
         }
     }
+
+    prop type
+        String
+        Number
+        Boolean
+        Function
+        Object
+        Array
+        Symbol
+
     props: ['ninja']
     传递props给子组件
         <template>
             <sub :ninja="value"></sub>
         </template>
+
+    子组件接受props后, 禁止变更, 可以用以下方法
+        1. 用props的值初始化一个局部变量
+        2. 使用computed属性对props做变型
 
 
 路由
@@ -292,18 +406,37 @@ Tips
     数据更新, vue会重新渲染, 导致method重新执行, 因此可使用"计算属性"
     v-show 会将元素的display设置为none, 不会从dom中删除, v-if直接删除
 
+    同一个url可以匹配多个路由, 以定义顺序为准
+
 Veux
     用于组件间共享数据, 不必经过复杂的props, event, update流程
     state
-        like data
+        集中存储状态, 并且全局响应
+        import {mapState} from 'vuex'
+        computed:{
+            localComputed(){},
+            ...mapState(['user'])
+        }
     getters
-        like computed attribute
+        返回处理过的state
+        computed:{
+            ...mapGetters(['userName'])
+        }
     mutations
-        can be commited
+        用来更改state, 必须是同步的
+        methods:{
+            ...mapMutations(['increment']),
+            ...mapMutations({
+                add: 'increment', # 重命名mutation
+            }
+        }
     actions
-        async
-        can be dispatched
-
+        异步执行mutations
+        methods:{
+            ...mapActions(['increment']),
+        }
+    模块化
+    命名空间
 
 vue-cli
     npm install -G vue-cli
@@ -311,7 +444,17 @@ vue-cli
     vue init webpack-simple vueapp
 
 
-element-ui封装的el-input 键盘事件bug
-    <input @keyup.enter="submit" />
-    修改为
-        <input @keyup.enter.native="submit" />
+
+
+模块链
+    vue-cli
+    vue-router
+    vuex
+    vue-resource
+
+vue-axios
+    import axios from 'axios';
+    import VueAxios from 'vue-axios';
+
+    Vue.use(VueAxios, axios);
+    Vue.axios.defaults.baseURL = 'https://api-demo.websanova.com/api/v1';

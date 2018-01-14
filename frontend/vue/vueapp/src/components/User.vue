@@ -3,15 +3,16 @@
     <p>main User</p>
     <button @click="reduceAge(2)">reduce age</button>
     <ve-line :data="chartData"></ve-line>
-    <transition name="fade">
-        <router-view></router-view>
-    </transition>
+    <router-view></router-view>
+
+    <heatmap></heatmap>
 </div>
 
 </template>
 <script>
     import {mapActions} from "vuex"; 
 	import VeLine from 'v-charts/lib/line';
+	import HeatMap from './HeatMap.vue';
     export default {
         data(){
             return {
@@ -31,6 +32,7 @@
         },
 		components:{
 			've-line': VeLine,
+			'heatmap': HeatMap,
 		},
         watch: {
             '$route' (to, from){

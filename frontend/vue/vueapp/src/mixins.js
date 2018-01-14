@@ -6,7 +6,7 @@ export default{
     },
     methods:{
         greet(val){
-            return 'akdjf' + val;
+            return 'hello ' + val;
         }
     }
     
