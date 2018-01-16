@@ -1,10 +1,12 @@
-var EventEmitter = require('events').EventEmitter;
-var event = new EventEmitter();
-event.on('some_event', function() {
-    console.log('some event happened')
-});
+const events = require('events')
 
+var emitter = new events.EventEmitter();
 
-setTimeout(function(){
-    event.emit('some_event');
-}, 2000);
+var testHandler = function(){
+    console.log('test event catched')
+}
+
+emitter.on('test', testHandler)
+
+emitter.emit('test')
+
