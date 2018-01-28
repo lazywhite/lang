@@ -1,0 +1,21 @@
+nodejs的另一个包管理工具, 可缓存下载过的包, 使用前检验其完整性
+提供lockfile确保依赖安装过程
+安装
+    brew install yarn
+    npm install -g yarn
+使用
+    yarn init # 新建项目
+    yarn add <package>
+    yarn add <package>@<version>
+    yarn add <package>@<tag>
+
+    yarn add <package> --dev # 添加依赖至dev环境
+    yarn add <package> --peer
+    yarn add <package> --optional
+
+    yarn upgrade <package> # 升级包
+    yarn upgrade <package>@<version>
+    yarn upgrade <package>@<tag>
+
+    yarn remove <package> # 删除包
+    yarn [install]# 安装依赖
