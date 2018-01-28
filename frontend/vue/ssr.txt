@@ -1,0 +1,75 @@
+
+# Nuxt
+
+简介
+	server side render, 便于SEO
+
+使用
+	vue init nuxt-community/starter-template vue-ssr
+	cd vue-ssr
+	yarn
+	npm run dev
+	npm run build
+	npm run start # start之前需要先build
+	npm run generate # 产生静态文件
+
+目录结构
+    assets # 存放sass, less, js文件
+    components # 页面组件
+    layouts # 页面布局
+    middleware
+    plugins
+    pages # 自动根据目录下的vue文件生成路由配置
+    static # 不会被webpack编译处理 static/robots.txt 映射为/robots.txt
+    store # vuex文件
+    nuxt.config.js # nuxt配置文件
+
+路径别名
+    ~|@ : srcDir
+    ~~|@@ : rootDir
+    默认srcDir跟rootDir相同
+    ~/assets/your_image.png 
+    ~/static/your_image.png
+
+动态路由
+    pages
+        users
+            _id.vue
+
+    {
+      name: 'users-id',
+      path: '/users/:id?',
+      component: 'pages/users/_id.vue'
+
+    },
+
+子路由
+    pages
+        users
+            _id.vue
+        users.vue
+            <nuxt-child/>
+全局过渡动画
+    assets/main.css
+        .page-enter-active, .page-leave-active {
+          transition: opacity .5s;
+        }
+        .page-enter, .page-leave-to {
+          opacity: 0;
+        }
+	nuxt.config.js
+		module.exports = {
+		  css: [
+			'assets/main.css'
+		  ]
+		}
+
+单页模式
+	默认是预渲染模式
+	更改为spa模式
+	nuxt.config.js
+		module.exports = {
+			mode: "spa",
+		}
+
+	npm run build # 将会生成dist文件夹

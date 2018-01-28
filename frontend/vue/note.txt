@@ -458,3 +458,14 @@ vue-axios
 
     Vue.use(VueAxios, axios);
     Vue.axios.defaults.baseURL = 'https://api-demo.websanova.com/api/v1';
+
+表单验证
+    <el-form :model="form" :rules="rules" ref="runForm">
+        <el-form-item label="端口" prop="port">
+            <el-input v-model.number="form.port" auto-complete="off"></el-input>
+        <el-form-item>
+    </el-form>
+    <el-button type="primary" @click="submitForm('runForm')">submit</el-button>
+
+    每个el-form-item必须有prop属性, 并与rules里面的对应
+    v-model.number="form.port'  针对数字的检验
