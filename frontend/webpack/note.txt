@@ -1,0 +1,23 @@
+intro
+    前端代码打包工具, 通过loader解析加载模块, 使用import导入其他模块
+
+entry
+    入口文件, 解析dependency tree
+output
+    编译输出配置
+loader
+    可以配置不同的loader解析不同类型的源文件如css, ts等
+plugin
+    用于实现loader无法实现的功能
+    需要定义apply方法
+configuration
+    node commonjs
+
+模块导入
+    import * as Module from '/path.js';  
+    import DefaultName from '/path.js' #  default export
+    import '/path/to/module.js'  # 只利用side effect
+    import {foo} from '/path/to/module.js'  # 导入module其中某个export
+    import {foo, bar} from '/path/to/module.js'  # 导入多个export
+    import {foo as Foo} from '/path/to/module.js'  # 导出并重命名
+    import {foo as Foo, bar as Bar} from '/path/to/module.js'  # 只利用side effect
