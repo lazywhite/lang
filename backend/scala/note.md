@@ -24,7 +24,7 @@
 		var a:Set[Any] = Set(1, 20)
 		a.toList
 	List
-        列表是不可变的
+        列表是不可变的, 数据结构为linked list
 		var a:List[Any] = List(1, 'c', 'string')
 		a.toSet
         a.head(首元素)
@@ -32,7 +32,8 @@
         a.isEmpty
         a.reverse
         List.tabulate()
-        a(2) # 按下标获取元素
+        a(2) # 按下标获取元素, throw java.langIndexOutOfBoundsException
+        a.lift(3) # 返回optional
     Array
         var x: Array[Any] = new Array[Any](3)
         x(0) = 'c'
@@ -43,7 +44,7 @@
         i.foreach
     Tuple
         var a = (1, 2, 3)
-        a._1 # 按下标访问元素
+        a._1 # 按下标访问元素, 从1开始
     Option
         var b: Option[String] = Some("hello")
         b.getOrElse("default")
@@ -53,12 +54,15 @@ Unit
 	singleton   
 	var a = ()
 
+Expression
+    Expressions are computable statements.
+
 Values
 	val myVal 
 Variables
 	var myVar
 Block
-	{expression list}
+    expressions with {}
 	block的值为最后一条表达式的值
 
 Object
@@ -68,15 +72,26 @@ Object
     var myVar: Int = 10
     var myVal = 'test'
 
-匿名函数
-    var add = (x:Int)=>x + 1
-    add(10)
 
-    val getAnswer = () => 100
-    getAnswer()
+Case class
+    默认拥有apply(), 无需new可新建实例
+    默认有unapply(), 可以进行pattern matching
+    参数自动为val, 可以有默认值
+    objcet都是Serializable
+    可以使用==进行相等比较, 使用数据而不是引用
+    默认有copy()可以进行拷贝
+
+With
+    使用mixin(trait)来构造类
+    一个类只能从一个类或trait继承(extends), 其他的都要使用with
+
+Trait
+    类似于java8的interface, 可以有静态属性和默认实现
+
 
 Functions
-    接受参数的表达式
+    Functions are expressions that take parameters.
+
 Methods
     使用def进行定义
 	默认返回最后一条表达式的值
@@ -97,8 +112,9 @@ Methods
 
     //无参数
     def name:String = System.getProperty("user.name")
+    
         
-Sealed Class/Trait
+Sealed Class
     子类型必须在同一个文件声明
 
 命名形参
@@ -108,8 +124,9 @@ Sealed Class/Trait
 
 命名实参
     def printName(firstName: String, lastName:String){println(firstName + lastName)}
-    printName(firstName = 'bob', lastName = 'TT')
+    printName(firstName = 'bob', lastName = 'TT') //关键字传值调用
     printName('bob', 'TT')
+
 Seq
 
 类的构造函数
@@ -134,6 +151,8 @@ Seq
 
 	}
 
+    class Person(name:String){} # 主构造函数
+
 获取变量类型
 	a.getClass().getSimpleName()
 
@@ -149,9 +168,30 @@ import
 	import users.{User, UserPreferences}  // Only imports selected members
 	import users.{UserPreferences => UPrefs}  // import and rename for convenience
 
-字符串插值(s, f, raw)
-    var name = "bob"
-    var msg = s"hello $name"
+字符串插值
+    s插值器
+        var name = "bob"
+        var msg = s"hello $name"
+        var msg = s"p1 ${p1 == p2}"  //表达式
+    f插值器(类似于printf)
+		val height=1.9d
+		val name="James"
+		println(f"$name%s is $height%2.2f meters tall")//James is 1.90 meters tall 
+    raw插值器
+		val str = raw"a\nb" \n不会被处理成换行
+
+Range
+    1 to 3 
+    1 to 10 by 2
+    1 until 3 (不包含3)
+    Range(0, 10)
+    Range(0, 10, 2)
+
+App
+    object Main extends App
+    args: List[String]
+    DelayedInit trait
+
 
 读取标准输入
     val line = Console.readLine
@@ -171,4 +211,33 @@ import
 		def add(x:Int)(y:Int)= x + y 
 	相当于
 		def add(x:Int) = (y:Int) => x + y
+
+编译
+    > scalac Main.scala Point.scala
+    > scala -classpath . Main
+
+REPL
+    :type <reference> # 获取类型
+
+Tuple1-22 Function1-22
+
+Function
+    
+    function也是一种对象,每个对象都是scala.Function1-22的对象
+    函数对象的调用
+        val f = (x:Int) => x + 1
+        f.apply(3) 
+    f(3) 避免使用apply, 直接使用类method的调用方式
+    例子
+        List.apply(1, 2, 3) 也可以直接通过 List(1, 2, 3) 创建一个List实例.
+
+    function是匿名函数, 不用def进行声明
+        var add = (x:Int)=>x + 1
+        val getAnswer = () => 100
+
+Pattern Matching
+
+Tips
+    java.lang 默认被导入
+
 
