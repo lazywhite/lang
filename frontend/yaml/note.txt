@@ -1,0 +1,19 @@
+第一行---标记开始
+最后一行...标记结束
+
+"- "标记某个list item
+": "标记字典
+
+每个yaml文件被load后是一个字典
+
+包含newline
+    key: |
+        a long
+        string
+
+忽略newline
+    key: >
+        a long
+        string
+
+配合jinja模板使用"{{ variable }}"必须加双引号
