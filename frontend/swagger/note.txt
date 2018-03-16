@@ -1,0 +1,6 @@
+definition include other
+definition $ref
+
+type: number (任何数据格式, 无需写format)
+
+enum
