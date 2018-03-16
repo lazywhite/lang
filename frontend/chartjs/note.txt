@@ -1,0 +1,4 @@
+options: {
+    spanGaps: true, // 忽略null值
+}
+
