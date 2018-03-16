@@ -8,8 +8,42 @@ JavaScript 变量均为对象。当您声明一个变量时，就创建了一个
   
 JavaScript 不会到 ```<style> ```标签或者 ```<link>``` 文件去获取相应的样式，只能获取 style 属性定义的样式  
 
+## Map and method
+```
+javascript对象的属性必须是字符串, map的key可以是任意类型(包含object)
 
-## String method
+var m = new Map()
+m.set("key", "value")
+m.set(0, 1000)
+m.size
+m.get("key")
+
+
+var b = new Map([
+    ["k1", "v1"],
+    ["k2", "v2"],
+])
+b.has("k1") # in test
+b.clear()
+b.delete("k1")
+
+b.forEach(function(value, key){  // value在前
+    console.log("key: %s, value: %s", key, value);
+})
+```
+## Set and method
+```
+var s = new Set();
+var s = new Set([1, 2, 3]);
+s.size
+s.add(10) # 添加成员
+s.has(10) # 成员检测
+s.forEach(function(){}) # 遍历
+s.delete(10) # 删除成员
+s.clear() # 清空set
+```
+
+## String and method
   
 ```
 1.length
@@ -48,7 +82,7 @@ JavaScript 不会到 ```<style> ```标签或者 ```<link>``` 文件去获取相�
     str.charAt(0);  --> 'H'
 10. split (convert a string into an array)
     var txt = "a,b,c,d,e";   // String
-    txt.split(","); 
+    txt.split(",");  // ['a', 'b', 'c', 'd', 'e']
 ```
   
 ## Number method
@@ -264,6 +298,17 @@ location.pathname --> /js/demo.asp
 location.protocol --> http, https
 location.assign --> load a new document in current window
 ```
+
+## Object
+```
+Object.keys(obj) --> [key1, key2]
+Object.values(obj) --> [value, value2]
+Object.assign(target, ...source) -> 将source内的所有属性复制给目标对象
+Object.entries()
+Object.freeze(obj) -> 对象所有属性都不能被更改
+Object.defineProperty(obj, 'key', descriptor)
+Object.defineProperties()
+```
   
 ## Cookie
   
@@ -293,8 +338,7 @@ Person.nationality = "English";
 ## Topic
 ### 1. 闭包
 ```
-在函数内部声明一个内部函数，调用时返回内部函数
-函数内部的变量常驻内存, 不会像普通函数一样销毁
+定义在函数内部的函数, 用来读取内部变量
 
 function f1(){
 　　var n=999;
