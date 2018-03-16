@@ -4,13 +4,15 @@
 __packed: 结构体字节对齐
 
 volatile可以防止编译器优化直接从寄存器而不是变量地址读取而造成的数据不一致情况
-datatype
+
+数据基本类型
     char
     int
     float
     double
     void
 
+类型修饰符
     unsigned
     short
     long
@@ -57,14 +59,16 @@ printf
 
 storage class
     auto
+        本地变量默认, 可以省略
     register
+        变量存储在寄存器中, 而不是内存中, 因此没有内存地址
     static
+        本地变量不会在每次调用后销毁
+        全局变量默认可以被extern, 但用static修饰后无法被extern, 只在声明的文件内有效
     extern
+        声明全局变量或函数, 在其他文件中包含实现
 
-switch(expression)
-    expression 应该为整数, enumerate, 
-
-enum
+枚举
     enum WeekDay{
         MON = 4,
         TUE,
@@ -73,7 +77,7 @@ enum
     printf("day is %d", day);  //enum类型值为整数, 第一个元素默认为0
 
 
-array
+数组
     double balance[3] = {1.23, 1.1, 2.2}; // 3为数组size
 
 指针
@@ -100,7 +104,7 @@ array
 
     int* ptr = NULL; //空指针
 
-struct
+结构体
     struct Book{
         char author[100]; //必须指定size
         float price; 
@@ -139,6 +143,3 @@ typedef与#define
 c语言动词
     #include
     #define
-
-
-typedef interpretation is performed by the compiler whereas #define statements are processed by the pre-processor.
