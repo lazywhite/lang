@@ -19,6 +19,11 @@ import java.util.function.*;
     Function<T, R>: 接受一个T类型参数, 返回一个R类型参数
 
  */
+@FunctionalInterface
+interface Function3 <A, B, C, R>{
+    public R apply(A a, B b, C c);
+}
+
 public class FunctionalTest {
     public static void main(String[] args){
         //1. Predicate 泛型接口
@@ -57,6 +62,14 @@ public class FunctionalTest {
 
         Optional<String> a = Optional.ofNullable(null);
         System.out.println(a.orElseGet(supplier));
+
+        // 7. 自定义接受多个参数的function
+        Function3<Integer, Integer, Integer, Integer>  f = (o, p, q) -> {
+            System.out.printf("%d %d %d\n", o, p, q);
+            return o + p + q;
+        };
+
+        System.out.println(f.apply(1, 2, 3));
     }
 
     public static void eval(List<Integer> list, Predicate<Integer> predicate){

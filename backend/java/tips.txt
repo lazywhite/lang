@@ -587,3 +587,13 @@ Java执行代码的时候，由JVM对运行的代码进行安全性检测，当�
     URL：jdbc:db2://<machine_name><:port>/dbname
     注：machine_name：数据库所在的机器的名称；
     port：端口号，默认是5000
+
+
+
+lambda
+    (int a, int b) -> {  return a + b; }
+    () -> System.out.println("Hello World");
+    (String s) -> { System.out.println(s); }
+    () -> 42  //函数体只有一行, 大括号可省略
+    () -> { return 3.1415 };
+    myStr -> System.out.println(myStr) // 只有一个参数, 括号可省略, 参数类型也可省略
