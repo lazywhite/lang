@@ -396,6 +396,11 @@ Props
     过度动画
         <transition name="fade"><div class="bar"></div></transition>
 
+路由参数
+    路径参数
+        /user/100/  $route.params
+    query string
+        /user?name=bob  $route.query
 Tips
     blogs.filter(blog=>{})
     blogs.map(blog=>{})
@@ -407,6 +412,15 @@ Tips
     v-show 会将元素的display设置为none, 不会从dom中删除, v-if直接删除
 
     同一个url可以匹配多个路由, 以定义顺序为准
+
+    <el-input type="textarea" :rows=5></el-input>
+    data中的form只能用来中转数据, 否则a={} b=a, b会跟随a而改变
+
+    一定要注意异步api问题, 如果需要两次请求按顺序执行, 可以把第二个api放在第一个api的then()里面
+
+    Vue 不允许在已经创建的实例上动态添加新的根级响应式属性, 只能添加嵌套的属性,this.$set(this.someObject,'b',2)
+
+    
 
 Veux
     用于组件间共享数据, 不必经过复杂的props, event, update流程
@@ -469,3 +483,23 @@ vue-axios
 
     每个el-form-item必须有prop属性, 并与rules里面的对应
     v-model.number="form.port'  针对数字的检验
+
+API
+    vm.$forceUpdate() # 迫使 Vue 实例重新渲染,注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。
+    vm.$destroy() #完全销毁一个实例。清理它与其它实例的连接，解绑它的全部指令及事件监听器。 触发 beforeDestroy 和 destroyed 的钩子。
+
+
+SASS
+	npm install sass-loader node-sass --save-dev
+	<style lang="sass"> </style>
+   	默认使用scss语法, sass语法需要单独配置 
+		{
+		  test: /\.vue$/,
+		  loader: 'vue-loader',
+		  options: {
+			loaders: {
+			  scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
+			  sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
+			}
+		  }
+		}
