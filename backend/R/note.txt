@@ -1,8 +1,10 @@
 brew install r
+yum -y install R
 Rscript /path/to/file.R
 
 vector包含基本数据类型
 list包含Robject
+
 
 .libPaths() 查看包路径
 library() 查看所有可用包
@@ -13,12 +15,14 @@ c(ele1, ele2...) 如果其中有一个元素为character, 则其他元素强制�
 
 通过下标从vector取元素, 从1开始
 
+#单行注释
 R不支持多行注释, 使用下面的技巧
     if(FALSE){
         "multi line comment
         multi line comment"
     }
 
+变量没有数据类型, 只能被赋值给Robject, Robject有数据类型
 Robject
     Vectors
         Logical
