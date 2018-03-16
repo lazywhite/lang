@@ -164,6 +164,55 @@ Person.prototype.show = function(){
     console.log(this.name + this.age)
 }
 
-
-
     
+var s = '{"name":"bob"}'
+var obj = JSON.parse(s)
+JSON.stringify(obj)
+
+
+window.location
+	host : "192.168.33.125:1234"
+	hostname : "192.168.33.125"
+	href : "http://192.168.33.125:1234/"
+	origin : "http://192.168.33.125:1234"
+	pathname : "/"
+	port : "1234"
+	protocol : "http:"
+
+
+自动刷新当前页面
+    setInterval("location.reload()", 3000);
+
+刷新页面的方法
+    history.go(0)
+    window.navigate(location)
+    document.url = location.href
+
+根据属性名设置值
+    obj = {}
+    var attr = "name"
+    obj[attr] = 10
+
+list操作
+    list.push(element)
+    list.sort(function(a, b){return a-b})number数组正向排序, 
+    list.reverse()反向排序
+    [...new Set(arr)] 去重
+
+    删除特定的元素
+        var index  = list.indexOf(element)
+        list.splice(index, 1)
+    pop()只能删除最末尾的元素
+
+    list.filter(h=>{
+        if(condition){
+            return true;
+        }else{
+            return false;
+        }
+    });
+    
+
+float精确位
+    a = 1.2345
+    a.toFixed(2)
