@@ -1,0 +1,15 @@
+element-ui封装的el-input 键盘事件bug
+    <input @keyup.enter="submit" />
+    修改为
+        <input @keyup.enter.native="submit" />
+
+
+multiple与远程搜索功能冲突, 需要禁用multiple
+<el-select
+    multiple
+    remote
+    remote-method=""
+</el-select>
+
+
+clearable只能用于el-select单选
