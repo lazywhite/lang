@@ -1,11 +1,144 @@
-1. volatile关键字可以用来提醒编译器它后面所定义的变量随时有可能改变，因此编译后的程序每次需要存储或读取这个变量的时候，都会直接从变量地址中读取数据。如果没有volatile关键字，则编译器可能优化读取和存储，可能暂时使用寄存器中的值，如果这个变量由别的程序更新了的话，将出现不一致的现象。
+函数无法返回多个值, 可以通过定义struct来返回
+函数无法设置参数默认值
+局部变量必须手动初始化, 全局变量会被自动初始化
+__packed: 结构体字节对齐
 
-2. union的意义是可以存储不同数据类型的数据在同一个地址上，一个union 只配置一个足够大的空间以来容纳最大长度的数据成员, 只有最新赋值的数据才是有效的
+volatile可以防止编译器优化直接从寄存器而不是变量地址读取而造成的数据不一致情况
+datatype
+    char
+    int
+    float
+    double
+    void
 
-## Topic
-1. return multiple value from a function
-2. there are no default parameters in C
-3. When a local variable is defined, it is not initialized by the system, you must initialize it yourself. Global variables are initialized automatically by the system 
-4. storage class: auto, register, static, extern
-5. __packed: 结构体字节对齐
-6. Like any variable or constant, you must declare a pointer before using it to store any variable address. A pointer that is assigned NULL is called a null pointer.
+    unsigned
+    short
+    long
+    
+
+int max(int, int) // 函数声明, 可以不带形参
+函数在调用之前必须有声明
+
+
+在所有function之外定义的变量为全局变量
+作为参数传递的变量优先级高于全局变量
+
+字符串
+    是以'\0\结尾的char数组
+    char greeting[] = "hello";
+    printf("string is %s", greeting);
+
+    strcpy(s1, s2) //拷贝
+    strcat(s1, s2) //拼接
+    strlen(s1) //长度
+    strcmp(s1) //比较内容, 与指针和长度无关, 相同返回0
+        hello > aello
+        hello < zello
+    strchr(s1, ch)  // 返回第一个出现在s1中ch的指针
+    strstr(s1, s2)  // 返回第一个出现在s1中s2的指针
+
+
+printf
+    double %lf
+    float %f
+    int %d
+    pointer %p
+    enum %d
+    char[] %s
+    %%s  // % escape 
+
+函数调用
+    call by reference 
+    call by value
+
+定义常量
+    const int a = 10; 
+    #define PI 3.14
+
+storage class
+    auto
+    register
+    static
+    extern
+
+switch(expression)
+    expression 应该为整数, enumerate, 
+
+enum
+    enum WeekDay{
+        MON = 4,
+        TUE,
+    };
+    enum WeekDay day = TUE;
+    printf("day is %d", day);  //enum类型值为整数, 第一个元素默认为0
+
+
+array
+    double balance[3] = {1.23, 1.1, 2.2}; // 3为数组size
+
+指针
+    int temp = 10;
+    int* p; p = &temp; //整数指针
+    int** q; q = &p; //整数指针的指针
+
+    int* ptr[5]; //指针数组
+    int balance[5]; //balance为数组指针
+    指针参数
+        void getSeconds(int* par);
+        int a = 10;
+        getSeconds(&a); 
+    返回指针
+        int* getRandom(){
+            static int r[10];
+            int i;
+            srand((unsigned) time(NULL));
+            for(i=0;i<10;i++){
+                r[i] = rand();
+            }
+            return r;
+        }
+
+    int* ptr = NULL; //空指针
+
+struct
+    struct Book{
+        char author[100]; //必须指定size
+        float price; 
+    };
+    struct Book book;
+    //第一种初始化方法
+    strcpy(book.author, "stevee"); //不能直接赋值, 必须用strcpy
+    book.price = 11.24;
+    //第二种初始化方法
+    struct Book book2 = {.author = "bob", .price = 1.24};
+
+    //自定义类型
+    typedef struct Book MyBook;
+    MyBook book3;
+
+    //结构体指针
+    struct Book* ptr;
+    ptr = &book2;
+    printf("%f", book2->price); //结构体指针访问属性使用'->'
+
+    结构体无法直接print所有fields, 必须要指定field
+
+union
+    里面的member同时只能有一个正常存储值
+    union Data{
+        int a;
+        float b;
+    } data;
+    data.a = 10;
+    data.b = 20.1;
+
+typedef与#define
+    #define 1 ONE, typedef 无法实现
+    #define在预编译阶段处理, typedef在编译阶段处理
+
+c语言动词
+    #include
+    #define
+
+
+typedef interpretation is performed by the compiler whereas #define statements are processed by the pre-processor.
