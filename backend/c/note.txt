@@ -4,6 +4,28 @@
 __packed: 结构体字节对齐
 
 volatile可以防止编译器优化直接从寄存器而不是变量地址读取而造成的数据不一致情况
+c没有boolean类型, 0代表false, 大于0代表true
+
+c不区分整除和除法, 只有一个'/'运算, a/b a,b均为整数为整除, 有浮点为实除
+
+设NULL值
+    int a = NULL;
+
+
+int i=1,2,3; // compile error
+int i=(1,2,3); // i=3
+int i; i=1,2,3;// i=1
+
+#define N 2+3
+则 N * N 会被替换为  2+3 * 2+3
+
+Boolean
+    #include <stdbool.h>
+    int main()
+    {
+      bool b = false;
+      b = true;
+    }
 
 数据基本类型
     char
@@ -26,7 +48,7 @@ int max(int, int) // 函数声明, 可以不带形参
 作为参数传递的变量优先级高于全局变量
 
 字符串
-    是以'\0\结尾的char数组
+    是以'\0'结尾的char数组
     char greeting[] = "hello";
     printf("string is %s", greeting);
 
@@ -69,6 +91,7 @@ storage class
         声明全局变量或函数, 在其他文件中包含实现
 
 枚举
+    字面虽然是字符串, 但按int存储, 编译时会被丢弃
     enum WeekDay{
         MON = 4,
         TUE,
@@ -79,6 +102,10 @@ storage class
 
 数组
     double balance[3] = {1.23, 1.1, 2.2}; // 3为数组size
+
+    int arr[] = {1, 2, 3};
+    int size = sizeof(arr)/sizeof(*arr); //获取数组长度, 无法独立成函数
+
 
 指针
     int temp = 10;
@@ -119,6 +146,10 @@ storage class
     //自定义类型
     typedef struct Book MyBook;
     MyBook book3;
+
+    typedef struct{
+        int age;
+    }Student; //struct name可以省略
 
     //结构体指针
     struct Book* ptr;
