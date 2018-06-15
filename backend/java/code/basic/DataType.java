@@ -26,7 +26,7 @@ import java.util.Arrays;
      *      int i = 10;
             String str = String.valueOf(i);
  *      String 转基本类型
- *          int m = Integer.parseInt(str);
+ *          int m = Integer.parseInt(str); //必须为int而不是Integer
  *
  *  包装类与String互换
  *      Integer i = 10;

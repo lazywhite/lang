@@ -414,6 +414,7 @@ HiddenHttpMethodFilter
             <servlet-name>
         
 CharacterEncodingFilter 配置要放在web.xml的最前面
+使用Interceptor需要在spring_mvc.xml中使用mvc:interceptor标签声明
 
 参数注入
     HttpServletRequest

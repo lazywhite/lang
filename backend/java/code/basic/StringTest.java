@@ -24,6 +24,7 @@ public class StringTest{
         strBuilder.insert(5, "good");
         strBuilder.insert(8, 'c');
         strBuilder.delete(0, 5);//包括start， 不包括end
+        String result = strBuilder.toString(); //结果转换为字符串
         System.out.println(strBuilder);
 
         //StringBuffer API与StringBuilder相同

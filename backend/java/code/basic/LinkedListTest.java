@@ -5,6 +5,15 @@ import java.util.LinkedList;
  * Created by white on 17/5/19.
  * LinkedList 可以被当做堆栈, 队列, 或双端队列进行操作
  * 每个元素除了存储自己的数据, 还包含前一个与后一个元素的引用
+ *
+ * getFirst() 使用前需要检查isEmpty(), 不然会报错, peekFirst()不需要
+ *
+ * 按index操作
+ *      remove()
+ *      get()
+ *      pop()
+ *  addAll(): 接受List
+ *  
  */
 public class LinkedListTest {
     public static void main(String[] args) {
@@ -18,7 +27,7 @@ public class LinkedListTest {
         ll.add(st2);
         ll.add(st3);
         System.out.println(ll.toString());
-//        ll.remove(st3);
+//        ll.remove(st3); // 只能按照index删除
         System.out.println(ll.isEmpty());
         System.out.println(ll.getFirst());
         System.out.println(ll.getLast());

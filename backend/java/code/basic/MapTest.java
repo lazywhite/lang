@@ -18,17 +18,20 @@ public class MapTest {
         System.out.println(stuMap.containsKey("bob")); //成员检测
         System.out.println(stuMap.containsValue(st1));
         System.out.println(stuMap.get("lucy")); //get() 由key获取v
-        System.out.println(stuMap.size());//
-        stuMap.remove("lucy");
-        System.out.println(stuMap.size());
+        System.out.println(stuMap.size());//key数目
+        stuMap.remove("lucy"); //删除k-v
+        stuMap.replace("bob", 1010); //更新value
         System.out.println(stuMap.isEmpty());
+        printMap(stuMap);
 
         //entrySet()效率比keySet()效率高
-        Iterator iter = stuMap.entrySet().iterator();
+    }
+    public static void printMap(Map map){
+        Iterator iter = map.entrySet().iterator();
         while(iter.hasNext()){
             Map.Entry entry = (Map.Entry)iter.next();
-            System.out.println( entry.getKey());
-            System.out.println( entry.getValue());
+            System.out.println(String.format("key: %s, value: %s", entry.getKey(),  entry.getValue().toString()));
         }
+
     }
 }

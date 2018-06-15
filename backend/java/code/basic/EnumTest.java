@@ -8,6 +8,8 @@ enum WeekDay {MON, TUE, WED, THR, FRI, SAT, SUN}
 public class EnumTest{
     public static void main(String[] args){
     WeekDay wd = WeekDay.MON;
+    //wd.toString()
+    //wd.ordinal() // 次序
     System.out.println(wd);
     }
 }

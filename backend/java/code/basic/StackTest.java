@@ -6,9 +6,8 @@ import java.util.Stack;
  */
 public class StackTest {
     public static void main(String[] args) {
-        Stack st = new Stack();
+        Stack st = new Stack<Integer>();
         st.push(100);
-        st.push("good");
         st.push(200);
         st.pop();
         if(!st.empty()) {

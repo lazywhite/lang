@@ -1,7 +1,7 @@
 package basic;
 /*
  * 局部变量必须初始化
- * 类变量和实例变量可以不初始化， 自带默认值
+ * 非final的类变量和实例变量可以不初始化， 自带默认值, final修饰的仍需手动初始化
  */
 class EMP{
     public String name ;
