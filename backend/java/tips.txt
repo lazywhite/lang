@@ -597,3 +597,8 @@ lambda
     () -> 42  //函数体只有一行, 大括号可省略
     () -> { return 3.1415 };
     myStr -> System.out.println(myStr) // 只有一个参数, 括号可省略, 参数类型也可省略
+
+赋值表达式的值    
+    String s, c;
+    c = (s = "good"); // c ==> "good"
+    c = (s = null); // c ==> null

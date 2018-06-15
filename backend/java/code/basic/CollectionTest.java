@@ -5,6 +5,7 @@ import java.util.*;
  * Created by white on 17/5/26.
  * Collection是一个接口, set, list均调用, map不调用
  * Collections是一个工具类， 提供对List对象的操作
+ * sort, shuffle等均为inplace修改
  */
 public class CollectionTest {
     public static void main(String[] args) {

@@ -3,6 +3,7 @@ public class SwitchTest{
 
 /*
     没有break的case, 会fallthrough
+    仅适用于byte, short, char, int, String, enum 
  */
     public static void main(String[] args) {
         int i = 24, j = 32, h = 58;

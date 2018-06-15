@@ -10,8 +10,10 @@ public class SetTest {
         Student st2 = new Student(2, "lucy", 30);
         Set<Object> sset = new HashSet();
         sset.add(st1);//添加元素
-        sset.add(st2);
-        sset.add(st2);//集合元素不重复
+        sset.add(st2); // ==>true
+        sset.add(st2);//==>false 集合元素不重复
+
+        sset.addAll(Arrays.asList(1, 2, 3));
         System.out.println(sset.size());
         System.out.println(sset.contains(st2));
         sset.remove(st2); //删除元素
