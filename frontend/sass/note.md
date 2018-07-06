@@ -1,129 +1,108 @@
-## Tips
+## 安装使用
 ```
-comment: /* */ 
-';' as line end;
-$primary-color: #A3A4A5; //variable
+gem install sass
+sass test.scss test.css //编译
 
-@mixin <mixin_name> {
-    margin-left: auto;
-}
+编译参数
+　　* nested：嵌套缩进的css代码，它是默认值。
+　　* expanded：没有缩进的、扩展的css代码。
+　　* compact：简洁格式的css代码。
+　　* compressed：压缩后的css代码。
+sass --style compressed test.sass test.css
 
-div {
-    @include <mixin_name>; //mixin name
-    color: $primary-color;
-}
+自动编译
+　　sass --watch input.scss:output.css　// watch a file
+　　sass --watch app/sass:public/stylesheets　// watch a directory
+```
+## 语法
+```
+注释: /* */ 
+单行注释: //
+行位： ';' 
+变量
+　　$blue : #1875e7;　
 
-@mixin size($width, $height){
-    width: $width;
-    height: $height;
-}
+　　div {
+　　　color : $blue;
+　　}
 
-.rectangle {
-@include size(100px, 100px);
-}
-```
-## Functions
-### builtin function
-```
-width: round(10.25px);
-background-color: fade_out(#000000, 0.25) -->  rgba(0, 0, 0, 0.25)
-```
-### self-defined function
-```
-@function calculate-percentage($target-size, $parent-size){
-    @return $target-size / $parent-size * 100%;
+　  $side : left;
+　　.rounded {
+　　　　border-#{$side}-radius: 5px; //在字符串中使用变量
+　　}
+
+计算
+　　body {
+　　　　margin: (14px/2);
+　　　　top: 50px + 100px;
+　　　　right: $var * 10%;
+　　}
+继承
+    .class1 {
+　　　　border: 1px solid #ddd;
+　　}
+
+  　.class2 {
+　　　　@extend .class1;
+　　　　font-size:120%;
+　　}
+
+Mixin
+    $primary-color: #A3A4A5;
+    @mixin <mixin_name> { //不带参数
+        margin-left: auto;
     }
 
-$main-content: calculate-percentage(600px, 960px);
-
-.main-content {
-    width: $main-content;
-}
-
-```
-## Extends
-
-```
-.display {
-    @include size(5em, 5em);
-    border: 5px solid $secondary-color;
-}
-
-.display-success {
-    @extend .display;
-    border-color: #22df56;
-}
-
-/* Compiles to: */
-.display, .display-success {
-  width: 5em;
-  height: 5em;
-  border: 5px solid #51527F;
-}
-
-.display-success {
-  border-color: #22df56;
-}
-
-```
-## Nesting
-```
-
-ul {
-    list-style-type: none;
-    margin-top: 2em;
-
-    li {
-        background-color: red;
-
-        &:hover {   //& is replaced by it's parent
-          background-color: blue;
-        }
-
-        a {
-          color: white;
-        }
+    div {
+        @include <mixin_name>; //mixin name
+        color: $primary-color;
     }
-}
 
-/* Compiles to: */
+    @mixin size($width, $height: 100px){ //参数默认值
+        width: $width;
+        height: $height;
+    }
 
-ul {
-  list-style-type: none;
-  margin-top: 2em;
-}
+    .rectangle {
+        @include size(100px, 100px);
+    }
 
-ul li {
-  background-color: red;
-}
+Import
+    @import 'path/foo.scss';
 
-ul li:hover {
-  background-color: blue;
-}
+If 
+　　@if lightness($color) > 30% {
+　　　　background-color: #000;
+　　} @else {
+　　　　background-color: #fff;
+　　}
+Functions
+    内置函数
+        width: round(10.25px);
+        background-color: fade_out(#000000, 0.25) -->  rgba(0, 0, 0, 0.25)
 
-ul li a {
-  color: white;
-}
-```
+    自定义函数
+        @function calculate-percentage($target-size, $parent-size){
+            @return $target-size / $parent-size * 100%;
+        }
+        .main-content {
+            width: calculate-percentage(600px, 960px);
+        }
 
-## Partials and Imports
-```
-_reset.css
-@import 'reset';
 ```
 
 ## Placeholder
 ```
 %content-window {
-  font-size: 14px;
-  padding: 10px;
-  color: #000;
-  border-radius: 4px;
+    font-size: 14px;
+    padding: 10px;
+    color: #000;
+    border-radius: 4px;
 }
 
 .message-window {
-  @extend %content-window;
-  background-color: #0000ff;
+    @extend %content-window;
+    background-color: #0000ff;
 }
 
 /* Compiles to: */
