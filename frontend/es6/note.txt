@@ -1,0 +1,31 @@
+let 声明的变量, 只在所在的代码块内有效
+
+//代码块中的i跟循环声明中的i不冲突
+for(let i=0;i<3;i++){
+    let i = 'test';
+    console.log(i);
+}
+
+使用let声明的变量, 无法在声明之前使用
+    console.log(foo) //undefined
+    var foo = 10;
+    console.log(bar) //reference error
+    let bar = 10;
+
+由let const声明的变量, 作用域全部绑定在当前代码块
+
+查看类型
+    typeof <var>
+
+解构赋值
+	数组解构
+		let [a, b, c] = [1, 2, 3]
+		let [, , c] = [1, 2, 3]
+		解构默认值
+			let [x, y = 'b'] = ['a']; // x='a', y='b'
+			//只有当右边的值严格等于undefined时, 默认值才有效
+			let [x = 1] = [undefined];
+			x // 1
+			let [x = 1] = [null];
+			x // null
+    对象解构
