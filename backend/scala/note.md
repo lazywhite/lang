@@ -1,28 +1,46 @@
 数据类型
-    Byte
-    Short
-    Int
-    Long
-    Boolean
-    Char
-    Float
-    Double
-    String
-    Unit
-    Null
-    Nothing
     Any
-    AnyRef
+        AnyVal
+            Byte
+            Short
+            Int
+            Long
+            Boolean
+            Char
+            Float
+            Double
+            Unit
+        AnyRef
+            Option
+            List
+    Nothing
+    Null
 
 常用数据类型
-	Map
-		var a:Map[String, Any] = Map("key" -> "value")
-		a.keys
-		a.values
-        a.iterator	
+    Map
+        scala.collection.mutable.Map
+        var b = Map[String, Any]()
+        b += ("key1"->"value1", "key2"->"value2")
+        b("key1) = 100 //赋值, 更新
+        b get "key1" // 键不存在返回None
+        b("key1") //键不存在会报错
+        b remove "key1" //删除键值
+        b contains "key1" //成员检测
+        b.keys
+        b.values
+        b.size
+
+        var i = b.keysIterator
+        while(i.hasNext){
+            i.next()
+        }
 	Set
-		var a:Set[Any] = Set(1, 20)
-		a.toList
+        scala.collection.mutable.Set
+		var a = Set[Any]()
+        a add 10
+        a remove 10
+        a.size
+        a.iterator
 	List
         列表是不可变的, 数据结构为linked list
 		var a:List[Any] = List(1, 'c', 'string')
@@ -34,10 +52,22 @@
         List.tabulate()
         a(2) # 按下标获取元素, throw java.langIndexOutOfBoundsException
         a.lift(3) # 返回optional
-    Array
-        var x: Array[Any] = new Array[Any](3)
-        x(0) = 'c'
-        var z = Array(1, 2, 3) # 默认就是Any
+
+    ArrayBuffer
+        scala.collection.mutable.ArrayBuffer
+
+        var a = ArrayBuffer[Any]()
+        a append 10 
+        a prepend 1
+        a contains 1
+        a.insert(0, 19)
+        a.indexOf(10)
+        a remove 0 // 按照index删除
+        a(0) //按下标获取元素
+        a(0) = 10 //更新
+        a.size
+
+        scala.util.Sorting.quickSort(fruits)
         
     Iterator
         while(i.hasNext){println(i.next)}
@@ -53,6 +83,10 @@
 Unit
 	singleton   
 	var a = ()
+
+Extractor
+Object
+Companion Object
 
 Expression
     Expressions are computable statements.
@@ -96,7 +130,8 @@ Methods
     使用def进行定义
 	默认返回最后一条表达式的值
 	如果不接受参数, 调用时可以省略括号
-	return type可以省略, 为Unit类型
+	返回类型可以省略, 为Unit类型
+    如果有return语句, 则返回类型不可省略
 
     // method body仅为一条语句
     def add(x:Int, y:Int):Int = x + y
@@ -126,8 +161,6 @@ Sealed Class
     def printName(firstName: String, lastName:String){println(firstName + lastName)}
     printName(firstName = 'bob', lastName = 'TT') //关键字传值调用
     printName('bob', 'TT')
-
-Seq
 
 类的构造函数
 	class Pizza {
@@ -237,7 +270,64 @@ Function
 
 Pattern Matching
 
+用户输入
+    import scala.io.StdIn._
+    readLine
+    readInt
+
+import
+    import scala.math  // math.abs()
+    import scala.math._  //导入全部, 使用时无需package名
+    import java.util.{Random, regex} //导入部分
+    import java.util.{Random=>MyRandom, regex} //重命名
+
+类型转换
+    var a = 'c'
+    var b: Int = a
+    a.toInt 
+
+Underscore
+    function placeholder
+        val z = Array(1, 2, 3)
+        z.map(_ * 10)
+        z.reduce( _ + _ )
+    
 Tips
     java.lang 默认被导入
+    var a = BigInt(1231238098)
+    var b = BigDecimal(12.31238098)
+    import scala.math._
+        abs
+        ceil
+        floor
+        max
+        min
+        random
+        round
+        pow
+    for(i <- 1 to 5; j <- 6 to 10) //嵌套循环, 第一部分在外层, 第二部分在内层
+
+    printf("number is %d\n", 10)
+    print("string")
+
+    任意变量与字符串相加, 结果为字符串
+    Char必须使用单引号, Char可以当成Int来使用
+    如果method不接受参数, 定义时()可选, 不带(), 则调用时不能带(), 有()则均可以
+
+    variable.getClass.getSimpleName
+
+    List不可变, Array可变
+    Seq()返回List
+   
+    //保留两位小数
+    val a = 3.1415926
+    val b =  a.formatted("%.2f")
+
+    groupBy(identity)
+
+    函数传值为call by value
+    scala没有static关键词, 使用object来替代
+    eq检查引用, ==检查值
+
 
 
