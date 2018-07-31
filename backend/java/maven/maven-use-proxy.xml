@@ -1,0 +1,12 @@
+<settings>
+    <proxies>
+        <proxy>
+            <id>proxy01</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>192.168.33.125</host>
+            <port>8888</port>
+        </proxy>
+    </proxies>
+
+</settings>
