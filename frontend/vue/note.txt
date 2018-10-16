@@ -1,3 +1,6 @@
+开发
+    npm install -g @vue/cli
+    vue create <project>
 属性
     {{var}}
     如果var包含原始html, {{var}}将会原样显示, 使用以下指令
@@ -472,6 +475,15 @@ vue-axios
 
     Vue.use(VueAxios, axios);
     Vue.axios.defaults.baseURL = 'https://api-demo.websanova.com/api/v1';
+
+
+    跨域配置
+        前端
+            Vue.axios.defaults.withCredentials = true # 允许携带cookie, 跨域必备
+
+        服务端
+            header Access-Control-Allow-Credentials: true
+            服务端需指定一个域名（Access-Control-Allow-Origin:www.test.com），而不能使用泛型（Access-Control-Allow-Origin: *）
 
 表单验证
     <el-form :model="form" :rules="rules" ref="runForm">
