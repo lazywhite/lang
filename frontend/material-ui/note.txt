@@ -1,0 +1,8 @@
+引入theme组件样式才会生效
+    import 'vue-material/dist/theme/default.css'
+    import 'vue-material/dist/vue-material.min.css'
+
+启用material font
+    npm i --save material-design-icons
+    import 'material-design-icons/iconfont/material-icons.css'
+    <md-icon>thumb_up</md-icon>
