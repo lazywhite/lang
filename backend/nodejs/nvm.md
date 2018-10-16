@@ -12,11 +12,4 @@ nvm install v6.2.1
 nvm use v6.2.1
 ```
 
-## Speed up npm install
-```
-npm install <package> --registry=https://registry.npm.taobao.org
-
-~/.npmrc
-    registry = https://registry.npm.taobao.org
-```
 
