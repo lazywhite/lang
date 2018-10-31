@@ -153,7 +153,6 @@ repeat {
     m *= 2
 } while m < 100
 
-// for i in range
 
 
 // ------------------
@@ -171,8 +170,6 @@ func get_prices() -> (Double, Double, Double) {
 
 
 // “variable number of arguments”
-
-
 func sumOf(numbers: Int...) -> Int{
     var sum = 0
     for number in numbers {
@@ -220,7 +217,7 @@ func biggerThanFive(number: Int) -> Bool{
 }
 
 
-// hasAnyMatch(numbers, condition: biggerThanFive)
+hasAnyMatch(numbers, condition: biggerThanFive)
 
 // anonymous function
 ({(name: Int) -> Int in
@@ -228,7 +225,52 @@ func biggerThanFive(number: Int) -> Bool{
 })(10)
 
 
+//function default parameter values
+func greet(name: String, msg :String = "hello "){
+    print(msg, name)
+}
 
+greet(name: "bob")
+
+//ignore function return value
+func test() -> Int {
+    return 10
+}
+let _ = test()
+
+//ommiting argument labels
+func printNum(_ a:Int){
+    print(a)
+}
+printNum(10)
+
+
+//In-Out parameter
+
+func swapNum(_ a: inout Int, _ b: inout Int){
+    let temp = a 
+    a = b 
+    b = temp
+}
+var numA = 3 
+var numB = 107 
+
+print("before: a: \(numA), b:\(numB)")
+swapNum(&numA, &numB)
+print("before: a: \(numA), b:\(numB)")
+
+
+// nested function
+func outside(a:Int)->Int{
+    func inside(a:Int)->Int{
+        return a + 1
+    }
+    return inside(a: a)
+}
+print(outside(a: 100))
+
+
+//-------------------------------------
 
 // fallthrough of Switch
 var scores = 0
@@ -346,7 +388,7 @@ c.size
 // didSet: executed after property is setted
 
 
-// protocol, class enumeration struct can all adopt protocol
+// class enumeration struct can all adopt protocol
 protocol ExampleProtocol {
     var simpleDescription: String {get}
     mutating func adjust()

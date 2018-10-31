@@ -146,3 +146,35 @@ I would pass it as a function param, or make it a struct method. Global variable
 72. main() of a program is called by 'runtime.main'  
 73. type assertion  <var>.(<type>), <var> should be an "interface" variable
 74. no fork() in golang, because there are other way to do it  
+
+无需使用;号
+string使用双引号, 字符使用单引号
+var可声明多个变量, 自带类型推断
+    var c, python, java bool
+    var a = 100
+没赋值的var有默认值    
+    int 0
+    bool false
+    string ""
+Type(var) 强制类型转换
+
+func之外的语句必须以关键字开始
+常量无法使用:=赋值
+for的初始化和后置语句可以省略
+    for ; sum < 100; {}
+    此时分号可以省略, 类似于其他语言的while
+    for sum < 100{}
+    for{} 死循环
+switch的case自带break， 除非手动使用fallthrough语句
+
+defer将函数推迟到外层函数返回后执行
+defer推迟的函数被压入到一个栈中， 后进先出
+go有指针， 但没有指针运算
+通过结构体指针访问成员变量, 取地址符号可省略
+    p := &v
+    *p.x 等价于 p.x
+通过双赋值监测map的key是否存在
+    elem, ok := hash["key"]
+    不存在ok为false, elem为零值
+结构体的方法只是一个带接收者的普通func
+接收者的类型定义和方法声明必须在同一个包内， 不能为内建类型声明方法
