@@ -62,3 +62,7 @@ JRebel executor中文乱码
     project configuration
         tomcat vmoption
             -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8
+
+
+打开已存在的代码, 并添加支持
+    open project dir --> 右键 add framework support --> (maven|gradle)
