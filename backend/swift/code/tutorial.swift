@@ -537,3 +537,159 @@ Class definitions can have at most one deinitializer per class.
 The deinitializer does not take any parameters and is written 
 without parentheses
 */
+
+/*
+struct Resolution{
+    var width = 0
+    var height = 0
+}
+
+
+class VideoMode{
+    var resolution = Resolution()
+    var frameRate = 0.0
+    var name: String?
+    init(_ name: String?){
+        self.name = name
+        print("instance inited..")
+    }
+    deinit{
+        print("instance deinited...")
+    }
+}
+
+class Test{
+    lazy var video = VideoMode(Optional("test"))
+    var mount = 10
+    static var age = 10 {
+        willSet{
+            print(newValue)
+        }
+        didSet{
+            print(oldValue)
+        }
+
+    }
+    var name: String = "" {
+        willSet{
+            print(newValue)
+        }
+        didSet{
+            print(oldValue)
+        }
+
+    }
+    func greet(){
+        print("hehe")
+    }
+    func incre(hehe amount: Int){
+        self.mount += amount
+    }
+}
+
+
+
+struct Proxy{
+    var data = [2, 4, 6]
+    subscript (index:Int)->Int{
+        get{
+            return data[index] / 2
+        }
+        set{
+            print(newValue)
+            data[index] = newValue * 2
+
+        }
+    }
+}
+struct Matrix{
+    var rows = [1, 2, 3]
+    var cols = [4, 5, 6]
+    subscript(row:Int, col:Int) -> Int{
+        return rows[row] * cols[col]
+    }
+}
+let t = Matrix()
+print(t[1, 2])
+*/
+
+/* class Inherience
+
+class Father{
+    var name: String
+    let lastName = "Delin"
+    init(name: String){
+        self.name = name
+    }
+    var fullName:String{
+        return self.name + self.lastName
+    }
+    subscript(index: String) -> Bool{
+        return self.name.hasPrefix(index)
+    }
+    func greet(){
+        print("I'm a father")
+    }
+    final func say(){
+        print("My family is \(self.lastName)")
+    }
+}
+class Child:Father{
+    var age: Int?
+    init(name: String, age: Int){
+        self.age = age
+        super.init(name:name)
+    }
+    override func greet(){
+        print("I'm a child")
+    }
+}
+let c = Child(name:"bob", age: 10)
+print(c.fullName)
+print(c["b"])
+c.greet()
+c.say()
+c.name = "alice"
+
+extension Double{
+	var m:Double{
+        return self
+
+	}
+    var km: Double{
+        return self * 1000.0
+    }
+    var mm: Double{
+        return self / 1_000.0
+    }
+}
+let f = 30.km
+print(f)
+
+
+extension Int{
+    func repetition(task: () -> Void){
+        for _ in 0..<self{
+            task()
+        }
+    }
+}
+3.repetition{
+    print("test")
+}
+
+mutating fucntion
+
+enum Color{
+    case red, white, blue, none
+    mutating func to_none(){
+        self = .none
+    }
+}
+var c = Color.white
+print(c)
+c.to_none()
+print(c)
+*/
+
+
