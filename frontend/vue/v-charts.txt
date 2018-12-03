@@ -1,0 +1,29 @@
+单位格式化
+    http://daxigua.me/numerify/#/?id=numerify
+    npm install -S numerify
+
+    import numerify from 'numerify'
+    import numerifyBytes from 'numerify/lib/plugins/bytes.umd.js'
+    numerify.register('bytes', numerifyBytes)
+    chartSettings = {
+        yAxisType: ['0,0b'] //bytes
+    }
+
+
+    
+chart事件
+    https://v-charts.js.org/#/event
+
+
+    data: function(){
+        var self = this  // 必须, 在event回调函数中代替this使用
+        return {
+            chartEvents: {
+                click: function (e) {
+                    self.name = e.name # x轴坐标
+                    self.name = e.seriesName # line名称
+                    console.log(e)
+                }
+            }
+        }
+    }

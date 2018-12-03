@@ -515,3 +515,10 @@ SASS
 			}
 		  }
 		}
+Tips
+    Vue 2.2.0+的版本里，当在组件中使用v-for时，key是必须的。
+    <template v-for="app in appList">
+        <md-option :value="app" :key="app">{{app}}</md-option>
+    </template>
+
+
