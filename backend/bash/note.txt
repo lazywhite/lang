@@ -10,3 +10,19 @@ set +x
     
 
 grep "oo" <<< "good" 将后续内容作为前面命令的标准输入
+
+
+str="apple, tree, apple tree"
+echo ${str/apple/APPLE}   # 替换第一次出现的apple
+echo ${str//apple/APPLE}  # 替换所有apple
+ 
+echo ${str/#apple/APPLE}  # 如果字符串str以apple开头，则用APPLE替换它
+echo ${str/%apple/APPLE}  # 如果字符串str以apple结尾，则用APPLE替换它
+
+
+# 字符串in test, 注意变量前后顺序
+a="hello world"
+b="hello"
+if [[ $a =~ $b ]];then
+  echo "match"
+fi
