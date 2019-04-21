@@ -8,21 +8,99 @@ set -x
 set +x 
     隐藏debug输出, 默认值
     
+下列命令等效
+    grep "oo" <<< `ls -1` 
+    ls -1|grep 'oo'
 
-grep "oo" <<< "good" 将后续内容作为前面命令的标准输入
+here documents 
+正则表达式, perl grep sed awk dialog
+if for case while until select  break continue 
+continue N 跳出N层循环 select 内部必须配合break跳出循环
+(()) [[]] 类c语言扩展
+$() ``命令替换
+{}大括号扩展 mv a.{sh,sh.bak}  cat {file1,file2,file3} > combined
+{}代码块或称为内部组,会创建一个匿名函数,不过里面定义的变量在外部可用
+() 在脚本中相当于子shell,里面变量在外边不可用
+a[1]=1 ;echo ${a[1]}//唯一用法
+tr 'a-z' 'A-Z'
+<<
+<<<
+touch ./-a ; touch -- -a
+(cd 1 && tar cf - .)|(cd 2 && tar xpvf -)
+
+a=(1 2 3)
+${a[*]} ${#a[*])
+a="echo good";$a直接打印good
+bash 变量不分类型
+let "a+=1"
+位置变量,局部变量,环境变量,变量声明
+\n:newline;\r:return;\t:tab;
+if :;then echo ":和true关键字表示条件为真";fi
+条件测试:
+-e exit;-f regular file;-s 文件长度不为零;-b block;-c 字符设备
+-p pipe;-h -L符号链接;-S socket;-r -w -x 具有某权限;-O owner;-G group;-N 从最后阅读到现在,没有被更改;-ot older than; -nt newer than;-ef f1和f2都硬链接到同一个文件上;!反转测试结果
+整数比较
+-eq equal;-ne not equal;-gt greater than;-lt less than;-le less or equal;-ge greater or equal; < > <= >=
+字符串比较
+= != < > -z:zero字符串长度为0；-n not null 非空
+
+算术运算用let   let a="5**3";echo $a #a=125
+
+bash不支持浮点数操作,把包含小数点的数看作字符串,bc可以进行浮点操作
+
+进制赋值  let "a=base#number"
+
+IFS内部域分隔符,默认为空格
+特殊变量
+REPLY  read的默认变量名
+SECONDS 脚本已运行的时间
+TMOUT 脚本超时时间
+
+$# 参数个数 $*所有位置参数,被视为一个单词 ;$@ 所有位置参数,被分别视为单词;$? ;$$ 此脚本运行的PID
+
+字符串操作
+${#string}字符串长度
+a=/bin/bash;b=${a/bash/zsh} 字符串替换
+
+${variablename?} 可检测脚本中变量是否被设定
+:${variablename?"ERROR MESSAGE"}可设定出错信息
+
+while read line;do
+done < file 一般用来处理包含多行的文件
+
+unset variable  删除一个shell变量
+declare typeset readonly  getopts  set unset export 
+sleep  usleep(微秒单位的sleep)
+
+array=('str1' 'str2')
+for i in ${array[@]};do
+    echo $i
+done
 
 
-str="apple, tree, apple tree"
-echo ${str/apple/APPLE}   # 替换第一次出现的apple
-echo ${str//apple/APPLE}  # 替换所有apple
- 
-echo ${str/#apple/APPLE}  # 如果字符串str以apple开头，则用APPLE替换它
-echo ${str/%apple/APPLE}  # 如果字符串str以apple结尾，则用APPLE替换它
+function f(){
+echo $1 $2
+}
+f 1 2
 
+文本处理命令
+sort tsort uniq expand unexpand cut paste join head tail  grep egrep fgrep sed awk wc  tr colrm iconv tex postscript  enscript  tar 
+通讯命令
+host nslookup  tracerout ping whois ftp ssh wget scp write talk  mail
+数学命令
+factor:将一个整数分解为多个素数
+bc dc seq yes expect  tee mkfifo  dd mcookie sox 
+系统与管理命令
+users w groups chown chgrp useradd userdel usermod groupmod  id
+logname passwd mesg wall uname lastlog lsof nmap  nc free procinfo
+lsdev du df dmesg stat netstat uptime hostname hostid 
+作业管理
+jobs fg bg ps pkill pgrep pstree nice{针对后台作业} pidof fuser cron init runlevel 
+网络
+ifconfig iwconfig wpasupplicant route fdisk fsck badblocks chroot lockfile 
+模块类
+lsmod insmod rmmod modprobe depmod modinfo 
+其他
+watch 
 
-# 字符串in test, 注意变量前后顺序
-a="hello world"
-b="hello"
-if [[ $a =~ $b ]];then
-  echo "match"
-fi
+cut -c8-10  # 打印字符串下标8到10的字符
