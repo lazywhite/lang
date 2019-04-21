@@ -10,6 +10,6 @@ function test2 {
     echo $Demo
 }
 
-#test
+test
 test2
 echo $Demo
