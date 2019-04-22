@@ -27,3 +27,6 @@ chart事件
             }
         }
     }
+
+chartData.rows = ['day_id', 'num']
+day_id的值类型, 必须是字符串
