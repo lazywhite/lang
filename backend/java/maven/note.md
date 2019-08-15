@@ -139,3 +139,7 @@ SNAPSHOT标明是由最新的代码生成的包
 只需要声明直接依赖, maven自己处理依赖树
 
 maven-release-plugin
+
+
+配置文件路径
+    .m2/settings.xml
