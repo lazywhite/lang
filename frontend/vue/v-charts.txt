@@ -30,3 +30,13 @@ chart事件
 
 chartData.rows = ['day_id', 'num']
 day_id的值类型, 必须是字符串
+
+
+todo
+    legend单选
+    不显示点的圆圈
+    规定颜色
+    同时显示不同类型
+    双Y轴
+
+selectedMode : 'single'

@@ -55,6 +55,7 @@ echo ${str:2} # 第二个字符到末尾(向右)
 echo ${str:2:3} # 从第二个字符连续3个(向右)
 echo ${str: -2} # 从倒数第二个字符到开头(向左)
 echo ${str: -2:3} # 从倒数第二个字符(向左)连续3个字符
+echo ${str}|cut -c 1-5 
 
 # 字符串in test, 注意变量前后顺序
 a="hello world"

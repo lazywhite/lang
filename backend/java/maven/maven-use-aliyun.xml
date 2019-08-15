@@ -1,4 +1,13 @@
 <settings>
+    <proxies>
+        <proxy>
+            <id>proxy01</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>proxy.bmcc.com.cn</host>
+            <port>18765</port>
+        </proxy>
+    </proxies>
     <mirrors>
         <mirror>
           <id>alimaven</id>

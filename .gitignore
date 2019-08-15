@@ -29,3 +29,4 @@
 **/rebel.xml
 
 **/*.jmod
+**/*.cache

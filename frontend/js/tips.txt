@@ -216,3 +216,8 @@ list操作
 float精确位
     a = 1.2345
     a.toFixed(2)
+
+获取昨天时间
+    var curDate = new Date();
+    var preDate = new Date(curDate.getTime() - 24*60*60*1000); //前一天
+    var nextDate = new Date(curDate.getTime() + 24*60*60*1000); //后一天
