@@ -13,7 +13,7 @@
 10. support for interface and type embedding
 11. production of statically linked native binaries without external dependency
 
-## Concept
+## Keyword
 ```
 variable
 function
@@ -69,86 +69,80 @@ SomeVariadicFunc(a...)  unpacking "a" as the arguments to a function
 ```
 
 ## Topic  
-1. In Go, a name is exported if it begins with a capital letter  
-2. When importing a package, you can refer only to its exported names. Any "unexported" names are not accessible from outside the package.  
+- In Go, a name is exported if it begins with a capital letter  
+- When importing a package, you can refer only to its exported names. Any "unexported" names are not accessible from outside the package.  
 
-3. an array has fixed size  
-4. use 'reflect.TypeOf()' to get type of variable
-5. when using <&struct>.field, the pointer is automatically dereferenced   
-6. no generic method supported in golang  
-7. interface implementation is implicit  
-8. package directory hierachy  
-9. module alias  
-10. import number of modules  
-11. make() to create array, map
-12. range keyword to iterater over containers like "array" and "map"
-13. interface{} stand for any type
-14. import path conflict with standard library will get a  compile error of "redeclaration"
-15. import . "<pkg>", everything is imported into current namespace
-16. import _ "<pkg>" solely for side effect, call init() only, a package can have multiple init()
-    the order of calling is the lexical order of the filenames. multi init() in same "go" file 
-    will get called by their source code order
-17. compile a package will not recursive
-18. error handling 
-19. "goto" keyword
-20. pointer to array is meaning less, use "slice" instead  
-21. pointer arthmetic is not supported in Go
-22. string template  
-23. time.Sleep()
-24. calling between Go and C
-25. buildmode
-26. testflag, testfunc
-27. standard library source code in $GOROOT/src
-28. 交叉编译  CGO_ENABLED=0 GOOS=linux|darwin|windows GOARCH=amd64 
-29. path/filepath
-30. io/ioutil 
-31. flag, os.Args
-32. fallthrough: no break and execute next case forcefully
-33. Maps are reference types, so they are allways passed by reference. You don't need a pointer.
-34. A "go" statement starts the execution of a function call as an independent concurrent thread of control, or goroutine, within the same address space. 
-35. TOML: Tom's Obvious, Minimal Language
-36. getopt
-37. struct  only fields starting with a capital letter are exported
-38. string concate
-39. log package
-40. type rune: just like "int32", is used to distinguish charactor value from integer, when fmt.Println(m rune), it always output a number, m can be a char
-41. better not use global variable, hard to test, use 
-I would pass it as a function param, or make it a struct method. Global variable is not very pragmatic for that even though it might seem so, a common way to do that is to define methods on a struct instead and keep the state there.
-42. do anything in goroutine and return the value over the channel
-43. import "path/to/dir"  "package name" can be different from "dir name"
-44. passing struct as arguments
-45. go get time time of execution
-46. godoc <module> <function>
-47. Lexical tokens are enclosed in double quotes "" or back quotes ``, back quote can not be escaped  
-48. import  "module",  every "init() of Go file" under that directory is called, without "sub_directories"
-49. error handling in Go, "error" type
-50. "* \<type>" define a pointer to "\<type>" , "&\<var>" get the pointer of <var>
-51. "revel" go webframework  
-52. "regexp" module
-53. "strconv" conversions to and from "string" between "other data types"
-54. import "os/exec"; exec.Command("")
-56. "path/filepath"  
-57. "uintptr" type is an integer type that is large enough to hold the bit pattern of any pointer  
-58. "label" and "goto"
-59. no "interpreter" interface in go
-60. "GOPATH"  just like "PATH", you can have a list of "GOPATH"
-61. append(), cap(), delete(), len(), panic()
-62. when multiply different type of data, you should convert them to same type firstly
-63. if you use same rand.Seed(<number>), you will get a same rand.Intn(<number>)
-64. named return value, use return variable in function and just return
-65. short assignment is not available outside "func" body
-66. zero value: 0 for numeric types, false for boolean type and "" for string, "nil" for slice, "nil" for map
-67. const cannot be declared by using short assignment
-68. when declaring a const, type could be omitted
-69. you cannot define a function inside a function in Go
-70. slice could contain any type, include other slices
-71. when iterate container by "range" you can skip the index or value by assigning it to "_"
-72. main() of a program is called by 'runtime.main'  
-73. type assertion  <var>.(<type>), <var> should be an "interface" variable
-74. no fork() in golang, because there are other way to do it  
+- an array has fixed size  
+- use 'reflect.TypeOf()' to get type of variable
+- when using <&struct>.field, the pointer is automatically dereferenced   
+- no generic method supported in golang  
+- interface implementation is implicit  
+- module alias  
+- make() to create array, map
+- range keyword to iterater over containers like "array" and "map"
+- interface{} stand for any type
+- import path conflict with standard library will get a  compile error of "redeclaration"
+- import . "<pkg>", everything is imported into current namespace
+- import _ "<pkg>" solely for side effect, call init() only, a package can have multiple init()
+- multi init() in same "go" file 
+- compile a package will not recursive
+- error handling 
+- "goto" keyword
+- pointer to array is meaning less, use "slice" instead  
+- pointer arthmetic is not supported in Go
+- time.Sleep(1 * time.Second)
+- calling between Go and C
+- testflag, testfunc
+- standard library source code in $GOROOT/src
+- 交叉编译  CGO_ENABLED=0 GOOS=linux|darwin|windows GOARCH=amd64 
+- 字符串插值, 使用text/template
+- io/ioutil 
+- flag, os.Args
+- fallthrough: no break and execute next case forcefully
+- Maps are reference types, so they are allways passed by reference. You don't need a pointer.
+- A "go" statement starts the execution of a function call as an independent concurrent thread of control, or goroutine, within the same address space. 
+- TOML: Tom's Obvious, Minimal Language
+- getopt
+- struct  only fields starting with a capital letter are exported
+- struct field tag `json:name,bson:bname`
+- string concate
+- log package
+- type rune: just like "int32", is used to distinguish charactor value from integer, when fmt.Println(m rune), it always output a number, m can be a char
+- better not use global variable, hard to test
+- do anything in goroutine and return the value over the channel
+- import "path/mod"  "package <name>" can be different from file name "mod"
+- passing struct pointer as arguments
+- godoc <module> <function>
+- Lexical tokens are enclosed in double quotes "" or back quotes ``, back quote can not be escaped  
+- import  "module",  every "init() of Go file" under that directory is called, without "sub_directories"
+- error handling in Go, "error" type
+- "* \<type>" define a pointer to "\<type>" , "&\<var>" get the pointer of <var>
+- "regexp" module
+- "strconv" conversions to and from "string" between "other data types"
+- import "os/exec"; exec.Command("")
+- "uintptr" type is an integer type that is large enough to hold the bit pattern of any pointer  
+- "label" and "goto"
+- no "interpreter" interface in go
+- "GOPATH"  just like "PATH", you can have a list of "GOPATH"
+- append(), cap(), delete(), len(), panic()
+- when multiply different type of data, you should convert them to same type firstly
+- if you use same rand.Seed(<number>), you will get a same rand.Intn(<number>)
+- named return value, use return variable in function and just return
+- short assignment is not available outside "func" body
+- zero value: 0 for numeric types, false for boolean type and "" for string, "nil" for slice, "nil" for map
+- when declaring a const, type could be omitted
+- you cannot define a function inside a function in Go
+- slice could contain any type, include other slices
+- when iterate container by "range" you can skip the index or value by assigning it to "_"
+- main() of a program is called by 'runtime.main'  
+- type assertion  <var>.(<type>), <var> should be an "interface" variable
+- no fork() in golang, because there are other way to do it  
 
-无需使用;号
-string使用双引号, 字符使用单引号
+- 无需使用;号
+- string使用双引号, 字符使用单引号
+
+## Note
+```
 var可声明多个变量, 自带类型推断
     var c, python, java bool
     var a = 100
@@ -176,29 +170,37 @@ go有指针， 但没有指针运算
     elem, ok := hash["key"]
     不存在ok为false, elem为零值
 结构体的方法只是一个带接收者的普通func
-接收者的类型定义和方法声明必须在同一个包内， 不能为内建类型声明方法
 函数可以返回任意数量的返回值
-函数的返回值可悲命名, 并被视作定义在函数顶部的变量
+函数的返回值可命名, 并被视作定义在函数顶部的变量
 声明没有初始值的变量需要类型, 有初始值的变量可以省略类型
-没有初始值的变量会被赋零值 0, false, ""
 switch语句可以省略条件, 用于替代多分枝if-else
 切片相当于数据库视图
+
+匿名函数
+    func(){
+        fmt.Println("this is {b}")
+    }()
 
 make([]int, 5) 创建一个数组并返回切片
 make(map[string]int)
 
-为结构体定义的方法必须跟结构体在同一个包内, 不能为内建类型或其他包内的结构体定义方法
+为结构体定义的方法必须跟结构体在同一个包内
+不能为内建类型或其他包内的结构体定义接受者方法
 b.(type) 仅能在switch语句内使用
 
 ch := make(chan int) 创建一个信道, 没有缓冲区
 ch := make(chan int, 100) 缓冲区100, 如果缓冲区满发送时才会阻塞, 如果缓冲区空接收时才会阻塞
 
-v, ok := <- ch   # 从信道读取一个值
+channel的类型 (单向和双向)
+    chan T          // 可以接收和发送类型为 T 的数据
+    chan<- float64  // 只可以用来发送 float64 类型的数据
+    <-chan int      // 只可以用来接收 int 类型的数据
 
+v, ok := <- ch   # 从信道读取一个值
 for i:= range c # 不断从信道读取值
 
 
-
-同一个package内的go file可以直接使用其他go file内部定义的内容
-import pkg, 则可通过pkg.xx访问pkg文件夹下所有go file定义的内容(不包括子文件夹)
+同一个package内的go file可以直接使用其他go file内部的定义, 并且小写开头的也可以
+import pkg, 则可通过pkg.xx访问pkg文件夹下所有go file定义的可导出内容(不包括子文件夹)
 import pkg会执行pkg文件夹下所有go file的init()(不包括子文件夹)
+```
