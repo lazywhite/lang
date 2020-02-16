@@ -186,7 +186,10 @@ make(map[string]int)
 
 为结构体定义的方法必须跟结构体在同一个包内
 不能为内建类型或其他包内的结构体定义接受者方法
-b.(type) 仅能在switch语句内使用
+
+
+b.(type)用在switch语句的类型匹配中
+b.(string) 类型推断, 表示检查b类型是否为string
 
 ch := make(chan int) 创建一个信道, 没有缓冲区
 ch := make(chan int, 100) 缓冲区100, 如果缓冲区满发送时才会阻塞, 如果缓冲区空接收时才会阻塞
@@ -196,11 +199,23 @@ channel的类型 (单向和双向)
     chan<- float64  // 只可以用来发送 float64 类型的数据
     <-chan int      // 只可以用来接收 int 类型的数据
 
-v, ok := <- ch   # 从信道读取一个值
-for i:= range c # 不断从信道读取值
+v, ok := <-ch   # 从信道读取一个值
+for i := range c # 不断从信道读取值
+close(c) # 关闭一个channel
 
 
 同一个package内的go file可以直接使用其他go file内部的定义, 并且小写开头的也可以
 import pkg, 则可通过pkg.xx访问pkg文件夹下所有go file定义的可导出内容(不包括子文件夹)
 import pkg会执行pkg文件夹下所有go file的init()(不包括子文件夹)
+
+双引号的字符串不允许有换行, 反引号可以有
+单引号只能用来表示rune类型
+
+c := map[string]int{
+    "good": 10,
+}
+if v, ok := c["good"]; v>1 && ok {
+    fmt.Println("kajf")
+}
+
 ```
