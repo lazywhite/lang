@@ -218,4 +218,10 @@ if v, ok := c["good"]; v>1 && ok {
     fmt.Println("kajf")
 }
 
+err.Error() # 返回error的string信息
+
+直接在func,package上面写注释, 与声明不要有空行, 则godoc能自动识别
+
+slice = append(slice, elem1, elem2, ...)
+slice = append(slice, anotherSlice...)
 ```
