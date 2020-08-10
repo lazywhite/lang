@@ -66,3 +66,11 @@ JRebel executor中文乱码
 
 打开已存在的代码, 并添加支持
     open project dir --> 右键 add framework support --> (maven|gradle)
+
+
+设置源码主目录
+
+	dir邮件, Mark Directory As --> Source Root
+
+代码无法跳转
+	File --> invalidate cache /restart
