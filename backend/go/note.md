@@ -224,4 +224,14 @@ err.Error() # 返回error的string信息
 
 slice = append(slice, elem1, elem2, ...)
 slice = append(slice, anotherSlice...)
+
+
+go build -mod=vendor  main.go  //指定module引用path
+
+go build -mod=readonly main.go //忽略当前目录下的vendor包
+
+go clean -modcache
+
+go mod tidy 并不会更新go.mod,  go mod vendor或者go build, 才会更新go.mod
+
 ```
