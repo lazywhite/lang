@@ -1,0 +1,33 @@
+go env -w GO111MODULE=auto
+go env -w GOPROXY=https://goproxy.cn,direct
+go env -w GOPATH=/root/go
+go env -w GONOPROXY="gitlab.local.com"
+go env -w GONOSUMDB="gitlab.local.com"
+
+
+依赖存储位置
+    $GOPATH/pkg/mod
+
+1. gitlab/github 创建git-repo
+2. mkdir /root/example(完全在GOPATH之外创建), cd example; go mod init <git-repo>
+3. 书写main.go, api/hello.go, main.go import 本地api， github repo
+    import (
+        "strings" //标准库
+        "<git-repo>/api" //本repo包
+        "github.com/user/repo  //github包
+    )
+4. go run main.go, 会自动生成go.mod go.sum
+5. git init, git remote add, git push
+6. 使用go get升级(指定)依赖版本,会自动更新go.mod
+    go get github.com/lazywhite/gomodone@v1.0.1 //指定版本
+    go get github.com/lazywhite/gomodone  //默认为@latest
+
+7. 使用go list -m all 查看依赖列表
+8. go mod tidy 清理不需要的依赖
+
+如何更新go mod name
+    直接全工程替换name即可,    example -> github.com/user/example
+
+已经有go.mod的项目如何下载依赖
+    go test
+    go run main.go

@@ -1,0 +1,6 @@
+doc
+    https://book.kubebuilder.io/quick-start.html
+
+mkdir example
+cd example; go mod init github.com/lazywhite/example
+kubebuilder init --domain my.domain
