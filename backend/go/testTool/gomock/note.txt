@@ -1,0 +1,50 @@
+安装
+    GO111MODULE=on go get github.com/golang/mock/mockgen@v1.4.4, 会生成mockgen二进制程序
+
+
+生成mock定义的两种模式
+    源文件模式
+        mockgen -source db/interface.go -package=mock_db  > path/to/file.go
+        -aux_files foo=bar/baz.go
+    反射模式
+
+        如果在本地项目，必须保证是能够build的(存在main.go)，否则会报错
+        mockgen database/sql/driver Conn,Driver
+
+        # Convenient for `go:generate`.
+        mockgen . Conn,Driver
+
+        mockgen  demo/db Repository 
+
+gomock概念
+    Controller
+    Call
+    Matcher
+
+
+
+1. 规定调用顺序
+    
+默认mock接口的调用顺序没有强制规定，使用InOrder, Call.After可以定义顺序， 如果
+不符合会失败
+    gomock.InOrder(
+        callA,
+        callB
+     )
+    callA := mockRepo.EXPECT().Retrive(Any()).Return(nil, ErrAny)
+    callB := mockRepo.EXPECT().Create(Any(), Any()).Return(nil).After(callA)
+
+
+2. 规定调用次数
+    Call.AnyTimes()  //任意次
+    Call.MaxTimes(n int)
+    Call.MinTimes(n int)
+    Call.Times(n int)  //n次
+    Call.SetArg(n int, value inteface) //设置函数的第n个参数为value
+
+3. 规定调用的返回值
+    Call.Return(rets ...interface{})
+4. 检查是否满足规定并退出
+    func (ctrl *Controller) Finish()
+    检查所有预计调用的方法是否被调用，每个控制器都应该调用。本函数只应该被调用一次。
+
