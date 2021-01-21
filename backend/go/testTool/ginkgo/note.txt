@@ -1,0 +1,81 @@
+安装
+    go get github.com/onsi/ginkgo/ginkgo
+    go get github.com/onsi/gomega/...
+
+
+使用
+    需要针对每一个package进行测试
+    cd /path/to/package
+    ginkgo bootstrap
+        会生成package_name_suite_test.go
+        package name为 <package_name>_test,  可以修改为<package_name>
+
+    进行测试
+        在package目录
+            ginkgo 
+        在主目录
+            go test ./...
+            ginkgo <package>
+            ginkgo ./...
+
+
+    针对每个source file，生成一个测试文件
+    ginkgo generate <file.go>
+
+
+    最基本的测试单元(spec)用It, Specify来声明
+    使用Describe, Context来分组spec
+    spec使用Matcher Library(gomega) 来进行assertion
+    使用Fail来使一个spec为失败
+    By用来叙述测试逻辑(如果测试成功，不会显示任何信息，-v模式会打印信息, 注意-v参数一定要在./...之前)
+    编译期跳过测试， 添加P,X前缀给Context, Describe, It, Measure可以将spec或container标记为Pending，从而不会被执行, 
+    运行期跳过测试， 使用Skip
+    Focused Spec, 添加F前缀给Describe, Context, It, 可以只运行这些测试，忽略其它测试
+    --focus=REGEXP and/or --skip=REGEXP 可以规定哪些spec运行，哪些不运行
+
+
+    BeforeEach, AfterEach 
+    JustBeforeEach, JustAfterEach  ## 注意执行顺序
+    BeforeSuite, AfterSuite
+    CurrentGinkgoTestDescription() 来描述当前spec的详细信息
+
+
+    -cover 打开覆盖率分析
+    -coverpkg=<pkg1>,<pkg2> 仅分析特定package
+
+
+    ginkgo watch -r //代码有变更即进行测试
+
+Benchmark
+    Measure
+
+Extension
+    TableDriver Test
+
+Junit XML Output
+
+Integrate with Gomock
+    
+Logging
+    默认只有fail才会打印日志到stdout，使用go test -v 可以始终打印
+
+Spec Runner
+    Pending Specs
+    Focused Specs
+    Spec Permutation
+    Parallel Spec
+
+LifeCycle
+    
+
+Pendding
+    You don’t need to remove the func() { ...  } when you mark an It or Measure as pending. Ginkgo will happily ignore any arguments after the string.
+
+    By default, Ginkgo will print out a description for each pending spec. You can suppress this by setting the --noisyPendings=false flag.
+
+    By default, Ginkgo will not fail a suite for having pending specs. You can pass the --failOnPending flag to reverse this behavior.
+
+
+Spec Permutation
+    默认顶层的Describe， Container是乱序执行的， 但内部的It spec是按照定义顺序执行的
+    多个suite是按照文件系统list出来的顺序进行执行的，使用--randomizeSuites来乱序执行
