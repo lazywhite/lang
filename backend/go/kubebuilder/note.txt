@@ -1,6 +1,56 @@
-doc
-    https://book.kubebuilder.io/quick-start.html
+quickstart
+    doc
+        https://book.kubebuilder.io/quick-start.html
 
-mkdir example
-cd example; go mod init github.com/lazywhite/example
-kubebuilder init --domain my.domain
+    mkdir example
+    cd example; go mod init github.com/lazywhite/example
+    kubebuilder init --domain my.domain
+    kubebuilder create api --group batch --version v1 --kind CronJob
+        可以选择只生成crd resource，不生成controller代码
+
+    /PROJECT下记录了domain, group, kind
+
+
+
+make manifests # 更新spec, status后重新生成crd
+目前不支持更新spec， status后， 自动生成config/sample/
+
+报type <> has no field or method DeepCopyInto, 说明没有为struct自动生成DeepCopyInto方法, 可能struct名称开头不是大写
+
+
+status内包含map， r.Status().Update()无法更新的问题
+
+
+controller-gen注释文档
+    https://book.kubebuilder.io/reference/markers/crd.html
+
+// +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:printcolumn:name="Status",type="string",JSONPath=".status.phase"
+// +kubebuilder:printcolumn:name="Age",type="date",JSONPath=".metadata.creationTimestamp",description="The appInstance running status"
+// +kubebuilder:printcolumn:name="Progress",type="string",JSONPath=".status.progress",description="progress"
+// +kubebuilder:printcolumn:name="Message",type="string",JSONPath=".status.message",description="message"
+// +kubebuilder:resource:shortName=boc,scope=Cluster  # 必须写在一行，否则只有最后一行生效
+
+type CronJob struct{
+}
+
+
+更新Status, Spec某些字段的类型时， 如果集群已存在CR，会报类型错误，"reflect.go expected, found" 需要全部删掉cr
+
+
+scale 子资源
+    https://kubernetes.io/zh/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/
+    // +kubebuilder:subresource:scale
+    可以用kubectl scale来进行水平自动扩容
+
+
+实现在更新status后， 不触发reconcile
+    predicate 断言
+
+    func (r *MyReconciler) SetupWithManager(mgr ctrl.Manager) error {
+        return ctrl.NewControllerManagedBy(mgr).
+            For(&arkv1alpha1.My{}).
+            WithEventFilter(&predicates.MyPredicate{}).
+            Complete(r)
+    }

@@ -13,10 +13,12 @@ type Args struct{
 
 func main(){
 
-	arg := &Args{"Bob"}
 	output := new(bytes.Buffer)
+	//arg := &Args{"Bob"}
+	//str := "hello {{ .Name }}"
+	arg := "/tmp/abc.txt"
+	str := "path: {{.}}"
 
-	str := "hello {{ .Name }}"
 
 	tpl, err := template.New("test").Parse(str)
 	if err != nil{

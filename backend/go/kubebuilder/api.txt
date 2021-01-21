@@ -57,3 +57,90 @@ if err := r.Client.Update(ctx, &deployment); err != nil {
 }
 
 
+==================== status patch =================
+patchData := map[string]interface{}{
+	"status": appv1alpha1.ChangeStatus{
+		Conditions: map[string]appv1alpha1.Condition{
+			name: appv1alpha1.Condition{
+				Status:             status,
+				Message:            message,
+				LastTransitionTime: metav1.Now(),
+			},
+		},
+	},
+}
+
+patch, err := json.Marshal(patchData)
+if err != nil {
+	return err
+}
+err = r.Status().Patch(ctx, cr, client.ConstantPatch(types.MergePatchType, patch))
+或者
+r.Patch(ctx, newDeploy, client.MergeFrom(original))
+
+默认都是使用的json-merge, 无法给list新增item，只能replace
+
+
+=============== finalizer =============
+finalizer的作用是作为controller的pre-delete hook
+假如create cr时创建了外部资源， 删除时想先删除外部资源， 再真正删除cr，这时可以用finalizer
+
+当cr的finalizer不为空时，删除资源变为了update操作, 为CR设置metadata.deletionTimestamp, 表明CR正在
+被删除, 成功执行pre-delete, 删掉finalizer，之后会真正删除CR
+
+If the object is not being deleted and does not have the finalizer registered, then add the finalizer and update the object in Kubernetes.
+If object is being deleted and the finalizer is still present in finalizers list, then execute the pre-delete logic and remove the finalizer and update the object.
+Ensure that the pre-delete logic is idempotent.
+
+func (r *CronJobReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
+    ctx := context.Background()
+    log := r.Log.WithValues("cronjob", req.NamespacedName)
+
+    var cronJob *batchv1.CronJob
+    if err := r.Get(ctx, req.NamespacedName, cronJob); err != nil {
+        log.Error(err, "unable to fetch CronJob")
+        // we'll ignore not-found errors, since they can't be fixed by an immediate
+        // requeue (we'll need to wait for a new notification), and we can get them
+        // on deleted requests.
+        return ctrl.Result{}, client.IgnoreNotFound(err)
+    }
+
+    // name of our custom finalizer
+    myFinalizerName := "storage.finalizers.tutorial.kubebuilder.io"
+
+    // examine DeletionTimestamp to determine if object is under deletion
+    if cronJob.ObjectMeta.DeletionTimestamp.IsZero() {
+        // The object is not being deleted, so if it does not have our finalizer,
+        // then lets add the finalizer and update the object. This is equivalent
+        // registering our finalizer.
+        if !containsString(cronJob.ObjectMeta.Finalizers, myFinalizerName) {
+            cronJob.ObjectMeta.Finalizers = append(cronJob.ObjectMeta.Finalizers, myFinalizerName)
+            if err := r.Update(context.Background(), cronJob); err != nil {
+                return ctrl.Result{}, err
+            }
+        }
+    } else {
+        // The object is being deleted
+        if containsString(cronJob.ObjectMeta.Finalizers, myFinalizerName) {
+            // our finalizer is present, so lets handle any external dependency
+            if err := r.deleteExternalResources(cronJob); err != nil {
+                // if fail to delete the external dependency here, return with error
+                // so that it can be retried
+                return ctrl.Result{}, err
+            }
+
+            // remove our finalizer from the list and update it.
+            cronJob.ObjectMeta.Finalizers = removeString(cronJob.ObjectMeta.Finalizers, myFinalizerName)
+            if err := r.Update(context.Background(), cronJob); err != nil {
+                return ctrl.Result{}, err
+            }
+        }
+
+        // Stop reconciliation as the item is being deleted
+        return ctrl.Result{}, nil
+    }
+
+    // Your reconcile logic
+
+    return ctrl.Result{}, nil
+}

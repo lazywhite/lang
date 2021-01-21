@@ -51,6 +51,7 @@ SomeVariadicFunc(a...)  unpacking "a" as the arguments to a function
 3.  b := [...]int{1,2,3}  "..." is evaluated to size of array in compile time
 4. SomeVariadicFunc(a ...int)  define a variadic function
 ```  
+  
 ## Format output
 ```
 %v: the value in a default format
@@ -86,7 +87,8 @@ SomeVariadicFunc(a...)  unpacking "a" as the arguments to a function
 - import <new> "github.com/user/repo" module alias  
 - import . "<pkg>", everything is imported into current namespace
 - import _ "<pkg>" solely for side effect, call init() only, a package can have multiple init()
-- multi init() in same "go" file 
+- 一个file有多个init(), 按声明顺序执行, 一个package有多个file的init(), 如果有依赖关系，按依赖智能执行
+- import package时, 会先执行所有的变量结构体声明，再执行init()
 - error handling 
 - "goto" keyword
 - pointer to array is meaning less, use "slice" instead  
@@ -153,7 +155,7 @@ for的初始化和后置语句可以省略
     for{} 死循环
 switch的case自带break， 除非手动使用fallthrough语句
 
-defer将函数推迟到外层函数返回后执行
+defer将函数推迟到外层函数返回前执行
 defer推迟的函数被压入到一个栈中， 后进先出
 go有指针， 但没有指针运算
 通过结构体指针访问成员变量, 取地址符号可省略
@@ -197,8 +199,17 @@ map
 不能为内建类型或其他包内的结构体定义接受者方法
 
 
-b.(type)用在switch语句的类型匹配中
+b.(type)用在switch语句的类型匹配中, 固定用法，表示对b的类型进行switch case匹配
 b.(string) 类型推断, 表示检查b类型是否为string
+
+    a := map[string]interface{}{
+        "key": 100
+    }
+    if v, ok := a["key"];ok{   // 是否包含key
+        if v2, ok := v.(int); ok{ //类型是否为int
+            fmt.Println(v2)
+        }
+    }
 
 ch := make(chan int) 创建一个信道, 没有缓冲区
 ch := make(chan int, 100) 缓冲区100, 如果缓冲区满发送时才会阻塞, 如果缓冲区空接收时才会阻塞
@@ -261,13 +272,18 @@ pointer receiver
     A method is a function with a special receiver argument.
     Methods with pointer receivers can modify the value to which the receiver points (as Scale does here). Since methods often need to modify their receiver, pointer receivers are more common than value receivers.
 
+receiver method 只能在相同的package内部定义
+
 
 
 格式化代码
     gofmt -w /path/to/*.go
     go fmt /path/to/*.go //go fmt相当于调用gofmt -w -l
     go fmt -n ./pkg/... //必须在go.mod 目录执行
+    go fmt ./...
 
+源码检查工具
+    go vet ./... 
 
 go run file.go, file.go必须属于package main, 并且定义了main函数, 否则go run无法执行
 go build file.go 生成二进制文件
@@ -339,7 +355,6 @@ byte	字符型，unit8 别名	表示 UTF-8 字符串的单个字节的值，对�
 rune	字符型，int32 别名	表示 单个 Unicode 字符
 go没有char类型
 
-defer
 
 比较struct，slice，map是否相等
     reflect.DeepEqual(obj1, obj2)
@@ -349,10 +364,95 @@ const常量只能是string，number, bool, 不能是map，array，slice
 
 Exit(n) main.go 返回值
 
-panic, recover
+panic('error')用来主动触发程序崩溃，会停止执行当前goroutine其它代码，并执行defer函数,  其它原因的崩溃defer不会执行
+recover()只能在defer中发挥作用, 终止程序崩溃
 
 defer会在所在函数return前执行，多个defer后进先出
 
 sync.WaitGroup  goroutine同步
 wg.Add(n) goroutine计数器加n, 一般每启动一个goroutine wg.Add(1), 每个goroutine调用wg.Done(), 主程序wg.Wait()
+
+函数变长参数, args为一个slice
+
+	func greet(args ...int){
+		sum := 0
+		for _, v := range args{
+			sum += v  // 支持+=
+		}   
+		fmt.Printf(%d\n", sum)
+	}
+    greet(1, 2, 3)
+    nums = []int{1, 2, 3} //type slice
+    greet(nums...) //展开slice
+
+    xx = [...]int{1, 2, 3} //type array
+
+string interpolation字符串插值 目前不支持, 使用fmt.Sprintf()
+
+
+make 的作用是初始化内置的数据结构，也就是我们在前面提到的切片、哈希表和 Channel
+    make(chan int)
+new 的作用是根据传入的类型分配一片内存空间并返回指向这片内存空间的指针
+    obj := new(StudentInfo)
+
+
+go mod download时， 使用ssh协议，不使用https
+    git config --global --add url."git@your-repo.com:".insteadOf "https://your-repo.com/"
+    export GOPRIVATE='your-repo.com'
+
+go mod download -x 打印下载详情
+
+
+go help [<command>|<topic>]
+go help mod <command>
+
+
+return value from goroutine
+    func doSomething() string{
+        return "test"
+    }
+    go func(){
+        x = doSomething()
+    }()
+
+
+os/exec 不会自动调用shell
+    Unlike the "system" library call from C and other languages, the os/exec package intentionally does not invoke the system shell and does not expand any glob patterns or handle other expansions, pipelines, or redirections typically done by shells. The package behaves more like C's "exec" family of functions. To expand glob patterns, either call the shell directly, taking care to escape any dangerous input, or use the path/filepath package's Glob function. To expand environment variables, use package os's ExpandEnv.
+
+	cmd := exec.Command("bash", "-c", "sleep 1; echo good")
+
+
+查看某个repo都依赖了什么package
+    go mod graph|grep github.com/user/repo  
+
+go.mod
+    replace
+        old_name => new_name <version>
+
+
+go不支持函数重载, 设计者认为该特性偶尔会被使用，并且非常脆弱
+
+go生成的可执行文件自动包含了垃圾回收代码，会自动用一个线程进行垃圾回收
+
+go package name可以跟directory name不一样, 按照文件夹路径进行import, 按照package name进行使用
+相同文件夹下的所有go文件，package name必须是一样的
+
+
+字符串拼接支持 str1 + str2
+
+编译期接口检查code/interface_check.go
+
+函数名首字母小写的，可以在同package内使用，被外部import时不可用
+
+无法对函数取地址  &someFunc
+
+声明interface
+
+	type geometry interface {
+		area() float64    //无需func关键字和{}
+		perim() float64
+	}
+
+参数类型为func code/func_arg_type.go
 ```
+
