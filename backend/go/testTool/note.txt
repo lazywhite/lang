@@ -1,0 +1,70 @@
+测试分类
+    单元测试 TestXxxx(t *testing.T) 
+    基准测试 BenchmarkXxxx(b *testing.B)
+    样例测试 Example_Xxx()
+    Main测试 TestMain(m *testing.M)
+
+subtests and sub-benchmarks
+
+单元测试
+    代码规范
+        a name ending in _test.go that contains functions named TestXXX with signature func (t *testing.T)
+        The test framework runs each such function; if the function calls a failure function such as t.Error or t.Fail, the test is considered to have failed, otherwise it passed.
+
+
+        t *testing.T 即为测试用例
+
+        xx_test.go需要跟xx.go放在同一个package, 如果package被build，test文件会被忽略掉, 执行go test才会被引入
+
+    标记测试结果
+        t.Fail() 测试失败，测试继续，也就是之后的代码依然会执行
+        t.FailNow() 测试失败，测试中断
+        t.SkipNow 跳过测试，测试中断
+        t.Skip 相当于 Log + SkipNow
+        t.Skipf 相当于 Logf + SkipNow
+        t.Log 输出信息, 测试成功时，加上-v才会输出 
+        t.Logf 输出格式化的信息, 测试成功时，加上-v才会输出 
+        t.Error 标识测试失败，并打印出必要的信息，但是测试继续, 相当于 Log + Fail
+        t.Errorf 标识测试失败，并打印出必要的信息，但是测试继续, 相当于 Logf + Fail
+        t.Fatal 标识测试失败，打印出必要的信息，但中断测试, 相当于 Log + FailNow 
+        t.Fatalf 标识测试失败，打印出必要的信息，但中断测试, 相当于 Logf + FailNow 
+
+    执行某个测试文件
+        go test modA/a_test.go modA/a.go # 如果不指定被测试文件，会出现undefined error
+    执行某个测试文件的某个方法
+        go test -run=TestArg1 modA/a_test.go
+
+
+    执行所有测试文件
+    go test ./...
+
+    测试参数
+        -v 打印详情
+        -coverprofile=cover.out 
+        -cover 显示测试覆盖率
+        -i 安装测试所需依赖，不会执行测试
+        -c 将测试代码编译成binary，输出为<package name>.test, 可以用-o指定名字, 只能指定某个_test.go, 不能用通配符
+
+
+基准测试
+    func BenchmarkRandInt(b *testing.B){
+        for i:=0;i<b.N;i++{
+            rand.Int()
+        }
+    }
+
+    go test -v -bench # 仅有-bench 默认不执行任何基准测试
+    go test -v -bench=. # 执行所有基准测试
+    go test -v -bench=X/Y # 执行符合正则表达式的基准测试
+
+
+
+
+
+
+
+全局变量可通过GoStub框架打桩
+过程可通过GoStub框架打桩
+函数可通过GoStub框架打桩
+interface可通过GoMock框架打桩
+对象方法可通过重构代码，声明一个interface，让对象实现interface，最后用gomock
