@@ -45,6 +45,7 @@ func main() {
         Resource: "appsets",
     }
     patch = []byte(`{"spec":{"appSetDep":"test"}}`)
+    //默认无法对CRD进行merge patch
     _, err = dynamicClient.Resource(gvr).Namespace("ark-system").Patch("redis-0", types.MergePatchType, patch, v1.PatchOptions{})
     if err != nil {
         panic(err)

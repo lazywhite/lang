@@ -1,0 +1,11 @@
+标签页切换
+    Alt + 左右箭头
+Ctrl + P 光标在函数小括号内部时， 提示参数
+
+Alt + 1  toggle Project
+Alt + F12 toggle Terminal
+
+
+给已存在repo添加virtualenv
+    settings-> project -> python interpreter -> 齿轮Add
+

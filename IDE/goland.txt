@@ -1,0 +1,5 @@
+让struct应用某个接口
+    右键struct名字->Generate->Implement Methods->输入接口名字
+
+安装缺失包后， 仍然标红, 需要重新索引
+    重启goland或者 FIle -> Invalidate Caches

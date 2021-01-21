@@ -1,0 +1,65 @@
+SUT: system under test 待测物
+DOC: depend-on component SUT依赖的元件
+
+Test Fixture: 特意为测试准备的数据，
+
+
+Indirect Input
+Indirect Output
+
+
+Test Doubles: 类似于生产环境的，简化的对象替身
+    Fake
+        Fakes are objects that have working implementations, but not same as production one. Usually they take some shortcut and have simplified version of production code
+    Mock 
+        Mocks are objects that register calls they receive. In test assertion we can verify on Mocks that all expected actions were performed.
+        
+    Stub
+        Stub is an object that holds predefined data and uses it to answer calls during tests. It is used when we cannot or don’t want to involve objects that would answer with real data or have undesirable side effects
+
+    Dummy
+        虚设的，SUT完全用不到的，仅仅是为了满足SUT去运行而构造的对象，比如一个function的参数
+    Spy
+        功能更强的，提供indirect input给SUT的test double，可以记录被调用了多少次，错误率多少
+        
+
+
+
+    需要对某个软件(mysql或rest api)进行CRUD操作(主要是CUD), 生产环境一般有一个client，测试环境可以做一个fakeClient，来操作内存   
+    需要让某个object返回数据回来，没有side effect，属于select类型， 则可以使用Stub直接返回预定义数据
+    需要调用某个对象的方法, 产生side effect, 不需要返回值, 属于command类型, 可以Mock那些对象，并记录对象的方法是否被调用了
+
+
+
+提供返回值的func叫函数，不提供返回值的func叫过程
+
+
+有返回值的函数用Stub，然后assert equal， 没有返回值的用Mock, 然后assert called
+
+
+当测试某个SUT时，需要分析其包含的DOC，然后用Test Double去模拟这些DOC, 完成测试
+
+1. 假设有一个方法(SUT)需要测试
+    def security():
+        #1. 人脸识别
+        user = get_user_by_image()
+        #2. 开关门
+        door.open()
+        #3. 记录历史
+        client.write_history()
+
+2. 分析后得出测试的依赖原件(DOC)为一个查询操作, 一个command操作，一个write操作
+3. 对测试原件进行替换, Stub直接返回一个user，Mock一个door进行close, 使用fakeClient写内存
+    
+
+另外一种思路是将DOC通过依赖注入传递进来，测试时传递一个test double进来
+
+
+
+
+测试流程
+    Setup，生成 Test double 來取代 DOC，並準備好 Fixture 方便接下來的測試
+    初始化 SUT，通常就是建構一個 object
+    Exercise，執行測試。這時候 SUT 還可能會去跟 Test double 去要一些數值
+    Verify，確認執行完的結果是否無誤
+    Teardown，把之前測試過程產生的東西給清乾淨
