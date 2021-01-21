@@ -29,5 +29,14 @@ go env -w GONOSUMDB="gitlab.local.com"
     直接全工程替换name即可,    example -> github.com/user/example
 
 已经有go.mod的项目如何下载依赖
-    go test
-    go run main.go
+    go mod download -x
+
+如何添加新依赖
+    go get github.com/example/repo
+
+如何升级依赖版本
+    go get -U github.com/example/repo //升级为最新
+    go get github.com/example/repo@v1.2 //指定版本
+
+查看某个package依赖了哪些包
+    go mod graph|grep <package>
