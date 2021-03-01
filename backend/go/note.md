@@ -219,6 +219,8 @@ channel的类型 (单向和双向)
     chan T          // 可以接收和发送类型为 T 的数据
     chan<- float64  // 只可以用来发送 float64 类型的数据
     <-chan int      // 只可以用来接收 int 类型的数据
+channel buffering
+    By default channels are unbuffered, meaning that they will only accept sends (chan <-) if there is a corresponding receive (<- chan) ready to receive the sent value. Buffered channels accept a limited number of values without a corresponding receiver for those values.
 
 v, ok := <-ch   # 从信道读取一个值
 ch <- 5 # 往信道发送一个值
