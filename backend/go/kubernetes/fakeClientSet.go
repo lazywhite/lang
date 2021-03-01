@@ -21,6 +21,7 @@ func main() {
 	// Create the fake client.
 	client := fake.NewSimpleClientset()
 
+
 	// We will create an informer that writes added pods to a channel.
 	pods := make(chan *v1.Pod, 1)
 	informer := informers.NewSharedInformerFactory(client, 0)

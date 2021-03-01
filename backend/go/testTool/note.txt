@@ -68,3 +68,26 @@ subtests and sub-benchmarks
 函数可通过GoStub框架打桩
 interface可通过GoMock框架打桩
 对象方法可通过重构代码，声明一个interface，让对象实现interface，最后用gomock
+
+
+
+
+
+
+覆盖率
+    1. 生成coverprofile
+        go test -cover -coverprofile=c.out ./...   #会生成coverprofile
+        ginkgo -cover <pkg> # 也会在pkg下生成pkg.coverprofile
+    2. 利用coverprofile进行分析
+        go tool cover -html=c.out # 会直接打开浏览器
+        go tool cover -html=c.out -o cover.html # 会将结果存为html
+
+
+        # 为每个func生成覆盖率
+        go tool cover -func=c.out # 结果显示在标准输出
+
+        # 为源码添加覆盖率信息
+        go tool cover -mode=set -var=CoverageVariableName program.go
+
+
+

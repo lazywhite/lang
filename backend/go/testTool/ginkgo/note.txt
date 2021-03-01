@@ -79,3 +79,15 @@ Pendding
 Spec Permutation
     默认顶层的Describe， Container是乱序执行的， 但内部的It spec是按照定义顺序执行的
     多个suite是按照文件系统list出来的顺序进行执行的，使用--randomizeSuites来乱序执行
+
+
+JUnit
+	func TestFoo(t *testing.T) {
+		RegisterFailHandler(Fail)
+		junitReporter := reporters.NewJUnitReporter("junit.xml")
+		RunSpecsWithDefaultAndCustomReporters(t, "Foo Suite", []Reporter{junitReporter})
+	}
+
+	pip install junit2html
+	junit2html pkg/junit.xml  out.html
+
