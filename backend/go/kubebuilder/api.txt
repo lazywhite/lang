@@ -144,3 +144,28 @@ func (r *CronJobReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 
     return ctrl.Result{}, nil
 }
+
+
+============== predicate ============
+
+func (r *MyReconciler) SetupWithManager(mgr ctrl.Manager) error {
+    return ctrl.NewControllerManagedBy(mgr).
+        For(&arkv1alpha1.My{}).
+        //WithEventFilter(&predicates.MyPredicate{}).  自定义predict
+        WithEventFilter(predicate.GenerationChangedPredicate{}).  // 内置predicate
+        Complete(r)
+}
+
+自定义predicate，来决定是否触发reconcile
+p := predicate.Funcs{
+	UpdateFunc: func(e event.UpdateEvent) bool {
+		oldObject := e.ObjectOld.(*configurationv1.YourCustomResourceDefinition)
+		newObject := e.ObjectNew.(*configurationv1.YourCustomResourceDefinition)
+		if oldObject.Status != newObject.Status {
+			// NO enqueue request
+			return false
+		}
+		// ENQUEUE request
+		return true
+	},
+}

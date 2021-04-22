@@ -200,7 +200,8 @@ map
 
 
 b.(type)用在switch语句的类型匹配中, 固定用法，表示对b的类型进行switch case匹配
-b.(string) 类型推断, 表示检查b类型是否为string
+b.(string) 类型断言(typo assertion), 表示检查b类型是否为string
+b.(*mypackage.MyType) 断言为指针类型, b为nil会panic
 
     a := map[string]interface{}{
         "key": 100

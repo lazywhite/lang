@@ -6,6 +6,7 @@ quickstart
     cd example; go mod init github.com/lazywhite/example
     kubebuilder init --domain my.domain
     kubebuilder create api --group batch --version v1 --kind CronJob
+    # 可能会报错，根据错误提示，需要安装logr, ginkgo, gomega
         可以选择只生成crd resource，不生成controller代码
 
     /PROJECT下记录了domain, group, kind
@@ -33,6 +34,12 @@ controller-gen注释文档
 // +kubebuilder:resource:shortName=boc,scope=Cluster  # 必须写在一行，否则只有最后一行生效
 
 type CronJob struct{
+
+    // +kubebuilder:validation:Optional    表示该字段可以留空，不进行schema校验
+    // omitempty: mark that a field should be omitted from serialization when empty.
+    // 避免出现client-go提交CR时，类似spec.accessibility.from.ipBlock.except in body must be of type array: "null"的错误
+
+    Name string `json:"name,omitempty"`
 }
 
 
@@ -45,12 +52,5 @@ scale 子资源
     可以用kubectl scale来进行水平自动扩容
 
 
-实现在更新status后， 不触发reconcile
-    predicate 断言
 
-    func (r *MyReconciler) SetupWithManager(mgr ctrl.Manager) error {
-        return ctrl.NewControllerManagedBy(mgr).
-            For(&arkv1alpha1.My{}).
-            WithEventFilter(&predicates.MyPredicate{}).
-            Complete(r)
-    }
+create resource时不能设置ResourceVersion, update resource一定要加上ResourceVersion而且要跟老的Resource一样，否则无法update
