@@ -43,7 +43,7 @@ tasks without a group are considered as private tasks
 convert a maven project to gradle
     cd /maven_pro_dir
     grade init --type pom
-使用getty插件
+使用gretty插件, 控制jetty
     gradle appRun
 ```
 
