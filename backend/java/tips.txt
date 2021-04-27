@@ -1,3 +1,5 @@
+所有行都以分号结尾
+
 非访问修饰符
     static final abstract strictfp volatile native sychronized
 
@@ -602,3 +604,6 @@ lambda
     String s, c;
     c = (s = "good"); // c ==> "good"
     c = (s = null); // c ==> null
+
+局部变量类型推断
+    var v = new Student();

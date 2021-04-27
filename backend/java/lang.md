@@ -85,7 +85,8 @@ Collection values() # return a collection view of the values contained in this m
 
 ## Jar包构成
 ```
-jar xf /path/to/jar
+jar xf /path/to/jar // 无法设置解压路径
+unzip /path/to/jar -d <dir>
     META-INF
         MANIFEST.MF
             Main-Class 
@@ -149,4 +150,19 @@ cd classes
 jar -cvmf MANIFEST.ini app.jar com
 
 java -jar app.jar
+```
+
+## maven项目结构
+```
+src
+    main
+        java
+            com.local.web
+                student.java
+        resources
+            application.yml
+    test
+        java
+            com.local.web
+                student.java
 ```
