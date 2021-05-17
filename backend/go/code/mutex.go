@@ -1,15 +1,17 @@
 package main
 
 import (
+	"fmt"
+	"math/rand"
+	"runtime"
 	"sync"
 	"sync/atomic"
 	"time"
-	"math/rand"
-	"fmt"
-	"runtime"
 )
 /*
 互斥锁
+
+可以在一个goroutine进行Lock()， 另一个goroutine进行Unlock(), 不推荐这么做
 */
 
 func main(){
@@ -23,7 +25,7 @@ func main(){
 			for {
 				key := rand.Intn(5)
 				mutex.Lock()
-				total[key] += state[key] //atomic read/write 
+				total[key] += state[key] //atomic read/write
 				mutex.Unlock()
 				atomic.AddUint64(&ops, 1)
 

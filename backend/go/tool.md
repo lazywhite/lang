@@ -50,3 +50,11 @@ go help gopath
 2. go doc <package> [func]  
 3. godoc -http :6060  
 ```
+
+## go doc
+```
+1. go doc <pkg-FQDN>
+2. 要想有web页面，需要安装godoc工具
+go get -v  golang.org/x/tools/cmd/godoc
+godoc -http :8000 github.com/lazywhite/samplecontroller
+```

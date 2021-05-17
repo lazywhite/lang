@@ -62,16 +62,11 @@ subtests and sub-benchmarks
 
 
 
+弃用GoStub
 
-全局变量可通过GoStub框架打桩
-过程可通过GoStub框架打桩
-函数可通过GoStub框架打桩
+全局变量 过程 函数均通过monkeypatch来替代
 interface可通过GoMock框架打桩
 对象方法可通过重构代码，声明一个interface，让对象实现interface，最后用gomock
-
-
-
-
 
 
 覆盖率

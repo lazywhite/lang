@@ -1,0 +1,20 @@
+admission webhook # k8s > 1.9 
+custom resource conversion webhooks # k8s > 1.15
+
+
+kube-apiserver必须使用HTTPS协议来跟webhook通信， 因此需要给webhook颁发被自己认证过的证书
+
+
+1. create webhook
+kubebuilder create webhook --group webapp --version v1 --kind Guestbook --defaulting --programmatic-validation [--webhook-version v1beta1]
+
+2. 如果是k8s<1.16的环境， 需要将versions改为v1beta1
+api/v1/guestbook_webhook.go 
+    // +kubebuilder:webhook:path=/mutate-webapp-my-domain-v1-guestbook,mutating=true,failurePolicy=fail,groups=webapp.my.domain,resources=guestbooks,verbs=create;update,versions=v1,name=mguestbook.kb.io
+
+3. 对delete也进行validate, verbs添加delete
+// +kubebuilder:webhook:verbs=create;update;delete,path=/validate-network-netease-com-v1-ipallocation,mutating=false,failurePolicy=fail,groups=network.netease.com,resources=ipallocations,versions=v1,name=vipallocation.kb.io
+
+早先版本的kube-apiserver中，发送delete操作给webhook时，不会带上要删除的资源的object，这会导致我们在开发validatedelete后，测试时报错：
+Error from server: admission webhook "vippool.kb.io" denied the request: there is no content to decode
+解决办法： k8s升级到1.15
