@@ -157,6 +157,12 @@ switch的case自带break， 除非手动使用fallthrough语句
 
 defer将函数推迟到外层函数返回前执行
 defer推迟的函数被压入到一个栈中， 后进先出
+
+defer函数执行原理
+    invoke defer, evaluating the value of function parameter.
+    execute defer, pushing a function in to stack.
+    execute functions in stack after return or panic.
+
 go有指针， 但没有指针运算
 通过结构体指针访问成员变量, 取地址符号可省略
     p := &v
@@ -231,7 +237,7 @@ close(c) # 关闭一个channel
 
 同一个package内的go file可以直接使用其他go file内部的定义, 并且小写开头的也可以
 import pkg, 则可通过pkg.xx访问pkg文件夹下所有go file定义的可导出内容(不包括子文件夹)
-import pkg会执行pkg文件夹下所有go file的init()(不包括子文件夹)
+import pkg会执行pkg文件夹下所有go file的init()(不包括子文件夹, 因为子文件夹跟父文件夹属于不同的package)
 
 双引号的字符串不允许有换行, 反引号可以有
 单引号只能用来表示rune类型
@@ -239,7 +245,6 @@ import pkg会执行pkg文件夹下所有go file的init()(不包括子文件夹)
 
 err.Error() # 返回error的string信息
 
-直接在func,package上面写注释, 与声明不要有空行, 则godoc能自动识别
 
 slice = append(slice, elem1, elem2, ...)
 slice = append(slice, anotherSlice...)
@@ -368,9 +373,10 @@ const常量只能是string，number, bool, 不能是map，array，slice
 Exit(n) main.go 返回值
 
 panic('error')用来主动触发程序崩溃，会停止执行当前goroutine其它代码，并执行defer函数,  其它原因的崩溃defer不会执行
-recover()只能在defer中发挥作用, 终止程序崩溃
 
-defer会在所在函数return前执行，多个defer后进先出
+recover()只能在defer中发挥作用, 终止程序崩溃, 用来重新获取发生panic的goroutine的控制权, 正常执行只会return nil，
+如果goroutine发生了panic, recover()将会获取到panic("value")的"value" 
+
 
 sync.WaitGroup  goroutine同步
 wg.Add(n) goroutine计数器加n, 一般每启动一个goroutine wg.Add(1), 每个goroutine调用wg.Done(), 主程序wg.Wait()
@@ -457,5 +463,23 @@ go package name可以跟directory name不一样, 按照文件夹路径进行impo
 	}
 
 参数类型为func code/func_arg_type.go
+
+注释只需要写在package, func, struct, interface之前就行了，不能有空行， 没有其他格式限制
+
+[]byte转换为string
+    a := []byte{'a', 'b', 'c', 'd'}
+    b := string(a)
+
+
+go里面的RLock()不同于python里面的RLock, 后者是递归锁, 表明单个线程可以重复获取此锁, 前者只是表示读锁
+
+
+如果有老项目用的Godeps来管理依赖, go mod init github.com/user/repo 即可自动导入依赖
 ```
 
+## import顺序
+```
+1. 标准库
+2. 自身库
+3. 第三方库
+```

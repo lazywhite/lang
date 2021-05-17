@@ -6,6 +6,7 @@ quickstart
     cd example; go mod init github.com/lazywhite/example
     kubebuilder init --domain my.domain
     kubebuilder create api --group batch --version v1 --kind CronJob
+        --namespaced false 可以创建集群类型资源
     # 可能会报错，根据错误提示，需要安装logr, ginkgo, gomega
         可以选择只生成crd resource，不生成controller代码
 
@@ -54,3 +55,40 @@ scale 子资源
 
 
 create resource时不能设置ResourceVersion, update resource一定要加上ResourceVersion而且要跟老的Resource一样，否则无法update
+
+
+
+=========== 没有gnostic openAPIv2错误的最高版本 ==============
+
+require (
+    k8s.io/api v0.19.0
+    k8s.io/apimachinery v0.19.0
+    k8s.io/client-go v0.19.0
+)
+
+
+
+
+====== controller内部组件和工作原理 ======
+原理
+    kube-proxy, kubelet, controller-manager, scheduler都是基于Http chunked长连接方式来
+    ListWatch kube-api-server, 将返回的event放进queue中进行处理
+组件
+    1. k8s官方基于client-go实现的controller
+        SharedIndexerInformer
+            Indexer
+                Cache
+                    ThreadSafeStore
+            ListWatcher
+            Processor
+            Controller
+                Queue
+                    FIFO
+
+    2. kubebuilder基于controller-runtime实现的controller
+
+
+
+====== operator与controller的区别 ======
+1. controller负责resource达到声明的状态，比如deployment pod数量不足时创建新的pod
+2. operator只是提交操作，类似于kubectl, 底层工作还是由controller来做

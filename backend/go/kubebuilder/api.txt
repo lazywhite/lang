@@ -1,3 +1,10 @@
+==== 适用于这个版本 =====
+require (
+    k8s.io/api v0.17.2
+    k8s.io/apimachinery v0.17.2
+    k8s.io/client-go v0.17.2
+)
+
 ========== list ===========
 podList := &v1.PodList{}
 err = r.Client.List(ctx, podList, client.InNamespace(v1.NamespaceAll), client.MatchingFields{".spec.nodeName": nodeName})
@@ -156,7 +163,7 @@ func (r *MyReconciler) SetupWithManager(mgr ctrl.Manager) error {
         Complete(r)
 }
 
-自定义predicate，来决定是否触发reconcile
+自定义predicate，来决定是否触发reconcile, 返回true说明需要reconcile
 p := predicate.Funcs{
 	UpdateFunc: func(e event.UpdateEvent) bool {
 		oldObject := e.ObjectOld.(*configurationv1.YourCustomResourceDefinition)
@@ -168,4 +175,13 @@ p := predicate.Funcs{
 		// ENQUEUE request
 		return true
 	},
+}
+
+===== ===============
+func (r *MemcachedReconciler) SetupWithManager(mgr ctrl.Manager) error {
+  return ctrl.NewControllerManagedBy(mgr).
+    For(&cachev1alpha1.Memcached{}).   //watch什么资源
+    Owns(&appsv1.Deployment{}). //什么资源将被此controller创建，并设置为其owner
+    WithOptions(controller.Options{MaxConcurrentReconciles: 2}).  //设置worker数目
+    Complete(r)
 }
