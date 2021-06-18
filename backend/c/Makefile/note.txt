@@ -1,0 +1,11 @@
+# 变量默认值
+IMG ?= inspect_port:arm-v1
+
+# 使用环境变量
+kubeconfig = ${KUBECONFIG}
+
+# $()跟${}是等价的
+kubeconfig = $(KUBECONFIG)
+
+# 执行一个shell command
+ip = $(shell hostname -i)
