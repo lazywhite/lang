@@ -1,0 +1,12 @@
+{% extends 'account/base.html' %}
+
+{%  load staticfiles %}
+{% block content %}
+{{request.user.username}}
+<br />
+{{request.session.session_key}}
+<br />
+
+<img src="/account/media/{{ request.user.profile.portrait}}" />
+<a href="/account/logout/" >logout</a>
+{% endblock %}

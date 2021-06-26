@@ -1,0 +1,49 @@
+web management
+    https://github.com/mher/flower
+
+
+
+periodic jobs
+
+    app.conf.beat_schedule = {
+        'add-every-30-seconds': {
+            'task': 'tasks.add',
+            'schedule': 30.0, # 类型: timedelta, crontab, solar
+            'args': (16, 16)
+        },
+    }
+    app.conf.timezone = 'UTC'
+
+
+usage
+    pip install celery[redis]
+
+    config.py
+        broker_url = "redis://localhost:6379/1"
+        result_backend = "redis://localhost:6379/2"
+    tasks.py
+        from celery import Celery
+
+        app = Celery('tasks')
+        app.config_from_object("config")
+
+        @app.task
+        def add(x, y):
+            return x + y
+
+    # celery -A tasks worker --loglevel=info   # 启动单个worker
+    # celery multi start node1 node2 -A tasks  --loglevel=info # 启动多worker
+    # celery multi stop node1 node2
+
+    call.py
+        from .tasks import add
+        r = add.delay(4, 4)
+        print(r.get())
+
+
+using with django
+    celery > 4.0  django > 1.8
+
+    cd demo; celery -A demo worker  #start worker
+
+

@@ -1,0 +1,3 @@
+docker stack deploy -c compose.yml partner_nokia_jtwapi_wms_1010 --prune
+docker stack ps partner_nokia_jtwapi_wms_1010
+docker stack rm partner_nokia_jtwapi_wms_1010

@@ -1,0 +1,87 @@
+#!/usr/bin/env python
+import cmd
+import sys
+import commands
+import subprocess
+#every function must named with 'do_' prefix
+#multi deepth interpreter
+class MainCMD(cmd.Cmd):
+    '''
+        multi-level interpreter of StorSwift.com
+    '''
+    def do_exit(self, line):
+        ''' 
+            exit
+        '''
+        print;sys.exit()
+
+    def do_EOF(self, line):
+        ''' 
+            exit
+        '''
+        print;sys.exit()
+
+    def do_dg(self, line=None):
+        ''' dg-related commands
+        '''
+        inst = DG()
+        if not line:
+            inst.prompt = '<{0}><{1}>'.format(APP_NAME, 'DG')
+            inst.cmdloop()
+        else:
+            argv = line.split()
+            method = 'do_'+str(argv[0])
+            getattr(inst, method)(' '.join(argv[1:])) 
+
+    def do_enable(self, line=None):
+        '''
+            get super-user privileges
+        '''
+#        print os.getuid()
+#        os.setuid(0)
+#        p = subprocess.Popen(('su root'), stdin=sys.stdin, stdout=sys.stdout,
+#                                                          stderr=sys.stderr)
+#        p.communicate()
+        pass
+       
+    def do_chpasswd(self, line=None):
+        '''
+            change password of current user
+        '''
+        p = subprocess.Popen(('passwd'), stdin=sys.stdin, stdout=sys.stdout,
+                                                          stderr=sys.stderr)
+        p.communicate()
+            
+
+class SubBase(cmd.Cmd):
+
+    def do_end(self, line):
+        '''
+            leave subcommand shell
+        '''
+        main_handler.cmdloop()
+
+    def do_EOF(self, line):
+        '''
+            use Ctr+D to leave subcommand shell
+        '''
+        print  # create a new line
+        self.do_end(line)
+
+
+class DG(SubBase):
+    def do_list(self, line=None):
+        '''
+            list disk group information
+        '''
+        if not line:
+            print commands.getoutput('vgs')
+        else:
+            print commands.getoutput('vgs '+line)
+
+if __name__ == '__main__':
+    APP_NAME = 'StorSwift'
+    main_handler =  MainCMD()
+    main_handler.prompt = '<{0}>'.format(APP_NAME)
+    main_handler.cmdloop()
+

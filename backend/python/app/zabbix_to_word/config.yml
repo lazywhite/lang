@@ -1,0 +1,55 @@
+zabbix_server: "10.1.94.40/zabbix"
+zabbix_user: "Admin"
+zabbix_pw: ""
+start_time: 20170301000000
+period: 2592000
+graph_dir: './graph/'
+template_dir: './template/'
+template_name: ''
+output_dir: './doc/'
+graphs:
+  - OA:
+    - 操作系统:
+      - "OS_OA_DEVDB_10.1.80.65":
+        - "CPU Load"
+      - "OS_OA_DEVWEB_10.1.80.11":
+        - "CPU Load"
+      - "OS_OA_DFS_10.1.40.12":
+        - "CPU Load"
+      - "OS_OA_EMessage_10.1.20.43":
+        - "CPU Load"
+      - "OS_OA_EMobile_10.1.20.44":
+        - "CPU Load"
+      - "OS_OA_oracleDG_10.1.20.106":
+        - "CPU Load"
+      - "OS_OA_oracle_10.1.20.101":
+        - "CPU Load"
+      - "OS_OA_oracle_10.1.20.102":
+        - "CPU Load"
+      - "OS_OA_webadmin_10.1.20.18":
+        - "CPU Load"
+      - "OS_OA_web_10.1.20.31":
+        - "CPU Load"
+      - "OS_OA_web_10.1.20.50":
+        - "CPU Load"
+      - "OS_OA_web_10.1.20.51":
+        - "CPU Load"
+      - "OS_OA_web_10.1.20.52":
+        - "CPU Load"
+      - "OS_OA_web_10.1.20.53":
+        - "CPU Load"
+      - "OS_OA_web_10.1.20.54":
+        - "CPU Load"
+      - "OS_OA_web_10.1.20.55":
+        - "CPU Load"
+      - "OS_OA_web_10.1.20.56":
+        - "CPU Load"
+      - "OS_OA_web_10.1.20.57":
+        - "CPU Load"
+      - "OS_OA_web_10.1.20.58":
+        - "CPU Load"
+      - "OS_OA_weix_10.1.20.48":
+        - "CPU Load"
+      - "Redhat5.5-OATEST-10.1.80.12":
+        - "CPU Load"
+

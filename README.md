@@ -15,6 +15,7 @@ Practice code of programming languages
 │   ├── lua
 │   ├── nodejs
 │   ├── php
+│   ├── python
 │   ├── ruby
 │   ├── scala
 │   └── scheme

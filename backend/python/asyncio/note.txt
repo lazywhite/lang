@@ -1,0 +1,51 @@
+asyncio
+    event loop
+    coroutine and future, task
+    transport and protocol
+    streams
+    subprocss
+    sync primitives
+    queue
+
+
+await后可跟awaitable对象
+    coroutine
+    task
+    future
+
+await 必须在async def 内部使用
+
+shield()保护coroutine不会被取消
+    async def fun():
+        await asyncio.shield(something())
+    如果fun()被取消，something()仍会继续运行
+
+
+async with 异步上下文管理器
+    1.一个对象必须实现__aenter__
+    2.一个对象必须实现__aexit__
+    这两个方法都要返回一个 awaitable类型的值。
+async for 异步迭代器
+    1、一个对象必须实现__aiter__方法，该方法返回一个异步迭代器（asynchronous iterator）对象。
+    2、一个异步迭代器对象必须实现__anext__方法，该方法返回一个awaitable类型的值。
+    3、为了停止迭代，__anext__必须抛出一个StopAsyncIteration异常。
+
+
+async def 与 @asyncio.coroutine的区别
+    前者内部可使用await, async with,  async for, 不能使用yield
+    后者可以使用yield from, 用来替代await
+
+    py3.5 async def定义的function，正式成为了一种类型, 而后者只是将function转化成了generator(py3.8之后已废弃)
+        async def f():
+          pass
+        type(f) --> function
+        type(f()) --> coroutine
+
+
+        @asyncio.coroutine
+        def f():
+            pass
+
+        type(f) --> function
+        type(f()) --> generator
+

@@ -1,0 +1,31 @@
+pip install yapf
+
+yapf -h
+  -h, --help            show this help message and exit
+  -v, --version         show version number and exit
+  -d, --diff            print the diff for the fixed source
+  -i, --in-place        make changes to files in place
+  -r, --recursive       run recursively over directories
+  -l START-END, --lines START-END
+                        range of lines to reformat, one-based
+  -e PATTERN, --exclude PATTERN
+                        patterns for files to exclude from formatting
+  --style STYLE         specify formatting style: either a style name (for
+                        example "pep8" or "google"), or the name of a file
+                        with style settings. The default is pep8 unless a
+                        .style.yapf or setup.cfg file located in the same
+                        directory as the source or one of its parent
+                        directories (for stdin, the current directory is
+                        used).
+  --style-help          show style settings and exit; this output can be saved
+                        to .style.yapf to make your settings permanent
+  --no-local-style      don't search for local style definition
+  -p, --parallel        Run yapf in parallel when formatting multiple files.
+                        Requires concurrent.futures in Python 2.X
+  -vv, --verbose        Print out file names while processing
+
+
+yapf -diff a.py
+yapf -i a.py
+
+yapf -i *.py

@@ -1,0 +1,26 @@
+1.模块级方法
+    threading.active_count() # 返回alive线程的数量
+    threading.current_thread() # 当前线程
+    threading.enumerate() # 返回alive线程的列表
+    threading.main_thread() # 获取主线程
+
+2.线程私有存储
+    threading.local(), 每个线程自动获得私有存储
+
+3.线程对象
+   start(): # 以单独的线程执行, 单个线程最多调用一次, 后续调用会报RuntimeError
+   run(): # 在主线程中执行线程方法, 仅仅相当于调用函数
+   join(): block calling thread until called thread terminite
+   daemon: inherite from creating thread , default is False, 必须在start()调用前设置
+
+
+
+4.线程同步
+    Lock
+    RLock: 递归锁
+    Condition()
+    Semaphore: 锁池
+    Event
+    Timer
+    Barrier: 统一界限
+

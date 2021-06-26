@@ -1,0 +1,46 @@
+version: "3.6"
+services:
+    api:
+        image: demo/jtwapi:1.0
+        ports:
+             - "32063:5000"
+        environment:
+             - TZ=Asia/Shanghai
+        volumes:
+             - log:/log
+             - /etc/localtime:/etc/localtime:ro
+        deploy:
+             replicas: 1
+             resources:
+                limits:
+                    cpus: '0.50'
+                    memory: 1G
+                reservations:
+                    cpus: '0.30'
+                    memory: 500M
+             restart_policy:
+                condition: on-failure       
+             placement:
+                constraints: [node.hostname == host.test.com]
+        configs:
+             - source: krb5_conf
+               target: /etc/krb5.conf
+             - source: keytab
+               target: /etc/usergrp.user.keytab
+             - source: ini
+               target: /server/server.ini
+             - source: principle
+               target: /etc/krb_principle
+    
+volumes:
+    log:
+
+configs:
+    krb5_conf:
+        file: ./config/krb5.conf
+    keytab:
+        file: ./config/usergrp.user.keytab
+    ini:
+        file: ./config/server.ini
+    principle:
+        file: ./config/krb_principle

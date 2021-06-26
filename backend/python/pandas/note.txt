@@ -1,0 +1,43 @@
+series 一维数组
+dataframe
+    index 索引
+    columns 列
+    data 数据
+
+df.dtypes 查看列及其数据类型
+
+
+查看数据
+    df.head()
+    df.tail()
+    df.index
+    df.columns
+    df.values
+    df.describe() 
+    df.T 转置
+    df.sort_index(axis, ascending)
+    df.sort_values(by)
+    df.at(使用label访问) df.iat(使用数字下标访问)
+        df.at[dates[0],'A']
+    df.loc df.iloc
+        df.loc['20130102':'20130104',['A','B']]
+        df.loc['20130102',['A','B']]
+        df.loc[:,['A','B']]
+    df.<col_name>  df[col_name]
+        df[df.A > 0]
+    df[start:end] 以index或行号查看
+    
+     df2['E'] = ['one', 'one','two','three','four','three'] # 添加新列
+
+赋值
+    df.at[dates[0],'A'] = 0
+    df.iat[0,1] = 0
+
+
+过滤
+    df2[df2['E'].isin(['two','four'])] # 按值过滤
+    df1.dropna(how='any')
+    df1.fillna(value=5)
+
+
+df.apply(lambda x: x.max() - x.min()) # 针对每一列

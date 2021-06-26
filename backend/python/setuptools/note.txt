@@ -1,0 +1,32 @@
+python setup.py --help-commands
+Standard commands:
+  build             build everything needed to install
+  build_py          "build" pure Python modules (copy to build directory)
+  build_ext         build C/C++ extensions (compile/link to build directory)
+  build_clib        build C/C++ libraries used by Python extensions
+  build_scripts     "build" scripts (copy and fixup #! line)
+  clean             clean up temporary files from 'build' command
+  install           install everything from build directory
+  install_lib       install all Python modules (extensions and pure Python)
+  install_headers   install C/C++ header files
+  install_scripts   install scripts (Python or otherwise)
+  install_data      install data files
+  sdist             create a source distribution (tarball, zip file, etc.)
+  register          register the distribution with the Python package index
+  bdist             create a built (binary) distribution
+  bdist_dumb        create a "dumb" built distribution
+  bdist_rpm         create an RPM distribution  # yum -y install rpm-build
+  bdist_wininst     create an executable installer for MS Windows
+  check             perform some checks on the package
+  upload            upload binary package to PyPI
+
+python setup.py <command> --help
+
+
+# 生成压缩包, 放在dist文件夹下
+python setup.py sdist # unix默认为.tar.gz, windows为zip
+python setup.py sdist  --formats=gztar,zip # 同时生成多种压缩包
+
+
+
+MANIFEST.in文件，当使用sdist时会用到， 用来描述生成的包内包含的文件

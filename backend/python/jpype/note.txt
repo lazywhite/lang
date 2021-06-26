@@ -1,0 +1,15 @@
+# 1. pip
+sudo yum -y install gcc-c++
+pip install JPype1
+
+# 2. source code
+unzip -d /tmp jpype-0.5.2.zip
+sudo chmod 777 -R /tmp/jpype
+
+python setup.py install
+用户sudo安装, 需要编辑setup.py添加JAVA_HOME环境变量
+安装到site-package后， 需要chmod -R 777 保证普通用户可以import
+
+
+
+

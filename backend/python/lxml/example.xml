@@ -1,0 +1,4 @@
+<resource name='example'>
+   <link rel="child" href="eve-demo.herokuapp.com/people" title="people">link1</link>
+    <link rel="child" href="eve-demo.herokuapp.com/works" title="works"/>
+</resource>

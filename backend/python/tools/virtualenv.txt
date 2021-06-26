@@ -1,0 +1,22 @@
+为单个版本的python提供虚拟环境
+
+yum -y install python3-virtualenv
+
+pip3 install virtualenvwrapper
+or
+yum -y install python3-virtualenvwrapper
+
+which virtualenvwrapper.sh
+
+mkdir -p ~/.virtualenvs
+
+cat >> /root/.bahsrc <<EOF
+export WORKON_HOME=~/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+EOF
+
+lsvirtualenv
+mkvirtualenv
+
+workon
+deactivate

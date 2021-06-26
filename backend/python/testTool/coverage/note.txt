@@ -1,0 +1,24 @@
+pip install -U coverage # 
+virtualenv也需要安装
+
+
+coverage run --source src test/test_helper.py # 有可能报Module Not Found, 
+给test_helper.py添加import sys;print(sys.path)后发现, 第一个是<dir_path>/test,
+而不是<dir_path> 导致找不到src， 调用下面命令可解决
+
+
+# 执行测试，会自动生成.coverage
+python -m coverage run --source src -m unittest discover -v
+
+# 报告覆盖率, 依赖.coverage文件
+python -m coverage report
+    --include="app/*","src/*" # 必填，不然连导入的标准库都会报告
+    -m # 是否report missing statement
+    --skip-empty # 没有statement的跳过，比如__init__.py
+    --skip-covered # 如果已经是100%，则跳过
+
+# 生成html文档
+python -m coverage html
+    -d # 指定文件夹，默认为htmlcov
+    --skip-empty
+    --skip-covered

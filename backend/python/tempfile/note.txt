@@ -1,0 +1,6 @@
+NamedTemporaryFile
+    with  NamedTemporaryFile() as f:
+        print(f.name) # /tmp/abcd   
+
+TemporaryFile
+    没有name属性

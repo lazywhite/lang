@@ -1,0 +1,5 @@
+doctest为标准库一部分
+
+python -m doctest a.py -v # 必须要有-v参数, 才会有输出
+
+# 对文件夹下所有module进行测试

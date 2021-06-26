@@ -1,0 +1,9 @@
+bottle==0.12.11
+bottle-config==0.1.2
+bottle-mysql==0.3.1
+bottle-peewee==0.1.5
+bottle-redis==0.2.3
+bottle-session==0.6
+MySQL-python==1.2.5
+peewee==2.8.5
+redis==2.10.5

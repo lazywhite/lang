@@ -1,0 +1,5 @@
+{{ request.session.session_key }}
+{{ request.COOKIES.cookie_key }}
+<br />
+<a href="{%  url 'account:export_users_csv' %}" >用户列表导出csv</a>
+<a href="{%  url 'account:export_users_xls' %}" >用户列表导出xls</a>
