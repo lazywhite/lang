@@ -1,0 +1,8 @@
+string format
+
+a = "world"
+b = f"hello {a}"
+
+
+def f1():
+    ...  # 等同于pass

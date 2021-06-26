@@ -1,0 +1,34 @@
+version: "3.6"
+services:
+    client:
+        image: demo/jtwclient:1.0
+        environment:
+             - TZ=Asia/Shanghai
+        volumes:
+             - data:/data
+             - log:/log
+             - /etc/localtime:/etc/localtime:ro
+        deploy:
+             replicas: 1
+             resources:
+                limits:
+                    cpus: '0.50'
+                    memory: 1G
+                reservations:
+                    cpus: '0.30'
+                    memory: 500M
+             restart_policy:
+                condition: on-failure
+             placement:
+                constraints: [node.hostname == host1.local.com]
+        configs:
+             - source: ini
+               target: /client/client.ini
+
+volumes:
+    data:
+    log:
+
+configs:
+    ini:
+        file: ./config/client.ini

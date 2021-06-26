@@ -1,0 +1,42 @@
+创建binding时, 如果instance没有ready, 则catalog不会调用bind接口, 同时binding状态为ErrorInstanceNotReady
+
+provion, deprovision如果返回is_async=True, 则catalog会调用instance last_operation接口
+
+
+bind接口返回500，则catalog不会retry
+
+api.serve_multiple() 原理
+
+
+默认使用flask dev mode, pip install gevent，自动使用gevent
+main.py
+    from gevent import monkey
+    monkey.patch_all()   ## 需要先patch, 不然gevent不起作用
+    from openbrokerapi import api 
+    from broker import AServiceBroker, BServiceBroker
+    api.serve_multiple([AServiceBroker(), BServiceBroker()], None, port=5000, debug=True)
+
+
+如果有多个instance和binding同时apply, 则svc-catalog会逐个provision, bind
+
+
+pod liveness probe
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        httpHeaders:
+        - name: X-Broker-API-Version
+          value: "2.14"
+        path: /v2/catalog
+        port: http
+        scheme: HTTP
+
+
+catalog多久查询一次broker的/v2/catalog接口, 来更新clusterServiceClass, Plan
+
+
+provision raise ServiceException()时， 如何传递ErrorMessage回去
+
+
+instance, binding没有写annotation导致catalog-controller挂掉的问题
+    https://github.com/kubernetes-sigs/service-catalog/issues/2825

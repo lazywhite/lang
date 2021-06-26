@@ -1,0 +1,34 @@
+1.进程间通信
+    Queue # thread and process safe
+    Pipe # duplex connection
+2.进程同步
+    跟线程同步几乎相同
+
+3.进程间共享状态
+    *Shared memory
+        Value, Array
+    *Server process
+        Manager # 比共享内存要好, 支持的对象类型更多
+
+4.进程池
+    p = Pool(2)
+    p.apply(f, (arg1, arg2))  = f(arg1, arg2)
+    p.map(f, [item1, item2 ]) = f(item1), f(item2)
+
+         
+
+5. 进程启动方式
+(1)spawn
+    The parent process starts a fresh python interpreter process. The child process will only inherit those resources necessary to run the process objects run() method. In particular, unnecessary file descriptors and handles from the parent process will not be inherited. Starting a process using this method is rather slow compared to using fork or forkserver.
+
+    Available on Unix and Windows. The default on Windows.
+
+(2)fork
+    The parent process uses os.fork() to fork the Python interpreter. The child process, when it begins, is effectively identical to the parent process. All resources of the parent are inherited by the child process. Note that safely forking a multithreaded process is problematic.
+
+    Available on Unix only. The default on Unix.
+
+(3)forkserver
+    When the program starts and selects the forkserver start method, a server process is started. From then on, whenever a new process is needed, the parent process connects to the server and requests that it fork a new process. The fork server process is single threaded so it is safe for it to use os.fork(). No unnecessary resources are inherited.
+
+    Available on Unix platforms which support passing file descriptors over Unix pipes.

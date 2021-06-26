@@ -1,0 +1,6 @@
+yum -y install python-flake8
+brew install flake8
+pip install flake8
+install vim-plug
+install vim-flake8 
+<F7> trigger flake8 test

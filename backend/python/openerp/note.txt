@@ -1,0 +1,15 @@
+create new module
+    odoo-bin scaffold <module> <path>
+    odoo-bin scaffold cust /opt/odoo-11/addons
+
+install new module
+    Setting -> Enable Debug Mode
+    Apps -> Update Apps List 
+    search your module and install
+
+change language
+    settings-->translations-->load a translation
+    administrator-->preference-->language
+
+interactive shell
+    odoo-bin --addons-path=/path/to/addons shell

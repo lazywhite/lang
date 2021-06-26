@@ -1,0 +1,9 @@
+setup.py
+fruit.egg-info/PKG-INFO
+fruit.egg-info/SOURCES.txt
+fruit.egg-info/dependency_links.txt
+fruit.egg-info/top_level.txt
+fruit/apple/__init__.py
+fruit/apple/color.py
+fruit/banana/__init__.py
+fruit/banana/corlor.py

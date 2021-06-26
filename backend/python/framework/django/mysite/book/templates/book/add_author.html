@@ -1,0 +1,27 @@
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery=1%}
+
+
+<form action="" method="post" class="form">
+  {% bootstrap_form form %}
+  {% csrf_token %}
+  {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      {% bootstrap_icon "star" %} Submit
+    </button>
+  {% endbuttons %}
+</form>
+{% bootstrap_messages %}
+
+{% comment %}
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endcomment %}

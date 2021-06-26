@@ -1,0 +1,6 @@
+1. pip install selenium
+2. yum localinstall google-chrome.rpm
+3. install chromedriver http://chromedriver.storage.googleapis.com/index.html
+    mv chromedriver /opt/google/chrome/
+    ln -s /opt/google/chrome/chromedriver  /usr/bin/chromedriver
+4. http://www.cnblogs.com/zhaof/p/6953241.html

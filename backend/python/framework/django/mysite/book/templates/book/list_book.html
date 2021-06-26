@@ -1,0 +1,29 @@
+<style>
+table {width: 500px;}
+td {width: 50%;}
+</style>
+{% load author_filter %}
+<table>
+{% for book in books %}
+    <tr>
+        <td>{{ book.name|upper }} </td>
+        <td>{{ book.authors.all|conc_name}}  </td>
+    </tr>
+{% endfor %}
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if books.has_previous %}
+            <a href="?page={{ books.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ books.number }} of {{ books.paginator.num_pages }}.
+        </span>
+
+        {% if books.has_next %}
+            <a href="?page={{ books.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>

@@ -1,0 +1,8 @@
+基于libev或libuv事件循环和greenlet的协程库
+
+
+gevent.sleep() will yield the current greenlet to the gevent hub, allowing other greenlets to run. time.sleep() will not yield to the hub; it will simply suspend the entire current thread and all greenlets that might like to run on it.
+
+On the other hand, time.sleep will release the Python GIL and allow other Python threads the opportunity to run (but still blocking all greenlets on the calling thread), whereas gevent.sleep does not release the GIL (unless there are no other greenlets ready to run on the calling thread).
+
+If you have monkey-patched your program (early enough) using gevent.monkey.patch_all(), then time.sleep simply becomes an alias for gevent.sleep and there is no difference.

@@ -1,0 +1,24 @@
+Handle 0x00C7, DMI type 41, 11 bytes
+Onboard Device
+	Reference Designation: Embedded SATA Controller #1
+	Type: SATA Controller
+	Status: Disabled
+	Type Instance: 1
+	Bus Address: 0000:00:1f.2
+
+Handle 0x00C8, DMI type 41, 11 bytes
+Onboard Device
+	Reference Designation: Embedded SATA Controller #2
+	Type: SATA Controller
+	Status: Disabled
+	Type Instance: 2
+	Bus Address: 0000:00:11.4
+
+Handle 0x00C9, DMI type 41, 11 bytes
+Onboard Device
+	Reference Designation: Embedded RAID 1
+	Type: SAS Controller
+	Status: Enabled
+	Type Instance: 1
+	Bus Address: 0000:03:00.0
+

@@ -1,0 +1,36 @@
+# 在x86上打的包, 只能在x86上运行
+
+#python<=2.7
+pip2 install pyinstaller==3.6
+#python>3.6
+pip3 install pyinstaller
+
+
+pyinstaller -F --clean /path/to/script.py # 要保证具备所有requirments.txt
+
+# 如果是virtualenv环境
+PYTHONPATH="/path/to/venv/lib/python2.7/site-packages" pyinstaller -F --clean /path/to/script.py
+
+
+# file dist/script
+# ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked
+# 虽然是二进制，但却是动态链接的，需要被执行机器有libpython*.so
+libpython2.7.so.1.0: cannot open shared object file
+
+
+
+## 打成静态链接二进制
+# yum -y install binutils patchelf xz-devel
+# apt install binutils patchelf liblzma-dev
+pip3 install  scons  patchelf-wrapper 
+pip3 install staticx # 仅python >3.6可以，否则需要自己编译安装
+
+
+# pyinstaller -F --clean --add-binary="/usr/lib64/libpython2.7.so.1.0:." \
+	--add-binary="/lib64/libpthread.so.0:." \ #注意冒号后面一定只能是'.', 如果是软连接，不需要拷贝原始文件就行
+	inspect_port.py
+
+# staticx dist/target /tmp/target
+# file /tmp/target
+ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked
+

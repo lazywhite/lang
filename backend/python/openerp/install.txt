@@ -1,0 +1,15 @@
+1. download odoo-11 community edition from github
+2. pip install -r requirements.txt
+3. python setup.py install
+4. cp odoo-bin  /usr/local/odoo-bin
+5. create postgresql db, user
+6. /etc/odoo-11.conf  
+    [options]
+    db_host = localhost
+    db_port = 5432
+    db_name = odoo
+    db_user = root
+    db_password = root
+    addons_path = ./addons,/opt/odoo11/addons
+5. odoo-bin -c /etc/odoo-11.conf
+6. http://<ip>:8069/  admin:admin

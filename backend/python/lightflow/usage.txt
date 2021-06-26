@@ -1,0 +1,20 @@
+https://australiansynchrotron.github.io/lightflow/
+
+# python3.5以上
+# make sure redis, mongodb are running
+
+pip install lightflow
+
+# 生成lightflow.cfg
+lightflow config default . 
+# 生成workflow examples
+lightflow config examples . 
+
+# 无法列出import失败的py文件
+lightflow workflow list
+
+# 启动workder
+lightflow worker start <simple>
+lightflow worker monitor
+
+

@@ -1,0 +1,2 @@
+# msgpack exchange data just like json but faster and smaller
+pip install msgpack-python

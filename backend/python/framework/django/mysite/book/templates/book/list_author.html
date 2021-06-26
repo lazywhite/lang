@@ -1,0 +1,18 @@
+<style>
+table {width: 500px;}
+td {width: 50%;}
+</style>
+<table border=1>
+{% for author in authors %}
+    <tr>
+        <td>{{ author.name|upper }} </td>
+        <td>
+            {% for book in author.books.all %}
+                {{book.name}}
+            {% endfor %}
+        </td>
+    </tr>
+{% endfor %}
+</table>
+
+</div>

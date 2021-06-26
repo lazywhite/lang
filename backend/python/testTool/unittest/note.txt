@@ -1,0 +1,64 @@
+!!直接参考coverage的文档!!
+
+
+目录结构
+├── app
+│   ├── app.py
+│   ├── config.py
+│   ├── exception.py
+│   ├── helper.py
+│   ├── __init__.py # 将app变成package， 在test代码中import
+│   ├── minio_lib.py
+│   └── route.py
+├── build.sh
+├── Dockerfile
+├── main.py # import app中module，进行执行
+├── requirements.txt
+├── test
+│   ├── __init__.py
+│   ├── test_helper.py
+│   ├── test_minio_lib.py
+│   └── test_route.py
+
+
+自动发现所有test case并运行
+python -m unittest discover [-v]
+
+
+
+假设test文件夹下有30个test module, 其中有10个是关于helper的，则可以创建一个testSuite
+只运行这个testSuite, 达到区分的目的, discover会不区分而全部运行
+
+1. 新建一个test_helper_suite.py
+	import unittest
+	from .test_helper import TestHelperCase
+
+	def suite():
+		suite = unittest.TestSuite()
+
+		suite.addTest(TestHelperNameCase())
+		suite.addTest(TestHelperAgeCase())
+		return suite
+
+
+	if __name__ == '__main__':
+		runner = unittest.TestRunner
+		runner.run(suite())
+2. python -m unittest test.test_helper_suite
+
+
+
+
+from unittest.mock import patch, MagicMock, Mock
+https://docs.python.org/3/library/unittest.mock.html
+
+# 使用patch装饰器
+@patch.object(k8s_client.CustomObjectsApi, "list_cluster_custom_object", MagicMock(name="m4", return_value={"items":[]}), create=True)
+@patch("app.helper.assess_obj_risk", MagicMock(name="m5", return_value=None))
+@patch.object(k8s_client.AppsV1Api, "read_namespaced_stateful_set", mock_read_namespaced_stateful_set, create=True)
+
+
+load_file_content 是helper从minio_lib中import过来的, patch的时候要写成"app.helper.load_file_content", 不能是minio, 否则mock失败
+name="xx" 有多个mock时，报错可以更快定位问题
+create=True的意义
+	By default patch() will fail to replace attributes that don’t exist. If you pass in create=True, and the attribute doesn’t exist, patch will create the attribute for you when the patched function is called, and delete it again after the patched function has exited. This is useful for writing tests against attributes that your production code creates at runtime. It is off by default because it can be dangerous. With it switched on you can write passing tests against APIs that don’t actually exist!
