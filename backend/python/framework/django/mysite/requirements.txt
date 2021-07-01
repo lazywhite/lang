@@ -2,7 +2,7 @@ appdirs==1.4.2
 appnope==0.1.0
 backports.shutil-get-terminal-size==1.0.0
 decorator==4.0.11
-Django==1.10.5
+Django==2.2.24
 django-bootstrap3==8.2.1
 django-extensions==1.7.7
 django-pagination==1.0.7
