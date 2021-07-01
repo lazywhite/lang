@@ -1,0 +1,11 @@
+1. install protoc, protoc-3.17.3-linux-x86_64.zip
+mv bin/protoc /usr/local/bin/protoc
+mv include/google /usr/local/include  # 否则无法import timestamp.proto等
+
+2. install go plugin
+go get google.golang.org/protobuf/cmd/protoc-gen-go # 否则无法编译出go source code
+
+3. define message proto
+4. generate go code
+protoc --go_out=. proto/all.proto
+5. import and use it
