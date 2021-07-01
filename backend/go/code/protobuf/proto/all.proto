@@ -1,0 +1,37 @@
+syntax = "proto3";
+package pb;
+import "google/protobuf/timestamp.proto";
+option go_package = "pkg/pb";
+
+// field要以分号结束
+// repeated 表示为列表
+
+message Student {
+    string name = 1; // proto3不允许使用required
+    optional int32 age = 2;
+    repeated PhoneNumber phone = 3; //optional和repeated不能一起使用
+
+    message Follower{
+        int32 youtube = 1;
+        int32 twitter = 2;
+    }
+    optional Follower follower = 4;
+
+    reserved "foo", "bar"; //必须用引号, 不能跟已有的field重复
+
+    google.protobuf.Timestamp last_updated = 5;
+}
+
+message PhoneNumber {
+    enum PhoneType{
+        Mobile = 0;
+        Home = 1;
+        Work = 2;
+    }
+    string number = 1;
+    PhoneType type = 2;
+}
+
+message AddressBook {
+    repeated Student student = 1;
+}
