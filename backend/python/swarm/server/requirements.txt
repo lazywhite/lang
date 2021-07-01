@@ -7,7 +7,7 @@ chardet==3.0.4
 Click==7.0
 conda==4.7.12
 conda-package-handling==1.6.0
-cryptography==2.8
+cryptography==3.3.2
 Cython==0.29.14
 Flask==1.1.1
 future==0.18.2
