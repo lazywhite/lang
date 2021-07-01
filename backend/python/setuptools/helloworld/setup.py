@@ -14,7 +14,7 @@ setup(
         'bin/helloworld',
         ],
     install_requires=[
-        'Flask==0.8',
+        'Flask==1.0',
         ],
     package_data={'':['templates/*']},
     include_package_data=True,
