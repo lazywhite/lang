@@ -147,8 +147,7 @@ Methods
 
     //无参数
     def name:String = System.getProperty("user.name")
-    
-        
+
 Sealed Class
     子类型必须在同一个文件声明
 
@@ -291,7 +290,6 @@ Underscore
         val z = Array(1, 2, 3)
         z.map(_ * 10)
         z.reduce( _ + _ )
-    
 Tips
     java.lang 默认被导入
     var a = BigInt(1231238098)
