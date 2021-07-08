@@ -1,0 +1,16 @@
+1. create person.h
+2. create person.c
+3. compile to so
+    gcc -o person.o -c  -fPIC person.c;  gcc -o libperson.so -shared person.o
+    或者 gcc -o libperson.so -Wall -g -shared -fPIC person.c
+
+4. create main.c
+
+5. compile and run (test so is working)
+    gcc -o hello -L. -lperson hello.c
+    LD_LIBRARY_PATH=. ./hello
+
+6. create main.go
+7. CGO_ENABLED=1 LD_LIBRARY_PATH=. go run main.go
+
+
