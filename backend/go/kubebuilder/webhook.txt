@@ -12,7 +12,7 @@ kubebuilder create webhook --group webapp --version v1 --kind Guestbook --defaul
 api/v1/guestbook_webhook.go 
     // +kubebuilder:webhook:path=/mutate-webapp-my-domain-v1-guestbook,mutating=true,failurePolicy=fail,groups=webapp.my.domain,resources=guestbooks,verbs=create;update,versions=v1,name=mguestbook.kb.io
 
-3. 对delete也进行validate, verbs添加delete
+3. 如果对delete也进行validate, verbs需要添加delete
 // +kubebuilder:webhook:verbs=create;update;delete,path=/validate-network-netease-com-v1-ipallocation,mutating=false,failurePolicy=fail,groups=network.netease.com,resources=ipallocations,versions=v1,name=vipallocation.kb.io
 
 早先版本的kube-apiserver中，发送delete操作给webhook时，不会带上要删除的资源的object，这会导致我们在开发validatedelete后，测试时报错：

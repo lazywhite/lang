@@ -92,3 +92,16 @@ require (
 ====== operator与controller的区别 ======
 1. controller负责resource达到声明的状态，比如deployment pod数量不足时创建新的pod
 2. operator只是提交操作，类似于kubectl, 底层工作还是由controller来做
+
+
+
+
+
+========== 如何删除之前创建过的CRD ============
+Delete the api/VERSION/KIND_types.go
+Delete the controllers/KIND_controller.go
+Remove the corresponding test from controller/suite_test.go
+Remove the import, init and setup from main.go
+Remove the resources corresponding element from PROJECT
+Regenerate the api/VERSION/zz_generated.deepcopy.go, 有可能需要手动删除
+config/default/kustomization.yaml 里面可以将crd从base里面注释掉

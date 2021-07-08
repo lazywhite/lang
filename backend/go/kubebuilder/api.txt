@@ -185,3 +185,30 @@ func (r *MemcachedReconciler) SetupWithManager(mgr ctrl.Manager) error {
     WithOptions(controller.Options{MaxConcurrentReconciles: 2}).  //设置worker数目
     Complete(r)
 }
+
+
+
+
+=============== list by labelSelector ========
+sel := labels.NewSelector()
+req, err := labels.NewRequirement("mykey", selection.Exists, []string{})
+if err != nil {
+    ....
+}
+sel.Add(*req)
+
+deployOpts := []client.ListOption{
+  client.MatchingLabelsSelector{Selector: sel},
+  ...
+}
+
+===========labels.SelectorFromSet =============
+
+labelSelector := labels.SelectorFromSet(map[string]string{"app": "example-label"})
+listOps := &client.ListOptions{Namespace: "foo", LabelSelector: labelSelector}
+ 
+deploymentList := &v1.DeploymentList{}
+err := client.List(context.TODO(), deploymentList, listOps)
+if err != nil {
+	return nil, err
+}
