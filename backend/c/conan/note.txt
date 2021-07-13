@@ -1,0 +1,27 @@
+intro
+    c/c++ package manager
+
+
+install
+    pip install conan
+
+usage
+    conan search poco --remote=conancenter
+    # will create /root/.conan/remotes.json
+    # 无法设置default remote，不指定remote则在本地cache搜索
+
+    conan inspect poco/1.9.4
+
+    conan profile new default --detect  // create /root/.conan/profiles/default
+
+    mkdir build;cd build
+    # set cmake
+    yum -y install cmake3; mv /usr/bin/cmake /usr/bin/cmake2; ln -s /usr/bin/cmake3 /usr/bin/cmake
+    conan install ..  --build=missing //build package from source if binary package was not found in any of remotes or cache
+
+    # create ../CMakeLists.txt
+    cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+    cmake --build .
+
+    # 查看项目依赖
+    conan info .. [--graph=file.html]
