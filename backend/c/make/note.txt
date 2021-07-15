@@ -9,3 +9,35 @@ kubeconfig = $(KUBECONFIG)
 
 # 执行一个shell command
 ip = $(shell hostname -i)
+
+
+# 定义function
+define add_target
+${shell expr $1 + $2}
+endef
+
+foo=${call add_target,1,2}
+
+run:
+	echo ${foo}
+
+
+# 字符串处理
+$(subst from,to,text)
+    $(subst ee,EE,feet on the street):  ‘fEEt on the strEEt’.
+
+$(patsubst pattern,replacement,text)
+    $(patsubst %.c,%.o,x.c.c bar.c): ‘x.c.o bar.o’
+
+$(strip string) 去除首尾空白字符，并将内部的多个空白转换为一个空白
+    IMG ?= a bb      cc  
+    $(strip ${IMG}): a bb cc
+
+
+# PHONY
+一般来讲，make的targe是一个file，也可以是一个command(all, clean)
+当文件系统刚好有一个与command相同的file，就产生了歧义，
+因此用.PHONY来表明某个target不是一个file
+.PHONY: clean
+clean:
+    rm -rf *
